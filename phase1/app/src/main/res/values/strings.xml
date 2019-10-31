@@ -13,4 +13,19 @@
     <string name="try_times">You Finish game in:</string>
     <string name="back_to_main">Back To Main</string>
     <string name="start">START</string>
+
+    <string name="hangman_app_name">Hangman</string>
+    <string name="secret_word">Word to be guessed</string>
+    <string name="guess_a_letter">Guess a letter</string>
+    <string name="click">click!</string>
+    <string name="letters_used">Letters guessed:</string>
+    <string name="score">Score: </string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="choose_gender">Choose a gender:</string>
+    <string name="play_again">Play Again</string>
+    <string name="main_menu">Main Menu</string>
+    <string name="_120">120</string>
+    <string name="none">None</string>
+    <string name="hangman_back_to_main">Back to main</string>
 </resources>

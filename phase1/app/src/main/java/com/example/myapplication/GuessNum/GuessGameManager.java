@@ -11,17 +11,20 @@ public class GuessGameManager {
     private Gson gson = new Gson();
     private SharedPreferences.Editor editor;
     static private GuessGameManager guessGameManager;
+
     private GuessGameManager(Activity activity) {
         this.sharedPreferences = activity.getApplicationContext().getSharedPreferences("guess game" ,
                 Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
     }
+
     static GuessGameManager getInstance(Activity activity){
         if (guessGameManager == null){
             guessGameManager = new GuessGameManager(activity);
         }
         return guessGameManager;
     }
+
     void saveUsers(GuessGameStat user){
         String json = gson.toJson(user);
         editor.putString(user.getName(), json);

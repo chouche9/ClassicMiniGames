@@ -9,6 +9,7 @@ import android.widget.Button;
 
 
 import com.example.myapplication.GuessNum.GuessMain;
+import com.example.myapplication.Hangman.HangmanMain;
 
 import java.util.HashMap;
 
@@ -28,7 +29,7 @@ public class GameMain extends AppCompatActivity implements View.OnClickListener 
         hangman.setOnClickListener(this);
         flappyFish = findViewById(R.id.flappyFish);
         flappyFish.setOnClickListener(this);
-        Intent intent =  getIntent();
+        Intent intent = getIntent();
         user = intent.getStringExtra("user");
         logOut = findViewById(R.id.logout);
         logOut.setOnClickListener(this);
@@ -42,6 +43,9 @@ public class GameMain extends AppCompatActivity implements View.OnClickListener 
                 startActivity(intent);
                 break;
             case R.id.hangMan:
+                Intent intent1 = new Intent(this, HangmanMain.class);
+                intent1.putExtra("user", user);
+                startActivity(intent1);
                 break;
             case R.id.logout:
                 setResult(RESULT_OK);
