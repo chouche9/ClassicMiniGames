@@ -72,7 +72,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/hangman_round_background"
-        android:text="@string/back_to_main"
+        android:text="@string/hangman_back_to_home"
         android:textColor="@color/hangman_white"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/bottomDivider"

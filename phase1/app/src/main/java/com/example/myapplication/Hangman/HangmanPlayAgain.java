@@ -8,11 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.myapplication.GameMain;
 import com.example.myapplication.R;
 
 public class HangmanPlayAgain extends AppCompatActivity {
 
-    // Instatiate Variables
     private HangmanGameStat hangmanGameStat;
     private String originalGender;
 
@@ -36,6 +36,7 @@ public class HangmanPlayAgain extends AppCompatActivity {
 
         Button playAgain = findViewById(R.id.btnPlayAgain);
         Button mainMenu = findViewById(R.id.btnMainMenu);
+        Button backToHome = findViewById(R.id.btnBackToHome);
 
         hangmanGameStat.resetGameStatus();
 
@@ -61,6 +62,17 @@ public class HangmanPlayAgain extends AppCompatActivity {
                 hangmanGameStat.setGender(originalGender);
                 intent.putExtra(HangmanMain.getGamestatusMsg(), hangmanGameStat);
                 intent.putExtra("clear game", true);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        backToHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), GameMain.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                hangmanGameStat.resetGameStatus();
                 startActivity(intent);
                 finish();
             }
