@@ -7,13 +7,14 @@
     <color name="red"> #D81B60</color>
     <color name="green">#00574B </color>
     <color name="background">#13EBEB</color>
+    <color name="pink">#F5DBF8</color>
 
     <color name="colorHangmanAccent">#7449ab</color>
     <color name="colorHangmanMainBackground">#f2e8ff</color>
     <color name="white">#FFFFFF</color>
     <color name="textBackground">#af86e3</color>
     <color name="blue">#1a53ad</color>
-    <color name="pink">#dc91e3</color>
+
 
 
 </resources>

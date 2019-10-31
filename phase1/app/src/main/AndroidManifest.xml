@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Hangman.HangmanGame"></activity>
+        <activity android:name=".Hangman.HangmanPlayAgain"></activity>
+        <activity android:name=".Hangman.HangmanGame" />
         <activity android:name=".Hangman.HangmanMain" />
         <activity android:name=".GuessNum.GuessSetting" />
         <activity android:name=".GuessNum.GuessMain" />
