@@ -39,6 +39,10 @@ public class CreateAccount extends AppCompatActivity implements View.OnClickList
         String name = accountEntry.getText().toString().trim();
         String pass1 = password1.getText().toString().trim();
         String pass2 = password2.getText().toString().trim();
+        if (name.equals("") || pass1.equals("") || pass2.equals("")) {
+            Toast.makeText(this, "username or password can not be empty!!", Toast.LENGTH_SHORT).show();
+            return ;
+        }
         if (!pass1.equals(pass2)){
             Toast.makeText(this, "passwords do not match!!", Toast.LENGTH_SHORT).show();
             return ;
