@@ -11,9 +11,10 @@
 
     <color name="colorHangmanAccent">#7449ab</color>
     <color name="colorHangmanMainBackground">#f2e8ff</color>
-    <color name="white">#FFFFFF</color>
-    <color name="textBackground">#af86e3</color>
-    <color name="blue">#1a53ad</color>
+    <color name="hangman_white">#FFFFFF</color>
+    <color name="hangman_textBackground">#af86e3</color>
+    <color name="hangman_blue">#1a53ad</color>
+    <color name="hangman_pink">#dc91e3</color>
 
 
 
