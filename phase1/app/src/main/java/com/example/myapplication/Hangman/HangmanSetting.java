@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 public class HangmanSetting extends AppCompatActivity {
 
+    private HangmanGameStat hangmanGameStat;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
