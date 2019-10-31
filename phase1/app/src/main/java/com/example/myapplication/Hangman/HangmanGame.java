@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -65,34 +66,37 @@ public class HangmanGame extends AppCompatActivity {
     }
 
     private void setBtnGuess() {
-        btnGuess.setOnClickListener(view -> {
-            if (edtLetterGuess.getText().length() > 0 ){
-                char c = edtLetterGuess.getText().charAt(0);
-                if (hangmanGameStat.checkLetterInGuessed(c)) {
-                    hangmanGameStat.checkLetter(c);
-                    if (score != hangmanGameStat.getScore()) {
-                        if (falseGuess < 5) {
-                            falseGuess++;
-                            hangmanGameStat.setFalseGuess(falseGuess);
+        btnGuess.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (edtLetterGuess.getText().length() > 0) {
+                    char c = edtLetterGuess.getText().charAt(0);
+                    if (hangmanGameStat.checkLetterInGuessed(c)) {
+                        hangmanGameStat.checkLetter(c);
+                        if (score != hangmanGameStat.getScore()) {
+                            if (falseGuess < 5) {
+                                falseGuess++;
+                                hangmanGameStat.setFalseGuess(falseGuess);
+                            }
+                            hangmanImage.setImageResource(pictures[falseGuess]);
                         }
-                        hangmanImage.setImageResource(pictures[falseGuess]);
+                        score = hangmanGameStat.getScore();
+                    } else {
+                        Toast.makeText(getApplicationContext(),
+                                "Letter " + c + " is already used! Try again.",
+                                Toast.LENGTH_SHORT).show();
                     }
-                    score = hangmanGameStat.getScore();
+
+                    txtScore.setText(String.valueOf(hangmanGameStat.getScore()));
+                    txtMaskedWord.setText(hangmanGameStat.getDisplayedMaskedWord().toString());
+                    txtLettersGuessed.setText(hangmanGameStat.getLettersGuessed().toString());
+                    edtLetterGuess.setText("");
+
+                    checkIfGameEnded();
                 } else {
                     Toast.makeText(getApplicationContext(),
-                            "Letter " + c + " is already used! Try again.",
-                            Toast.LENGTH_SHORT).show();
+                            "Please input a letter!", Toast.LENGTH_SHORT).show();
                 }
-
-                txtScore.setText(String.valueOf(hangmanGameStat.getScore()));
-                txtMaskedWord.setText(hangmanGameStat.getDisplayedMaskedWord().toString());
-                txtLettersGuessed.setText(hangmanGameStat.getLettersGuessed().toString());
-                edtLetterGuess.setText("");
-
-                checkIfGameEnded();
-            } else {
-                Toast.makeText(getApplicationContext(),
-                        "Please input a letter!", Toast.LENGTH_SHORT).show();
             }
         });
     }
