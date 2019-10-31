@@ -70,7 +70,8 @@ public class HangmanGame extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (edtLetterGuess.getText().length() > 0) {
-                    char c = edtLetterGuess.getText().charAt(0);
+                    String letterGuessed = edtLetterGuess.getText().toString().toLowerCase();
+                    char c = letterGuessed.charAt(0);
                     if (hangmanGameStat.checkLetterInGuessed(c)) {
                         hangmanGameStat.checkLetter(c);
                         if (score != hangmanGameStat.getScore()) {
@@ -109,7 +110,7 @@ public class HangmanGame extends AppCompatActivity {
             Intent intent = new Intent(this, HangmanPlayAgain.class);
             if (score == 0) {
                 intent.putExtra(MESSAGE, "You lost! The correct word was " +
-                        hangmanGameStat.getSecretWord());
+                        hangmanGameStat.getSecretWord() + "!");
             } else {
                 intent.putExtra(MESSAGE, "Congratulations, you won!");
             }

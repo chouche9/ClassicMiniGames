@@ -113,6 +113,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Message"
+        android:textAlignment="center"
         android:textColor="@color/colorHangmanAccent"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/txtScoreText"

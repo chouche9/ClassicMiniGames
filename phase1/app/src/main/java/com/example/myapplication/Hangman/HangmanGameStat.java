@@ -96,7 +96,6 @@ class HangmanGameStat implements Parcelable {
             maskedWordCharArray[i] = '_';
             secretWordCharArray[i] = secretWord.charAt(i);
         }
-
         displayedMaskedWord = generateDisplayedMaskedWord();
     }
 
