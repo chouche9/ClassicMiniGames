@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CreateAccount">
+    tools:context=".CreateAccount"
+    android:background="@color/pink">
     <EditText
         android:id="@+id/accountEntry"
         android:layout_width="wrap_content"

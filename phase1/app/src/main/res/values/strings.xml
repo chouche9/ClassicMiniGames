@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Classic Mini Games</string>
     <string name="number_of_tries">Number of Tries:</string>
     <string name="font_setting">Font Setting</string>
     <string name="guess_number_image">Guess Number Image</string>
