@@ -6,6 +6,10 @@ import android.os.Bundle;
 
 public class HangmanPlayAgain extends AppCompatActivity {
 
+    // Instatiate Variables
+    private HangmanGameStat hangmanGameStat;
+    private String originalGender;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
