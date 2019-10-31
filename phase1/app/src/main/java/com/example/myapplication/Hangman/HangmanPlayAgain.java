@@ -73,6 +73,7 @@ public class HangmanPlayAgain extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), GameMain.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 hangmanGameStat.resetGameStatus();
+                hangmanGameStat.setGender(originalGender);
                 startActivity(intent);
                 finish();
             }
