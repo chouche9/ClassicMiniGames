@@ -64,4 +64,10 @@ public class HangmanPlayAgain extends AppCompatActivity {
             }
         });
     }
+
+    protected void onPause() {
+        super.onPause();
+        HangmanGameManager hangmanGameManager = HangmanGameManager.getInstance(this);
+        hangmanGameManager.saveGame(hangmanGameStat);
+    }
 }
