@@ -211,7 +211,11 @@ class FlappyGameStatus implements Parcelable {
     }
 
     void finishUpdate() {
-        setPlayed(false);
+        this.played = 0;
+        fishX = FISH_X;
+        fishY = FISH_Y;
+        life_count = 3;
+        score = 0;
     }
 
     @Override

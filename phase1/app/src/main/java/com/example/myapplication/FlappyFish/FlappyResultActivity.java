@@ -27,6 +27,7 @@ public class FlappyResultActivity extends AppCompatActivity implements View.OnCl
 
         setResultText();
         setPlayAgainBtn();
+        setBackToMainBtn();
         setFinish();
     }
 
