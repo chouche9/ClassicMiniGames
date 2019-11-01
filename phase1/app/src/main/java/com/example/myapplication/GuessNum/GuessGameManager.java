@@ -22,7 +22,7 @@ public class GuessGameManager extends GameManager {
         }
         return guessGameManager;
     }
-    public GameStatus getGameStatus(String username) {
+    public GuessGameStat getGameStatus(String username) {
         GuessGameStat guessGameStat = (GuessGameStat) super.getGameStatus(username);
         if(guessGameStat == null){
             guessGameStat = new GuessGameStat(username);

@@ -15,11 +15,17 @@ import com.example.myapplication.Hangman.HangmanMain;
 import java.util.HashMap;
 
 public class GameMain extends AppCompatActivity implements View.OnClickListener {
+    /** Button for going to guess number game*/
     Button guessNum;
+    /** Button for going to hangman game*/
     Button hangman;
+    /** Button for going to flappy Fish game*/
     Button flappyFish;
+    /** Button for logging out*/
     Button logOut;
+    /** the username*/
     String user;
+    /** method to create this activity*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +41,7 @@ public class GameMain extends AppCompatActivity implements View.OnClickListener 
         logOut = findViewById(R.id.logout);
         logOut.setOnClickListener(this);
     }
+    /** method when player click a button, controlling which game he/she goes to*/
     @Override
     public void onClick(View view) {
         switch (view.getId()){

@@ -12,12 +12,19 @@ import android.widget.Toast;
 
 
 public class CreateAccount extends AppCompatActivity implements View.OnClickListener {
+    /** EditText of the accountName*/
     EditText accountEntry;
+    /** EditText of first time password entry*/
     EditText password1;
+    /** EditText of the second time password entry*/
     EditText password2;
+    /** Button for create account*/
     Button createAccount;
+    /** the intent that get passed in*/
     Intent intent1;
+    /** singleton userManager*/
     UserManager userManager;
+    /** create this activity*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +39,7 @@ public class CreateAccount extends AppCompatActivity implements View.OnClickList
     }
 
 
-
+    /** onclick method called when click a button*/
     @Override
     public void onClick(View view) {
         String name = accountEntry.getText().toString().trim();
