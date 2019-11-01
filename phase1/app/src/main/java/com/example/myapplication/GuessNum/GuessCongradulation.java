@@ -11,11 +11,30 @@ import android.widget.TextView;
 import com.example.myapplication.R;
 
 public class GuessCongradulation extends AppCompatActivity implements View.OnClickListener {
+    /**
+     * TextView that display congrat String
+     */
     private TextView congratInfo;
+    /**
+     * button that go back to the GameMain activity
+     */
     private Button backToMain;
+    /**
+     * button that go back to the GuessMain activity
+     */
     private Button backToFront;
+    /**
+     * intent that GuessCongradulation activity get
+     */
     private Intent intent1;
+    /**
+     * the GuessGameStat of the user that's playing right now.
+     */
     private GuessGameStat gamer;
+    /**
+     * create GuessCongradulation activity
+     * @param savedInstanceState bundle of the resource in this activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +46,10 @@ public class GuessCongradulation extends AppCompatActivity implements View.OnCli
         backToMain.setOnClickListener(this);
         setFinish();
     }
+
+    /**
+     * change to textcolor passed by GameStat and set text for congratInfo
+     */
     private void setFinish() {
         intent1 = getIntent();
         gamer = intent1.getParcelableExtra("gamer");
@@ -41,7 +64,11 @@ public class GuessCongradulation extends AppCompatActivity implements View.OnCli
         congratInfo.setText(congrat);
     }
 
-
+    /**
+     * get the color number corresponding to the String color
+     * @param color: the color passed in
+     * @return the integer value of color
+     */
     private int getTextColor(String color) {
         int colorNum;
         if (color.equals("yellow")) {
@@ -54,12 +81,19 @@ public class GuessCongradulation extends AppCompatActivity implements View.OnCli
         return colorNum;
     }
 
+    /**
+     * override onPause method in order to save GuessGameStat.
+     */
     protected void onPause() {
         super.onPause();
         GuessGameManager gameManager = GuessGameManager.getInstance(this);
         gameManager.saveGame(gamer);
     }
 
+    /**
+     *
+     * @param view
+     */
     @Override
     public void onClick(View view) {
         switch (view.getId()) {

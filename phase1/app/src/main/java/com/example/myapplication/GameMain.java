@@ -25,7 +25,10 @@ public class GameMain extends AppCompatActivity implements View.OnClickListener 
     Button logOut;
     /** the username*/
     String user;
-    /** method to create this activity*/
+    /**
+     * create GameMain activity
+     * @param savedInstanceState bundle of the resource in this activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
