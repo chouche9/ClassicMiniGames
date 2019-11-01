@@ -74,6 +74,7 @@ public class FlappyResultActivity extends AppCompatActivity implements View.OnCl
                 break;
             case R.id.backToMainBtn:
                 Intent backToMainIntent = new Intent(this, GameMain.class);
+                backToMainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(backToMainIntent);
                 finish();
                 break;

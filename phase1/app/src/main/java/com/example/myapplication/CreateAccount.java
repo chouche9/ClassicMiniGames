@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,7 +23,11 @@ public class CreateAccount extends AppCompatActivity implements View.OnClickList
     Intent intent1;
     /** singleton userManager*/
     UserManager userManager;
-    /** create this activity*/
+
+    /**
+     * create CreateAccount activity
+     * @param savedInstanceState bundle of the resource in this activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
