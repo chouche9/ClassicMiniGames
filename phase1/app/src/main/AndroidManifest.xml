@@ -13,6 +13,10 @@
         <activity android:name=".Hangman.HangmanPlayAgain" />
         <activity android:name=".Hangman.HangmanGame" />
         <activity android:name=".Hangman.HangmanMain" />
+        <activity android:name=".FlappyFish.FlappyGameMenu"/>
+        <activity android:name=".FlappyFish.FlappyResultActivity"/>
+        <activity android:name=".FlappyFish.FlappySetting"/>
+        <activity android:name=".FlappyFish.FlappyMainActivity"/>
         <activity android:name=".GuessNum.GuessSetting" />
         <activity android:name=".GuessNum.GuessMain" />
         <activity android:name=".GuessNum.GuessGame" />

@@ -1,4 +1,4 @@
-package com.example.fishgame.FlappyGame;
+package com.example.myapplication.FlappyFish;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;

@@ -1,4 +1,4 @@
-package com.example.fishgame.FlappyGame;
+package com.example.myapplication.FlappyFish;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -12,7 +12,7 @@ import android.graphics.Typeface;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.example.fishgame.R;
+import com.example.myapplication.R;
 
 class FlappyGameView extends View {
 

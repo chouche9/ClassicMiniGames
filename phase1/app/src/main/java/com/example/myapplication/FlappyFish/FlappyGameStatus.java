@@ -1,4 +1,4 @@
-package com.example.fishgame.FlappyGame;
+package com.example.myapplication.FlappyFish;
 
 import android.os.Parcel;
 import android.os.Parcelable;
