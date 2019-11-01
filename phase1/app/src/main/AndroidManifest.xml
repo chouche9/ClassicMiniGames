@@ -21,7 +21,6 @@
         <activity android:name=".GuessNum.GuessMain" />
         <activity android:name=".GuessNum.GuessGame" />
         <activity android:name=".GuessNum.GuessCongradulation" />
-        <activity android:name=".UserInfo" />
         <activity android:name=".Login" />
         <activity android:name=".GameMain" />
         <activity android:name=".CreateAccount" />

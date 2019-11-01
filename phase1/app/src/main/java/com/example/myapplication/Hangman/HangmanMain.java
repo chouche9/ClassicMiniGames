@@ -97,7 +97,7 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
     }
 
     /**
-     * Defines what should happen when each of the buttons in this activity is clicked.
+     * Events that happen when each of the buttons in this activity is clicked.
      *
      * @param view view responsible for event handling.
      */
