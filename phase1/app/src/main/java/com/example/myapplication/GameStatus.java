@@ -56,6 +56,11 @@ public class GameStatus implements Parcelable {
     }
 
 
+    /**
+     * Default method from Parcelable interface.
+     *
+     * @return int 0
+     */
     @Override
     public int describeContents() {
         return 0;

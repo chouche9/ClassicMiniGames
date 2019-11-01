@@ -10,13 +10,46 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/**
+ * A login activity.
+ */
 public class Login extends AppCompatActivity implements View.OnClickListener {
+
+    /**
+     * The input field used to get the username.
+     */
     EditText account;
+
+    /**
+     * The input field used to get password.
+     */
     EditText password;
+
+    /**
+     * Button used to log in.
+     */
     Button login;
+
+    /**
+     * Button used to go back to the main page of the application.
+     */
     Button backFront;
+
+    /**
+     * Username that was input into EditText account.
+     */
     String name;
+
+    /**
+     * The code used to match the correct activity launch.
+     */
     final int REQUEST_CODE = 5;
+
+    /**
+     * Initializes this login activity.
+     *
+     * @param savedInstanceState a bundle of the resources in this activity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,9 +65,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     /**
      * Dispatch incoming result to the correct fragment.
      *
-     * @param requestCode
-     * @param resultCode
-     * @param data
+     * @param requestCode The code used to match the correct activity launch.
+     * @param resultCode Represents whether the result is okay or not.
+     * @param data The intent that is used to pass info.
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -44,12 +77,23 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
+    /**
+     * Return whether if the login is verified.
+     *
+     * @return true if the login is verified.
+     */
     private boolean verifyLogin(){
         name = account.getText().toString().trim();
         String passwordString = password.getText().toString().trim();
         UserManager userManager = UserManager.getInstance(this);
         return userManager.authenticate(name, passwordString);
     }
+
+    /**
+     * Events that happen when each of the buttons in this activity is clicked.
+     *
+     * @param view view responsible for event handling.
+     */
     @Override
     public void onClick(View view) {
         switch (view.getId()){
@@ -60,7 +104,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     startActivityForResult(intent, REQUEST_CODE);
                 }
                 else {
-                    Toast.makeText(this, "Incorrect Username or Password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Incorrect Username or Password",
+                            Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.backfront:
