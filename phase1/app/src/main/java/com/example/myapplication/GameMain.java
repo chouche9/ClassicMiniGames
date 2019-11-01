@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 
+import com.example.myapplication.FlappyFish.FlappyGameMenu;
 import com.example.myapplication.GuessNum.GuessMain;
 import com.example.myapplication.Hangman.HangmanMain;
 
@@ -47,6 +48,10 @@ public class GameMain extends AppCompatActivity implements View.OnClickListener 
                 intent1.putExtra("user", user);
                 startActivity(intent1);
                 break;
+            case R.id.flappyFish:
+                Intent intent2 = new Intent(this, FlappyGameMenu.class);
+                intent2.putExtra("user", user);
+                startActivity(intent2);
             case R.id.logout:
                 setResult(RESULT_OK);
                 finish();
