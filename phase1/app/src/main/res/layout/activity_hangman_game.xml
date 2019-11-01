@@ -64,7 +64,7 @@
         app:layout_constraintHorizontal_bias="0.35"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtMaskedWord"
-        android:autofillHints="" />
+        android:autofillHints=""/>
 
     <Button
         android:id="@+id/btnGuess"
