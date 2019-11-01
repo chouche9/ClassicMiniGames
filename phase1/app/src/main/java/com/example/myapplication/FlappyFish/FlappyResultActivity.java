@@ -73,6 +73,8 @@ public class FlappyResultActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.playAgainBtn:
+                Intent playAgainIntent = new Intent(this, FlappyGameMenu.class);
+                playAgainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent1.putExtra("closed", false);
                 setResult(RESULT_OK, intent1);
                 finish();
