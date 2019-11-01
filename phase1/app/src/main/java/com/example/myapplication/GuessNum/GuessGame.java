@@ -140,7 +140,7 @@ public class GuessGame extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         GuessGameManager gameManager = GuessGameManager.getInstance(this);
-        gameManager.saveUsers(gamer);
+        gameManager.saveGame(gamer);
     }
 }
 

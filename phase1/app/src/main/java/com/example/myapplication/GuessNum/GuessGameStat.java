@@ -2,25 +2,30 @@ package com.example.myapplication.GuessNum;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-public class GuessGameStat implements Parcelable{
-    private String name;
+
+import com.example.myapplication.GameStatus;
+
+public class GuessGameStat extends GameStatus implements Parcelable {
     private String color;
     private int currentTries = 0;
     private int bestTries = -1;
     private int played = 0;
     private int lastNum;
+    private String type;
 
     public GuessGameStat(String name){
-        this.name = name;
+        super(name);
+        this.type = "GuessGameStat";
     }
 
     protected GuessGameStat(Parcel in) {
-        name = in.readString();
+        super(in);
         color = in.readString();
         currentTries = in.readInt();
         bestTries = in.readInt();
         played = in.readInt();
         lastNum = in.readInt();
+        type = in.readString();
     }
 
     public void setLastNum(int lastNum) {
@@ -54,9 +59,6 @@ public class GuessGameStat implements Parcelable{
         this.color = color;
     }
 
-    public String getName() {
-        return name;
-    }
 
     public String getColor() {
         return color;
@@ -82,12 +84,13 @@ public class GuessGameStat implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(name);
+        super.writeToParcel(parcel, i);
         parcel.writeString(color);
         parcel.writeInt(currentTries);
         parcel.writeInt(bestTries);
         parcel.writeInt(played);
         parcel.writeInt(lastNum);
+        parcel.writeString(type);
     }
     public void finishUpdate(int finalTries){
         if (bestTries == -1 || bestTries > finalTries){

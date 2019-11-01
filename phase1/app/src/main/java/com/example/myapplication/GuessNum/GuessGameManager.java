@@ -4,42 +4,30 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.google.gson.Gson;
+import com.example.myapplication.GameManager;
+import com.example.myapplication.GameStatus;
 
-public class GuessGameManager {
-    private SharedPreferences sharedPreferences;
-    private Gson gson = new Gson();
-    private SharedPreferences.Editor editor;
+public class GuessGameManager extends GameManager {
     static private GuessGameManager guessGameManager;
+    private static final String gameName = "guess game";
 
-    private GuessGameManager(Activity activity) {
-        this.sharedPreferences = activity.getApplicationContext().getSharedPreferences("guess game" ,
-                Context.MODE_PRIVATE);
-        editor = sharedPreferences.edit();
+
+    private GuessGameManager(Activity activity, String name)  {
+        super(activity, name);
     }
 
     static GuessGameManager getInstance(Activity activity){
         if (guessGameManager == null){
-            guessGameManager = new GuessGameManager(activity);
+            guessGameManager = new GuessGameManager(activity, gameName);
         }
         return guessGameManager;
     }
-
-    void saveUsers(GuessGameStat user){
-        String json = gson.toJson(user);
-        editor.putString(user.getName(), json);
-        editor.apply();
-    }
-
-    public GuessGameStat getGameStat(String name) {
-        String json = sharedPreferences.getString(name, null);
-        GuessGameStat gameStat;
-        gameStat = gson.fromJson(json, GuessGameStat.class);
-
-        if (gameStat == null) {
-            gameStat = new GuessGameStat(name);
+    public GameStatus getGameStatus(String username) {
+        GuessGameStat guessGameStat = (GuessGameStat) super.getGameStatus(username);
+        if(guessGameStat == null){
+            guessGameStat = new GuessGameStat(username);
         }
-        return gameStat;
+        return guessGameStat;
     }
 }
 

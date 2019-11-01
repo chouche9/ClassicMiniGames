@@ -57,7 +57,7 @@ public class GuessCongradulation extends AppCompatActivity implements View.OnCli
     protected void onPause() {
         super.onPause();
         GuessGameManager gameManager = GuessGameManager.getInstance(this);
-        gameManager.saveUsers(gamer);
+        gameManager.saveGame(gamer);
     }
 
     @Override

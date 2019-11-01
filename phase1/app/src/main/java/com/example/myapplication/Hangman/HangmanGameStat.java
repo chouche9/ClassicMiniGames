@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 import java.util.Objects;
 
-class HangmanGameStat implements Parcelable {
+public class HangmanGameStat implements Parcelable {
 
     private String username;
     boolean played = false;

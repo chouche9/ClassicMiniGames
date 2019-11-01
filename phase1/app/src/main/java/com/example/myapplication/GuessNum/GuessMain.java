@@ -36,7 +36,7 @@ public class GuessMain extends AppCompatActivity implements View.OnClickListener
         super.onResume();
         GuessGameManager gameManager = GuessGameManager.getInstance(this);
         String name = intent1.getStringExtra("user");
-        p1 = gameManager.getGameStat(name);
+        p1 = (GuessGameStat) gameManager.getGameStatus(name);
         if (!p1.played()){
             resumeButton.setVisibility(View.GONE);
             startButton.setVisibility(View.VISIBLE);
