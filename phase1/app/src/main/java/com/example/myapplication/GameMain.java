@@ -52,9 +52,11 @@ public class GameMain extends AppCompatActivity implements View.OnClickListener 
                 Intent intent2 = new Intent(this, FlappyGameMenu.class);
                 intent2.putExtra("user", user);
                 startActivity(intent2);
+                break;
             case R.id.logout:
                 setResult(RESULT_OK);
                 finish();
+                break;
         }
     }
 }

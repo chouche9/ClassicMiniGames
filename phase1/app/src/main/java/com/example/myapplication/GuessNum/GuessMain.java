@@ -77,6 +77,7 @@ public class GuessMain extends AppCompatActivity implements View.OnClickListener
                 break;
             case R.id.quitBtn:
                 finish();
+                break;
         }
     }
 }
