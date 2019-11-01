@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.myapplication.GameMain;
 import com.example.myapplication.R;
 
 
@@ -27,14 +28,6 @@ public class FlappyResultActivity extends AppCompatActivity implements View.OnCl
         setResultText();
         setPlayAgainBtn();
         setFinish();
-        playAgainBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                intent1.putExtra("closed", false);
-                setResult(RESULT_OK, intent1);
-                finish();
-            }
-        });
     }
 
     private void setResultText() {
@@ -55,10 +48,10 @@ public class FlappyResultActivity extends AppCompatActivity implements View.OnCl
     private void setFinish() {
         intent1 = getIntent();
         gameStatus = intent1.getParcelableExtra(FlappyGameView.EXTRA_MESSAGE);
-        gameStatus.finishUpdate();
         int finalScore = gameStatus.getScore();
         String result = "Your Score : " + finalScore;
         resultText.setText(result);
+        gameStatus.finishUpdate();
     }
 
     @Override
@@ -75,13 +68,12 @@ public class FlappyResultActivity extends AppCompatActivity implements View.OnCl
             case R.id.playAgainBtn:
                 Intent playAgainIntent = new Intent(this, FlappyGameMenu.class);
                 playAgainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent1.putExtra("closed", false);
-                setResult(RESULT_OK, intent1);
+                startActivity(playAgainIntent);
                 finish();
                 break;
             case R.id.backToMainBtn:
-                intent1.putExtra("closed", true);
-                setResult(RESULT_OK, intent1);
+                Intent backToMainIntent = new Intent(this, GameMain.class);
+                startActivity(backToMainIntent);
                 finish();
                 break;
         }

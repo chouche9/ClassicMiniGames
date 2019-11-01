@@ -52,7 +52,7 @@ class FlappyGameStatus implements Parcelable {
         this.name = name;
     }
 
-    private FlappyGameStatus(Parcel in){
+    private FlappyGameStatus(Parcel in) {
         name = in.readString();
         fishX = in.readInt();
         fishY = in.readInt();
@@ -170,7 +170,7 @@ class FlappyGameStatus implements Parcelable {
         }
     }
 
-    String getDifficulty(){
+    String getDifficulty() {
         return this.difficulty;
     }
 
@@ -193,10 +193,11 @@ class FlappyGameStatus implements Parcelable {
     boolean getPlayed() {
         return played != 0;
     }
+
     private void setPlayed(boolean played) {
-        if(played){
-            this.played = 1 ;}
-        else{
+        if (played) {
+            this.played = 1;
+        } else {
             this.played = 0;
         }
     }
@@ -210,7 +211,7 @@ class FlappyGameStatus implements Parcelable {
     }
 
     void finishUpdate() {
-        played = 0;
+        setPlayed(false);
     }
 
     @Override
