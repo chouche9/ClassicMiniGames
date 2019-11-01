@@ -11,11 +11,11 @@ import android.widget.TextView;
 import com.example.myapplication.R;
 
 
-public class FlappyResultActivity extends AppCompatActivity {
+public class FlappyResultActivity extends AppCompatActivity implements View.OnClickListener {
 
-    TextView resultText;
-    Button playAgainBtn;
-    Button backToMain;
+    private TextView resultText;
+    private Button playAgainBtn;
+    private Button backToMainBtn;
     private FlappyGameStatus gameStatus;
     private Intent intent1;
 
@@ -24,8 +24,8 @@ public class FlappyResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flappy_result);
 
-        resultText = findViewById(R.id.result);
-        playAgainBtn = findViewById(R.id.playAgainBtn);
+        setResultText();
+        setPlayAgainBtn();
         setFinish();
         playAgainBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +35,21 @@ public class FlappyResultActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private void setResultText() {
+        resultText = findViewById(R.id.result);
+        resultText.setOnClickListener(this);
+    }
+
+    private void setPlayAgainBtn() {
+        playAgainBtn = findViewById(R.id.playAgainBtn);
+        playAgainBtn.setOnClickListener(this);
+    }
+
+    private void setBackToMainBtn() {
+        backToMainBtn = findViewById(R.id.backToMainBtn);
+        backToMainBtn.setOnClickListener(this);
     }
 
     private void setFinish() {
@@ -54,5 +69,19 @@ public class FlappyResultActivity extends AppCompatActivity {
     }
 
 
-
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.playAgainBtn:
+                intent1.putExtra("closed", false);
+                setResult(RESULT_OK, intent1);
+                finish();
+                break;
+            case R.id.backToMainBtn:
+                intent1.putExtra("closed", true);
+                setResult(RESULT_OK, intent1);
+                finish();
+                break;
+        }
+    }
 }
