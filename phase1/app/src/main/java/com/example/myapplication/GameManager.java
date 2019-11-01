@@ -11,9 +11,9 @@ import com.google.gson.GsonBuilder;
 
 public class GameManager {
     /** the sharedPreferences that to store game info*/
-    SharedPreferences sharedPreferences;
+    private SharedPreferences sharedPreferences;
     /** editor of this sharedPreferences*/
-    SharedPreferences.Editor editor;
+    private SharedPreferences.Editor editor;
 
     /**
      *initiate GameManager

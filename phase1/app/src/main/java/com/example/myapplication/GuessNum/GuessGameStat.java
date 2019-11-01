@@ -59,15 +59,15 @@ public class GuessGameStat extends GameStatus implements Parcelable {
      * the the number of target Number when exiting the game
      * @param lastNum the target Number that in the game that just pause
      */
-    public void setLastNum(int lastNum) {
+    void setLastNum(int lastNum) {
         this.lastNum = lastNum;
     }
 
     /**
      * get the target Number in the paused game
-     * @return
+     * @return the last target number
      */
-    public int getLastNum() {
+    int getLastNum() {
         return lastNum;
     }
 
@@ -94,11 +94,10 @@ public class GuessGameStat extends GameStatus implements Parcelable {
     }
 
     /**
-     * set the current tries to cur
-     * @param cur the new current tries
+     * reset the current tries to zero
      */
-    public void setCurrentTries(int cur) {
-        this.currentTries  = cur;
+    private void resetCurrentTries() {
+        this.currentTries  = 0;
     }
 
     /**
@@ -132,12 +131,7 @@ public class GuessGameStat extends GameStatus implements Parcelable {
      * @return whether this player has a pause game or not
      */
      boolean played(){
-        if (played == 0){
-            return false;
-        }
-        else{
-            return true;
-        }
+        return played == 1;
     }
 
     /**
@@ -175,7 +169,7 @@ public class GuessGameStat extends GameStatus implements Parcelable {
         }
         currentTries = 0;
         lastNum = 0;
-        played = 0;
+        setPlayed(false);
     }
 
     /**
@@ -183,7 +177,7 @@ public class GuessGameStat extends GameStatus implements Parcelable {
      */
      void startUpdate(){
         this.setPlayed(true);
-        this.setCurrentTries(0);
+        this.resetCurrentTries();
         this.setLastNum(0);
     }
 
@@ -200,7 +194,7 @@ public class GuessGameStat extends GameStatus implements Parcelable {
      * @param played the indicator of having a paused game
      */
 
-    public void setPlayed(boolean played) {
+    private void setPlayed(boolean played) {
         if(played){
             this.played = 1 ;}
         else{

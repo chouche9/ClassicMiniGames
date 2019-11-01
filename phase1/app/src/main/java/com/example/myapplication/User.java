@@ -26,7 +26,7 @@ public class User implements Parcelable {
      * @param name the username of this user.
      * @param password the password of this user.
      */
-    public User(String name, String password) {
+    User(String name, String password) {
         this.name = name;
         this.password = password;
     }
@@ -45,7 +45,7 @@ public class User implements Parcelable {
      *
      * @return String this user's password.
      */
-    public String getPassword() {
+    String getPassword() {
         return password;
     }
 
@@ -54,7 +54,7 @@ public class User implements Parcelable {
      *
      * @param in the parcel that stores values of a User object.
      */
-    protected User(Parcel in) {
+    private User(Parcel in) {
         name = in.readString();
         password = in.readString();
     }
