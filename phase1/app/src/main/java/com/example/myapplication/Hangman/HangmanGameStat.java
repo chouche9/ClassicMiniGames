@@ -3,11 +3,13 @@ package com.example.myapplication.Hangman;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.example.myapplication.GameStatus;
+
 import java.util.Objects;
 
-public class HangmanGameStat implements Parcelable {
+public class HangmanGameStat extends GameStatus implements Parcelable {
 
-    private String username;
+    private String type;
     boolean played = false;
     private String secretWord = "";
     private char[] secretWordCharArray;
@@ -18,8 +20,13 @@ public class HangmanGameStat implements Parcelable {
     private StringBuilder lettersGuessed = new StringBuilder();
     private StringBuilder displayedMaskedWord = new StringBuilder();
 
-    private HangmanGameStat(Parcel in) {
-        username = in.readString();
+    HangmanGameStat(String name){
+        super(name);
+        this.type = "HangmanGameStat";
+    }
+
+    protected HangmanGameStat(Parcel in) {
+        super(in);
         played = in.readByte() != 0;
         secretWord = in.readString();
         secretWordCharArray = in.createCharArray();
@@ -42,14 +49,6 @@ public class HangmanGameStat implements Parcelable {
             return new HangmanGameStat[size];
         }
     };
-
-    HangmanGameStat(String username){
-        this.username = username;
-    }
-
-    String getUsername() {
-        return username;
-    }
 
     char[] getMaskedWordCharArray() {
         return maskedWordCharArray;
@@ -162,7 +161,7 @@ public class HangmanGameStat implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(username);
+        super.writeToParcel(parcel, i);
         parcel.writeByte((byte) (played ? 1 : 0));
         parcel.writeString(secretWord);
         parcel.writeCharArray(secretWordCharArray);

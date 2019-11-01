@@ -62,7 +62,7 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
     protected void onResume() {
         super.onResume();
         HangmanGameManager hangmanGameManager = HangmanGameManager.getInstance(this);
-        hangmanGameStat = hangmanGameManager.getGameStatus(hangmanGameStat.getUsername());
+        hangmanGameStat = hangmanGameManager.getGameStatus(hangmanGameStat.getName());
 
         if (hangmanGameStat.played) {
             btnResumeGame.setVisibility(View.VISIBLE);

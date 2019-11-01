@@ -4,40 +4,31 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.myapplication.GameManager;
 import com.google.gson.Gson;
 
-class HangmanGameManager {
+class HangmanGameManager extends GameManager {
 
-    private SharedPreferences pref;
-    private Gson gson = new Gson();
     static private HangmanGameManager hangmanGameManager;
+    private static final String gameName = "hangman game";
 
-    private HangmanGameManager(Activity activity) {
-        this.pref = activity.getApplicationContext().getSharedPreferences("Hangman", Context.MODE_PRIVATE);
+    private HangmanGameManager(Activity activity, String name) {
+        super(activity, name);
     }
 
     static HangmanGameManager getInstance(Activity activity) {
         if (hangmanGameManager == null) {
-            hangmanGameManager = new HangmanGameManager(activity);
+            hangmanGameManager = new HangmanGameManager(activity, gameName);
         }
         return hangmanGameManager;
     }
 
-    HangmanGameStat getGameStatus(String username) {
-        String json = pref.getString(username, null);
-        HangmanGameStat hangmanGameStat = gson.fromJson(json, HangmanGameStat.class);
+    public HangmanGameStat getGameStatus(String username) {
+        HangmanGameStat hangmanGameStat = (HangmanGameStat) super.getGameStatus(username);
 
         if (hangmanGameStat == null) {
             hangmanGameStat = new HangmanGameStat(username);
         }
-
         return hangmanGameStat;
-    }
-
-    void saveGame(HangmanGameStat userHangmanGameStat) {
-        SharedPreferences.Editor editor = pref.edit();
-        String json = gson.toJson(userHangmanGameStat);
-        editor.putString(userHangmanGameStat.getUsername(), json);
-        editor.apply();
     }
 }
