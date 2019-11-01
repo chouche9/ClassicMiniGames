@@ -9,12 +9,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class HangmanWordGenerator {
+class HangmanWordGenerator {
 
     /**
      * ArrayList that stores all of the possible words that can be generated in this Hangman game.
      */
-    private ArrayList<String> listOfWords = new ArrayList<String>();
+    private ArrayList<String> listOfWords = new ArrayList<>();
 
     /**
      * Context the activity that called this HangmanWordGenerator.

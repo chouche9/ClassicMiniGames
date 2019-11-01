@@ -25,7 +25,7 @@ public class HangmanGameStat extends GameStatus implements Parcelable {
         this.type = "HangmanGameStat";
     }
 
-    protected HangmanGameStat(Parcel in) {
+    private HangmanGameStat(Parcel in) {
         super(in);
         played = in.readByte() != 0;
         secretWord = in.readString();
