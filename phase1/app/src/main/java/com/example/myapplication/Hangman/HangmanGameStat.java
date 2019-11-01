@@ -36,6 +36,7 @@ public class HangmanGameStat extends GameStatus implements Parcelable {
         gender = in.readString();
         lettersGuessed = new StringBuilder(in.readString());
         displayedMaskedWord = new StringBuilder(in.readString());
+        type = in.readString();
     }
 
     public static final Creator<HangmanGameStat> CREATOR = new Creator<HangmanGameStat>() {
@@ -152,6 +153,7 @@ public class HangmanGameStat extends GameStatus implements Parcelable {
         gender = "MALE";
         lettersGuessed = new StringBuilder();
         displayedMaskedWord = new StringBuilder();
+        type = "HangmanGameStat";
     }
 
     @Override
@@ -171,5 +173,6 @@ public class HangmanGameStat extends GameStatus implements Parcelable {
         parcel.writeString(gender);
         parcel.writeString(lettersGuessed.toString());
         parcel.writeString(displayedMaskedWord.toString());
+        parcel.writeString(type);
     }
 }
