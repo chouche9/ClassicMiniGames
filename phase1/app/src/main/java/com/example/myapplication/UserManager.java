@@ -47,8 +47,7 @@ public class UserManager {
     public User getUser(String user_name){
         Gson gson = new Gson();
         String json = sharedPreferences.getString(user_name, null);
-        User user = gson.fromJson(json, User.class);
-        return user;
+        return gson.fromJson(json, User.class);
     }
     public boolean authenticate(String user_name, String password){
         User user = getUser(user_name);

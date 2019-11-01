@@ -12,15 +12,15 @@ public class GuessGameManager {
     private SharedPreferences.Editor editor;
     static private GuessGameManager guessGameManager;
 
-    private GuessGameManager(Activity activity) {
-        this.sharedPreferences = activity.getApplicationContext().getSharedPreferences("guess game" ,
+    private GuessGameManager(Activity activity, String name) {
+        this.sharedPreferences = activity.getApplicationContext().getSharedPreferences(name ,
                 Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
     }
 
     static GuessGameManager getInstance(Activity activity){
         if (guessGameManager == null){
-            guessGameManager = new GuessGameManager(activity);
+            guessGameManager = new GuessGameManager(activity, "Guess the Number");
         }
         return guessGameManager;
     }

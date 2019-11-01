@@ -8,23 +8,26 @@ import com.google.gson.Gson;
 
 class HangmanGameManager {
 
-    private SharedPreferences pref;
+    private SharedPreferences sharedPreferences;
     private Gson gson = new Gson();
     static private HangmanGameManager hangmanGameManager;
+    private SharedPreferences.Editor editor;
 
-    private HangmanGameManager(Activity activity) {
-        this.pref = activity.getApplicationContext().getSharedPreferences("Hangman", Context.MODE_PRIVATE);
+    private HangmanGameManager(Activity activity, String name) {
+        this.sharedPreferences = activity.getApplicationContext().getSharedPreferences(name, Context.MODE_PRIVATE);
+        this.editor = sharedPreferences.edit();
+        editor.apply();
     }
 
-    static HangmanGameManager getInstance(Activity activity) {
+    static HangmanGameManager getInstance(Activity activity, String name) {
         if (hangmanGameManager == null) {
-            hangmanGameManager = new HangmanGameManager(activity);
+            hangmanGameManager = new HangmanGameManager(activity, name);
         }
         return hangmanGameManager;
     }
 
     HangmanGameStat getGameStatus(String username) {
-        String json = pref.getString(username, null);
+        String json = sharedPreferences.getString(username, null);
         HangmanGameStat hangmanGameStat = gson.fromJson(json, HangmanGameStat.class);
 
         if (hangmanGameStat == null) {
@@ -35,7 +38,6 @@ class HangmanGameManager {
     }
 
     void saveGame(HangmanGameStat userHangmanGameStat) {
-        SharedPreferences.Editor editor = pref.edit();
         String json = gson.toJson(userHangmanGameStat);
         editor.putString(userHangmanGameStat.getUsername(), json);
         editor.apply();

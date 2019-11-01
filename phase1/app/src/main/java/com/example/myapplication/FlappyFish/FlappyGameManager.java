@@ -12,8 +12,8 @@ class FlappyGameManager {
     private Gson gson = new Gson();
     static private FlappyGameManager gameManager;
 
-    private FlappyGameManager(Activity activity) {
-        this.sharedPreferences = activity.getApplicationContext().getSharedPreferences("fish game" ,
+    private FlappyGameManager(Activity activity, String name) {
+        this.sharedPreferences = activity.getApplicationContext().getSharedPreferences(name ,
                 Context.MODE_PRIVATE);
         this.editor = sharedPreferences.edit();
         editor.apply(); // do we need this ?
@@ -21,7 +21,7 @@ class FlappyGameManager {
 
     static FlappyGameManager getInstance(Activity activity) {
         if (gameManager == null) {
-            gameManager = new FlappyGameManager(activity);
+            gameManager = new FlappyGameManager(activity, "Flappy");
         }
         return gameManager;
     }
