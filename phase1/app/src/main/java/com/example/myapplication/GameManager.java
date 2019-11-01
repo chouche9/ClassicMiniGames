@@ -39,6 +39,5 @@ public class GameManager {
     private void loadSub(GameStatDeserializer gameStatDeserializer){
         gameStatDeserializer.registerGameType("GuessGameStat", GuessGameStat.class);
         gameStatDeserializer.registerGameType("HangmanGameStat", HangmanGameStat.class);
-
     }
 }

@@ -11,18 +11,33 @@ import java.util.Scanner;
 
 public class HangmanWordGenerator {
 
-    private static final String WORDS_FILE = "words_database.txt";
-    private static final String TAG = "Main Activity";
-
+    /**
+     * ArrayList that stores all of the possible words that can be generated in this Hangman game.
+     */
     private ArrayList<String> listOfWords = new ArrayList<String>();
+
+    /**
+     * Context the activity that called this HangmanWordGenerator.
+     */
     private Context context;
 
+    /**
+     * Constructs this HangmanWordGenerator.
+     *
+     * @param context the activity that called this HangmanWordGenerator.
+     */
     HangmanWordGenerator(Context context) {
         this.context = context;
         readFile();
     }
 
+    /**
+     * Reads and populates all possible words that can be used in this game into listOfWords.
+     */
     private void readFile() {
+        String WORDS_FILE = "words_database.txt";
+        String TAG = "Main Activity";
+
         InputStream inputStream = null;
         Scanner scanner = null;
 
@@ -49,6 +64,11 @@ public class HangmanWordGenerator {
         }
     }
 
+    /**
+     * Returns the chosen word for this game.
+     *
+     * @return String the chosen word for this game.
+     */
     String getChosenWord() {
         Collections.shuffle(listOfWords);
         String chosenWord = listOfWords.get(0);

@@ -9,16 +9,40 @@ import android.widget.Button;
 
 import com.example.myapplication.R;
 
+/**
+ * Main page of this Hangman Game.
+ */
 public class HangmanMain extends AppCompatActivity implements View.OnClickListener {
 
+    /**
+     * Intent that sends this activity to the next activity.
+     */
     Intent intent1;
+
+    /**
+     * Button for resuming the game.
+     */
     private Button btnResumeGame;
+
+    /**
+     * Game state for this HangmanGame of the user that is currently playing.
+     */
     private HangmanGameStat hangmanGameStat;
 
+    /**
+     * Name used globally to send/retrieve the HangmanGameStat instance to/from an intent.
+     *
+     * @return String the name for hangmanGameStat.
+     */
     public static String getGamestatusMsg() {
         return "hangmanGameStat";
     }
 
+    /**
+     * Initializes this HangmanMain activity.
+     *
+     * @param savedInstanceState a bundle of the resources in this activity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +82,9 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
         btnSettings.setOnClickListener(this);
     }
 
+    /**
+     * Resumes this HangmanMain activity.
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -69,6 +96,11 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
         }
     }
 
+    /**
+     * Defines what should happen when each of the buttons in this activity is clicked.
+     *
+     * @param view view responsible for event handling.
+     */
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -76,7 +108,8 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
                 String originalGender = hangmanGameStat.getGender();
                 hangmanGameStat.resetGameStatus();
                 if (originalGender == null) {
-                    originalGender = "MALE"; // if user never played game, set "MALE" by default
+                    // if user never played Hangman game before, set "MALE" by default
+                    originalGender = "MALE";
                 }
                 hangmanGameStat.setGender(originalGender);
                 intent1 = new Intent(getApplicationContext(), HangmanGame.class);
@@ -92,5 +125,4 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
         intent1.putExtra(getGamestatusMsg(), hangmanGameStat);
         startActivity(intent1);
     }
-
 }
