@@ -91,8 +91,8 @@ public class GuessCongradulation extends AppCompatActivity implements View.OnCli
     }
 
     /**
-     *
-     * @param view
+     *On Click method for different button get clicked and goes to their particular activity;
+     * @param view the button's view
      */
     @Override
     public void onClick(View view) {
