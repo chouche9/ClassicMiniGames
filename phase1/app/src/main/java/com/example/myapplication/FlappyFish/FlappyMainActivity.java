@@ -11,18 +11,46 @@ import android.util.Log;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * The user interface of the flappy fish game.
+ */
 public class FlappyMainActivity extends AppCompatActivity {
 
+    /**
+     * The game view the game uses.
+     */
     private FlappyGameView gameView;
+
+    /**
+     * The game status the game uses.
+     */
     private FlappyGameStatus gameStatus;
+
+    /**
+     * The timer used by the game view.
+     */
     private Timer timer = null;
+
+    /**
+     * The handler that handles code execution over a specific thread.
+     */
     private Handler handler = new Handler();
+
+    /**
+     * The time interval for the timer.
+     */
     private static final long TIMER_INTERVAL = 30;
+
+    /**
+     * The activity code to start another activity.
+     */
     private static final int REQUEST_CODE3 = 3;
-    private static final String TAG1 = "RUNNING";
-    private static final String TAG2 = "STOP";
 
-
+    /**
+     * Create FlappyMainActivity activity.
+     *
+     * @param savedInstanceState bundle of the resource in this activity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +60,9 @@ public class FlappyMainActivity extends AppCompatActivity {
         gameStatus = getIntent().getParcelableExtra("gamer");
     }
 
+    /**
+     * Create a timer that is used to display the game view.
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -46,7 +77,6 @@ public class FlappyMainActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             gameView.invalidate();
-                            Log.e(TAG1, "Running!!");
                         }
                     });
                 }
@@ -54,6 +84,9 @@ public class FlappyMainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Pause this game activity.
+     */
     @Override
     protected void onPause() {
         super.onPause();
@@ -61,12 +94,18 @@ public class FlappyMainActivity extends AppCompatActivity {
         timer = null;
         FlappyGameManager gameManager = FlappyGameManager.getInstance(this);
         gameManager.saveGame(gameStatus);
-        Log.e(TAG2, "It stops!");
     }
 
+    /**
+     * Decide whether FlappyMainActivity activity should close or not but the data passed in.
+     *
+     * @param requestCode the request code of the started activity.
+     * @param resultCode  whether the result get returned is okay or not.
+     * @param data        intent that store the closed info.
+     */
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == REQUEST_CODE3){
+        if (requestCode == REQUEST_CODE3) {
             setResult(RESULT_OK, data);
             finish();
         }

@@ -14,36 +14,67 @@ import android.view.View;
 
 import com.example.myapplication.R;
 
+/**
+ * The Flappy fish game view.
+ */
 class FlappyGameView extends View {
 
+    /***
+     * The key that is responsible for the score.
+     */
     public static final String EXTRA_MESSAGE = "SCORE";
 
+    /**
+     * The game status object of this user.
+     */
     private FlappyGameStatus gameStatus;
 
+    /**
+     * The activity that the game view is on.
+     */
     private Context context;
 
-    // Background
+    /**
+     * The background of this game view.
+     */
     private Bitmap bg;
 
-    // Fish
+    /**
+     * The fish object.
+     */
     private Bitmap fish;
 
-    // Shrimp
+    /**
+     * The shrimp object.
+     */
     private Bitmap shrimp;
 
-    // Shark
+    /**
+     * The shark object.
+     */
     private Bitmap shark;
 
-    // Score
+    /**
+     * The score the user gets.
+     */
     private Paint score = new Paint();
 
-    // Level
+    /**
+     * The game level the user plays.
+     */
     private Paint level = new Paint();
 
-    // Life
+    /**
+     * The life the user has.
+     */
     private Bitmap[] life = new Bitmap[2];
 
 
+    /**
+     * Construct a new flappy fish game in the context environment.
+     *
+     * @param context the environment.
+     */
     public FlappyGameView(Context context) {
         super(context);
         this.context = context;
@@ -54,6 +85,9 @@ class FlappyGameView extends View {
         setUpLife();
     }
 
+    /**
+     * Set up the background and the sprites for the moving objects.
+     */
     private void setUpSprite() {
         bg = BitmapFactory.decodeResource(getResources(), R.drawable.ocean);
         fish = BitmapFactory.decodeResource(getResources(), R.drawable.fish);
@@ -61,11 +95,17 @@ class FlappyGameView extends View {
         shark = BitmapFactory.decodeResource(getResources(), R.drawable.shark);
     }
 
+    /**
+     * Set up the life that will show on the game view.
+     */
     private void setUpLife() {
         life[0] = BitmapFactory.decodeResource(getResources(), R.drawable.heart);
         life[1] = BitmapFactory.decodeResource(getResources(), R.drawable.heart_empty);
     }
 
+    /**
+     * Set up the level that will show on the game view.
+     */
     private void setUpLevel() {
         level.setColor(Color.DKGRAY);
         level.setTextSize(45);
@@ -74,6 +114,9 @@ class FlappyGameView extends View {
         level.setAntiAlias(true);
     }
 
+    /**
+     * Set up the score that will show on the game view.
+     */
     private void setUpScore() {
         score.setColor(Color.BLACK);
         score.setTextSize(45);
@@ -81,6 +124,11 @@ class FlappyGameView extends View {
         score.setAntiAlias(true);
     }
 
+    /**
+     * Draw all the elements that made up the flappy fish game on the canvas.
+     *
+     * @param canvas the canvas that the view uses to draw.
+     */
     @Override
     protected void onDraw(Canvas canvas) {
 
@@ -143,6 +191,14 @@ class FlappyGameView extends View {
         }
     }
 
+    /**
+     * Check whether the fish object collides with the obj object.
+     *
+     * @param x   the x coordinate of the obj.
+     * @param y   the y coordinate of the obj.
+     * @param obj the object that is being checked.
+     * @return Return true if obj collides with the fish object; Otherwise, return false.
+     */
     boolean collideCheck(int x, int y, Bitmap obj) {
         int fishX = gameStatus.getFishX();
         int fishY = gameStatus.getFishY();
@@ -150,6 +206,12 @@ class FlappyGameView extends View {
                 y < (fishY + fish.getHeight());
     }
 
+    /**
+     * Change the speed of the fish object when a touch screen motion event occurs.
+     *
+     * @param event the event that reports input details from the touch screen.
+     * @return Return true if the event was handled, false otherwise.
+     */
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -159,6 +221,11 @@ class FlappyGameView extends View {
         return true;
     }
 
+    /**
+     * Set the game status.
+     *
+     * @param gameStatus the game status that is being used.
+     */
     void setGameStatus(FlappyGameStatus gameStatus) {
         this.gameStatus = gameStatus;
     }
