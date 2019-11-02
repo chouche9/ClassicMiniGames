@@ -10,6 +10,10 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * a class that represent the deserializer of Json into GameStat
+ */
+
 public class GameStatDeserializer implements JsonDeserializer<GameStatus> {
     /**
      * the string "type" that is a common instance attribute of all subclasses of GameStat
