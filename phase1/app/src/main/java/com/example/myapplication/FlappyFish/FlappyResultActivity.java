@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.myapplication.GameMain;
+import com.example.myapplication.GameStatus;
 import com.example.myapplication.R;
 
 /**
@@ -106,6 +107,7 @@ public class FlappyResultActivity extends AppCompatActivity implements View.OnCl
             case R.id.playAgainBtn:
                 Intent playAgainIntent = new Intent(this, FlappyGameMenu.class);
                 playAgainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                playAgainIntent.putExtra("user", gameStatus.getName());
                 gameStatus.finishUpdate();
                 startActivity(playAgainIntent);
                 finish();
@@ -113,6 +115,7 @@ public class FlappyResultActivity extends AppCompatActivity implements View.OnCl
             case R.id.backToMainBtn:
                 Intent backToMainIntent = new Intent(this, GameMain.class);
                 backToMainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                backToMainIntent.putExtra("user", gameStatus.getName());
                 gameStatus.finishUpdate();
                 startActivity(backToMainIntent);
                 finish();
