@@ -5,11 +5,8 @@ import android.os.Parcelable;
 
 import com.example.myapplication.GameStatus;
 
-import java.io.Serializable;
-
 public class FlappyGameStatus extends GameStatus implements Parcelable {
 
-    // TODO: (private or public) static final?
     private static final int FISH_X = 10;
     private static final int FISH_Y = 500;
 
