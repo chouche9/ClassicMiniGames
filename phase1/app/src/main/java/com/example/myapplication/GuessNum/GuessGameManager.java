@@ -4,6 +4,9 @@ import android.app.Activity;
 
 import com.example.myapplication.GameManager;
 
+/**
+ * the class that manager all GuessGameStat.
+ */
 public class GuessGameManager extends GameManager {
     /**
      * the singleton guessGameManager

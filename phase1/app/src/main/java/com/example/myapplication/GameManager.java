@@ -10,26 +10,37 @@ import com.example.myapplication.Hangman.HangmanGameStat;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+/**
+ * A game manager.
+ */
 public class GameManager {
-    /** the sharedPreferences that to store game info*/
+    /**
+     * the sharedPreferences that to store game info
+     */
     private SharedPreferences sharedPreferences;
-    /** editor of this sharedPreferences*/
+
+    /**
+     * editor of this sharedPreferences
+     */
     private SharedPreferences.Editor editor;
 
     /**
-     *initiate GameManager
-     * @param activity: the activity that call GameManger;
-     * @param name: the file name which store your information;
+     * Initiate GameManager
+     *
+     * @param activity the activity that call GameManger;
+     * @param name the file name which store your information;
      */
     public GameManager(Activity activity, String name) {
-        this.sharedPreferences = activity.getApplicationContext().getSharedPreferences(name, Context.MODE_PRIVATE);
+        this.sharedPreferences = activity.getApplicationContext().getSharedPreferences(
+                name, Context.MODE_PRIVATE);
         this.editor = sharedPreferences.edit();
         editor.apply();
     };
 
     /**
      * get the GameStatus for a particular game for a user
-     * @param username: name of this user
+     *
+     * @param username name of this user
      * @return the GameStatus
      */
     public GameStatus getGameStatus(String username) {
@@ -44,6 +55,7 @@ public class GameManager {
 
     /**
      * save the GameStatus for the particular user.
+     *
      * @param gameStatus the new GameStatus want to get saved.
      */
     public void saveGame(GameStatus gameStatus) {
@@ -54,8 +66,9 @@ public class GameManager {
     }
 
     /**
-     * add GameTypes into gameStatDerializer
-     * @param gameStatDeserializer the Derserializer used transfer json string into custom object
+     * add GameTypes into gameStatDeserializer
+     *
+     * @param gameStatDeserializer the Deserializer used transfer json string into custom object
      */
     private void loadSub(GameStatDeserializer gameStatDeserializer){
         gameStatDeserializer.registerGameType("GuessGameStat", GuessGameStat.class);
