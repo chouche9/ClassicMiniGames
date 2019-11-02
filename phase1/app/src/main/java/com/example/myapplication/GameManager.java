@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.myapplication.FlappyFish.FlappyGameStatus;
 import com.example.myapplication.GuessNum.GuessGameStat;
 import com.example.myapplication.Hangman.HangmanGameStat;
 import com.google.gson.Gson;
@@ -11,9 +12,9 @@ import com.google.gson.GsonBuilder;
 
 public class GameManager {
     /** the sharedPreferences that to store game info*/
-    SharedPreferences sharedPreferences;
+    private SharedPreferences sharedPreferences;
     /** editor of this sharedPreferences*/
-    SharedPreferences.Editor editor;
+    private SharedPreferences.Editor editor;
 
     /**
      *initiate GameManager
@@ -59,5 +60,6 @@ public class GameManager {
     private void loadSub(GameStatDeserializer gameStatDeserializer){
         gameStatDeserializer.registerGameType("GuessGameStat", GuessGameStat.class);
         gameStatDeserializer.registerGameType("HangmanGameStat", HangmanGameStat.class);
+        gameStatDeserializer.registerGameType("FlappyGameStatus", FlappyGameStatus.class);
     }
 }

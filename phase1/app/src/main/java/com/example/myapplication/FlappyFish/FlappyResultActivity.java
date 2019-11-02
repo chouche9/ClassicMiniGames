@@ -25,10 +25,15 @@ public class FlappyResultActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flappy_result);
 
+        intent1 =  getIntent();
+        gameStatus = intent1.getParcelableExtra(FlappyGameView.EXTRA_MESSAGE);
+        int finalScore = gameStatus.getScore();
+        String result = "Your Score : " + finalScore;
         setResultText();
+        resultText.setText(result);
         setPlayAgainBtn();
         setBackToMainBtn();
-        setFinish();
+//        setFinish();
     }
 
     private void setResultText() {
@@ -47,12 +52,6 @@ public class FlappyResultActivity extends AppCompatActivity implements View.OnCl
     }
 
     private void setFinish() {
-        intent1 = getIntent();
-        gameStatus = intent1.getParcelableExtra(FlappyGameView.EXTRA_MESSAGE);
-        int finalScore = gameStatus.getScore();
-        String result = "Your Score : " + finalScore;
-        resultText.setText(result);
-        gameStatus.finishUpdate();
     }
 
     @Override
@@ -69,12 +68,14 @@ public class FlappyResultActivity extends AppCompatActivity implements View.OnCl
             case R.id.playAgainBtn:
                 Intent playAgainIntent = new Intent(this, FlappyGameMenu.class);
                 playAgainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                gameStatus.finishUpdate();
                 startActivity(playAgainIntent);
                 finish();
                 break;
             case R.id.backToMainBtn:
                 Intent backToMainIntent = new Intent(this, GameMain.class);
                 backToMainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                gameStatus.finishUpdate();
                 startActivity(backToMainIntent);
                 finish();
                 break;
