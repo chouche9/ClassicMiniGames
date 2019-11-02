@@ -11,7 +11,9 @@ import android.widget.Toast;
 
 import com.example.myapplication.R;
 
-
+/**
+ * the activity class that setting the font color of Guessing Game.
+ */
 public class GuessSetting extends AppCompatActivity implements View.OnClickListener{
     /**
      * the play's GuessGameStat
@@ -62,6 +64,10 @@ public class GuessSetting extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
+
+    /**
+     * start the GuessGame activity and pass the play's GuessGameStat into the new activity
+     */
     private void startGame(){
         Intent intent1 = new Intent(GuessSetting.this, GuessGame.class);
         intent1.putExtra("gamer", p1);
@@ -70,10 +76,10 @@ public class GuessSetting extends AppCompatActivity implements View.OnClickListe
 
     /**
      * Dispatch incoming result to the correct fragment.
-     *
-     * @param requestCode
-     * @param resultCode
-     * @param data
+     *close this activity as well when intent get passed back
+     * @param requestCode the request code of the started activity
+     * @param resultCode whether the result get returned is okay or not
+     * @param data intent that store the closed info
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

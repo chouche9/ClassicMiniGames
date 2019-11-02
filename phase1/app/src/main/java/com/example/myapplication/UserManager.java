@@ -60,7 +60,7 @@ public class UserManager {
      *
      * @param user the user that is to be saved.
      */
-    public void saveUsers(User user){
+     void saveUsers(User user){
         Gson gson = new Gson();
         String json = gson.toJson(user);
         editor.putString(user.getName(), json);
@@ -73,11 +73,10 @@ public class UserManager {
      * @param userName the username of a user.
      * @return User the user instance with the username userName.
      */
-    public User getUser(String userName){
+    private User getUser(String userName){
         Gson gson = new Gson();
         String json = sharedPreferences.getString(userName, null);
-        User user = gson.fromJson(json, User.class);
-        return user;
+        return gson.fromJson(json, User.class);
     }
 
     /**
@@ -87,7 +86,7 @@ public class UserManager {
      * @param password the password.
      * @return true if userName and password are valid.
      */
-    public boolean authenticate(String userName, String password){
+    boolean authenticate(String userName, String password){
         User user = getUser(userName);
         if (user == null){
             return false;
@@ -101,24 +100,9 @@ public class UserManager {
      * @param userName the username.
      * @return true if a user with userName doesn't exist.
      */
-    public boolean createAuthenticate(String userName){
+    boolean createAuthenticate(String userName){
         User user = userManager.getUser(userName);
         return user == null;
     }
 
-    /**
-     * Return a string representation of all users in this application.
-     *
-     * @return a string representation of all users in this application.
-     */
-    @NonNull
-    @Override
-    public String toString() {
-        Map<String, ?> allEntries = sharedPreferences.getAll();
-        String result = "";
-        for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
-            result += userManager.getUser(entry.getKey()).toString();
-        }
-        return result;
-    }
 }

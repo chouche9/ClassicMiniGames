@@ -14,19 +14,38 @@ import com.example.myapplication.Hangman.HangmanMain;
 
 import java.util.HashMap;
 
+/**
+ * Main page of all three games.
+ */
 public class GameMain extends AppCompatActivity implements View.OnClickListener {
-    /** Button for going to guess number game*/
-    Button guessNum;
-    /** Button for going to hangman game*/
-    Button hangman;
-    /** Button for going to flappy Fish game*/
-    Button flappyFish;
-    /** Button for logging out*/
-    Button logOut;
-    /** the username*/
-    String user;
+
     /**
-     * create GameMain activity
+     * Button for going to guess number game
+     */
+    Button guessNum;
+
+    /**
+     * Button for going to hangman game
+     */
+    Button hangman;
+
+    /**
+     * Button for going to flappy Fish game
+     */
+    Button flappyFish;
+
+    /**
+     * Button for logging out
+     */
+    Button logOut;
+
+    /**
+     * the username
+     */
+    String user;
+
+    /**
+     * Create GameMain activity
      * @param savedInstanceState bundle of the resource in this activity
      */
     @Override
@@ -44,7 +63,12 @@ public class GameMain extends AppCompatActivity implements View.OnClickListener 
         logOut = findViewById(R.id.logout);
         logOut.setOnClickListener(this);
     }
-    /** method when player click a button, controlling which game he/she goes to*/
+
+    /**
+     * Method when player click a button, controlling which game he/she goes to
+     *
+     * @param view the button that gets clicked
+     */
     @Override
     public void onClick(View view) {
         switch (view.getId()){

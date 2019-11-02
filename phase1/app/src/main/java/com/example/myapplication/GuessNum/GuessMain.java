@@ -10,7 +10,9 @@ import android.widget.Button;
 
 import com.example.myapplication.R;
 
-
+/**
+ * the activity class that is the front page of Guessing Number .
+ */
 public class GuessMain extends AppCompatActivity implements View.OnClickListener {
     /**
      * start button

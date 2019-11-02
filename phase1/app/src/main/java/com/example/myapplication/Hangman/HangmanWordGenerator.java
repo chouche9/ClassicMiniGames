@@ -9,9 +9,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-/**
- * Hangman Game Word Generator
- */
 class HangmanWordGenerator {
 
     /**
