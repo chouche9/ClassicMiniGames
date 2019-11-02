@@ -13,25 +13,35 @@ import com.example.myapplication.R;
 
 
 public class GuessSetting extends AppCompatActivity implements View.OnClickListener{
-    private Button yellowButton;
-    private Button greenButton;
-    private Button redButton;
-    private Intent intent1;
+    /**
+     * the play's GuessGameStat
+     */
     private GuessGameStat p1;
+    /**
+     * request_code pass in to start activity
+     */
     final int REQUEST_CODE = 5;
+    /**
+     * create GuessSetting activity
+     * @param savedInstanceState bundle of the resource in this activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guess_setting);
-        yellowButton = findViewById(R.id.yellowButton);
-        greenButton = findViewById(R.id.greenButton);
-        redButton = findViewById(R.id.redButton);
+        Button yellowButton = findViewById(R.id.yellowButton);
+        Button greenButton = findViewById(R.id.greenButton);
+        Button redButton = findViewById(R.id.redButton);
         yellowButton.setOnClickListener(this);
         greenButton.setOnClickListener(this);
         redButton.setOnClickListener(this);
-        intent1 = getIntent();
+        Intent intent1 = getIntent();
         p1 = intent1.getParcelableExtra("gamer");
     }
+    /**
+     *On Click method for different button get clicked and set each's particular number;
+     * @param view the button's view
+     */
     @Override
     public void onClick(View view) {
         switch (view.getId()){

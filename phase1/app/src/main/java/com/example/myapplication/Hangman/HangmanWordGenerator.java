@@ -9,12 +9,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class HangmanWordGenerator {
+class HangmanWordGenerator {
 
     /**
      * ArrayList that stores all of the possible words that can be generated in this Hangman game.
      */
-    private ArrayList<String> listOfWords = new ArrayList<String>();
+    private ArrayList<String> listOfWords = new ArrayList<>();
 
     /**
      * Context the activity that called this HangmanWordGenerator.
@@ -35,27 +35,27 @@ public class HangmanWordGenerator {
      * Reads and populates all possible words that can be used in this game into listOfWords.
      */
     private void readFile() {
-        String WORDS_FILE = "words_database.txt";
-        String TAG = "Main Activity";
+        String wordsFile = "words_database.txt";
+        String tag = "HangmanWordGenerator";
 
         InputStream inputStream = null;
         Scanner scanner = null;
 
         try {
-            inputStream = context.getAssets().open(WORDS_FILE);
+            inputStream = context.getAssets().open(wordsFile);
             scanner = new Scanner(inputStream);
             while (scanner.hasNext()) {
                 listOfWords.add(scanner.next());
             }
         } catch (IOException e) {
-            Log.e(TAG, "Error encountered trying to open file for reading: " + WORDS_FILE);
+            Log.e(tag, "Error encountered trying to open file for reading: " + wordsFile);
         } finally {
             try {
                 if (inputStream != null) {
                     inputStream.close();
                 }
             } catch (IOException e) {
-                Log.e(TAG, "Error encountered trying to close inputStream");
+                Log.e(tag, "Error encountered trying to close inputStream");
             }
 
             if (scanner != null) {

@@ -12,13 +12,34 @@ import com.example.myapplication.R;
 
 
 public class GuessMain extends AppCompatActivity implements View.OnClickListener {
+    /**
+     * start button
+     */
     private Button startButton;
+    /**
+     * resumeButton
+     */
     private Button resumeButton;
-    private Button quitButton;
+    /**
+     * the request_code to start activity GuessSetting
+     */
     private final int REQUEST_CODE1 = 1;
+    /**
+     * the activity code to start activity GuessGame
+     */
     private final int REQUEST_CODE2 = 2;
+    /**
+     * the play's GuessGameStat
+     */
     private GuessGameStat p1;
+    /**
+     * the intent that get passed in
+     */
     private Intent intent1;
+    /**
+     * create GuessMain activity
+     * @param savedInstanceState bundle of the resource in this activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,9 +49,12 @@ public class GuessMain extends AppCompatActivity implements View.OnClickListener
         resumeButton = findViewById(R.id.resumeBtn);
         intent1 = getIntent();
         resumeButton.setOnClickListener(this);
-        quitButton = findViewById(R.id.quitBtn);
+        Button quitButton = findViewById(R.id.quitBtn);
         quitButton.setOnClickListener(this);
     }
+    /**
+     * check GuessGameStatus to determine whether Resume Button should appear or not
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -48,6 +72,12 @@ public class GuessMain extends AppCompatActivity implements View.OnClickListener
 
     }
 
+    /**
+     * decide whether GuessMain activity should close or not but the data passed in
+     * @param requestCode: the request code of the started activity
+     * @param resultCode: whether the result get returned is okay or not
+     * @param data: intent that store the closed info
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -60,6 +90,10 @@ public class GuessMain extends AppCompatActivity implements View.OnClickListener
             }
         }
     }
+    /**
+     *On Click method for different button get clicked and goes to their particular activity;
+     * @param view the button's view
+     */
     @Override
     public void onClick(View view) {
         switch (view.getId()){
