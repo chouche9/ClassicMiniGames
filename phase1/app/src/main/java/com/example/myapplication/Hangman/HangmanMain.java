@@ -17,7 +17,7 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
     /**
      * Intent that sends this activity to the next activity.
      */
-    Intent intent1;
+    private Intent intent1;
 
     /**
      * Button for resuming the game.
