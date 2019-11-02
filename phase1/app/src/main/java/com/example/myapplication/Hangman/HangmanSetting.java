@@ -9,10 +9,21 @@ import android.widget.Button;
 
 import com.example.myapplication.R;
 
+/**
+ * Hangman Game Settings Page
+ */
 public class HangmanSetting extends AppCompatActivity implements View.OnClickListener {
 
+    /**
+     * A variable to store the hangmanGameStat
+     */
     private HangmanGameStat hangmanGameStat;
 
+    /**
+     * Initializes this HangmanMain activity.
+     *
+     * @param savedInstanceState a bundle of the resources in this activity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +40,11 @@ public class HangmanSetting extends AppCompatActivity implements View.OnClickLis
         btnFemale.setOnClickListener(this);
     }
 
+    /**
+     * Events that happen when each of the buttons in this activity is clicked.
+     *
+     * @param view view responsible for event handling.
+     */
     @Override
     public void onClick(View view) {
         Intent intent = new Intent(getApplicationContext(), HangmanGame.class);
