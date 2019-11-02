@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.myapplication.FlappyFish.FlappyGameStatus;
 import com.example.myapplication.GuessNum.GuessGameStat;
 import com.example.myapplication.Hangman.HangmanGameStat;
 import com.google.gson.Gson;
@@ -59,5 +60,6 @@ public class GameManager {
     private void loadSub(GameStatDeserializer gameStatDeserializer){
         gameStatDeserializer.registerGameType("GuessGameStat", GuessGameStat.class);
         gameStatDeserializer.registerGameType("HangmanGameStat", HangmanGameStat.class);
+        gameStatDeserializer.registerGameType("FlappyGameStatus", FlappyGameStatus.class);
     }
 }

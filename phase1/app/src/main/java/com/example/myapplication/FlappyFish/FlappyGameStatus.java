@@ -3,9 +3,11 @@ package com.example.myapplication.FlappyFish;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.example.myapplication.GameStatus;
+
 import java.io.Serializable;
 
-class FlappyGameStatus implements Parcelable {
+public class FlappyGameStatus extends GameStatus implements Parcelable {
 
     // TODO: (private or public) static final?
     private static final int FISH_X = 10;
@@ -23,9 +25,9 @@ class FlappyGameStatus implements Parcelable {
     private static final int DEAD_POS = -100;
 
     //User
-    private String name;
     private int played;
     private String difficulty;
+    private String type;
 
     // Fish
     private int fishX;
@@ -49,11 +51,13 @@ class FlappyGameStatus implements Parcelable {
     private int life_count;
 
     FlappyGameStatus(String name) {
-        this.name = name;
+        super(name);
+        this.type = "FlappyGameStatus";
     }
 
     private FlappyGameStatus(Parcel in) {
-        name = in.readString();
+        super(in);
+        type = in.readString();
         fishX = in.readInt();
         fishY = in.readInt();
         fishSpeed = in.readInt();
@@ -92,10 +96,6 @@ class FlappyGameStatus implements Parcelable {
             return new FlappyGameStatus[size];
         }
     };
-
-    String getName() {
-        return this.name;
-    }
 
     int getFishX() {
         return fishX;
@@ -225,7 +225,8 @@ class FlappyGameStatus implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(name);
+        super.writeToParcel(parcel, i);
+        parcel.writeString(type);
         parcel.writeInt(fishX);
         parcel.writeInt(fishY);
         parcel.writeInt(fishSpeed);
