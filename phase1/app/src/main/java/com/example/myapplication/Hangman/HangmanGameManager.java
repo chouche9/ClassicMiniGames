@@ -27,6 +27,7 @@ class HangmanGameManager extends GameManager {
      *
      * @param activity the activity that called this HangmanGameManager.
      * @param name the name of this game, gameName.
+     *
      */
     private HangmanGameManager(Activity activity, String name) {
         super(activity, name);

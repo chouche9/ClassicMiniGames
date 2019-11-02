@@ -10,6 +10,9 @@ import android.widget.TextView;
 
 import com.example.myapplication.R;
 
+/**
+ * the activity class that is the result page of guessing number game.
+ */
 public class GuessCongradulation extends AppCompatActivity implements View.OnClickListener {
     /**
      * TextView that display congrat String

@@ -11,11 +11,26 @@ import android.widget.TextView;
 import com.example.myapplication.GameMain;
 import com.example.myapplication.R;
 
+/**
+ * Hangman play again Activity
+ */
 public class HangmanPlayAgain extends AppCompatActivity {
 
+    /**
+     * A HangmanGameStat that will store a hangmanGameState
+     */
     private HangmanGameStat hangmanGameStat;
+
+    /**
+     * A String to store the original Gender
+     */
     private String originalGender;
 
+    /**
+     * Initializes this HangmanMain activity.
+     *
+     * @param savedInstanceState a bundle of the resources in this activity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +95,9 @@ public class HangmanPlayAgain extends AppCompatActivity {
         });
     }
 
+    /**
+     * Pause the Game
+     */
     protected void onPause() {
         super.onPause();
         HangmanGameManager hangmanGameManager = HangmanGameManager.getInstance(this);

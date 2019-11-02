@@ -17,7 +17,9 @@ import android.widget.Toast;
 import com.example.myapplication.R;
 
 import java.util.Random;
-
+/**
+ * the activity class that play the GuessNumber Game.
+ */
 public class GuessGame extends AppCompatActivity {
     /**
      * the correct value of this guessing game

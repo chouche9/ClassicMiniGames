@@ -5,7 +5,6 @@ import android.os.Parcelable;
 
 import com.example.myapplication.GameStatus;
 
-import java.io.Serializable;
 
 /**
  * The flappy fish game status.

@@ -10,6 +10,9 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * A game status deserializer.
+ */
 public class GameStatDeserializer implements JsonDeserializer<GameStatus> {
     /**
      * the string "type" that is a common instance attribute of all subclasses of GameStat
@@ -26,7 +29,8 @@ public class GameStatDeserializer implements JsonDeserializer<GameStatus> {
 
     /**
      * Construct a new GameStatDeserializer
-     * @param gameManagerTypeName: name that is a common attribute of all subclasses of GameStatus
+     *
+     * @param gameManagerTypeName name that is a common attribute of all subclasses of GameStatus
      */
      GameStatDeserializer(String gameManagerTypeName){
         this.gson = new Gson();
@@ -36,6 +40,7 @@ public class GameStatDeserializer implements JsonDeserializer<GameStatus> {
 
     /**
      * add subclass name and actual type into gameStatDeserializer
+     *
      * @param gameTypeName subclass name
      * @param GameType its type
      */
@@ -46,6 +51,7 @@ public class GameStatDeserializer implements JsonDeserializer<GameStatus> {
 
     /**
      * deserialize json into subclasses of GameStatus
+     *
      * @param json json representation of this GameStatus
      * @param typeOfT type of the return type
      * @param context the context that doing deserialize

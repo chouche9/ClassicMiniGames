@@ -9,22 +9,71 @@ import java.util.Objects;
 
 public class HangmanGameStat extends GameStatus implements Parcelable {
 
+    /**
+     * A string type that passes on the type of the game
+     */
     private String type;
+
+    /**
+     * A boolean string that shows whether the game has been played before or not
+     */
     boolean played = false;
+
+    /**
+     * A string that represent the secret word for the hangman game
+     */
     private String secretWord = "";
+
+    /**
+     * A Character array of the secret word array
+     */
     private char[] secretWordCharArray;
+
+    /**
+     * A Character array of the masked word Char Array to be shown in the game activity
+     */
     private char[] maskedWordCharArray;
+
+    /**
+     * An int that store the total value of the game
+     */
     private int score = 120;
+
+    /**
+     * An int falseGuess stores the value in which it increases whenever
+     * player failed to guess the letter
+     */
     private int falseGuess = -1;
+
+    /**
+     * String gender stored the type of gender chosen for this game
+     */
     private String gender = "MALE";
+
+    /**
+     * A StringBuilder that will store the letters that has been guessed by the user
+     */
     private StringBuilder lettersGuessed = new StringBuilder();
+
+    /**
+     * A StringBuilder that will store the word to be displayed on the game but are masked.
+     */
     private StringBuilder displayedMaskedWord = new StringBuilder();
 
+    /**
+     * A constructor to construct the HangmanGame statistics
+     * @param name: Name of the user
+     */
     HangmanGameStat(String name){
         super(name);
         this.type = "HangmanGameStat";
     }
 
+    /**
+     * Constructs this GameStatus using the values stored in parcel in.
+     *
+     * @param in the parcel that stores values of a GameStatus object.
+     */
     private HangmanGameStat(Parcel in) {
         super(in);
         played = in.readByte() != 0;
@@ -39,6 +88,9 @@ public class HangmanGameStat extends GameStatus implements Parcelable {
         type = in.readString();
     }
 
+    /**
+     * Binds the GameStatus object.
+     */
     public static final Creator<HangmanGameStat> CREATOR = new Creator<HangmanGameStat>() {
         @Override
         public HangmanGameStat createFromParcel(Parcel in) {
@@ -51,42 +103,82 @@ public class HangmanGameStat extends GameStatus implements Parcelable {
         }
     };
 
+    /**
+     * Getter to get the masked word char array
+     * @return char[]
+     */
     char[] getMaskedWordCharArray() {
         return maskedWordCharArray;
     }
 
+    /**
+     * Getter to get the lettersGuessed
+     * @return StringBuilder
+     */
     StringBuilder getLettersGuessed() {
         return lettersGuessed;
     }
 
+    /**
+     * Getter to get the DisplayedMaskedWord
+     * @return StringBuilder
+     */
     StringBuilder getDisplayedMaskedWord(){
         return displayedMaskedWord;
     }
 
+    /**
+     * Getter to get the score
+     * @return int
+     */
     int getScore() {
         return score;
     }
 
+    /**
+     * Setter to get the falseGuess
+     * @return void
+     */
     void setFalseGuess(int falseGuess) {
         this.falseGuess = falseGuess;
     }
 
+    /**
+     * Getter to get the False Guess
+     * @return int
+     */
     int getFalseGuess() {
         return falseGuess;
     }
 
+    /**
+     * Setter to set the gender
+     * @param gender : gender of the game
+     */
     void setGender(String gender) {
         this.gender = gender;
     }
 
+    /**
+     * Get the gender of the game
+     * @return
+     */
     String getGender() {
         return gender;
     }
 
+    /**
+     * A getter that get the secretWord of hangman
+     * @return
+     */
     String getSecretWord() {
         return secretWord;
     }
 
+    /**
+     * Generating the word for the game
+     * @param chosenWord
+     */
     void generateWord(String chosenWord) {
         played = true;
         secretWord = chosenWord;
@@ -99,6 +191,11 @@ public class HangmanGameStat extends GameStatus implements Parcelable {
         displayedMaskedWord = generateDisplayedMaskedWord();
     }
 
+    /**
+     * Check whether the letter guessed is already used
+     * @param guessedLetter: Letter chosen by the user
+     * @return boolean
+     */
     boolean checkLetterInGuessed(char guessedLetter) {
         if (!lettersGuessed.toString().contains(String.valueOf(guessedLetter))) {
             updateLettersGuessed(guessedLetter);
@@ -108,6 +205,10 @@ public class HangmanGameStat extends GameStatus implements Parcelable {
         }
     }
 
+    /**
+     * Method to check whether the letter is in the secret Word
+     * @param guessedLetter
+     */
     void checkLetter(char guessedLetter) {
         if (!secretWord.contains(String.valueOf(guessedLetter))) {
             decreaseScore();
@@ -116,15 +217,26 @@ public class HangmanGameStat extends GameStatus implements Parcelable {
         }
     }
 
+    /**
+     * Method to update the letter guessed in the masked word
+     * @param guessedLetter
+     */
     private void updateLettersGuessed(char guessedLetter) {
         String addLetter = guessedLetter + ", ";
         lettersGuessed.append(addLetter);
     }
 
+    /**
+     * Method to decrease the score when the guessed letter is not in the secret word
+     */
     private void decreaseScore() {
         score -= 20;
     }
 
+    /**
+     * method to reveal the letter in activity
+     * @param guessedLetter
+     */
     private void revealLetter(char guessedLetter) {
         for (int i = 0; i < secretWordCharArray.length; i++) {
             if (secretWordCharArray[i] == guessedLetter) {
@@ -134,6 +246,10 @@ public class HangmanGameStat extends GameStatus implements Parcelable {
         displayedMaskedWord = generateDisplayedMaskedWord();
     }
 
+    /**
+     * A method that generate the displayed masked word in the activity
+     * @return A stringbuilder
+     */
     private StringBuilder generateDisplayedMaskedWord() {
         StringBuilder maskedWord = new StringBuilder();
         for (char letter : maskedWordCharArray) {
@@ -143,6 +259,9 @@ public class HangmanGameStat extends GameStatus implements Parcelable {
         return maskedWord;
     }
 
+    /**
+     * A method to reset the Game Status
+     */
     void resetGameStatus() {
         played = false;
         secretWord = "";
@@ -156,11 +275,21 @@ public class HangmanGameStat extends GameStatus implements Parcelable {
         type = "HangmanGameStat";
     }
 
+    /**
+     * Getter to get the score
+     * @return int
+     */
     @Override
     public int describeContents() {
         return 0;
     }
 
+    /**
+     * Write the attribute of this GameStatus to parcel.
+     *
+     * @param parcel parcel to write the attributes of this GameStatus.
+     * @param i flags.
+     */
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         super.writeToParcel(parcel, i);
