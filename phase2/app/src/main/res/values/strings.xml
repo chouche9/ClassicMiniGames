@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Classic Mini Games</string>
+    <string name="number_of_tries">Number of Tries:</string>
+    <string name="font_setting">Font Setting</string>
+    <string name="guess_number_image">Guess Number Image</string>
+    <string name="yellow">Yellow</string>
+    <string name="red">Red</string>
+    <string name="dark_green">Dark Green</string>
+    <string name="tries">Tries:</string>
+    <string name="guess_info">Guess a number between 1 and 100</string>
+    <string name="enter_number">Enter a number</string>
+    <string name="check_number">Check Number</string>
+    <string name="try_times">You Finish game in:</string>
+    <string name="back_to_main">Back To Main</string>
+    <string name="start">START</string>
+
+    <string name="hangman_app_name">Hangman</string>
+    <string name="secret_word">Word to be guessed</string>
+    <string name="guess_a_letter">Guess a letter</string>
+    <string name="click">click!</string>
+    <string name="letters_used">Letters guessed:</string>
+    <string name="score">Score: </string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="choose_gender">Choose a gender:</string>
+    <string name="play_again">Play Again</string>
+    <string name="main_menu">Main Menu</string>
+    <string name="_120">120</string>
+    <string name="none">None</string>
+    <string name="hangman_back_to_home">Back to home</string>
+</resources>
