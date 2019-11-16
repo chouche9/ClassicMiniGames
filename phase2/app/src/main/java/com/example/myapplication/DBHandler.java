@@ -10,37 +10,57 @@ import com.example.myapplication.GuessNum.GuessGameStat;
 import com.example.myapplication.Hangman.HangmanGameStat;
 import com.google.gson.Gson;
 
+/** A database handler that executes SQL requests and manages a local database. */
 public class DBHandler extends SQLiteOpenHelper {
 
+  /** Name used globally to interact with the SQLite database. */
   private static DBHandler dbHandler;
+  /** The version of the database. */
   private static final int DATABASE_VERSION = 1;
+  /** The name of the database. */
   private static final String DATABASE_NAME = "gameDB.db";
 
   // Table Names
+  /** The name of the table that stores the users' info. */
   private static final String TABLE_USER = "User";
+  /** The name of the table that stores the FlappyFish's statistics. */
   private static final String TABLE_FLAPPYFISH = "FlappyFish";
+  /** The name of the table that stores the GuessNum's statistics. */
   private static final String TABLE_GUESSNUM = "GuessNum";
+  /** The name of the table that stores the Hangman's statistics. */
   private static final String TABLE_HANGMAN = "Hangman";
 
   // User Table Columns
+  /** The name of the column that stores the usernames. */
   private static final String COLUMN_USERNAME = "Username";
+  /** The name of the column that stores the passwords. */
   private static final String COLUMN_PASSWORD = "Password";
 
   // FlappyFish Table Columns
+  /** The name of the column that stores the usernames. */
   private static final String COLUMN_FLAPPYFISH_USERNAME = "Username";
+  /** The name of the column that stores the highest score in FlappyFish. */
   private static final String COLUMN_FLAPPYFISH_HIGHEST_SCORE = "FlappyHighScore";
+  /** The name of the column that stores FlappyGameStatus. */
   private static final String COLUMN_FLAPPYFISH_STATUS = "FlappyStatus";
 
   // GuessNum Table Columns
+  /** The name of the column that stores the usernames. */
   private static final String COLUMN_GUESSNUM_USERNAME = "Username";
+  /** The name of the column that stores the highest score in GuessNum. */
   private static final String COLUMN_GUESSNUM_HIGHEST_SCORE = "GuessNumHighScore";
+  /** The name of the column that stores GuessGameStat. */
   private static final String COLUMN_GUESSNUM_STATUS = "GuessNumStatus";
 
   // Hangman Table Columns
+  /** The name of the column that stores the usernames. */
   private static final String COLUMN_HANGMAN_USERNAME = "Username";
+  /** The name of the column that stores the highest score in Hangman. */
   private static final String COLUMN_HANGMAN_HIGHEST_SCORE = "HangmanHighScore";
+  /** The name of the column that stores HangmanGameStat. */
   private static final String COLUMN_HANGMAN_STATUS = "HangmanStatus";
 
+  /** The query that creates the TABLE_USER table in the database. */
   private static final String CREATE_USER_TABLE =
       "CREATE TABLE "
           + TABLE_USER
@@ -50,6 +70,8 @@ public class DBHandler extends SQLiteOpenHelper {
           + COLUMN_PASSWORD
           + " TEXT"
           + ")";
+
+  /** The query that creates the TABLE_FLAPPYFISH table in the database. */
   private static final String CREATE_FLAPPYFISH_TABLE =
       "CREATE TABLE "
           + TABLE_FLAPPYFISH
@@ -61,6 +83,8 @@ public class DBHandler extends SQLiteOpenHelper {
           + COLUMN_FLAPPYFISH_STATUS
           + " TEXT"
           + ")";
+
+  /** The query that creates the TABLE_GUESSNUM table in the database. */
   private static final String CREATE_GUESSNUM_TABLE =
       "CREATE TABLE "
           + TABLE_GUESSNUM
@@ -72,6 +96,8 @@ public class DBHandler extends SQLiteOpenHelper {
           + COLUMN_GUESSNUM_STATUS
           + " TEXT"
           + ")";
+
+  /** The query that creates the TABLE_HANGMAN table in the database. */
   private static final String CREATE_HANGMAN_TABLE =
       "CREATE TABLE "
           + TABLE_HANGMAN
@@ -84,16 +110,23 @@ public class DBHandler extends SQLiteOpenHelper {
           + " TEXT"
           + ")";
 
-  enum Game {
+  /** An enum that contains all the game types. */
+  public enum Game {
     FLAPPYGAMESTATUS,
     GUESSGAMESTATUS,
     HANGMANGAMESTATUS
   }
 
+  /** Constructs this DBHandler for creating, opening and managing the database. */
   private DBHandler() {
     super(null, DATABASE_NAME, null, DATABASE_VERSION);
   }
 
+  /**
+   * Getter for this DBHandler instance.
+   *
+   * @return the instance of this DBHandler.
+   */
   static DBHandler getInstance() {
     if (dbHandler == null) {
       dbHandler = new DBHandler();
@@ -101,6 +134,11 @@ public class DBHandler extends SQLiteOpenHelper {
     return dbHandler;
   }
 
+  /**
+   * Creates the tables and the initial population of the tables.
+   *
+   * @param sqLiteDatabase the database.
+   */
   @Override
   public void onCreate(SQLiteDatabase sqLiteDatabase) {
     sqLiteDatabase.execSQL(CREATE_USER_TABLE);
@@ -109,6 +147,14 @@ public class DBHandler extends SQLiteOpenHelper {
     sqLiteDatabase.execSQL(CREATE_HANGMAN_TABLE);
   }
 
+  /**
+   * Drop tables, add tables, or do anything else the database needs to upgrade to the new schema
+   * version.
+   *
+   * @param sqLiteDatabase the database.
+   * @param oldVersion the old database version.
+   * @param newVersion the new database version.
+   */
   @Override
   public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
     // Drop older table if existed
@@ -121,6 +167,11 @@ public class DBHandler extends SQLiteOpenHelper {
     onCreate(sqLiteDatabase);
   }
 
+  /**
+   * Insert a new row in the tables for the new user.
+   *
+   * @param user a new user.
+   */
   void insertUser(User user) {
 
     // Gets the data repository in write mode
@@ -137,6 +188,14 @@ public class DBHandler extends SQLiteOpenHelper {
     insertUserHelper(database, COLUMN_HANGMAN_USERNAME, TABLE_HANGMAN, user.getName());
   }
 
+  /**
+   * A helper method that inserts the given value to the given column in the given table.
+   *
+   * @param database the database.
+   * @param column the column that the value is inserted to.
+   * @param table the table that the value is inserted to.
+   * @param value the value that is inserted to the database.
+   */
   private void insertUserHelper(
       SQLiteDatabase database, String column, String table, String value) {
     ContentValues values = new ContentValues();
