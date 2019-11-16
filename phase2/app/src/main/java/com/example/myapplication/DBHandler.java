@@ -13,7 +13,7 @@ import com.google.gson.Gson;
 /** A database handler that executes SQL requests and manages a local database. */
 public class DBHandler extends SQLiteOpenHelper {
 
-  /** Name used globally to interact with the SQLite database. */
+  /** The singleton instance of this DBHandler. */
   private static DBHandler dbHandler;
   /** The version of the database. */
   private static final int DATABASE_VERSION = 1;
@@ -127,7 +127,7 @@ public class DBHandler extends SQLiteOpenHelper {
    *
    * @return the instance of this DBHandler.
    */
-  static DBHandler getInstance() {
+  public static DBHandler getInstance() {
     if (dbHandler == null) {
       dbHandler = new DBHandler();
     }
@@ -203,7 +203,13 @@ public class DBHandler extends SQLiteOpenHelper {
     database.insert(table, null, values);
   }
 
-  void saveGameStatus(GameStatus gameStatus, Game type) {
+  /**
+   * Save the GameStatus gameStatus depending on the type of the game.
+   *
+   * @param gameStatus the GameStatus.
+   * @param type the game type of gameStatus.
+   */
+  public void saveGameStatus(GameStatus gameStatus, Game type) {
     int score;
 
     Gson gson = new Gson();
@@ -252,6 +258,13 @@ public class DBHandler extends SQLiteOpenHelper {
     }
   }
 
+  /**
+   * Returns the higher score of the gameStatusScore and databaseHighestScore.
+   *
+   * @param gameStatusScore the score currently stored in gameStatusScore.
+   * @param databaseHighestScore the highest score stored in the database for a game.
+   * @return the higher score of the gameStatusScore and databaseHighestScore.
+   */
   private int compareScore(int gameStatusScore, int databaseHighestScore) {
     if (gameStatusScore > databaseHighestScore) {
       return gameStatusScore;
@@ -260,6 +273,13 @@ public class DBHandler extends SQLiteOpenHelper {
     }
   }
 
+  /**
+   * Returns the highest score of the user with username for a specified game.
+   *
+   * @param username the username of the user.
+   * @param type the type of the game.
+   * @return the highest score of the user for a specified game.
+   */
   public int getHighestScore(String username, Game type) {
     SQLiteDatabase database = this.getWritableDatabase();
     String query = "";
@@ -304,6 +324,12 @@ public class DBHandler extends SQLiteOpenHelper {
     return cursor.getInt(0);
   }
 
+  /**
+   * Returns the password of the user with username.
+   *
+   * @param username the username of the user.
+   * @return the password of the user.
+   */
   public String getPassword(String username) {
     SQLiteDatabase database = this.getWritableDatabase();
     String query =
@@ -320,6 +346,13 @@ public class DBHandler extends SQLiteOpenHelper {
     return cursor.getString(0);
   }
 
+  /**
+   * Returns the gameStatus of a user with username for a specified game.
+   *
+   * @param username the username of the user.
+   * @param type the type of the game.
+   * @return the gameStatus of the user for a specified game.
+   */
   public GameStatus getGameStatus(String username, Game type) {
     SQLiteDatabase database = this.getWritableDatabase();
     String query = "";
