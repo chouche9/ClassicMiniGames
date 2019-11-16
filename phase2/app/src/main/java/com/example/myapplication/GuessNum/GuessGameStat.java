@@ -170,7 +170,7 @@ public class GuessGameStat extends GameStatus implements Parcelable {
   }
 
   /** @return the current tries; */
-  int getCurrentTries() {
+  public int getCurrentTries() {
     return currentTries;
   }
 

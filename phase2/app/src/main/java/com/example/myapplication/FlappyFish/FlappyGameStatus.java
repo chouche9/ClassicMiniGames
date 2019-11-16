@@ -283,7 +283,7 @@ public class FlappyGameStatus extends GameStatus implements Parcelable {
    *
    * @return Return the score of the game.
    */
-  int getScore() {
+  public int getScore() {
     return score;
   }
 
