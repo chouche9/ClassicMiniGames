@@ -14,6 +14,7 @@ public class User implements Parcelable {
   /** The password of this user. */
   private String password;
 
+
   /**
    * Constructs this user.
    *
@@ -55,17 +56,17 @@ public class User implements Parcelable {
 
   /** Binds the User object. */
   public static final Creator<User> CREATOR =
-      new Creator<User>() {
-        @Override
-        public User createFromParcel(Parcel in) {
-          return new User(in);
-        }
+          new Creator<User>() {
+            @Override
+            public User createFromParcel(Parcel in) {
+              return new User(in);
+            }
 
-        @Override
-        public User[] newArray(int size) {
-          return new User[size];
-        }
-      };
+            @Override
+            public User[] newArray(int size) {
+              return new User[size];
+            }
+          };
 
   /**
    * Default method from Parcelable interface.

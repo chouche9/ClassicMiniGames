@@ -40,6 +40,10 @@ public class HangmanGameStat extends GameStatus implements Parcelable {
   /** A StringBuilder that will store the word to be displayed on the game but are masked. */
   private StringBuilder displayedMaskedWord = new StringBuilder();
 
+  public String getType() {
+    return type;
+  }
+
   /**
    * A constructor to construct the HangmanGame statistics
    *
@@ -71,17 +75,17 @@ public class HangmanGameStat extends GameStatus implements Parcelable {
 
   /** Binds the GameStatus object. */
   public static final Creator<HangmanGameStat> CREATOR =
-      new Creator<HangmanGameStat>() {
-        @Override
-        public HangmanGameStat createFromParcel(Parcel in) {
-          return new HangmanGameStat(in);
-        }
+          new Creator<HangmanGameStat>() {
+            @Override
+            public HangmanGameStat createFromParcel(Parcel in) {
+              return new HangmanGameStat(in);
+            }
 
-        @Override
-        public HangmanGameStat[] newArray(int size) {
-          return new HangmanGameStat[size];
-        }
-      };
+            @Override
+            public HangmanGameStat[] newArray(int size) {
+              return new HangmanGameStat[size];
+            }
+          };
 
   /**
    * Getter to get the masked word char array

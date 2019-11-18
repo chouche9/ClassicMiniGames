@@ -1,38 +1,43 @@
 package com.example.myapplication.Hangman;
 
 import android.app.Activity;
+
+import com.example.myapplication.DBHandler;
 import com.example.myapplication.GameManager;
+import com.example.myapplication.GameStatus;
 
 /** Game manager for this Hangman game. */
 class HangmanGameManager extends GameManager {
 
-  /** Name used globally to send/retrieve this HangmanGameManager to/from an intent. */
+  /** The singleton HangmanGameManager. */
   private static HangmanGameManager hangmanGameManager;
 
-  /** Name indicating which game this game manager is responsible for. */
-  private static final String gameName = "hangman game";
+  private Activity activity;
 
-  /**
-   * Constructs this HangmanGameManager.
-   *
-   * @param activity the activity that called this HangmanGameManager.
-   * @param name the name of this game, gameName.
-   */
-  private HangmanGameManager(Activity activity, String name) {
-    super(activity, name);
+  /** Constructs a HangmanGameManager. */
+  private HangmanGameManager(Activity activity) {
+    this.activity = activity;
   }
 
   /**
    * Getter for this HangmanGameManager instance.
    *
-   * @param activity the activity that called this HangmanGameManager.
    * @return HangmanGameManager the instance of this HangmanGameManager.
    */
   static HangmanGameManager getInstance(Activity activity) {
     if (hangmanGameManager == null) {
-      hangmanGameManager = new HangmanGameManager(activity, gameName);
+      hangmanGameManager = new HangmanGameManager(activity);
     }
     return hangmanGameManager;
+  }
+
+  /**
+   * Save the GameStatus for a particular user.
+   *
+   * @param gameStatus the new GameStatus want to get saved.
+   */
+  public void saveGame(GameStatus gameStatus) {
+    DBHandler.getInstance(activity).saveGameStatus(gameStatus, DBHandler.Game.HANGMAN);
   }
 
   /**
@@ -42,11 +47,15 @@ class HangmanGameManager extends GameManager {
    * @return HangmanGameStat the HangmanGameStat instance of this user.
    */
   public HangmanGameStat getGameStatus(String username) {
-    HangmanGameStat hangmanGameStat = (HangmanGameStat) super.getGameStatus(username);
+    HangmanGameStat hangmanGameStat =
+            (HangmanGameStat)
+                    DBHandler.getInstance(activity)
+                            .getGameStatus(username, DBHandler.Game.HANGMAN);
 
     if (hangmanGameStat == null) {
       hangmanGameStat = new HangmanGameStat(username);
     }
+
     return hangmanGameStat;
   }
 }

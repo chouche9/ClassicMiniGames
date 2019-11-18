@@ -48,7 +48,7 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
     Intent intent = getIntent();
 
     // from log in page
-    String name = intent.getStringExtra("name");
+    String name = intent.getStringExtra("user");
     hangmanGameStat = hangmanGameManager.getGameStatus(name);
 
     // from playAgain

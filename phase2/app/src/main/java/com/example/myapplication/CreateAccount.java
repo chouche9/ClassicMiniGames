@@ -69,7 +69,7 @@ public class CreateAccount extends AppCompatActivity implements View.OnClickList
     if (userManager.createAuthenticate(name)) {
       User newUser = new User(name, pass2);
       Toast.makeText(this, "Create Successfully!", Toast.LENGTH_SHORT).show();
-      userManager.saveUsers(newUser);
+      userManager.saveUser(newUser);
       finish();
     } else {
       Toast.makeText(this, "User name Already exists!!!", Toast.LENGTH_SHORT).show();
