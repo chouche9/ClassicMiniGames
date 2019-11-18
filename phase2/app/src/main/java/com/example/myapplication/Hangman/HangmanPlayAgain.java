@@ -15,7 +15,7 @@ import com.example.myapplication.R;
 public class HangmanPlayAgain extends AppCompatActivity {
 
   /** A HangmanGameStat that will store a hangmanGameState */
-  private HangmanGameStat hangmanGameStat;
+  private HangmanGameStatInteractor hangmanGameStat;
 
   /** A String to store the original Gender */
   private String originalGender;
@@ -31,8 +31,8 @@ public class HangmanPlayAgain extends AppCompatActivity {
     setContentView(R.layout.activity_hangman_play_again);
 
     Intent intent = getIntent();
-    String score = intent.getStringExtra(HangmanGame.getScoreMessage());
-    String message = intent.getStringExtra(HangmanGame.getMessage());
+    String score = intent.getStringExtra(HangmanGameActivity.getScoreMessage());
+    String message = intent.getStringExtra(HangmanGameActivity.getMessage());
     hangmanGameStat = intent.getParcelableExtra(HangmanMain.getGamestatusMsg());
     assert hangmanGameStat != null;
     originalGender = hangmanGameStat.getGender();
@@ -53,7 +53,7 @@ public class HangmanPlayAgain extends AppCompatActivity {
         new View.OnClickListener() {
           @Override
           public void onClick(View view) {
-            Intent intent = new Intent(getApplicationContext(), HangmanGame.class);
+            Intent intent = new Intent(getApplicationContext(), HangmanGameActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             hangmanGameStat.resetGameStatus();
             hangmanGameStat.setGender(originalGender);
