@@ -69,4 +69,5 @@ class HangmanWordGenerator {
     listOfWords.remove(0);
     return chosenWord;
   }
+
 }

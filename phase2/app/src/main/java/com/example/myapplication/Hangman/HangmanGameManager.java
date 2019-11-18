@@ -46,14 +46,14 @@ class HangmanGameManager extends GameManager {
    * @param username the username of the user playing this game.
    * @return HangmanGameStat the HangmanGameStat instance of this user.
    */
-  public HangmanGameStat getGameStatus(String username) {
-    HangmanGameStat hangmanGameStat =
-            (HangmanGameStat)
+  public HangmanGameStatInteractor getGameStatus(String username) {
+    HangmanGameStatInteractor hangmanGameStat =
+            (HangmanGameStatInteractor)
                     DBHandler.getInstance(activity)
                             .getGameStatus(username, DBHandler.Game.HANGMAN);
 
     if (hangmanGameStat == null) {
-      hangmanGameStat = new HangmanGameStat(username);
+      hangmanGameStat = new HangmanGameStatInteractor(username);
     }
 
     return hangmanGameStat;

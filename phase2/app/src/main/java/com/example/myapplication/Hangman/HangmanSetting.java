@@ -13,7 +13,7 @@ import com.example.myapplication.R;
 public class HangmanSetting extends AppCompatActivity implements View.OnClickListener {
 
   /** A variable to store the hangmanGameStat */
-  private HangmanGameStat hangmanGameStat;
+  private HangmanGameStatInteractor hangmanGameStat;
 
   /**
    * Initializes this HangmanMain activity.
@@ -43,7 +43,7 @@ public class HangmanSetting extends AppCompatActivity implements View.OnClickLis
    */
   @Override
   public void onClick(View view) {
-    Intent intent = new Intent(getApplicationContext(), HangmanGame.class);
+    Intent intent = new Intent(getApplicationContext(), HangmanGameActivity.class);
 
     if (view.getId() == R.id.btnFemale) {
       hangmanGameStat.setGender("FEMALE");

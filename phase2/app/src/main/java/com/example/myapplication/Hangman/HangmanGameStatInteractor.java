@@ -5,13 +5,32 @@ import android.os.Parcelable;
 
 import com.example.myapplication.GameStatus;
 
-public class HangmanGameStat extends GameStatus implements Parcelable {
+public class HangmanGameStatInteractor extends GameStatus implements Parcelable {
+
+  interface OnValidateCharListener {
+    void onEmptyError();
+
+    void onLetterUsedError(char c);
+
+    void onSuccess();
+
+    void onGameEnd(String message, int score, HangmanGameStatInteractor hm);
+  }
+
+
+  private static String WINMESSAGE = "Congratulations, you won!";
+
+  private static String LOSEMESSSAGE = "You lost! The correct word was ";
 
   /** A string type that passes on the type of the game */
   private String type;
 
+  /** An attribute that stores the instance of HangmanStatistics that Stores the Statistics of the
+   * Game */
+//  private HangmanStatistics hangmanStatistics;
+
   /** A boolean string that shows whether the game has been played before or not */
-  boolean played = false;
+  private boolean played = false;
 
   /** A string that represent the secret word for the hangman game */
   private String secretWord = "";
@@ -40,16 +59,14 @@ public class HangmanGameStat extends GameStatus implements Parcelable {
   /** A StringBuilder that will store the word to be displayed on the game but are masked. */
   private StringBuilder displayedMaskedWord = new StringBuilder();
 
-  public String getType() {
-    return type;
-  }
+  private HangmanGameActivity hangmanGameActivity;
 
   /**
    * A constructor to construct the HangmanGame statistics
    *
    * @param name: Name of the user
    */
-  HangmanGameStat(String name) {
+  HangmanGameStatInteractor(String name) {
     super(name);
     this.type = "HangmanGameStat";
   }
@@ -59,7 +76,7 @@ public class HangmanGameStat extends GameStatus implements Parcelable {
    *
    * @param in the parcel that stores values of a GameStatus object.
    */
-  private HangmanGameStat(Parcel in) {
+  private HangmanGameStatInteractor(Parcel in) {
     super(in);
     played = in.readByte() != 0;
     secretWord = in.readString();
@@ -74,19 +91,26 @@ public class HangmanGameStat extends GameStatus implements Parcelable {
   }
 
   /** Binds the GameStatus object. */
-  public static final Creator<HangmanGameStat> CREATOR =
-          new Creator<HangmanGameStat>() {
-            @Override
-            public HangmanGameStat createFromParcel(Parcel in) {
-              return new HangmanGameStat(in);
-            }
+  public static final Creator<HangmanGameStatInteractor> CREATOR =
+      new Creator<HangmanGameStatInteractor>() {
+        @Override
+        public HangmanGameStatInteractor createFromParcel(Parcel in) {
+          return new HangmanGameStatInteractor(in);
+        }
 
-            @Override
-            public HangmanGameStat[] newArray(int size) {
-              return new HangmanGameStat[size];
-            }
-          };
+        @Override
+        public HangmanGameStatInteractor[] newArray(int size) {
+          return new HangmanGameStatInteractor[size];
+        }
+      };
 
+  public boolean getPlayed() {
+    return played;
+  }
+
+  public void setPlayed(boolean b) {
+    played = b;
+  }
   /**
    * Getter to get the masked word char array
    *
@@ -119,7 +143,7 @@ public class HangmanGameStat extends GameStatus implements Parcelable {
    *
    * @return int the score
    */
-  public int getScore() {
+  int getScore() {
     return score;
   }
 
@@ -201,11 +225,14 @@ public class HangmanGameStat extends GameStatus implements Parcelable {
    *
    * @param guessedLetter the letter guessed by the user
    */
-  void checkLetter(char guessedLetter) {
+  boolean checkLetter(char guessedLetter) {
     if (!secretWord.contains(String.valueOf(guessedLetter))) {
       decreaseScore();
+      falseGuess++;
+      return false;
     } else {
       revealLetter(guessedLetter);
+      return true;
     }
   }
 
@@ -295,5 +322,35 @@ public class HangmanGameStat extends GameStatus implements Parcelable {
     parcel.writeString(lettersGuessed.toString());
     parcel.writeString(displayedMaskedWord.toString());
     parcel.writeString(type);
+  }
+
+  /**
+   * Checks if the game has ended (either user has won or lost) and sends intent to HangmanPlayAgain
+   * activity.
+   */
+  public boolean checkIfGameEnded() {
+//    int score = hangmanGameStat.getScore();
+//    char[] maskedCharArray = hangmanGameStat.getMaskedWordCharArray();
+    return (score == 0 || !String.valueOf(maskedWordCharArray).contains("_"));
+  }
+
+  public void validateCharInteractor(char c, HangmanGamePresenter listener) {
+    if (checkLetterInGuessed(c)) {
+      if (!checkLetter(c)) {
+        if (getFalseGuess() < 5) {
+          listener.onSuccess();
+        }
+      }
+    } else {
+      listener.onLetterUsedError(c);
+    }
+    if (checkIfGameEnded()) {
+      if (score == 0) {
+        listener.onGameEnd(LOSEMESSSAGE + secretWord + "!", score, this);
+      } else {
+        listener.onGameEnd(WINMESSAGE, score, this);
+      }
+    }
+
   }
 }

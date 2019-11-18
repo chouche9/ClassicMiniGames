@@ -15,11 +15,17 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
   /** Intent that sends this activity to the next activity. */
   private Intent intent1;
 
+  /** Button for starting the game. */
+  private Button btnStartGame;
+
   /** Button for resuming the game. */
   private Button btnResumeGame;
 
+  /** Button for settings */
+  private Button btnSettings;
+
   /** Game state for this HangmanGame of the user that is currently playing. */
-  private HangmanGameStat hangmanGameStat;
+  private HangmanGameStatInteractor hangmanGameStat;
 
   /**
    * Name used globally to send/retrieve the HangmanGameStat instance to/from an intent.
@@ -40,9 +46,9 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_hangman_main);
 
-    Button btnStartGame = findViewById(R.id.btnNewGame);
+    btnStartGame = findViewById(R.id.btnNewGame);
     btnResumeGame = findViewById(R.id.btnResumeGame);
-    Button btnSettings = findViewById(R.id.btnSettings);
+    btnSettings = findViewById(R.id.btnSettings);
 
     HangmanGameManager hangmanGameManager = HangmanGameManager.getInstance(this);
     Intent intent = getIntent();
@@ -64,7 +70,7 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
     } else {
       btnResumeGame.setVisibility(View.GONE);
 
-      if (hangmanGameStat.played) {
+      if (hangmanGameStat.getPlayed()) {
         btnResumeGame.setVisibility(View.VISIBLE);
       }
     }
@@ -81,7 +87,7 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
     HangmanGameManager hangmanGameManager = HangmanGameManager.getInstance(this);
     hangmanGameStat = hangmanGameManager.getGameStatus(hangmanGameStat.getName());
 
-    if (hangmanGameStat.played) {
+    if (hangmanGameStat.getPlayed()) {
       btnResumeGame.setVisibility(View.VISIBLE);
     }
   }
@@ -94,6 +100,7 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
   @Override
   public void onClick(View view) {
     switch (view.getId()) {
+
       case R.id.btnNewGame:
         String originalGender = hangmanGameStat.getGender();
         hangmanGameStat.resetGameStatus();
@@ -102,15 +109,18 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
           originalGender = "MALE";
         }
         hangmanGameStat.setGender(originalGender);
-        intent1 = new Intent(getApplicationContext(), HangmanGame.class);
+        intent1 = new Intent(getApplicationContext(), HangmanGameActivity.class);
         break;
+
       case R.id.btnResumeGame:
-        intent1 = new Intent(getApplicationContext(), HangmanGame.class);
+        intent1 = new Intent(getApplicationContext(), HangmanGameActivity.class);
         break;
+
       case R.id.btnSettings:
         hangmanGameStat.resetGameStatus();
         intent1 = new Intent(getApplicationContext(), HangmanSetting.class);
         break;
+
     }
     intent1.putExtra(getGamestatusMsg(), hangmanGameStat);
     startActivity(intent1);
