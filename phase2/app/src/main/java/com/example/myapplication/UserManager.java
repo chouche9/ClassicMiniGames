@@ -8,14 +8,11 @@ import com.google.gson.Gson;
 
 /** A UserManager for this application. */
 public class UserManager {
-  /** SharedPreferences that stores all users. */
-  private SharedPreferences sharedPreferences;
-
-  /** Editor that edits the sharedPreferences. */
-  private SharedPreferences.Editor editor;
 
   /** The single static instance of UserManager. */
   private static UserManager userManager = null;
+
+  private Activity activity;
 
   /**
    * Construct this UserManager singleton instance.
@@ -23,10 +20,7 @@ public class UserManager {
    * @param activity the activity that called this UserManager.
    */
   private UserManager(Activity activity) {
-    this.sharedPreferences =
-        activity.getApplicationContext().getSharedPreferences("users", Context.MODE_PRIVATE);
-    editor = sharedPreferences.edit();
-    editor.apply();
+    this.activity = activity;
   }
 
   /**
@@ -46,23 +40,18 @@ public class UserManager {
    *
    * @param user the user that is to be saved.
    */
-  void saveUsers(User user) {
-    Gson gson = new Gson();
-    String json = gson.toJson(user);
-    editor.putString(user.getName(), json);
-    editor.apply();
+  void saveUser(User user) {
+    DBHandler.getInstance(activity).saveUser(user);
   }
 
   /**
    * Return the User instance with username userName.
    *
-   * @param userName the username of a user.
+   * @param username the username of a user.
    * @return User the user instance with the username userName.
    */
-  private User getUser(String userName) {
-    Gson gson = new Gson();
-    String json = sharedPreferences.getString(userName, null);
-    return gson.fromJson(json, User.class);
+  private User getUser(String username) {
+    return DBHandler.getInstance(activity).getUser(username);
   }
 
   /**
