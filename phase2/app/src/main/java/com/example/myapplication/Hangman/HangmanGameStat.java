@@ -115,7 +115,7 @@ public class HangmanGameStat extends GameStatus implements Parcelable {
    *
    * @return int the score
    */
-  int getScore() {
+  public int getScore() {
     return score;
   }
 
