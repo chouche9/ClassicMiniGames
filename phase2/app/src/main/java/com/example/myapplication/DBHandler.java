@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.myapplication.FlappyFish.FlappyGameStatus;
 import com.example.myapplication.GuessNum.GuessGameStat;
-import com.example.myapplication.Hangman.HangmanGameStat;
+import com.example.myapplication.Hangman.HangmanGameStatInteractor;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
@@ -63,7 +63,7 @@ public class DBHandler extends SQLiteOpenHelper {
   private void putGameTypeClass() {
     gameTypeClass.put(Game.FLAPPYFISH, FlappyGameStatus.class);
     gameTypeClass.put(Game.GUESSNUM, GuessGameStat.class);
-    gameTypeClass.put(Game.HANGMAN, HangmanGameStat.class);
+    gameTypeClass.put(Game.HANGMAN, HangmanGameStatInteractor.class);
   }
 
   /** Puts a key-value pair with key being the game type and value being the name of the table. */

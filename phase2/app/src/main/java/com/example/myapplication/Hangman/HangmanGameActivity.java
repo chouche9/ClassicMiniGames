@@ -75,7 +75,7 @@ public class HangmanGameActivity extends AppCompatActivity implements HangmanGam
     txtScore = findViewById(R.id.txtScore);
     btnGuess = findViewById(R.id.btnGuess);
 
-    picture_index = -1;
+    picture_index = 0;
 
     //Review Below!
     assert hangmanGameStat != null;
@@ -83,7 +83,7 @@ public class HangmanGameActivity extends AppCompatActivity implements HangmanGam
 
     if (gender.equals("FEMALE")) {
       pictures =
-          new int[] {
+          new int[] {R.drawable.start,
             R.drawable.female_head,
             R.drawable.female_leftarm,
             R.drawable.female_rightarm,
@@ -93,7 +93,7 @@ public class HangmanGameActivity extends AppCompatActivity implements HangmanGam
           };
     } else {
       pictures =
-          new int[] {
+          new int[] { R.drawable.start,
             R.drawable.male_head,
             R.drawable.male_leftarm,
             R.drawable.male_rightarm,
@@ -124,9 +124,6 @@ public class HangmanGameActivity extends AppCompatActivity implements HangmanGam
       hangmanGamePresenter.getNewWord();
     }
 
-    if (picture_index > -1) {
-      showImage();
-    }
     hangmanGamePresenter.onResuming();
 
     // ANY LOGIC CANNOT BE IN THE UI
@@ -200,7 +197,7 @@ public class HangmanGameActivity extends AppCompatActivity implements HangmanGam
 
   @Override
   public void showTxtScore(int score) {
-    txtScore.setText(score);
+    txtScore.setText(String.valueOf(score));
   }
 
   @Override

@@ -35,6 +35,8 @@ public class HangmanGamePresenter implements HangmanGameStatInteractor.OnValidat
         hangmanGameActivity.showTxtMaskedWord(hangmanGameStat.getDisplayedMaskedWord().toString());
         hangmanGameActivity.showTxtScore(hangmanGameStat.getScore());
         hangmanGameActivity.showLettersGuessed(hangmanGameStat.getLettersGuessed().toString());
+        hangmanGameActivity.setPictureIndex(hangmanGameStat.getFalseGuess());
+        hangmanGameActivity.showImage();
     }
 
     @Override
@@ -52,12 +54,13 @@ public class HangmanGamePresenter implements HangmanGameStatInteractor.OnValidat
     }
 
     @Override
-    public void onSuccess() {
+    public void onDisplayViews() {
         if (hangmanGameActivity != null) {
             hangmanGameActivity.setPictureIndex(hangmanGameStat.getFalseGuess());
             hangmanGameActivity.showTxtMaskedWord(hangmanGameStat.getDisplayedMaskedWord().toString());
             hangmanGameActivity.showLettersGuessed(hangmanGameStat.getLettersGuessed().toString());
             hangmanGameActivity.showTxtScore(hangmanGameStat.getScore());
+            hangmanGameActivity.showImage();
             hangmanGameActivity.clearEdtLetterGuess();
         }
     }

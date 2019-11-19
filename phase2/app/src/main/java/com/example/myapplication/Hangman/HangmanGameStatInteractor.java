@@ -12,7 +12,7 @@ public class HangmanGameStatInteractor extends GameStatus implements Parcelable 
 
     void onLetterUsedError(char c);
 
-    void onSuccess();
+    void onDisplayViews();
 
     void onGameEnd(String message, int score, HangmanGameStatInteractor hm);
   }
@@ -48,7 +48,7 @@ public class HangmanGameStatInteractor extends GameStatus implements Parcelable 
    * An int falseGuess stores the value in which it increases whenever player failed to guess the
    * letter
    */
-  private int falseGuess = -1;
+  private int falseGuess = 0;
 
   /** String gender stored the type of gender chosen for this game */
   private String gender = "MALE";
@@ -286,7 +286,7 @@ public class HangmanGameStatInteractor extends GameStatus implements Parcelable 
     secretWordCharArray = null;
     maskedWordCharArray = null;
     score = 120;
-    falseGuess = -1;
+    falseGuess = 0;
     gender = "MALE";
     lettersGuessed = new StringBuilder();
     displayedMaskedWord = new StringBuilder();
@@ -336,11 +336,8 @@ public class HangmanGameStatInteractor extends GameStatus implements Parcelable 
 
   public void validateCharInteractor(char c, HangmanGamePresenter listener) {
     if (checkLetterInGuessed(c)) {
-      if (!checkLetter(c)) {
-        if (getFalseGuess() < 5) {
-          listener.onSuccess();
-        }
-      }
+      checkLetter(c);
+      listener.onDisplayViews();
     } else {
       listener.onLetterUsedError(c);
     }
