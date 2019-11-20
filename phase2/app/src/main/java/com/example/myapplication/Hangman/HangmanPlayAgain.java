@@ -14,11 +14,20 @@ import com.example.myapplication.R;
 /** Hangman play again Activity */
 public class HangmanPlayAgain extends AppCompatActivity {
 
-  /** A HangmanGameStat that will store a hangmanGameState */
+  /** A HangmanGameStatInteractor that stores the hangman game status. */
   private HangmanGameStatInteractor hangmanGameStat;
 
-  /** A String to store the original Gender */
+  /** A String to store the original gender */
   private String originalGender;
+
+  /** Button that user clicks to play again. */
+  private Button playAgain;
+
+  /** Button that user clicks to go back to the main menu of the Hangman game. */
+  private Button mainMenu;
+
+  /** Button that the user clicks to go back to the home page of the app. */
+  private Button backToHome;
 
   /**
    * Initializes this HangmanMain activity.
@@ -30,10 +39,10 @@ public class HangmanPlayAgain extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_hangman_play_again);
 
-    Intent intent = getIntent();
-    String score = intent.getStringExtra(HangmanGameActivity.getScoreMessage());
-    String message = intent.getStringExtra(HangmanGameActivity.getMessage());
-    hangmanGameStat = intent.getParcelableExtra(HangmanMain.getGamestatusMsg());
+    Intent received_intent = getIntent();
+    String score = received_intent.getStringExtra(HangmanGameActivity.getScoreMessage());
+    String message = received_intent.getStringExtra(HangmanGameActivity.getMessage());
+    hangmanGameStat = received_intent.getParcelableExtra(HangmanMain.getGamestatusMsg());
     assert hangmanGameStat != null;
     originalGender = hangmanGameStat.getGender();
 
@@ -43,12 +52,19 @@ public class HangmanPlayAgain extends AppCompatActivity {
     TextView txtMessage = findViewById(R.id.txtMessage);
     txtMessage.setText(message);
 
-    Button playAgain = findViewById(R.id.btnPlayAgain);
-    Button mainMenu = findViewById(R.id.btnMainMenu);
-    Button backToHome = findViewById(R.id.btnBackToHome);
+    playAgain = findViewById(R.id.btnPlayAgain);
+    mainMenu = findViewById(R.id.btnMainMenu);
+    backToHome = findViewById(R.id.btnBackToHome);
 
     hangmanGameStat.resetGameStatus();
 
+    setPlayAgainButton();
+    setMainMenuButton();
+    setBackToHome();
+  }
+
+  /** Event that happens after playAgain button is clicked. */
+  private void setPlayAgainButton() {
     playAgain.setOnClickListener(
         new View.OnClickListener() {
           @Override
@@ -62,7 +78,10 @@ public class HangmanPlayAgain extends AppCompatActivity {
             finish();
           }
         });
+  }
 
+  /** Event that happens after mainMenu button is clicked. */
+  private void setMainMenuButton() {
     mainMenu.setOnClickListener(
         new View.OnClickListener() {
           @Override
@@ -77,7 +96,10 @@ public class HangmanPlayAgain extends AppCompatActivity {
             finish();
           }
         });
+  }
 
+  /** Event that happens after backToHome button is clicked. */
+  private void setBackToHome() {
     backToHome.setOnClickListener(
         new View.OnClickListener() {
           @Override
