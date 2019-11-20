@@ -59,8 +59,6 @@ public class HangmanGameStatInteractor extends GameStatus implements Parcelable 
   /** A StringBuilder that will store the word to be displayed on the game but are masked. */
   private StringBuilder displayedMaskedWord = new StringBuilder();
 
-  private HangmanGameActivity hangmanGameActivity;
-
   /**
    * A constructor to construct the HangmanGame statistics
    *
