@@ -14,12 +14,12 @@
     <string name="back_to_main">Back To Main</string>
     <string name="start">START</string>
 
-    <string name="hangman_app_name">Hangman</string>
+    <string name="hangman_app_name">Infinite Hangman !!!</string>
     <string name="secret_word">Word to be guessed</string>
     <string name="guess_a_letter">Guess a letter</string>
     <string name="click">click!</string>
     <string name="letters_used">Letters guessed:</string>
-    <string name="score">Score: </string>
+    <string name="score">Total Score: </string>
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="choose_gender">Choose a gender:</string>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorHangmanMainBackground"
-    tools:context=".Hangman.HangmanGame">
+    tools:context=".Hangman.HangmanGameActivity">
 
     <TextView
         android:id="@+id/txtHangman"
@@ -14,29 +14,31 @@
         android:layout_marginTop="16dp"
         android:text="@string/hangman_app_name"
         android:textColor="@color/colorHangmanAccent"
-        android:textSize="60sp"
+        android:textSize="40sp"
         android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.00999999" />
 
     <ImageView
         android:id="@+id/hangmanImage"
         android:layout_width="205dp"
         android:layout_height="254dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
         android:contentDescription="Hangman Image"
+        app:layout_constraintBottom_toBottomOf="@+id/txtLettersGuessed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.11"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtLetterGuess"
+        app:layout_constraintTop_toBottomOf="@+id/txtMaskedWord"
+        app:layout_constraintVertical_bias="0.01999998"
         app:srcCompat="@drawable/start" />
 
     <TextView
         android:id="@+id/txtMaskedWord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:background="@drawable/hangman_round_background"
         android:paddingVertical="8dp"
         android:paddingStart="15dp"
@@ -44,42 +46,40 @@
         android:text="@string/secret_word"
         android:textColor="@color/hangman_white"
         android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topDivider" />
+        app:layout_constraintTop_toBottomOf="@+id/topDivider"
+        app:layout_constraintVertical_bias="0.100000024" />
 
     <EditText
         android:id="@+id/edtLetterGuess"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="160sp"
+        android:layout_height="50dp"
+        android:autofillHints=""
         android:ems="8"
-        android:maxLength="1"
         android:hint="@string/guess_a_letter"
         android:inputType="textPersonName"
+        android:maxLength="1"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/btnGuess"
-        app:layout_constraintHorizontal_bias="0.35"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottomDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/hangmanImage"
         app:layout_constraintTop_toBottomOf="@+id/txtMaskedWord"
-        android:autofillHints=""/>
+        app:layout_constraintVertical_bias="0.25" />
 
     <Button
         android:id="@+id/btnGuess"
-        android:layout_width="0dp"
+        android:layout_width="150sp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
         android:background="@color/colorHangmanAccent"
         android:text="@string/click"
         android:textColor="@color/hangman_white"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/edtLetterGuess"
-        app:layout_constraintTop_toBottomOf="@+id/txtMaskedWord" />
+        app:layout_constraintStart_toEndOf="@+id/hangmanImage"
+        app:layout_constraintTop_toBottomOf="@+id/edtLetterGuess" />
 
     <TextView
         android:id="@+id/txtLettersUsedText"
@@ -94,6 +94,7 @@
         android:textColor="@color/hangman_white"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.02"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bottomDivider" />
 
@@ -102,58 +103,144 @@
         android:layout_width="match_parent"
         android:layout_height="10dp"
         android:layout_marginTop="24dp"
-        android:layout_marginBottom="24dp"
         android:background="@color/colorHangmanAccent"
-        app:layout_constraintBottom_toTopOf="@+id/txtMaskedWord"
-        app:layout_constraintTop_toBottomOf="@+id/txtHangman"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtHangman" />
 
     <View
         android:id="@+id/bottomDivider"
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="405dp"
+        android:layout_height="4dp"
         android:background="@color/colorHangmanAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hangmanImage" />
+        app:layout_constraintTop_toBottomOf="@+id/txtMaskedWord"
+        app:layout_constraintVertical_bias="0.62" />
 
     <TextView
         android:id="@+id/txtScoreText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
         android:text="@string/score"
         android:textColor="@color/colorHangmanAccent"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/bottomDivider"
-        app:layout_constraintStart_toEndOf="@+id/hangmanImage"
-        app:layout_constraintTop_toBottomOf="@+id/btnGuess" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.13"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hangmanImage"
+        app:layout_constraintVertical_bias="0.07999998" />
 
     <TextView
         android:id="@+id/txtScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
         android:text="@string/_120"
         android:textColor="@color/colorHangmanAccent"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/bottomDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toEndOf="@+id/txtScoreText"
-        app:layout_constraintTop_toBottomOf="@+id/btnGuess" />
+        app:layout_constraintTop_toBottomOf="@+id/hangmanImage"
+        app:layout_constraintVertical_bias="0.06999999" />
 
     <TextView
         android:id="@+id/txtLettersGuessed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:text="@string/none"
         android:textColor="@android:color/black"
         android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtLettersUsedText" />
+        app:layout_constraintTop_toBottomOf="@+id/bottomDivider"
+        app:layout_constraintVertical_bias="0.100000024" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stage"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/txtMaskedWord"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topDivider" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:text="1"
+        app:layout_constraintBottom_toTopOf="@+id/txtMaskedWord"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.04"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/topDivider" />
+
+    <ImageView
+        android:id="@+id/heart"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/heart"
+        app:layout_constraintBottom_toTopOf="@+id/txtMaskedWord"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.92"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/topDivider"
+        app:layout_constraintVertical_bias="0.63" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/heart"
+        app:layout_constraintBottom_toTopOf="@+id/txtMaskedWord"
+        app:layout_constraintEnd_toStartOf="@+id/heart"
+        app:layout_constraintTop_toBottomOf="@+id/topDivider" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/heart"
+        app:layout_constraintBottom_toTopOf="@+id/txtMaskedWord"
+        app:layout_constraintEnd_toStartOf="@+id/imageView4"
+        app:layout_constraintTop_toBottomOf="@+id/topDivider" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/heart"
+        app:layout_constraintBottom_toTopOf="@+id/txtMaskedWord"
+        app:layout_constraintEnd_toStartOf="@+id/imageView5"
+        app:layout_constraintTop_toBottomOf="@+id/topDivider" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/heart"
+        app:layout_constraintBottom_toTopOf="@+id/txtMaskedWord"
+        app:layout_constraintEnd_toStartOf="@+id/imageView8"
+        app:layout_constraintTop_toBottomOf="@+id/topDivider" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/heart"
+        app:layout_constraintBottom_toTopOf="@+id/txtMaskedWord"
+        app:layout_constraintEnd_toStartOf="@+id/imageView6"
+        app:layout_constraintTop_toBottomOf="@+id/topDivider" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
