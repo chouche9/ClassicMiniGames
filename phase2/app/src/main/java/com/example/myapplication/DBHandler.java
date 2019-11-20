@@ -213,7 +213,8 @@ public class DBHandler extends SQLiteOpenHelper {
     //    values.put(COLUMN_FLAPPYFISH_HIGHEST_SCORE, score);
 
     values.put(COLUMN_STATUS, json);
-    database.update(tables.get(type), values, COLUMN_USERNAME + "=" + gameStatus.getName(), null);
+    database.update(tables.get(type), values, COLUMN_USERNAME + " = " + "'" +
+            gameStatus.getName() + "'", null);
   }
 
   //  /**
