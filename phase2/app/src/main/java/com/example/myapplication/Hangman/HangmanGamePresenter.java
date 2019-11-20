@@ -50,6 +50,7 @@ public class HangmanGamePresenter implements HangmanGameStatInteractor.OnValidat
     public void onLetterUsedError(char c) {
         if (hangmanGameActivity != null) {
             hangmanGameActivity.showLetterUsedError(c);
+            hangmanGameActivity.clearEdtLetterGuess();
         }
     }
 

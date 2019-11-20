@@ -53,5 +53,6 @@ public class HangmanSetting extends AppCompatActivity implements View.OnClickLis
       intent.putExtra(HangmanMain.getGamestatusMsg(), hangmanGameStat);
     }
     startActivity(intent);
+    finish();
   }
 }
