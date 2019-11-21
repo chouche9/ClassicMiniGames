@@ -3,40 +3,26 @@ package com.example.myapplication.FlappyFish;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.example.myapplication.FlappyFish.GameObjects.FlappyGameFish;
+import com.example.myapplication.FlappyFish.GameObjects.FlappyGameObjects;
+import com.example.myapplication.FlappyFish.GameObjects.FlappyGameShark;
+import com.example.myapplication.FlappyFish.GameObjects.FlappyGameShrimp;
 import com.example.myapplication.GameStatus;
 
 /** The flappy fish game status. */
 public class FlappyGameStatus extends GameStatus implements Parcelable {
 
-  /** The default x coordinate of the fish. */
-  private static final int FISH_X = 10;
-
-  /** The default y coordinate of the fish. */
-  private static final int FISH_Y = 500;
-
-  /** The default speed of the shrimp for easy mode. */
-  private static final int SHRIMP_SPEED_EASY = 15;
-
-  /** The default speed of the shrimp for hard mode. */
-  private static final int SHRIMP_SPEED_HARD = 25;
-
-  /** The default speed of the shark for easy mode. */
-  private static final int SHARK_SPEED_EASY = 20;
-
-  /** The default speed of the shark for hard mode. */
-  private static final int SHARK_SPEED_HARD = 30;
-
-  /** The default speed of the fish when falling down. */
-  private static final int DROP_SPEED = 2;
-
-  /** The default speed of the fish when jumping up. */
-  private static final int JUMP_SPEED = -35;
-
   /** The default score when game starts. */
   private static final int DEFAULT_SCORE = 10;
 
-  /** The default x coordinate of an object when it collides with the fish. */
-  private static final int DEAD_POS = -100;
+  /** The fish object that is displayed on the screen. */
+  public FlappyGameFish fish = new FlappyGameFish();
+
+  /** The shrimp object that is displayed on the screen. */
+  public FlappyGameShrimp shrimp = new FlappyGameShrimp();
+
+  /** The shark object that is displayed on the screen. */
+  public FlappyGameShark shark = new FlappyGameShark();
 
   /** Indicate whether the user has played the game. */
   private int played;
@@ -46,33 +32,6 @@ public class FlappyGameStatus extends GameStatus implements Parcelable {
 
   /** The type of the game the user plays. */
   private String type;
-
-  /** The x coordinate of the fish. */
-  private int fishX;
-
-  /** The y coordinate of the fish. */
-  private int fishY;
-
-  /** The speed of the fish. */
-  private int fishSpeed;
-
-  /** The x coordinate of the shrimp. */
-  private int shrimpX;
-
-  /** The y coordinate of the shrimp. */
-  private int shrimpY;
-
-  /** The speed of the shrimp. */
-  private int shrimpSpeed;
-
-  /** The x coordinate of the shark. */
-  private int sharkX;
-
-  /** The y coordinate of the shark. */
-  private int sharkY;
-
-  /** The speed of the shark. */
-  private int sharkSpeed;
 
   /** The score the user has. */
   private int score;
@@ -98,15 +57,9 @@ public class FlappyGameStatus extends GameStatus implements Parcelable {
   private FlappyGameStatus(Parcel in) {
     super(in);
     type = in.readString();
-    fishX = in.readInt();
-    fishY = in.readInt();
-    fishSpeed = in.readInt();
-    shrimpX = in.readInt();
-    shrimpY = in.readInt();
-    shrimpSpeed = in.readInt();
-    sharkX = in.readInt();
-    sharkY = in.readInt();
-    sharkSpeed = in.readInt();
+    fish = in.readParcelable(FlappyGameObjects.class.getClassLoader());
+    shrimp = in.readParcelable(FlappyGameObjects.class.getClassLoader());
+    shark = in.readParcelable(FlappyGameObjects.class.getClassLoader());
     score = in.readInt();
     life_count = in.readInt();
     played = in.readInt();
@@ -115,166 +68,38 @@ public class FlappyGameStatus extends GameStatus implements Parcelable {
 
   /** Set the game difficulty level to easy. */
   void setGameEasy() {
-    shrimpSpeed = SHRIMP_SPEED_EASY;
-    sharkSpeed = SHARK_SPEED_EASY;
+    shrimp.setGameEasy();
+    shark.setGameEasy();
     this.difficulty = "EASY";
   }
 
   /** Set the game difficulty level to hard. */
   void setGameHard() {
-    shrimpSpeed = SHRIMP_SPEED_HARD;
-    sharkSpeed = SHARK_SPEED_HARD;
+    shrimp.setGameHard();
+    shark.setGameHard();
     this.difficulty = "HARD";
   }
 
   /** Create FlappyGameStatatus by the super Creator object. */
   public static final Creator<FlappyGameStatus> CREATOR =
-      new Creator<FlappyGameStatus>() {
-        @Override
-        public FlappyGameStatus createFromParcel(Parcel in) {
-          return new FlappyGameStatus(in);
-        }
+          new Creator<FlappyGameStatus>() {
+            @Override
+            public FlappyGameStatus createFromParcel(Parcel in) {
+              return new FlappyGameStatus(in);
+            }
 
-        @Override
-        public FlappyGameStatus[] newArray(int size) {
-          return new FlappyGameStatus[size];
-        }
-      };
-
-  /**
-   * Get the x coordinate of the fish.
-   *
-   * @return Return the x coordinate of the fish.
-   */
-  int getFishX() {
-    return fishX;
-  }
-
-  /**
-   * Get the y coordinate of the fish.
-   *
-   * @return Return the y coordinate of the fish.
-   */
-  int getFishY() {
-    return fishY;
-  }
-
-  /**
-   * Move the fish.
-   *
-   * @param minY The minimum value for fish's y coordinate.
-   * @param maxY The maximum value for fish's y coordinate.
-   */
-  void fishMove(int minY, int maxY) {
-    fishY += fishSpeed;
-    if (fishY < minY) {
-      fishY = minY;
-    }
-    if (fishY > maxY) {
-      fishY = maxY;
-    }
-  }
-
-  /** Set the jump speed for fish. */
-  void setFishJumpSpeed() {
-    fishSpeed = JUMP_SPEED;
-  }
-
-  /** Set the fall speed for fish. */
-  void setFishFallSpeed() {
-    fishSpeed += DROP_SPEED;
-  }
-
-  /**
-   * Get the x coordinate of the shrimp.
-   *
-   * @return Return the x coordinate of the shrimp.
-   */
-  int getShrimpX() {
-    return shrimpX;
-  }
-
-  /**
-   * Get the y coordinate of the shrimp.
-   *
-   * @return Return the y coordinate of the shrimp.
-   */
-  int getShrimpY() {
-    return shrimpY;
-  }
-
-  /** Set the x coordinate of the shrimp to dead position. */
-  void shrimpGone() {
-    this.shrimpX = DEAD_POS;
-  }
-
-  /** Move the shrimp. */
-  void shrimpMove() {
-    shrimpX -= shrimpSpeed;
-  }
-
-  /**
-   * Set the shrimp to a new starting point.
-   *
-   * @param canvasWidth the width of the canvas.
-   * @param minY the minimum value for fish's y coordinate.
-   * @param maxY the maximum value for fish's y coordinate.
-   */
-  void shrimpValidCheck(int canvasWidth, int minY, int maxY) {
-    if (shrimpX < 0) {
-      shrimpX = canvasWidth + 10;
-      shrimpY = (int) Math.floor(Math.random() * (maxY - minY)) + minY;
-    }
-  }
-
-  /**
-   * Get the x coordinate of the shark.
-   *
-   * @return Return the x coordinate of the shark.
-   */
-  int getSharkX() {
-    return sharkX;
-  }
-
-  /**
-   * Get the y coordinate of the shark.
-   *
-   * @return Return the y coordinate of the shark.
-   */
-  int getSharkY() {
-    return sharkY;
-  }
-
-  /** Set the x coordinate of the shark to dead position. */
-  void sharkGone() {
-    this.sharkX = DEAD_POS;
-  }
-
-  /** Move the shark. */
-  void sharkMove() {
-    sharkX -= sharkSpeed;
-  }
-
-  /**
-   * Set the shark to a new starting point.
-   *
-   * @param canvasWidth the width of the canvas.
-   * @param minY the minimum value for fish's y coordinate.
-   * @param maxY the maximum value for fish's y coordinate.
-   */
-  void sharkValidCheck(int canvasWidth, int minY, int maxY) {
-    if (sharkX < 0) {
-      sharkX = canvasWidth + 10;
-      sharkY = (int) Math.floor(Math.random() * (maxY - minY)) + minY;
-    }
-  }
+            @Override
+            public FlappyGameStatus[] newArray(int size) {
+              return new FlappyGameStatus[size];
+            }
+          };
 
   /**
    * Get the difficulty of the game.
    *
    * @return Return the difficulty of the game.
    */
-  String getDifficulty() {
+  public String getDifficulty() {
     return this.difficulty;
   }
 
@@ -288,7 +113,7 @@ public class FlappyGameStatus extends GameStatus implements Parcelable {
   }
 
   /** Update the score. */
-  void updateScore() {
+  public void updateScore() {
     this.score += DEFAULT_SCORE;
   }
 
@@ -297,12 +122,12 @@ public class FlappyGameStatus extends GameStatus implements Parcelable {
    *
    * @return Return the life count.
    */
-  int getLife_count() {
+  public int getLife_count() {
     return life_count;
   }
 
   /** Reduce the life count. */
-  void reduceLife_count() {
+  public void reduceLife_count() {
     life_count--;
   }
 
@@ -331,8 +156,7 @@ public class FlappyGameStatus extends GameStatus implements Parcelable {
   /** Start updating the game status. */
   void startUpdate() {
     setPlayed(true);
-    fishX = FISH_X;
-    fishY = FISH_Y;
+    fish = new FlappyGameFish();
     life_count = 3;
     score = 0;
   }
@@ -340,8 +164,7 @@ public class FlappyGameStatus extends GameStatus implements Parcelable {
   /** Stop updating the game status. */
   void finishUpdate() {
     this.played = 0;
-    fishX = FISH_X;
-    fishY = FISH_Y;
+    fish = new FlappyGameFish();
     life_count = 3;
     score = 0;
   }
@@ -366,15 +189,9 @@ public class FlappyGameStatus extends GameStatus implements Parcelable {
   public void writeToParcel(Parcel parcel, int i) {
     super.writeToParcel(parcel, i);
     parcel.writeString(type);
-    parcel.writeInt(fishX);
-    parcel.writeInt(fishY);
-    parcel.writeInt(fishSpeed);
-    parcel.writeInt(shrimpX);
-    parcel.writeInt(shrimpY);
-    parcel.writeInt(shrimpSpeed);
-    parcel.writeInt(sharkX);
-    parcel.writeInt(sharkY);
-    parcel.writeInt(sharkSpeed);
+    parcel.writeParcelable(fish, i);
+    parcel.writeParcelable(shrimp, i);
+    parcel.writeParcelable(shark, i);
     parcel.writeInt(score);
     parcel.writeInt(life_count);
     parcel.writeInt(played);

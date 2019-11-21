@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.myapplication.FlappyFish.FlappyGameView.FlappyGameViewFacade;
 import com.example.myapplication.GameMain;
 import com.example.myapplication.R;
 
@@ -40,7 +41,7 @@ public class FlappyResultActivity extends AppCompatActivity implements View.OnCl
     setContentView(R.layout.activity_flappy_result);
 
     resultIntent = getIntent();
-    gameStatus = resultIntent.getParcelableExtra(FlappyGameView.EXTRA_MESSAGE);
+    gameStatus = resultIntent.getParcelableExtra(FlappyGameViewFacade.EXTRA_MESSAGE);
     int finalScore = gameStatus.getScore();
     String result = "Your Score : " + finalScore;
     setResultText();

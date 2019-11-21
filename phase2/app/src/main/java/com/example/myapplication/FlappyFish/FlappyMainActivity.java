@@ -6,6 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.example.myapplication.FlappyFish.FlappyGameView.FlappyGameViewFacade;
+import com.example.myapplication.FlappyFish.FlappyGameView.ViewBitmapManager;
+import com.example.myapplication.FlappyFish.FlappyGameView.ViewPaintManager;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -13,7 +18,7 @@ import java.util.TimerTask;
 public class FlappyMainActivity extends AppCompatActivity {
 
   /** The game view the game uses. */
-  private FlappyGameView gameView;
+  private FlappyGameViewFacade gameView;
 
   /** The game status the game uses. */
   private FlappyGameStatus gameStatus;
@@ -39,8 +44,11 @@ public class FlappyMainActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    gameView = new FlappyGameView(this);
+    gameView = new FlappyGameViewFacade(this);
+    gameView.setBitmapManager(new ViewBitmapManager(gameStatus));
+    gameView.setPaintManager(new ViewPaintManager(gameStatus));
     setContentView(gameView);
+    gameView.setUpView();
     gameStatus = getIntent().getParcelableExtra("gamer");
   }
 
@@ -53,20 +61,20 @@ public class FlappyMainActivity extends AppCompatActivity {
     if (timer == null) {
       timer = new Timer();
       timer.schedule(
-          new TimerTask() {
-            @Override
-            public void run() {
-              handler.post(
-                  new Runnable() {
-                    @Override
-                    public void run() {
-                      gameView.invalidate();
-                    }
-                  });
-            }
-          },
-          0,
-          TIMER_INTERVAL);
+              new TimerTask() {
+                @Override
+                public void run() {
+                  handler.post(
+                          new Runnable() {
+                            @Override
+                            public void run() {
+                              gameView.invalidate();
+                            }
+                          });
+                }
+              },
+              0,
+              TIMER_INTERVAL);
     }
   }
 
