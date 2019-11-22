@@ -122,12 +122,6 @@ public abstract class FlappyGameObjects implements Parcelable {
         this.width = width;
     }
 
-    /** Set the game difficulty level to easy. */
-    public abstract void setGameEasy();
-
-    /** Set the game difficulty level to hard. */
-    public abstract void setGameHard();
-
     /**
      * Move the game object according to its current velocity.
      */

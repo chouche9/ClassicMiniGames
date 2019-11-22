@@ -99,10 +99,10 @@ public class FlappyGameShark extends FlappyGameObjects implements Parcelable{
         FlappyGameShark shark = gameStatus.shark;
         int fishX = fish.getX();
         int fishY = fish.getY();
-        int sharkX = getX();
-        int sharkY = getY();
+        int sharkX = shark.getX();
+        int sharkY = shark.getY();
         return fishX < sharkX
-                && sharkY < (fishX + fish.getWidth())
+                && sharkX < (fishX + fish.getWidth())
                 && (fishY - shark.getHeight()) < sharkY
                 && sharkY < (fishY + fish.getHeight());
     }

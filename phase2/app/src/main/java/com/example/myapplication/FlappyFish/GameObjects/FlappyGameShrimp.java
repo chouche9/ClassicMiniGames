@@ -95,10 +95,10 @@ public class FlappyGameShrimp extends FlappyGameObjects implements Parcelable{
         FlappyGameShrimp shrimp = gameStatus.shrimp;
         int fishX = fish.getX();
         int fishY = fish.getY();
-        int shrimpX = getX();
-        int shrimpY = getY();
+        int shrimpX = shrimp.getX();
+        int shrimpY = shrimp.getY();
         return fishX < shrimpX
-                && shrimpY < (fishX + fish.getWidth())
+                && shrimpX < (fishX + fish.getWidth())
                 && (fishY - shrimp.getHeight()) < shrimpY
                 && shrimpY < (fishY + fish.getHeight());
     }

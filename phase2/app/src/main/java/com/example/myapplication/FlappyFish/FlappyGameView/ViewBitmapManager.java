@@ -90,8 +90,9 @@ public class ViewBitmapManager {
 
     boolean drawBitmaps() {
         int canvasWidth = canvas.getWidth();
+        int canvasHeight = canvas.getHeight();
         int minY = fish.getHeight();
-        int maxY = canvasWidth - minY * 4;
+        int maxY = canvasHeight - minY * 4;
         FlappyGameFish fishObj = gameStatus.fish;
         FlappyGameShrimp shrimpObj = gameStatus.shrimp;
         FlappyGameShark sharkObj = gameStatus.shark;

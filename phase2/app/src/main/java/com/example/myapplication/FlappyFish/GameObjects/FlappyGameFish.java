@@ -34,14 +34,6 @@ public class FlappyGameFish extends FlappyGameObjects implements Parcelable {
         super(in);
     }
 
-    @Override
-    public void setGameEasy() {
-    }
-
-    @Override
-    public void setGameHard() {
-    }
-
     /**
      * Move the fish according to its current velocity.
      */
@@ -85,7 +77,7 @@ public class FlappyGameFish extends FlappyGameObjects implements Parcelable {
 
     /** Set the fall speed for fish. */
     private void setFishFallSpeed() {
-        setVelocity(DROP_SPEED);
+        setVelocity(getVelocity() + DROP_SPEED);
     }
 
     /**
