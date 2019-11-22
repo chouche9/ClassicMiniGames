@@ -14,7 +14,8 @@ import android.widget.Toast;
 import com.example.myapplication.R;
 
 /** The User Interface of this Hangman Game. */
-public class HangmanGameActivity extends AppCompatActivity implements HangmanGameView{
+public class HangmanGameActivity extends AppCompatActivity
+        implements HangmanGameView, HangmanDialog.HangmanDialogListener {
 
   /** Name used globally to send/retrieve the winning/losing message to/from an intent. */
   private static final String MESSAGE = "message";
@@ -38,7 +39,13 @@ public class HangmanGameActivity extends AppCompatActivity implements HangmanGam
   private TextView txtScore;
 
   /** Button that the user clicks to guess a letter. */
-  private Button btnGuess;
+  private Button btnGuessLetter;
+
+  /** Button that the user clicks to guess the full word. */
+  private Button btnGuessWord;
+
+  /** The dialog that pops up when the user presses btnGuessWord. */
+  private HangmanDialog dialog;
 
   /**
    * Array for storing all possible pictures for this Hangman Game (specific to the gender chosen).
@@ -48,9 +55,7 @@ public class HangmanGameActivity extends AppCompatActivity implements HangmanGam
   /** Number of false guesses made by this user so far. */
   private int picture_index;
 
-  /** The game state object of this user. */
-//  private HangmanGameStat hangmanGameStat;
-
+  /** The presenter of this hangman game. */
   private HangmanGamePresenter hangmanGamePresenter;
 
   /**
@@ -64,7 +69,8 @@ public class HangmanGameActivity extends AppCompatActivity implements HangmanGam
     setContentView(R.layout.activity_hangman_game);
 
     Intent intent = getIntent();
-    HangmanGameStatInteractor hangmanGameStat = intent.getParcelableExtra(HangmanMain.getGamestatusMsg());
+    HangmanGameStatInteractor hangmanGameStat =
+            intent.getParcelableExtra(HangmanMain.getGamestatusMsg());
 
     hangmanGamePresenter = new HangmanGamePresenter(this, hangmanGameStat);
 
@@ -73,37 +79,87 @@ public class HangmanGameActivity extends AppCompatActivity implements HangmanGam
     edtLetterGuess = findViewById(R.id.edtLetterGuess);
     txtLettersGuessed = findViewById(R.id.txtLettersGuessed);
     txtScore = findViewById(R.id.txtScore);
-    btnGuess = findViewById(R.id.btnGuess);
+    btnGuessLetter = findViewById(R.id.btnGuess);
+    btnGuessWord = findViewById(R.id.btnGuessWord);
 
     picture_index = 0;
 
-    //Review Below!
+    // Review Below!
     assert hangmanGameStat != null;
     String gender = hangmanGameStat.getGender();
 
     if (gender.equals("FEMALE")) {
       pictures =
-          new int[] {R.drawable.start,
-            R.drawable.female_head,
-            R.drawable.female_leftarm,
-            R.drawable.female_rightarm,
-            R.drawable.female_body,
-            R.drawable.female_leftleg,
-            R.drawable.female_rightleg
-          };
+              new int[] {
+                      R.drawable.start,
+                      R.drawable.female_head,
+                      R.drawable.female_leftarm,
+                      R.drawable.female_rightarm,
+                      R.drawable.female_body,
+                      R.drawable.female_leftleg,
+                      R.drawable.female_rightleg
+              };
     } else {
       pictures =
-          new int[] { R.drawable.start,
-            R.drawable.male_head,
-            R.drawable.male_leftarm,
-            R.drawable.male_rightarm,
-            R.drawable.male_body,
-            R.drawable.male_leftleg,
-            R.drawable.male_rightleg
-          };
+              new int[] {
+                      R.drawable.start,
+                      R.drawable.male_head,
+                      R.drawable.male_leftarm,
+                      R.drawable.male_rightarm,
+                      R.drawable.male_body,
+                      R.drawable.male_leftleg,
+                      R.drawable.male_rightleg
+              };
     }
+    setBtnGuessLetter();
+    setBtnGuessWord();
+  }
 
-    setBtnGuess();
+  /** Event that happens after the btnGuessLetter button is clicked. */
+  private void setBtnGuessLetter() {
+    btnGuessLetter.setOnClickListener(
+            new View.OnClickListener() {
+              @Override
+              public void onClick(View view) {
+                if (edtLetterGuess.getText().length() > 0) {
+                  String letterGuessed = edtLetterGuess.getText().toString().toLowerCase();
+                  char c = letterGuessed.charAt(0);
+                  hangmanGamePresenter.validateChar(c);
+                } else {
+                  showEmptyError();
+                }
+              }
+            });
+  }
+
+  /** Event that happens after the btnGuessWord button is clicked. */
+  private void setBtnGuessWord() {
+    btnGuessWord.setOnClickListener(
+            new View.OnClickListener() {
+              @Override
+              public void onClick(View view) {
+                openDialog();
+              }
+            });
+  }
+
+  /** Opens the dialog for guessing the full word. */
+  private void openDialog() {
+    dialog = new HangmanDialog();
+    dialog.show(getSupportFragmentManager(), "Hangman Dialog");
+  }
+
+  /**
+   * Checks whether if the full word guessed is correct or not.
+   *
+   * @param wordGuessed the full word guessed by the player.
+   */
+  @Override
+  public void validateGuessedWord(String wordGuessed) {
+    if (wordGuessed.length() > 0) {
+      hangmanGamePresenter.validateWord(wordGuessed);
+    }
+    dialog.dismiss();
   }
 
   /** Pauses this HangmanGame activity. */
@@ -112,34 +168,16 @@ public class HangmanGameActivity extends AppCompatActivity implements HangmanGam
     super.onPause();
     HangmanGameManager hangmanGameManager = HangmanGameManager.getInstance(this);
     hangmanGameManager.saveGame(hangmanGamePresenter.getHangmanGameStat());
-//    hangmanGameManager.saveGame(hangmanGameStat);
   }
 
   /** Resumes this HangmanGame activity. */
   @Override
   protected void onResume() {
     super.onResume();
-
     if (!hangmanGamePresenter.getPlayed()) {
       hangmanGamePresenter.getNewWord();
     }
-
     hangmanGamePresenter.onResuming();
-
-    // ANY LOGIC CANNOT BE IN THE UI
-//    if (!hangmanGameStat.getPlayed()) {
-//      HangmanWordGenerator wg = new HangmanWordGenerator(this);
-//      String chosenWord = wg.getChosenWord();
-//      hangmanGameStat.generateWord(chosenWord);
-//    }
-//    int score = hangmanGameStat.getScore();
-//    picture_index = hangmanGameStat.getFalseGuess();
-//    if (picture_index > -1) {
-//      hangmanImage.setImageResource(pictures[picture_index]);
-//    }
-//    txtLettersGuessed.setText(hangmanGameStat.getLettersGuessed());
-//    txtScore.setText(String.valueOf(score));
-//    txtMaskedWord.setText(hangmanGameStat.getDisplayedMaskedWord().toString());
   }
 
   /**
@@ -162,8 +200,7 @@ public class HangmanGameActivity extends AppCompatActivity implements HangmanGam
 
   @Override
   public void showEmptyError() {
-    Toast.makeText(getApplicationContext(), "Please input a letter!", Toast.LENGTH_SHORT)
-            .show();
+    Toast.makeText(getApplicationContext(), "Please input a letter!", Toast.LENGTH_SHORT).show();
   }
 
   @Override
@@ -206,8 +243,9 @@ public class HangmanGameActivity extends AppCompatActivity implements HangmanGam
   }
 
   @Override
-  public void gameEnded(String message, int score, HangmanGameStatInteractor hm) {
-    //intent opens up the "game lost" activity
+  public void gameEnded(
+          String message, int score, com.example.myapplication.Hangman.HangmanGameStatInteractor hm) {
+    // intent opens up the "game lost" activity
     Intent intent = new Intent(this, HangmanPlayAgain.class);
 
     intent.putExtra(MESSAGE, message);
@@ -216,77 +254,9 @@ public class HangmanGameActivity extends AppCompatActivity implements HangmanGam
     startActivity(intent);
   }
 
-  private void setBtnGuess() {
-    btnGuess.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        if (edtLetterGuess.getText().length() > 0) {
-          String letterGuessed = edtLetterGuess.getText().toString().toLowerCase();
-          char c = letterGuessed.charAt(0);
-          hangmanGamePresenter.validateChar(c);
-        } else {
-          showEmptyError();
-        }
-      }
-    });
-
+  @Override
+  public void showGuessWordFailed() {
+    Toast.makeText(getApplicationContext(), "You guessed the wrong word!", Toast.LENGTH_SHORT)
+            .show();
   }
-  //   /** Event that happens when the btnGuess button is clicked. */
-//  private void setBtnGuess() {
-//    btnGuess.setOnClickListener(
-//        new View.OnClickListener() {
-//          @Override
-//          public void onClick(View view) {
-//            if (edtLetterGuess.getText().length() > 0) {
-//              // convert letter guessed to lower case in case the user inputs upper case letter
-//              String letterGuessed = edtLetterGuess.getText().toString().toLowerCase();
-//              char c = letterGuessed.charAt(0);
-//
-//              // check if the letter was already guessed
-//              if (hangmanGameStat.checkLetterInGuessed(c)) {
-//                // if score has changed, user made a wrong guess
-//                if (!hangmanGameStat.checkLetter(c)) {
-//                  if (hangmanGameStat.getFalseGuess() < 5) {
-//                    picture_index++;
-//                  }
-//                  // change image
-//                  showImage();
-//                }
-//              } else {
-//                showLetterUsedError(c);
-//              }
-//
-//              txtScore.setText(String.valueOf(hangmanGameStat.getScore()));
-//              txtMaskedWord.setText(hangmanGameStat.getDisplayedMaskedWord().toString());
-//              txtLettersGuessed.setText(hangmanGameStat.getLettersGuessed().toString());
-//              edtLetterGuess.setText("");
-//
-//              checkIfGameEnded();
-//            } else {
-//              showEmptyError();
-//            }
-//          }
-//        });
-//  }
-//
-//  /**
-//   * Checks if the game has ended (either user has won or lost) and sends intent to HangmanPlayAgain
-//   * activity.
-//   */
-//  private void checkIfGameEnded() {
-//    if (hangmanGameStat.checkIfGameEnded()) {
-//      // intent opens up the "game lost" activity
-//      Intent intent = new Intent(this, HangmanPlayAgain.class);
-//      int score = hangmanGameStat.getScore();
-//      if (score == 0) {
-//        intent.putExtra(
-//            MESSAGE, LOSEMESSSAGE + hangmanGameStat.getSecretWord() + "!");
-//      } else {
-//        intent.putExtra(MESSAGE, WINMESSAGE);
-//      }
-//      intent.putExtra(SCORE_MESSAGE, String.valueOf(score));
-//      intent.putExtra(HangmanMain.getGamestatusMsg(), hangmanGameStat);
-//      startActivity(intent);
-//    }
-//  }
 }
