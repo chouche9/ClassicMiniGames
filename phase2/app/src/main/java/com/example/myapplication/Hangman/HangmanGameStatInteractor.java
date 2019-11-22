@@ -14,7 +14,7 @@ public class HangmanGameStatInteractor extends GameStatus implements Parcelable 
 
         void onDisplayViews();
 
-        void onGameEnd(String message, int score, HangmanGameStatInteractor hm);
+        void onGameEnd(HangmanGameStatInteractor hm);
 
         void onGuessWordFailed();
     }
@@ -28,10 +28,6 @@ public class HangmanGameStatInteractor extends GameStatus implements Parcelable 
      * A boolean string that shows whether the game has been played before or not
      */
     private boolean played = false;
-
-    public String getSecretWord() {
-        return secretWord;
-    }
 
     /**
      * A string that represent the secret word for the hangman game
@@ -51,7 +47,7 @@ public class HangmanGameStatInteractor extends GameStatus implements Parcelable 
     /**
      * An int that store the total value of the game
      */
-    private int score = 120;
+    private int currentScore = 120;
 
     /**
      * An int falseGuess stores the value in which it increases whenever player failed to guess the
@@ -76,6 +72,8 @@ public class HangmanGameStatInteractor extends GameStatus implements Parcelable 
 
     private int stageNum = 0;
 
+    private int accumulatedScore = 0;
+
     /**
      * A constructor to construct the HangmanGame statistics
      *
@@ -97,13 +95,14 @@ public class HangmanGameStatInteractor extends GameStatus implements Parcelable 
         secretWord = in.readString();
         secretWordCharArray = in.createCharArray();
         maskedWordCharArray = in.createCharArray();
-        score = in.readInt();
+        currentScore = in.readInt();
         falseGuess = in.readInt();
         gender = in.readString();
         lettersGuessed = new StringBuilder(in.readString());
         displayedMaskedWord = new StringBuilder(in.readString());
         type = in.readString();
         stageNum = in.readInt();
+        accumulatedScore = in.readInt();
     }
 
     /**
@@ -138,6 +137,10 @@ public class HangmanGameStatInteractor extends GameStatus implements Parcelable 
         this.stageNum = stageNum;
     }
 
+    String getSecretWord() {
+        return secretWord;
+    }
+
     /**
      * Getter to get the lettersGuessed
      *
@@ -157,12 +160,20 @@ public class HangmanGameStatInteractor extends GameStatus implements Parcelable 
     }
 
     /**
-     * Getter to get the score
+     * Getter to get the currentScore
      *
-     * @return int the score
+     * @return int the currentScore
      */
-    int getScore() {
-        return score;
+    int getCurrentScore() {
+        return currentScore;
+    }
+
+    int getAccumulatedScore() {
+        return accumulatedScore;
+    }
+
+    void setAccumulatedScore(int accumulatedScore) {
+        this.accumulatedScore = accumulatedScore;
     }
 
     /**
@@ -250,10 +261,10 @@ public class HangmanGameStatInteractor extends GameStatus implements Parcelable 
     }
 
     /**
-     * Method to decrease the score when the guessed letter is not in the secret word
+     * Method to decrease the currentScore when the guessed letter is not in the secret word
      */
     private void decreaseScore() {
-        score -= 20;
+        currentScore -= 20;
     }
 
     /**
@@ -292,13 +303,14 @@ public class HangmanGameStatInteractor extends GameStatus implements Parcelable 
         secretWord = "";
         secretWordCharArray = null;
         maskedWordCharArray = null;
-        score = 120;
+        currentScore = 120;
         falseGuess = 0;
         gender = "MALE";
         lettersGuessed = new StringBuilder();
         displayedMaskedWord = new StringBuilder();
         type = "HangmanGameStat";
         stageNum = 0;
+        accumulatedScore = 0;
     }
 
     /**
@@ -324,16 +336,17 @@ public class HangmanGameStatInteractor extends GameStatus implements Parcelable 
         parcel.writeString(secretWord);
         parcel.writeCharArray(secretWordCharArray);
         parcel.writeCharArray(maskedWordCharArray);
-        parcel.writeInt(score);
+        parcel.writeInt(currentScore);
         parcel.writeInt(falseGuess);
         parcel.writeString(gender);
         parcel.writeString(lettersGuessed.toString());
         parcel.writeString(displayedMaskedWord.toString());
         parcel.writeString(type);
         parcel.writeInt(stageNum);
+        parcel.writeInt(accumulatedScore);
     }
 
-    boolean gameEnded() {
+    boolean gameEndedInteractor() {
         if (maskedWordCharArray != null) {
             return falseGuess == 6 || !String.valueOf(maskedWordCharArray).contains("_");
         }
@@ -344,12 +357,10 @@ public class HangmanGameStatInteractor extends GameStatus implements Parcelable 
      * Checks if the game has ended (either user has won or lost) and sends intent to
      * HangmanStageEnded activity.
      */
-    void checkIfGameEnded(HangmanGamePresenter listener) {
-        if (falseGuess == 6) {
-            listener.onGameEnd(
-                    "You lost! The correct word was " + secretWord + "!" + "You made it to Stage " + stageNum, score, this);
-        } else if (!String.valueOf(maskedWordCharArray).contains("_")) {
-            listener.onGameEnd("Congratulations, you guessed the correct word!", score, this);
+    private void checkIfGameEnded(HangmanGamePresenter listener) {
+        if (gameEndedInteractor()) {
+            accumulatedScore += currentScore;
+            listener.onGameEnd(this);
         }
     }
 
@@ -362,6 +373,7 @@ public class HangmanGameStatInteractor extends GameStatus implements Parcelable 
         }
         checkIfGameEnded(listener);
     }
+
 
     void validateWordInteractor(String guessedWord, HangmanGamePresenter listener) {
         if (guessedWord.equalsIgnoreCase(secretWord)) {

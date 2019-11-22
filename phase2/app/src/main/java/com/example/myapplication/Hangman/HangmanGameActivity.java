@@ -292,15 +292,12 @@ public class HangmanGameActivity extends AppCompatActivity
     }
 
     @Override
-    public void gameEnded(
-            String message, int score, com.example.myapplication.Hangman.HangmanGameStatInteractor hm) {
+    public void gameEnded(HangmanGameStatInteractor hm) {
         // intent opens up the "game lost" activity
         Intent intent = new Intent(this, HangmanStageEnded.class);
-
-        intent.putExtra(MESSAGE, message);
-        intent.putExtra(SCORE_MESSAGE, String.valueOf(score));
         intent.putExtra(HangmanMain.getGamestatusMsg(), hm);
         startActivity(intent);
+        finish();
     }
 
     @Override

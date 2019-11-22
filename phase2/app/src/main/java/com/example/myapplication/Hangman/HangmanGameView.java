@@ -18,7 +18,7 @@ public interface HangmanGameView {
 
     void setPictureIndex(int index);
 
-    void gameEnded(String message, int score, HangmanGameStatInteractor hm);
+    void gameEnded(HangmanGameStatInteractor hm);
 
     void showGuessWordFailed();
 
