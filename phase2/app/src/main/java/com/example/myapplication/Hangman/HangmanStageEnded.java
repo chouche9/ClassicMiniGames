@@ -66,11 +66,13 @@ public class HangmanStageEnded extends AppCompatActivity {
 
         String firstMessage;
         String valueMessage;
-        if (hangmanGameStat.getFalseGuess() == 6) {
+        if (hangmanGameStat.getFalseGuess() == 6) { // game lost
             firstMessage =
                     "You lost! The correct word was " + hangmanGameStat.getSecretWord() + ". \n"  +
                     "You made it to stage " + hangmanGameStat.getStageNum() + ".";
             valueMessage = "Total score: " + hangmanGameStat.getAccumulatedScore();
+            hangmanGameStat.resetGameStatus();
+            hangmanGameStat.setGender(originalGender);
             nextStage.setVisibility(View.GONE);
         } else {
             firstMessage = "Congratulations, you guessed the correct word!";
@@ -97,8 +99,6 @@ public class HangmanStageEnded extends AppCompatActivity {
                     public void onClick(View view) {
                         Intent intent = new Intent(getApplicationContext(), HangmanGameActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        hangmanGameStat.resetGameStatus();
-                        hangmanGameStat.setGender(originalGender);
                         intent.putExtra(HangmanMain.getGamestatusMsg(), hangmanGameStat);
                         startActivity(intent);
                         finish();
@@ -140,9 +140,6 @@ public class HangmanStageEnded extends AppCompatActivity {
                     public void onClick(View view) {
                         Intent intent = new Intent(getApplicationContext(), HangmanMain.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        if (hangmanGameStat.getFalseGuess() == 6) {
-                            hangmanGameStat.resetGameStatus();
-                        }
                         intent.putExtra(HangmanMain.getGamestatusMsg(), hangmanGameStat);
                         startActivity(intent);
                         finish();
@@ -160,9 +157,6 @@ public class HangmanStageEnded extends AppCompatActivity {
                     public void onClick(View view) {
                         Intent intent = new Intent(getApplicationContext(), GameMain.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        if (hangmanGameStat.getFalseGuess() == 6) {
-                            hangmanGameStat.resetGameStatus();
-                        }
                         intent.putExtra(HangmanMain.getGamestatusMsg(), hangmanGameStat);
                         intent.putExtra("user", hangmanGameStat.getName());
                         startActivity(intent);
