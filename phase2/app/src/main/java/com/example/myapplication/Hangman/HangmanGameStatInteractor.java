@@ -19,27 +19,38 @@ public class HangmanGameStatInteractor extends GameStatus implements Parcelable 
         void onGuessWordFailed();
     }
 
-
-    private static String WINMESSAGE = "Congratulations, you won!";
-
-    private static String LOSEMESSSAGE = "You lost! The correct word was ";
-
-    /** A string type that passes on the type of the game */
+    /**
+     * A string type that passes on the type of the game
+     */
     private String type;
 
-    /** A boolean string that shows whether the game has been played before or not */
+    /**
+     * A boolean string that shows whether the game has been played before or not
+     */
     private boolean played = false;
 
-    /** A string that represent the secret word for the hangman game */
+    public String getSecretWord() {
+        return secretWord;
+    }
+
+    /**
+     * A string that represent the secret word for the hangman game
+     */
     private String secretWord = "";
 
-    /** A Character array of the secret word array */
+    /**
+     * A Character array of the secret word array
+     */
     private char[] secretWordCharArray;
 
-    /** A Character array of the masked word Char Array to be shown in the game activity */
+    /**
+     * A Character array of the masked word Char Array to be shown in the game activity
+     */
     private char[] maskedWordCharArray;
 
-    /** An int that store the total value of the game */
+    /**
+     * An int that store the total value of the game
+     */
     private int score = 120;
 
     /**
@@ -48,14 +59,22 @@ public class HangmanGameStatInteractor extends GameStatus implements Parcelable 
      */
     private int falseGuess = 0;
 
-    /** String gender stored the type of gender chosen for this game */
+    /**
+     * String gender stored the type of gender chosen for this game
+     */
     private String gender = "MALE";
 
-    /** A StringBuilder that will store the letters that has been guessed by the user */
+    /**
+     * A StringBuilder that will store the letters that has been guessed by the user
+     */
     private StringBuilder lettersGuessed = new StringBuilder();
 
-    /** A StringBuilder that will store the word to be displayed on the game but are masked. */
+    /**
+     * A StringBuilder that will store the word to be displayed on the game but are masked.
+     */
     private StringBuilder displayedMaskedWord = new StringBuilder();
+
+    private int stageNum = 0;
 
     /**
      * A constructor to construct the HangmanGame statistics
@@ -84,9 +103,12 @@ public class HangmanGameStatInteractor extends GameStatus implements Parcelable 
         lettersGuessed = new StringBuilder(in.readString());
         displayedMaskedWord = new StringBuilder(in.readString());
         type = in.readString();
+        stageNum = in.readInt();
     }
 
-    /** Binds the GameStatus object. */
+    /**
+     * Binds the GameStatus object.
+     */
     public static final Creator<HangmanGameStatInteractor> CREATOR =
             new Creator<HangmanGameStatInteractor>() {
                 @Override
@@ -102,6 +124,18 @@ public class HangmanGameStatInteractor extends GameStatus implements Parcelable 
 
     boolean getPlayed() {
         return played;
+    }
+
+    int getStageNum() {
+        return stageNum;
+    }
+
+    void setFalseGuess(int falseGuess) {
+        this.falseGuess = falseGuess;
+    }
+
+    void setStageNum(int stageNum) {
+        this.stageNum = stageNum;
     }
 
     /**
@@ -165,6 +199,7 @@ public class HangmanGameStatInteractor extends GameStatus implements Parcelable 
      */
     void generateWord(String chosenWord) {
         played = true;
+        stageNum++;
         secretWord = chosenWord;
         secretWordCharArray = new char[secretWord.length()];
         maskedWordCharArray = new char[secretWord.length()];
@@ -214,7 +249,9 @@ public class HangmanGameStatInteractor extends GameStatus implements Parcelable 
         lettersGuessed.append(addLetter);
     }
 
-    /** Method to decrease the score when the guessed letter is not in the secret word */
+    /**
+     * Method to decrease the score when the guessed letter is not in the secret word
+     */
     private void decreaseScore() {
         score -= 20;
     }
@@ -247,7 +284,9 @@ public class HangmanGameStatInteractor extends GameStatus implements Parcelable 
         return maskedWord;
     }
 
-    /** A method to reset the Game Status */
+    /**
+     * A method to reset the Game Status
+     */
     void resetGameStatus() {
         played = false;
         secretWord = "";
@@ -259,6 +298,7 @@ public class HangmanGameStatInteractor extends GameStatus implements Parcelable 
         lettersGuessed = new StringBuilder();
         displayedMaskedWord = new StringBuilder();
         type = "HangmanGameStat";
+        stageNum = 0;
     }
 
     /**
@@ -275,7 +315,7 @@ public class HangmanGameStatInteractor extends GameStatus implements Parcelable 
      * Write the attribute of this GameStatus to parcel.
      *
      * @param parcel parcel to write the attributes of this GameStatus.
-     * @param i flags.
+     * @param i      flags.
      */
     @Override
     public void writeToParcel(Parcel parcel, int i) {
@@ -290,20 +330,26 @@ public class HangmanGameStatInteractor extends GameStatus implements Parcelable 
         parcel.writeString(lettersGuessed.toString());
         parcel.writeString(displayedMaskedWord.toString());
         parcel.writeString(type);
+        parcel.writeInt(stageNum);
+    }
+
+    boolean gameEnded() {
+        if (maskedWordCharArray != null) {
+            return falseGuess == 6 || !String.valueOf(maskedWordCharArray).contains("_");
+        }
+        return false;
     }
 
     /**
-     * Checks if the game has ended (either user has won or lost) and sends intent to HangmanPlayAgain
-     * activity.
+     * Checks if the game has ended (either user has won or lost) and sends intent to
+     * HangmanStageEnded activity.
      */
-    private void checkIfGameEnded(HangmanGamePresenter listener) {
-        boolean gameEnded = score == 0 || !String.valueOf(maskedWordCharArray).contains("_");
-        if (gameEnded) {
-            if (score == 0) {
-                listener.onGameEnd(LOSEMESSSAGE + secretWord + "!", score, this);
-            } else {
-                listener.onGameEnd(WINMESSAGE, score, this);
-            }
+    void checkIfGameEnded(HangmanGamePresenter listener) {
+        if (falseGuess == 6) {
+            listener.onGameEnd(
+                    "You lost! The correct word was " + secretWord + "!" + "You made it to Stage " + stageNum, score, this);
+        } else if (!String.valueOf(maskedWordCharArray).contains("_")) {
+            listener.onGameEnd("Congratulations, you guessed the correct word!", score, this);
         }
     }
 

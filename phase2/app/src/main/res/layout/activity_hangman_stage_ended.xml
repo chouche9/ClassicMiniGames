@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Hangman.HangmanPlayAgain"
+    tools:context=".Hangman.HangmanStageEnded"
     android:background="@color/colorHangmanMainBackground">
 
     <TextView
@@ -42,35 +42,52 @@
         android:id="@+id/btnPlayAgain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="296dp"
         android:background="@drawable/hangman_round_background"
         android:text="@string/play_again"
         android:textColor="@color/hangman_white"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomDivider"
+        app:layout_constraintBottom_toTopOf="@+id/btnMainMenu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topDivider" />
+
+    <Button
+        android:id="@+id/btnNextStage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="296dp"
+        android:background="@drawable/hangman_round_background"
+        android:text="go to next stage"
+        android:textColor="@color/hangman_white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnMainMenu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtHangman"
-        app:layout_constraintVertical_bias="0.63" />
+        app:layout_constraintTop_toBottomOf="@+id/topDivider"
+        app:layout_constraintVertical_bias="0.474" />
 
     <Button
         android:id="@+id/btnMainMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="44dp"
         android:background="@drawable/hangman_round_background"
         android:text="@string/main_menu"
         android:textColor="@color/hangman_white"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/btnBackToHome"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnPlayAgain" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnBackToHome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
         android:background="@drawable/hangman_round_background"
         android:text="@string/hangman_back_to_home"
         android:textColor="@color/hangman_white"
@@ -78,35 +95,31 @@
         app:layout_constraintBottom_toTopOf="@+id/bottomDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnPlayAgain"
-        app:layout_constraintVertical_bias="0.746" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/txtScoreText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
         android:text="@string/score"
         android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnPlayAgain"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.39"
+        app:layout_constraintHorizontal_bias="0.38"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topDivider"
-        app:layout_constraintVertical_bias="0.56" />
+        app:layout_constraintTop_toBottomOf="@+id/topDivider" />
 
     <TextView
         android:id="@+id/txtScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
         android:text="@string/_120"
         android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnPlayAgain"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.073"
         app:layout_constraintStart_toEndOf="@+id/txtScoreText"
-        app:layout_constraintTop_toBottomOf="@+id/topDivider"
-        app:layout_constraintVertical_bias="0.56" />
+        app:layout_constraintTop_toBottomOf="@+id/topDivider" />
 
     <TextView
         android:id="@+id/txtMessage"

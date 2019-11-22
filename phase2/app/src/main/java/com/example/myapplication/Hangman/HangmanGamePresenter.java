@@ -33,11 +33,18 @@ public class HangmanGamePresenter implements HangmanGameStatInteractor.OnValidat
     public void getNewWord() {
         String chosenWord = hangmanWordGenerator.getChosenWord();
         hangmanGameStat.generateWord(chosenWord);
-        // TODO: delete this later
-        System.out.println(chosenWord);
+    }
+
+    public boolean onCheckIfGameEnded() {
+        return hangmanGameStat.gameEnded();
+    }
+
+    public void onOpenGameEndedActivity() {
+        hangmanGameStat.checkIfGameEnded(this);
     }
 
     public void onResuming() {
+        hangmanGameActivity.showTxtStageNum(hangmanGameStat.getStageNum());
         hangmanGameActivity.showTxtMaskedWord(hangmanGameStat.getDisplayedMaskedWord().toString());
         hangmanGameActivity.showTxtScore(hangmanGameStat.getScore());
         hangmanGameActivity.showLettersGuessed(hangmanGameStat.getLettersGuessed().toString());
@@ -63,6 +70,7 @@ public class HangmanGamePresenter implements HangmanGameStatInteractor.OnValidat
     @Override
     public void onDisplayViews() {
         if (hangmanGameActivity != null) {
+            hangmanGameActivity.showTxtStageNum(hangmanGameStat.getStageNum());
             hangmanGameActivity.setPictureIndex(hangmanGameStat.getFalseGuess());
             hangmanGameActivity.showTxtMaskedWord(hangmanGameStat.getDisplayedMaskedWord().toString());
             hangmanGameActivity.showLettersGuessed(hangmanGameStat.getLettersGuessed().toString());

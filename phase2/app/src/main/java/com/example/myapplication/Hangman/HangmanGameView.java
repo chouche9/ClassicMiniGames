@@ -21,4 +21,6 @@ public interface HangmanGameView {
     void gameEnded(String message, int score, HangmanGameStatInteractor hm);
 
     void showGuessWordFailed();
+
+    void showTxtStageNum(int stageNum);
 }

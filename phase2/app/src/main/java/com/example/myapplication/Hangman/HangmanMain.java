@@ -51,6 +51,7 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
     btnSettings = findViewById(R.id.btnSettings);
 
     HangmanGameManager hangmanGameManager = HangmanGameManager.getInstance(this);
+
     Intent intent = getIntent();
 
     // from log in page
@@ -60,19 +61,6 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
     // from playAgain
     if (intent.getParcelableExtra(getGamestatusMsg()) != null) {
       hangmanGameStat = intent.getParcelableExtra(getGamestatusMsg());
-    }
-
-    boolean clearGame = intent.getBooleanExtra("clear game", false);
-
-    if (clearGame) {
-      hangmanGameManager.saveGame(hangmanGameStat);
-      btnResumeGame.setVisibility(View.GONE);
-    } else {
-      btnResumeGame.setVisibility(View.GONE);
-
-      if (hangmanGameStat.getPlayed()) {
-        btnResumeGame.setVisibility(View.VISIBLE);
-      }
     }
 
     btnStartGame.setOnClickListener(this);
@@ -89,6 +77,8 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
 
     if (hangmanGameStat.getPlayed()) {
       btnResumeGame.setVisibility(View.VISIBLE);
+    } else {
+      btnResumeGame.setVisibility(View.GONE);
     }
   }
 

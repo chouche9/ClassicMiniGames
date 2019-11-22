@@ -180,7 +180,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtLettersUsedText" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/txtStage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Stage"
@@ -192,7 +192,7 @@
         app:layout_constraintTop_toBottomOf="@+id/topDivider" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/txtStageNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="25sp"
@@ -200,7 +200,7 @@
         app:layout_constraintBottom_toTopOf="@+id/txtMaskedWord"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.04"
-        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintStart_toEndOf="@+id/txtStage"
         app:layout_constraintTop_toBottomOf="@+id/topDivider" />
 
     <ImageView
