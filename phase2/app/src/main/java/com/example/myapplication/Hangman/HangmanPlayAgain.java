@@ -92,6 +92,7 @@ public class HangmanPlayAgain extends AppCompatActivity {
             hangmanGameStat.setGender(originalGender);
             intent.putExtra(HangmanMain.getGamestatusMsg(), hangmanGameStat);
             intent.putExtra("clear game", true);
+            intent.putExtra("user", hangmanGameStat.getName());
             startActivity(intent);
             finish();
           }
@@ -108,6 +109,8 @@ public class HangmanPlayAgain extends AppCompatActivity {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             hangmanGameStat.resetGameStatus();
             hangmanGameStat.setGender(originalGender);
+            intent.putExtra(HangmanMain.getGamestatusMsg(), hangmanGameStat);
+            intent.putExtra("user", hangmanGameStat.getName());
             startActivity(intent);
             finish();
           }
