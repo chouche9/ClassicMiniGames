@@ -18,6 +18,10 @@ public class HangmanGamePresenter implements HangmanGameStatInteractor.OnValidat
         hangmanGameStat.validateCharInteractor(c, this);
     }
 
+    public void validateWord(String guessedWord) {
+        hangmanGameStat.validateWordInteractor(guessedWord, this);
+    }
+
     public GameStatus getHangmanGameStat() {
         return this.hangmanGameStat;
     }
@@ -29,6 +33,8 @@ public class HangmanGamePresenter implements HangmanGameStatInteractor.OnValidat
     public void getNewWord() {
         String chosenWord = hangmanWordGenerator.getChosenWord();
         hangmanGameStat.generateWord(chosenWord);
+        // TODO: delete this later
+        System.out.println(chosenWord);
     }
 
     public void onResuming() {
@@ -72,4 +78,13 @@ public class HangmanGamePresenter implements HangmanGameStatInteractor.OnValidat
             hangmanGameActivity.gameEnded(message, score, hm);
         }
     }
+
+    @Override
+    public void onGuessWordFailed() {
+        if (hangmanGameActivity != null) {
+            hangmanGameActivity.showGuessWordFailed();
+            onDisplayViews();
+        }
+    }
 }
+

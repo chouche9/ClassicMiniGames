@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp">
+
+    <TextView
+        android:id="@+id/edtGuessWordTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Guess the word!"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:textColor="@color/colorHangmanAccent"
+        android:textSize="30sp"
+        android:layout_marginTop="5dp"
+        tools:layout_editor_absoluteX="149dp"
+        tools:layout_editor_absoluteY="110dp" />
+
+    <EditText
+        android:id="@+id/edtWordGuessed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Enter the word" />
+
+    <Button
+        android:id="@+id/btnDialogGuessWord"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorHangmanAccent"
+        android:textColor="@color/hangman_white"
+        android:layout_marginTop="10dp"
+        android:text="click to guess" />
+</LinearLayout>
