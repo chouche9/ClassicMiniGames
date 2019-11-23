@@ -36,7 +36,7 @@ public class GuessCongratulation extends AppCompatActivity implements View.OnCli
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_guess_congradulation);
+    setContentView(R.layout.activity_guess_congratulation);
     backToMain = findViewById(R.id.backButton);
     backToFront = findViewById(R.id.backFrontBtn);
     congratInfo = findViewById(R.id.congratInfo);
