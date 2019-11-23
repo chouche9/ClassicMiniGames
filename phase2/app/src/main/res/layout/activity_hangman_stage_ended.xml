@@ -123,4 +123,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtFirstMessage" />
 
+    <Button
+        android:id="@+id/bonus_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:background="@drawable/bonus_stage"
+        android:drawableLeft="@drawable/bonus_gold"
+        android:drawableRight="@drawable/bonus_gold"
+        android:padding="15dp"
+
+        android:text=" !!! BONUS SCORE !!! "
+        android:textColor="@color/yellow"
+
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btnPlayAgain"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtValueMessage"
+        app:layout_constraintVertical_bias="0.75" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

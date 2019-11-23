@@ -205,61 +205,61 @@
         app:layout_constraintStart_toEndOf="@+id/txtStage"
         app:layout_constraintTop_toBottomOf="@+id/topDivider" />
 
-    <ImageView
-        android:id="@+id/heart"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/heart"
-        app:layout_constraintBottom_toTopOf="@+id/txtMaskedWord"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.92"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/topDivider"
-        app:layout_constraintVertical_bias="0.63" />
+<!--    <ImageView-->
+<!--        android:id="@+id/heart"-->
+<!--        android:layout_width="30dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:src="@drawable/heart"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/txtMaskedWord"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.92"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/topDivider"-->
+<!--        app:layout_constraintVertical_bias="0.63" />-->
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/heart"
-        app:layout_constraintBottom_toTopOf="@+id/txtMaskedWord"
-        app:layout_constraintEnd_toStartOf="@+id/heart"
-        app:layout_constraintTop_toBottomOf="@+id/topDivider" />
+<!--    <ImageView-->
+<!--        android:id="@+id/imageView4"-->
+<!--        android:layout_width="30dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:src="@drawable/heart"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/txtMaskedWord"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/heart"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/topDivider" />-->
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/heart"
-        app:layout_constraintBottom_toTopOf="@+id/txtMaskedWord"
-        app:layout_constraintEnd_toStartOf="@+id/imageView4"
-        app:layout_constraintTop_toBottomOf="@+id/topDivider" />
+<!--    <ImageView-->
+<!--        android:id="@+id/imageView5"-->
+<!--        android:layout_width="30dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:src="@drawable/heart"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/txtMaskedWord"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/imageView4"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/topDivider" />-->
 
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/heart"
-        app:layout_constraintBottom_toTopOf="@+id/txtMaskedWord"
-        app:layout_constraintEnd_toStartOf="@+id/imageView5"
-        app:layout_constraintTop_toBottomOf="@+id/topDivider" />
+<!--    <ImageView-->
+<!--        android:id="@+id/imageView6"-->
+<!--        android:layout_width="30dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:src="@drawable/heart"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/txtMaskedWord"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/imageView5"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/topDivider" />-->
 
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/heart"
-        app:layout_constraintBottom_toTopOf="@+id/txtMaskedWord"
-        app:layout_constraintEnd_toStartOf="@+id/imageView8"
-        app:layout_constraintTop_toBottomOf="@+id/topDivider" />
+<!--    <ImageView-->
+<!--        android:id="@+id/imageView7"-->
+<!--        android:layout_width="30dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:src="@drawable/heart"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/txtMaskedWord"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/imageView8"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/topDivider" />-->
 
-    <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/heart"
-        app:layout_constraintBottom_toTopOf="@+id/txtMaskedWord"
-        app:layout_constraintEnd_toStartOf="@+id/imageView6"
-        app:layout_constraintTop_toBottomOf="@+id/topDivider" />
+<!--    <ImageView-->
+<!--        android:id="@+id/imageView8"-->
+<!--        android:layout_width="30dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:src="@drawable/heart"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/txtMaskedWord"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/imageView6"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/topDivider" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

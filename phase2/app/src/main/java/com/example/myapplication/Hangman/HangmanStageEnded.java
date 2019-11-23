@@ -43,6 +43,8 @@ public class HangmanStageEnded extends AppCompatActivity {
 
     private Button nextStage;
 
+    private Button bonusLevel;
+
     /**
      * Initializes this HangmanMain activity.
      *
@@ -57,6 +59,8 @@ public class HangmanStageEnded extends AppCompatActivity {
         nextStage = findViewById(R.id.btnNextStage);
         mainMenu = findViewById(R.id.btnMainMenu);
         backToHome = findViewById(R.id.btnBackToHome);
+        
+
         TextView txtFirstMessage = findViewById(R.id.txtFirstMessage);
         TextView txtValueMessage = findViewById(R.id.txtValueMessage);
 
