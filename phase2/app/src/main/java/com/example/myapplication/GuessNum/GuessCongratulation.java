@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.example.myapplication.R;
 
 /** the activity class that is the result page of guessing number game. */
-public class GuessCongradulation extends AppCompatActivity implements View.OnClickListener {
+public class GuessCongratulation extends AppCompatActivity implements View.OnClickListener {
 
   /** TextView that display congrat String */
   private TextView congratInfo;
@@ -22,14 +22,14 @@ public class GuessCongradulation extends AppCompatActivity implements View.OnCli
   /** button that go back to the GuessMain activity */
   private Button backToFront;
 
-  /** intent that GuessCongradulation activity get */
+  /** intent that GuessCongratulation activity get */
   private Intent intent1;
 
   /** the GuessGameStat of the user that's playing right now. */
   private GuessGameStat gamer;
 
   /**
-   * create GuessCongradulation activity
+   * create GuessCongratulation activity
    *
    * @param savedInstanceState bundle of the resource in this activity
    */

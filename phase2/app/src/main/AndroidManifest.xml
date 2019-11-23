@@ -20,7 +20,7 @@
         <activity android:name=".GuessNum.GuessSetting" />
         <activity android:name=".GuessNum.GuessMain" />
         <activity android:name=".GuessNum.GuessGame" />
-        <activity android:name=".GuessNum.GuessCongradulation" />
+        <activity android:name=".GuessNum.GuessCongratulation" />
         <activity android:name=".Login" />
         <activity android:name=".GameMain" />
         <activity android:name=".CreateAccount" />

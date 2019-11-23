@@ -90,7 +90,7 @@ public class GuessGame extends AppCompatActivity {
       triesNum.setText("" + numTries);
       int userNum = Integer.parseInt(num);
       if (userNum == targetNum) {
-        Intent intent1 = new Intent(GuessGame.this, GuessCongradulation.class);
+        Intent intent1 = new Intent(GuessGame.this, GuessCongratulation.class);
         intent1.putExtra("gamer", gamer);
         startActivityForResult(intent1, REQUEST_CODE3);
       } else if (userNum < targetNum) {
