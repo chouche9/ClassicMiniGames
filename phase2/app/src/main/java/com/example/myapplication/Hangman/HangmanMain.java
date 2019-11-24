@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.myapplication.MainActivity;
+import com.example.myapplication.GameMain;
 import com.example.myapplication.R;
 
 /** Main page of this Hangman Game. */
@@ -27,6 +27,9 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
 
   /** Button for Back To Main Menu */
   private Button btnBackToMain;
+
+  /** The gender that was chosen by the user in settings. */
+  private String settingsGender;
 
   /** Game state for this HangmanGame of the user that is currently playing. */
   private HangmanGameStatInteractor hangmanGameStat;
@@ -56,17 +59,17 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
     btnBackToMain = findViewById(R.id.btnBackToHome);
 
     HangmanGameManager hangmanGameManager = HangmanGameManager.getInstance(this);
-
     Intent intent = getIntent();
 
     // from log in page
     String name = intent.getStringExtra("user");
     hangmanGameStat = hangmanGameManager.getGameStatus(name);
 
-    // from playAgain
+    // from HangmanStageEnded or HangmanSetting
     if (intent.getParcelableExtra(getGamestatusMsg()) != null) {
       hangmanGameStat = intent.getParcelableExtra(getGamestatusMsg());
     }
+    settingsGender = hangmanGameStat.getGender();
 
     btnStartGame.setOnClickListener(this);
     btnResumeGame.setOnClickListener(this);
@@ -80,6 +83,9 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
     super.onResume();
     HangmanGameManager hangmanGameManager = HangmanGameManager.getInstance(this);
     hangmanGameStat = hangmanGameManager.getGameStatus(hangmanGameStat.getName());
+    // this line is used when the user chooses to go back to the settings and change the gender
+    // during the game
+    hangmanGameStat.setGender(settingsGender);
 
     if (hangmanGameStat.getPlayed()) {
       btnResumeGame.setVisibility(View.VISIBLE);
@@ -98,13 +104,8 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
 
     switch (view.getId()) {
       case R.id.btnNewGame:
-        String originalGender = hangmanGameStat.getGender();
         hangmanGameStat.resetGameStatus();
-        if (originalGender == null) {
-          // if user never played Hangman game before, set "MALE" by default
-          originalGender = "MALE";
-        }
-        hangmanGameStat.setGender(originalGender);
+        hangmanGameStat.setGender(settingsGender);
         intent1 = new Intent(getApplicationContext(), HangmanGameActivity.class);
         break;
 
@@ -113,18 +114,16 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
         break;
 
       case R.id.btnSettings:
-        hangmanGameStat.resetGameStatus();
         intent1 = new Intent(getApplicationContext(), HangmanSetting.class);
+        finish();
         break;
 
       case R.id.btnBackToHome:
-        intent1 = new Intent(getApplicationContext(), MainActivity.class);
+        intent1 = new Intent(getApplicationContext(), GameMain.class);
+        finish();
         break;
-
     }
-
     intent1.putExtra(getGamestatusMsg(), hangmanGameStat);
     startActivity(intent1);
-
   }
 }

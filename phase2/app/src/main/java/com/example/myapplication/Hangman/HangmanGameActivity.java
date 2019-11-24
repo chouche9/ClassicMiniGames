@@ -96,12 +96,6 @@ public class HangmanGameActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hangman_game);
 
-        Intent intent = getIntent();
-        HangmanGameStatInteractor hangmanGameStat =
-                intent.getParcelableExtra(HangmanMain.getGamestatusMsg());
-
-        hangmanGamePresenter = new HangmanGamePresenter(this, hangmanGameStat);
-
         hangmanImage = findViewById(R.id.hangmanImage);
         txtMaskedWord = findViewById(R.id.txtMaskedWord);
         edtLetterGuess = findViewById(R.id.edtLetterGuess);
@@ -112,6 +106,12 @@ public class HangmanGameActivity extends AppCompatActivity
         txtStageNum = findViewById(R.id.txtStageNum);
 
         picture_index = 0;
+
+        Intent intent = getIntent();
+        HangmanGameStatInteractor hangmanGameStat =
+                intent.getParcelableExtra(HangmanMain.getGamestatusMsg());
+
+        hangmanGamePresenter = new HangmanGamePresenter(this, hangmanGameStat);
 
         // Review Below!
         assert hangmanGameStat != null;

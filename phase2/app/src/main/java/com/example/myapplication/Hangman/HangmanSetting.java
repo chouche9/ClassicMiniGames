@@ -49,7 +49,7 @@ public class HangmanSetting extends AppCompatActivity implements View.OnClickLis
    */
   @Override
   public void onClick(View view) {
-    Intent intent = new Intent(getApplicationContext(), HangmanGameActivity.class);
+    Intent intent = new Intent(getApplicationContext(), HangmanMain.class);
 
     if (view.getId() == R.id.btnFemale) {
       hangmanGameStat.setGender("FEMALE");
