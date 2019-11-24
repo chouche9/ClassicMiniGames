@@ -15,7 +15,7 @@ class BonusLevelInteractor {
 
     private int BONUS_SCORE = 100;
 
-    private int FAIL_SCORE = 100;
+    private int FAIL_SCORE = 0;
 
     private int targetNum;
 

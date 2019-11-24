@@ -126,7 +126,7 @@ public class HangmanStageEnded extends AppCompatActivity
     }
 
     @Override
-    public void bonusLevelReview(boolean isWon, int bonusScore) {
+    public void bonusLevelResult(boolean isWon, int bonusScore) {
 
         String firstMessage;
         String valueMessage;
@@ -143,6 +143,12 @@ public class HangmanStageEnded extends AppCompatActivity
 
         txtFirstMessage.setText(firstMessage);
         txtValueMessage.setText(valueMessage);
+        bonusLevel.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onCancel() {
+        bonusLevel.setEnabled(false);
     }
 
     /**

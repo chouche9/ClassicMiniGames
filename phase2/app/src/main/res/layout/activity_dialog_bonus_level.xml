@@ -3,13 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="5dp">
+    android:padding="5dp"
+    android:background="@color/bonus_game_background_dialog">
 
     <TextView
         android:id="@+id/txtBonusLevel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bonus Level"
+        android:text=" Bonus Level "
+        android:drawableLeft="@drawable/bonus_gold"
+        android:drawableRight="@drawable/bonus_gold"
         android:layout_gravity="center"
         android:textStyle="bold"
         android:textColor="@color/yellow"
@@ -49,8 +52,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bonus_stage"
-        android:textColor="@color/yellow"
+        android:textColor="@color/black"
         android:textStyle="bold"
         android:layout_marginTop="10dp"
         android:text="click to guess" />
+
 </LinearLayout>

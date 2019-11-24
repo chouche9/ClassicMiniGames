@@ -3,6 +3,7 @@ package com.example.myapplication.Hangman;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -32,8 +33,10 @@ public class HangmanSetting extends AppCompatActivity implements View.OnClickLis
     Button btnMale = findViewById(R.id.btnMale);
     Button btnFemale = findViewById(R.id.btnFemale);
 
-    btnMale.setVisibility(View.INVISIBLE);
-    btnFemale.setVisibility(View.INVISIBLE);
+    btnMale.setVisibility(View.VISIBLE);
+    btnFemale.setVisibility(View.VISIBLE);
+    btnMale.setBackgroundColor(Color.TRANSPARENT);
+    btnFemale.setBackgroundColor(Color.TRANSPARENT);
 
     btnMale.setOnClickListener(this);
     btnFemale.setOnClickListener(this);

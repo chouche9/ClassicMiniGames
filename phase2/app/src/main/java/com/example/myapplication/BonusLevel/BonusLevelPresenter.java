@@ -12,12 +12,11 @@ class BonusLevelPresenter implements BonusLevelInteractor.OnValidateNumberListen
     }
 
 
-    public void validateGuessNumber(int guessedNumber) {
+    void validateGuessNumber(int guessedNumber) {
         if (bonusLevelInteractor != null) {
             bonusLevelInteractor.validateNumberInteractor(guessedNumber, this);
         }
     }
-
 
     @Override
     public void onNumberToHigh() {

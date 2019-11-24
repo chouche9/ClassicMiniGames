@@ -20,7 +20,8 @@
     <color name="hangman_pink">#dc91e3</color>
 
     <color name ="bonus_game_background">#FFEB3B</color>
-    //color
-
+    <color name="bonus_game_background_dialog">#FFE53B</color>
+    <color name="orange">#FFC107</color>
+    <color name="black">#616161</color>
 
 </resources>

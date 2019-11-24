@@ -47,8 +47,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.24000001" />
+        app:layout_constraintTop_toBottomOf="@+id/txtStageNum"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/edtLetterGuess"
@@ -115,8 +115,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtScore"
-        app:layout_constraintVertical_bias="0.22000003" />
+        app:layout_constraintTop_toBottomOf="@+id/hangmanImage"
+        app:layout_constraintVertical_bias="0.32999998" />
 
 <!--    <View-->
 <!--        android:id="@+id/topDivider"-->
@@ -141,20 +141,21 @@
         android:id="@+id/txtScoreText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="@string/score"
         android:textColor="@color/colorHangmanAccent"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/bottomDivider"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.13"
+        app:layout_constraintHorizontal_bias="0.77"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hangmanImage"
-        app:layout_constraintVertical_bias="0.07999998" />
+        app:layout_constraintTop_toBottomOf="@+id/btnGuessWord" />
 
     <TextView
         android:id="@+id/txtScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="@string/_120"
         android:textColor="@color/colorHangmanAccent"
         android:textSize="24sp"
@@ -162,8 +163,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.02"
         app:layout_constraintStart_toEndOf="@+id/txtScoreText"
-        app:layout_constraintTop_toBottomOf="@+id/hangmanImage"
-        app:layout_constraintVertical_bias="0.110000014" />
+        app:layout_constraintTop_toBottomOf="@+id/btnGuessWord" />
 
     <TextView
         android:id="@+id/txtLettersGuessed"
@@ -200,12 +200,12 @@
         android:text="1"
         android:textColor="#525252"
         android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/txtMaskedWord"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/txtStage"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.9" />
+        app:layout_constraintVertical_bias="0.17000002" />
 
     <!--    <ImageView-->
 <!--        android:id="@+id/heart"-->
