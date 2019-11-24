@@ -74,6 +74,8 @@ public class HangmanGameStatInteractor extends GameStatus implements Parcelable 
 
     private int accumulatedScore = 0;
 
+    private boolean bonusLevelActivated = false;
+
     /**
      * A constructor to construct the HangmanGame statistics
      *
@@ -103,6 +105,7 @@ public class HangmanGameStatInteractor extends GameStatus implements Parcelable 
         type = in.readString();
         stageNum = in.readInt();
         accumulatedScore = in.readInt();
+        bonusLevelActivated = in.readByte() != 0;
     }
 
     /**
@@ -204,6 +207,15 @@ public class HangmanGameStatInteractor extends GameStatus implements Parcelable 
      */
     String getGender() {
         return gender;
+    }
+
+
+    public boolean isBonusLevelActivated() {
+        return bonusLevelActivated;
+    }
+
+    public void setBonusLevelActivated(boolean bonusLevelActivated) {
+        this.bonusLevelActivated = bonusLevelActivated;
     }
 
     /**
@@ -347,6 +359,7 @@ public class HangmanGameStatInteractor extends GameStatus implements Parcelable 
         parcel.writeString(type);
         parcel.writeInt(stageNum);
         parcel.writeInt(accumulatedScore);
+        parcel.writeByte((byte) (bonusLevelActivated ? 1 : 0));
     }
 
     boolean gameEndedInteractor() {
