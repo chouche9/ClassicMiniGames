@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/hangman_bg_male"
-    tools:context=".Hangman.HangmanGameActivity">
+    tools:context=".Hangman.HangmanGameActivity"
+    android:id="@+id/hangman_game_layout">
 
 <!--    <TextView-->
 <!--        android:id="@+id/txtHangman"-->
