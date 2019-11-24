@@ -19,7 +19,7 @@
     <string name="guess_a_letter">Guess a letter</string>
     <string name="click">click!</string>
     <string name="letters_used">Letters guessed:</string>
-    <string name="score">Total Score: </string>
+    <string name="score">Score: </string>
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="choose_gender">Choose a gender:</string>
@@ -28,4 +28,5 @@
     <string name="_120">120</string>
     <string name="none">None</string>
     <string name="hangman_back_to_home">Back to home</string>
+    <string name="hangman_image">Hangman Image</string>
 </resources>

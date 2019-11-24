@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Hangman.HangmanSetting" />
-        <activity android:name=".Hangman.HangmanPlayAgain" />
+        <activity android:name=".Hangman.HangmanStageEnded" />
         <activity android:name=".Hangman.HangmanGameActivity" />
         <activity android:name=".Hangman.HangmanMain" />
         <activity android:name=".FlappyFish.FlappyGameMenu" />
@@ -20,7 +20,7 @@
         <activity android:name=".GuessNum.GuessSetting" />
         <activity android:name=".GuessNum.GuessMain" />
         <activity android:name=".GuessNum.GuessGame" />
-        <activity android:name=".GuessNum.GuessCongradulation" />
+        <activity android:name=".GuessNum.GuessCongratulation" />
         <activity android:name=".Login" />
         <activity android:name=".GameMain" />
         <activity android:name=".CreateAccount" />

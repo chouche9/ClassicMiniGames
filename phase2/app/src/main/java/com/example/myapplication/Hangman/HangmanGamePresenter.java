@@ -33,13 +33,20 @@ public class HangmanGamePresenter implements HangmanGameStatInteractor.OnValidat
     public void getNewWord() {
         String chosenWord = hangmanWordGenerator.getChosenWord();
         hangmanGameStat.generateWord(chosenWord);
-        // TODO: delete this later
-        System.out.println(chosenWord);
+    }
+
+    public boolean onCheckIfGameEnded() {
+        return hangmanGameStat.gameEndedInteractor();
+    }
+
+    public void onOpenGameEndedActivity() {
+        onGameEnd(hangmanGameStat);
     }
 
     public void onResuming() {
+        hangmanGameActivity.showTxtStageNum(hangmanGameStat.getStageNum());
         hangmanGameActivity.showTxtMaskedWord(hangmanGameStat.getDisplayedMaskedWord().toString());
-        hangmanGameActivity.showTxtScore(hangmanGameStat.getScore());
+        hangmanGameActivity.showTxtScore(hangmanGameStat.getCurrentScore());
         hangmanGameActivity.showLettersGuessed(hangmanGameStat.getLettersGuessed().toString());
         hangmanGameActivity.setPictureIndex(hangmanGameStat.getFalseGuess());
         hangmanGameActivity.showImage();
@@ -63,19 +70,20 @@ public class HangmanGamePresenter implements HangmanGameStatInteractor.OnValidat
     @Override
     public void onDisplayViews() {
         if (hangmanGameActivity != null) {
+            hangmanGameActivity.showTxtStageNum(hangmanGameStat.getStageNum());
             hangmanGameActivity.setPictureIndex(hangmanGameStat.getFalseGuess());
             hangmanGameActivity.showTxtMaskedWord(hangmanGameStat.getDisplayedMaskedWord().toString());
             hangmanGameActivity.showLettersGuessed(hangmanGameStat.getLettersGuessed().toString());
-            hangmanGameActivity.showTxtScore(hangmanGameStat.getScore());
+            hangmanGameActivity.showTxtScore(hangmanGameStat.getCurrentScore());
             hangmanGameActivity.showImage();
             hangmanGameActivity.clearEdtLetterGuess();
         }
     }
 
     @Override
-    public void onGameEnd(String message, int score, HangmanGameStatInteractor hm) {
+    public void onGameEnd(HangmanGameStatInteractor hm) {
         if (hangmanGameActivity != null) {
-            hangmanGameActivity.gameEnded(message, score, hm);
+            hangmanGameActivity.gameEnded(hm);
         }
     }
 
