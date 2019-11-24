@@ -176,6 +176,9 @@ public class HangmanGameStatInteractor extends GameStatus implements Parcelable 
         this.accumulatedScore = accumulatedScore;
     }
 
+    void addAccumulatedScore(int addScore) {
+        accumulatedScore += addScore;
+    }
     /**
      * Getter to get the False Guess
      *

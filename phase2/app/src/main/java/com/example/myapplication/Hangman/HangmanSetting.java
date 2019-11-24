@@ -32,6 +32,9 @@ public class HangmanSetting extends AppCompatActivity implements View.OnClickLis
     Button btnMale = findViewById(R.id.btnMale);
     Button btnFemale = findViewById(R.id.btnFemale);
 
+    btnMale.setVisibility(View.INVISIBLE);
+    btnFemale.setVisibility(View.INVISIBLE);
+
     btnMale.setOnClickListener(this);
     btnFemale.setOnClickListener(this);
   }

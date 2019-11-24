@@ -8,13 +8,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.myapplication.BonusLevel.BonusLevelDialog;
 import com.example.myapplication.GameMain;
 import com.example.myapplication.R;
 
 /**
  * Activity that get activated when a stage ends in hangman.
  */
-public class HangmanStageEnded extends AppCompatActivity {
+public class HangmanStageEnded extends AppCompatActivity
+        implements BonusLevelDialog.BonusLevelDialogListener {
 
     /**
      * A HangmanGameStatInteractor that stores the hangman game status.
@@ -45,6 +47,12 @@ public class HangmanStageEnded extends AppCompatActivity {
 
     private Button bonusLevel;
 
+    private TextView txtFirstMessage;
+
+    private TextView txtValueMessage;
+
+    private BonusLevelDialog dialog;
+
     /**
      * Initializes this HangmanMain activity.
      *
@@ -59,10 +67,10 @@ public class HangmanStageEnded extends AppCompatActivity {
         nextStage = findViewById(R.id.btnNextStage);
         mainMenu = findViewById(R.id.btnMainMenu);
         backToHome = findViewById(R.id.btnBackToHome);
-        
+        bonusLevel = findViewById(R.id.btnBonusLevel);
 
-        TextView txtFirstMessage = findViewById(R.id.txtFirstMessage);
-        TextView txtValueMessage = findViewById(R.id.txtValueMessage);
+        txtFirstMessage = findViewById(R.id.txtFirstMessage);
+        txtValueMessage = findViewById(R.id.txtValueMessage);
 
         Intent received_intent = getIntent();
         hangmanGameStat = received_intent.getParcelableExtra(HangmanMain.getGamestatusMsg());
@@ -70,6 +78,9 @@ public class HangmanStageEnded extends AppCompatActivity {
 
         String firstMessage;
         String valueMessage;
+
+        bonusLevel.setVisibility(View.GONE);
+
         if (hangmanGameStat.getFalseGuess() == 6) { // game lost
             firstMessage =
                     "You lost! The correct word was " + hangmanGameStat.getSecretWord() + ". \n"  +
@@ -83,6 +94,11 @@ public class HangmanStageEnded extends AppCompatActivity {
             valueMessage = "Score this stage: " + hangmanGameStat.getCurrentScore() + "\n" +
                     "Total score: " + hangmanGameStat.getAccumulatedScore();
             playAgain.setVisibility(View.GONE);
+
+            if (hangmanGameStat.getStageNum() % 3 == 0) {
+                bonusLevel.setVisibility(View.VISIBLE);
+            }
+
         }
         txtFirstMessage.setText(firstMessage);
         txtValueMessage.setText(valueMessage);
@@ -91,6 +107,42 @@ public class HangmanStageEnded extends AppCompatActivity {
         setNextStageButton();
         setMainMenuButton();
         setBackToHome();
+        setBonusLevelButton();
+    }
+
+    private void setBonusLevelButton() {
+        bonusLevel.setOnClickListener(
+            new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    openDialog();
+                }
+            });
+    }
+
+    private void openDialog() {
+        dialog = new BonusLevelDialog();
+        dialog.show(getSupportFragmentManager(), "Bonus Level Dialog");
+    }
+
+    @Override
+    public void bonusLevelReview(boolean isWon, int bonusScore) {
+
+        String firstMessage;
+        String valueMessage;
+
+        if (isWon) {
+            hangmanGameStat.addAccumulatedScore(bonusScore);
+            firstMessage = "Congratulations, you guessed the correct number!";
+            valueMessage = "Your new total score: " + hangmanGameStat.getAccumulatedScore();
+        } else {
+            firstMessage = "Try Again Next Time!";
+            valueMessage = "Total score: " + hangmanGameStat.getAccumulatedScore();
+        }
+        dialog.dismiss();
+
+        txtFirstMessage.setText(firstMessage);
+        txtValueMessage.setText(valueMessage);
     }
 
     /**

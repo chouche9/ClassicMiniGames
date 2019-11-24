@@ -28,4 +28,5 @@
     <string name="_120">120</string>
     <string name="none">None</string>
     <string name="hangman_back_to_home">Back to home</string>
+    <string name="hangman_image">Hangman Image</string>
 </resources>
