@@ -45,7 +45,7 @@ public class FlappyMainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
 
     gameStatus = getIntent().getParcelableExtra("gamer");
-    gameView = new FlappyGameViewFacade(this);
+    gameView = new FlappyGameViewFacade(this, this);
     gameView.setBitmapManager(new ViewBitmapManager(gameStatus));
     gameView.setPaintManager(new ViewPaintManager(gameStatus));
     setContentView(gameView);
@@ -78,12 +78,16 @@ public class FlappyMainActivity extends AppCompatActivity {
     }
   }
 
+  public void pauseTimer() {
+    timer.cancel();
+    timer = null;
+  }
+
   /** Pause this game activity. */
   @Override
   protected void onPause() {
     super.onPause();
-    timer.cancel();
-    timer = null;
+    pauseTimer();
     FlappyGameManager gameManager = FlappyGameManager.getInstance(this);
     gameManager.saveGame(gameStatus);
   }

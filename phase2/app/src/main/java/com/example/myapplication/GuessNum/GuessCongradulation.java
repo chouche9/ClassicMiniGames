@@ -99,7 +99,7 @@ public class GuessCongradulation extends AppCompatActivity implements View.OnCli
   public void onClick(View view) {
     switch (view.getId()) {
       case R.id.backFrontBtn:
-        intent1.putExtra("closed", false);
+        intent1.putExtra("closed", true);
         setResult(RESULT_OK, intent1);
         finish();
         break;

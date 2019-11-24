@@ -3,6 +3,7 @@ package com.example.myapplication.FlappyFish;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.example.myapplication.FlappyFish.GameObjects.FlappyGameBonus;
 import com.example.myapplication.FlappyFish.GameObjects.FlappyGameFish;
 import com.example.myapplication.FlappyFish.GameObjects.FlappyGameObjects;
 import com.example.myapplication.FlappyFish.GameObjects.FlappyGameShark;
@@ -23,6 +24,9 @@ public class FlappyGameStatus extends GameStatus implements Parcelable {
 
   /** The shark object that is displayed on the screen. */
   public FlappyGameShark shark = new FlappyGameShark();
+
+  /** The bonus object that is displayed on the screen. */
+  public FlappyGameBonus bonus = new FlappyGameBonus();
 
   /** Indicate whether the user has played the game. */
   private int played;
@@ -60,6 +64,7 @@ public class FlappyGameStatus extends GameStatus implements Parcelable {
     fish = in.readParcelable(FlappyGameObjects.class.getClassLoader());
     shrimp = in.readParcelable(FlappyGameObjects.class.getClassLoader());
     shark = in.readParcelable(FlappyGameObjects.class.getClassLoader());
+    bonus = in.readParcelable(FlappyGameObjects.class.getClassLoader());
     score = in.readInt();
     life_count = in.readInt();
     played = in.readInt();
@@ -70,6 +75,7 @@ public class FlappyGameStatus extends GameStatus implements Parcelable {
   void setGameEasy() {
     shrimp.setGameEasy();
     shark.setGameEasy();
+    bonus.setGameEasy();
     this.difficulty = "EASY";
   }
 
@@ -77,22 +83,23 @@ public class FlappyGameStatus extends GameStatus implements Parcelable {
   void setGameHard() {
     shrimp.setGameHard();
     shark.setGameHard();
+    bonus.setGameHard();
     this.difficulty = "HARD";
   }
 
   /** Create FlappyGameStatatus by the super Creator object. */
   public static final Creator<FlappyGameStatus> CREATOR =
-          new Creator<FlappyGameStatus>() {
-            @Override
-            public FlappyGameStatus createFromParcel(Parcel in) {
-              return new FlappyGameStatus(in);
-            }
+      new Creator<FlappyGameStatus>() {
+        @Override
+        public FlappyGameStatus createFromParcel(Parcel in) {
+          return new FlappyGameStatus(in);
+        }
 
-            @Override
-            public FlappyGameStatus[] newArray(int size) {
-              return new FlappyGameStatus[size];
-            }
-          };
+        @Override
+        public FlappyGameStatus[] newArray(int size) {
+          return new FlappyGameStatus[size];
+        }
+      };
 
   /**
    * Get the difficulty of the game.
@@ -115,6 +122,10 @@ public class FlappyGameStatus extends GameStatus implements Parcelable {
   /** Update the score. */
   public void updateScore() {
     this.score += DEFAULT_SCORE;
+  }
+
+  public void addBonusScore() {
+    this.score += 50;
   }
 
   /**
@@ -192,6 +203,7 @@ public class FlappyGameStatus extends GameStatus implements Parcelable {
     parcel.writeParcelable(fish, i);
     parcel.writeParcelable(shrimp, i);
     parcel.writeParcelable(shark, i);
+    parcel.writeParcelable(bonus, i);
     parcel.writeInt(score);
     parcel.writeInt(life_count);
     parcel.writeInt(played);
