@@ -43,7 +43,7 @@ public class HangmanDialog extends AppCompatDialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.hangman_dialog_guessword, null);
+        View view = inflater.inflate(R.layout.activity_hangman_guessword_dialog, null);
 
         builder.setView(view);
 
