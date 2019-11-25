@@ -1,6 +1,7 @@
 package com.example.myapplication.Hangman;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -96,12 +97,6 @@ public class HangmanGameActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hangman_game);
 
-        Intent intent = getIntent();
-        HangmanGameStatInteractor hangmanGameStat =
-                intent.getParcelableExtra(HangmanMain.getGamestatusMsg());
-
-        hangmanGamePresenter = new HangmanGamePresenter(this, hangmanGameStat);
-
         hangmanImage = findViewById(R.id.hangmanImage);
         txtMaskedWord = findViewById(R.id.txtMaskedWord);
         edtLetterGuess = findViewById(R.id.edtLetterGuess);
@@ -111,7 +106,15 @@ public class HangmanGameActivity extends AppCompatActivity
         btnGuessWord = findViewById(R.id.btnGuessWord);
         txtStageNum = findViewById(R.id.txtStageNum);
 
+        ConstraintLayout layout =(ConstraintLayout)findViewById(R.id.hangman_game_layout);
+
         picture_index = 0;
+
+        Intent intent = getIntent();
+        HangmanGameStatInteractor hangmanGameStat =
+                intent.getParcelableExtra(HangmanMain.getGamestatusMsg());
+
+        hangmanGamePresenter = new HangmanGamePresenter(this, hangmanGameStat);
 
         // Review Below!
         assert hangmanGameStat != null;
@@ -119,26 +122,30 @@ public class HangmanGameActivity extends AppCompatActivity
 
         if (gender.equals("FEMALE")) {
             pictures =
-                    new int[]{
-                            R.drawable.start,
-                            R.drawable.female_head,
-                            R.drawable.female_leftarm,
-                            R.drawable.female_rightarm,
-                            R.drawable.female_body,
-                            R.drawable.female_leftleg,
-                            R.drawable.female_rightleg
-                    };
+                new int[]{
+                        R.drawable.start,
+                        R.drawable.female_head,
+                        R.drawable.female_leftarm,
+                        R.drawable.female_rightarm,
+                        R.drawable.female_body,
+                        R.drawable.female_leftleg,
+                        R.drawable.female_rightleg
+                };
+
+            layout.setBackgroundResource(R.drawable.hangman_bg_female);
         } else {
             pictures =
-                    new int[]{
-                            R.drawable.start,
-                            R.drawable.male_head,
-                            R.drawable.male_leftarm,
-                            R.drawable.male_rightarm,
-                            R.drawable.male_body,
-                            R.drawable.male_leftleg,
-                            R.drawable.male_rightleg
-                    };
+                new int[]{
+                        R.drawable.start,
+                        R.drawable.male_head,
+                        R.drawable.male_leftarm,
+                        R.drawable.male_rightarm,
+                        R.drawable.male_body,
+                        R.drawable.male_leftleg,
+                        R.drawable.male_rightleg
+                };
+
+            layout.setBackgroundResource(R.drawable.hangman_bg_male);
         }
         setBtnGuessLetter();
         setBtnGuessWord();

@@ -76,6 +76,16 @@ public class HangmanStageEnded extends AppCompatActivity
         hangmanGameStat = received_intent.getParcelableExtra(HangmanMain.getGamestatusMsg());
         originalGender = hangmanGameStat.getGender();
 
+        stageEndedResult();
+
+        setPlayAgainButton();
+        setNextStageButton();
+        setMainMenuButton();
+        setBackToHome();
+        setBonusLevelButton();
+    }
+
+    private void stageEndedResult() {
         String firstMessage;
         String valueMessage;
 
@@ -97,17 +107,17 @@ public class HangmanStageEnded extends AppCompatActivity
 
             if (hangmanGameStat.getStageNum() % 3 == 0) {
                 bonusLevel.setVisibility(View.VISIBLE);
+            } else {
+                hangmanGameStat.setBonusLevelActivated(false);
             }
-
         }
+
+        if (hangmanGameStat.isBonusLevelActivated()) {
+            onCancel();
+        }
+
         txtFirstMessage.setText(firstMessage);
         txtValueMessage.setText(valueMessage);
-
-        setPlayAgainButton();
-        setNextStageButton();
-        setMainMenuButton();
-        setBackToHome();
-        setBonusLevelButton();
     }
 
     private void setBonusLevelButton() {
@@ -116,6 +126,8 @@ public class HangmanStageEnded extends AppCompatActivity
                 @Override
                 public void onClick(View view) {
                     openDialog();
+                    hangmanGameStat.setBonusLevelActivated(true);
+                    onCancel();
                 }
             });
     }
@@ -230,6 +242,7 @@ public class HangmanStageEnded extends AppCompatActivity
     /**
      * Pause the Game
      */
+    @Override
     protected void onPause() {
         super.onPause();
         HangmanGameManager hangmanGameManager = HangmanGameManager.getInstance(this);
