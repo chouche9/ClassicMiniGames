@@ -58,6 +58,7 @@ public class HangmanSetting extends AppCompatActivity implements View.OnClickLis
       hangmanGameStat.setGender("MALE");
       intent.putExtra(HangmanMain.getGamestatusMsg(), hangmanGameStat);
     }
+    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
     startActivity(intent);
     finish();
   }

@@ -106,7 +106,7 @@ public class HangmanGameActivity extends AppCompatActivity
         btnGuessWord = findViewById(R.id.btnGuessWord);
         txtStageNum = findViewById(R.id.txtStageNum);
 
-        ConstraintLayout layout =(ConstraintLayout)findViewById(R.id.hangman_game_layout);
+        ConstraintLayout layout = findViewById(R.id.hangman_game_layout);
 
         picture_index = 0;
 
@@ -229,24 +229,6 @@ public class HangmanGameActivity extends AppCompatActivity
             }
             hangmanGamePresenter.onResuming();
         }
-    }
-
-    /**
-     * Getter for MESSAGE attribute.
-     *
-     * @return String the MESSAGE attribute.
-     */
-    public static String getMessage() {
-        return MESSAGE;
-    }
-
-    /**
-     * Getter for the SCORE_MESSAGE attribute.
-     *
-     * @return String the SCORE_MESSAGE attribute.
-     */
-    public static String getScoreMessage() {
-        return SCORE_MESSAGE;
     }
 
     @Override
