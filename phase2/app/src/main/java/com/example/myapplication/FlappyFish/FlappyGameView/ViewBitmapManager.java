@@ -41,6 +41,7 @@ public class ViewBitmapManager {
   }
 
   void setUpGame(Resources resources) {
+    setUpBackground(resources);
     setUpSprite(resources);
     setUpLife(resources);
     setUpObjects();
@@ -50,9 +51,16 @@ public class ViewBitmapManager {
     this.canvas = canvas;
   }
 
+  private void setUpBackground(Resources resources) {
+    if (gameStatus.background) {
+      bg = BitmapFactory.decodeResource(resources, R.drawable.darkocean);
+    } else {
+      bg = BitmapFactory.decodeResource(resources, R.drawable.lightocean);
+    }
+  }
+
   /** Set up the background and the sprites for the moving objects. */
   private void setUpSprite(Resources resources) {
-    bg = BitmapFactory.decodeResource(resources, R.drawable.ocean3);
     fish = BitmapFactory.decodeResource(resources, R.drawable.fish);
     shrimp = BitmapFactory.decodeResource(resources, R.drawable.shrimp);
     shark = BitmapFactory.decodeResource(resources, R.drawable.shark);
@@ -103,7 +111,7 @@ public class ViewBitmapManager {
     FlappyGameFish fishObj = gameStatus.fish;
     FlappyGameShrimp shrimpObj = gameStatus.shrimp;
     FlappyGameShark sharkObj = gameStatus.shark;
-    FlappyGameBonus bonusObj = gameStatus.bonus;
+//    FlappyGameBonus bonusObj = gameStatus.bonus;
 
     fishObj.move();
     fishObj.update(gameStatus, canvasWidth, minY, maxY);
