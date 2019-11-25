@@ -17,10 +17,10 @@ import com.example.myapplication.R;
 public class FlappySetting extends AppCompatActivity implements View.OnClickListener {
 
   /** The button that sets the game to an easy level when clicked. */
-  private Button easyBtn;
+  private Button lightBtn;
 
   /** The button that sets the game to a hard level when clicked. */
-  private Button hardBtn;
+  private Button darkBtn;
 
   /** The intent that took the previous activity to this setting page. */
   private Intent settingIntent;
@@ -43,26 +43,26 @@ public class FlappySetting extends AppCompatActivity implements View.OnClickList
 
     settingIntent = getIntent();
     gameStatus = settingIntent.getParcelableExtra("gamer");
-    setUpEasyBtn();
-    setUpHardBtn();
+    setUpLightBgBtn();
+    setUpDarkBgBtn();
   }
 
   /** Initializes the easy game button. */
-  private void setUpEasyBtn() {
-    easyBtn = findViewById(R.id.easyBtn);
-    easyBtn.setOnClickListener(this);
+  private void setUpLightBgBtn() {
+    lightBtn = findViewById(R.id.lightBtn);
+    lightBtn.setOnClickListener(this);
   }
 
   /** Initializes the hard game button. */
-  private void setUpHardBtn() {
-    hardBtn = findViewById(R.id.hardBtn);
-    hardBtn.setOnClickListener(this);
+  private void setUpDarkBgBtn() {
+    darkBtn = findViewById(R.id.darkBtn);
+    darkBtn.setOnClickListener(this);
   }
 
   /** Takes the user from the current setting page to the actual game. */
   private void startGame() {
     Intent startGame = new Intent(getApplicationContext(), FlappyMainActivity.class);
-    startGame.putExtra("gamer", gameStatus);
+    startGame.putExtra("gameStatus", gameStatus);
     startActivityForResult(startGame, REQUEST_CODE);
   }
 
@@ -90,13 +90,13 @@ public class FlappySetting extends AppCompatActivity implements View.OnClickList
   @Override
   public void onClick(View view) {
     switch (view.getId()) {
-      case R.id.easyBtn:
-        gameStatus.setGameEasy();
+      case R.id.lightBtn:
+        gameStatus.setBgLight();
         startGame();
         break;
 
-      case R.id.hardBtn:
-        gameStatus.setGameHard();
+      case R.id.darkBtn:
+        gameStatus.setBgDark();
         startGame();
         break;
     }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ocean"
+    android:background="@drawable/lightocean"
     tools:context="FlappyFish.FlappySetting">
 
     <TextView
@@ -12,7 +12,7 @@
         android:layout_width="298dp"
         android:layout_height="88dp"
         android:layout_marginTop="60dp"
-        android:text="Choose your prefered level of difficulty !"
+        android:text="Choose your prefered background !"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,31 +21,28 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/easyBtn"
+        android:id="@+id/lightBtn"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:background="@drawable/bubble"
-        android:text="Easy"
+        android:text="light"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/SettingTitle" />
 
     <Button
-        android:id="@+id/hardBtn"
+        android:id="@+id/darkBtn"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_marginBottom="252dp"
         android:background="@drawable/bubble"
-        android:text="Hard"
+        android:text="dark"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/easyBtn"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/lightBtn" />
 </androidx.constraintlayout.widget.ConstraintLayout>

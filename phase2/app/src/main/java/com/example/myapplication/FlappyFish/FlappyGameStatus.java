@@ -28,11 +28,13 @@ public class FlappyGameStatus extends GameStatus implements Parcelable {
   /** The bonus object that is displayed on the screen. */
   public FlappyGameBonus bonus = new FlappyGameBonus();
 
+  public boolean background;
+
   /** Indicate whether the user has played the game. */
   private int played;
 
   /** The difficulty the user chose. */
-  private String difficulty;
+  private String difficulty = "EASY";
 
   /** The type of the game the user plays. */
   private String type;
@@ -69,6 +71,7 @@ public class FlappyGameStatus extends GameStatus implements Parcelable {
     life_count = in.readInt();
     played = in.readInt();
     difficulty = in.readString();
+    background = in.readByte() != 0;
   }
 
   /** Set the game difficulty level to easy. */
@@ -85,6 +88,14 @@ public class FlappyGameStatus extends GameStatus implements Parcelable {
     shark.setGameHard();
     bonus.setGameHard();
     this.difficulty = "HARD";
+  }
+
+  void setBgLight() {
+    this.background = false;
+  }
+
+  void setBgDark() {
+    this.background = true;
   }
 
   /** Create FlappyGameStatatus by the super Creator object. */
@@ -208,5 +219,6 @@ public class FlappyGameStatus extends GameStatus implements Parcelable {
     parcel.writeInt(life_count);
     parcel.writeInt(played);
     parcel.writeString(difficulty);
+    parcel.writeByte((byte)(background ? 1 : 0));
   }
 }

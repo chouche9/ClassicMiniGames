@@ -44,7 +44,7 @@ public class FlappyMainActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    gameStatus = getIntent().getParcelableExtra("gamer");
+    gameStatus = getIntent().getParcelableExtra("gameStatus");
     gameView = new FlappyGameViewFacade(this, this);
     gameView.setBitmapManager(new ViewBitmapManager(gameStatus));
     gameView.setPaintManager(new ViewPaintManager(gameStatus));
