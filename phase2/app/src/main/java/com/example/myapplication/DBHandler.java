@@ -42,7 +42,7 @@ public class DBHandler extends SQLiteOpenHelper {
   /** An enum that contains all the game types. */
   public enum Game {
     FLAPPYFISH,
-    GUESSNUM,
+    PLANESHOOTER,
     HANGMAN
   }
 
@@ -62,14 +62,14 @@ public class DBHandler extends SQLiteOpenHelper {
   /** Puts a key-value pair with key being the game type and value being its actual class type. */
   private void putGameTypeClass() {
     gameTypeClass.put(Game.FLAPPYFISH, FlappyGameStatus.class);
-    gameTypeClass.put(Game.GUESSNUM, GuessGameStat.class);
+    gameTypeClass.put(Game.PLANESHOOTER, ShooterGameStatus.class);
     gameTypeClass.put(Game.HANGMAN, HangmanGameStatInteractor.class);
   }
 
   /** Puts a key-value pair with key being the game type and value being the name of the table. */
   private void putTables() {
     tables.put(Game.FLAPPYFISH, "FlappyFish");
-    tables.put(Game.GUESSNUM, "GuessNum");
+    tables.put(Game.PLANESHOOTER, "PlaneShooter");
     tables.put(Game.HANGMAN, "Hangman");
   }
 
