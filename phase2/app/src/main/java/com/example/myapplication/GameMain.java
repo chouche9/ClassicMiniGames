@@ -8,9 +8,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.myapplication.FlappyFish.FlappyGameMenu;
-import com.example.myapplication.GuessNum.GuessMain;
 import com.example.myapplication.Hangman.HangmanMain;
-import com.example.myapplication.SpaceShooter.ShooterStart;
+import com.example.myapplication.SpaceShooter.shootergamestart.ShooterStart;
 
 /** Main page of all three games. */
 public class GameMain extends AppCompatActivity implements View.OnClickListener {

@@ -7,8 +7,10 @@ import com.example.myapplication.SpaceShooter.GameObject.ShooterBullet1;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterBullet2;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterEnemy1;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterEnemyExplosion;
+import com.example.myapplication.SpaceShooter.GameObject.ShooterHealthAid;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterPlane;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterPlaneExplosion;
+import com.example.myapplication.SpaceShooter.GameObject.ShooterPointBuff;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterSpecialItem;
 import com.example.myapplication.SpaceShooter.ShooterGameStatus;
 
@@ -18,7 +20,8 @@ import java.util.List;
 public class ShooterColisionManager {
     ShooterGameStatus shooterGameStatus;
     List<ShooterBullet1> bullet1s;
-    List<ShooterSpecialItem> specialItems;
+    public List<ShooterHealthAid> healthAids;
+    public List<ShooterPointBuff> pointBuffs;
     List<ShooterBullet2> bullet2s;
     List<ShooterEnemyExplosion> enemyExplosions;
     List<ShooterPlaneExplosion> planeExplosions;
@@ -42,7 +45,8 @@ public class ShooterColisionManager {
         bullet2s = shooterGameStatus.bullet2s;
         enemyExplosions = shooterGameStatus.enemyExplosions;
         planeExplosions = shooterGameStatus.planeExplosions;
-        specialItems = shooterGameStatus.specialItems;
+        healthAids = shooterGameStatus.healthAids;
+        pointBuffs = shooterGameStatus.pointBuffs;
         enemy1s = shooterGameStatus.enemy1s;
     }
 
@@ -117,16 +121,27 @@ public class ShooterColisionManager {
         return -1;
     }
     private void planeSpecialItemColision(){
-        List<ShooterSpecialItem> remove = new ArrayList<>();
-        for (ShooterSpecialItem specialItem: specialItems){
+        List<ShooterHealthAid> remove = new ArrayList<>();
+        for (ShooterHealthAid specialItem: healthAids){
             boolean colide = planeSpecialItemCheck(specialItem);
             if (colide){
                 specialItem.getBuff(shooterGameStatus);
                 remove.add(specialItem);
             }
         }
-        for (ShooterSpecialItem specialItem: remove){
-            specialItems.remove(specialItem);
+        for (ShooterHealthAid specialItem: remove){
+            healthAids.remove(specialItem);
+        }
+        List<ShooterPointBuff> remove2 = new ArrayList<>();
+        for (ShooterPointBuff specialItem: pointBuffs){
+            boolean colide = planeSpecialItemCheck(specialItem);
+            if (colide){
+                specialItem.getBuff(shooterGameStatus);
+                remove2.add(specialItem);
+            }
+        }
+        for (ShooterPointBuff specialItem: remove2){
+            pointBuffs.remove(specialItem);
         }
     }
 

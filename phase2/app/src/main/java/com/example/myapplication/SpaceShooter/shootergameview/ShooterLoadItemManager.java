@@ -19,7 +19,8 @@ import java.util.Random;
 public class ShooterLoadItemManager {
     ShooterGameStatus shooterGameStatus;
     List<ShooterBullet1> bullet1s;
-    List<ShooterSpecialItem> specialItems;
+    public List<ShooterHealthAid> healthAids;
+    public List<ShooterPointBuff> pointBuffs;
     List<ShooterBullet2> bullet2s;
     int bullet1count = 0;
     int bullet2count = 0;
@@ -40,9 +41,10 @@ public class ShooterLoadItemManager {
     private void setUpManager() {
         level = shooterGameStatus.level;
         plane = shooterGameStatus.plane;
+        healthAids = shooterGameStatus.healthAids;
+        pointBuffs = shooterGameStatus.pointBuffs;
         bullet1s = shooterGameStatus.bullet1s;
         bullet2s = shooterGameStatus.bullet2s;
-        specialItems = shooterGameStatus.specialItems;
         enemy1s = shooterGameStatus.enemy1s;
     }
 
@@ -55,23 +57,34 @@ public class ShooterLoadItemManager {
     }
 
     private void updateSpeacialItems() {
-        List<ShooterSpecialItem> remove = new ArrayList<>();
+        List<ShooterHealthAid> remove1 = new ArrayList<>();
+        List<ShooterPointBuff> remove2 = new ArrayList<>();
         Random random = new Random();
         int target = random.nextInt(100);
         if (target == 20) {
-            specialItems.add(new ShooterHealthAid(context));
+            healthAids.add(new ShooterHealthAid(context));
         }
         if (target == 10) {
-            specialItems.add(new ShooterPointBuff(context));
+            pointBuffs.add(new ShooterPointBuff(context));
         }
-        for (ShooterSpecialItem specialItem : specialItems) {
+        for (ShooterHealthAid specialItem : healthAids) {
             specialItem.setY(specialItem.getY() + specialItem.velocity);
             if (specialItem.getY() >= ShooterGameView.dHeight) {
-                remove.add(specialItem);
+                remove1.add(specialItem);
             }
         }
-        for (ShooterSpecialItem specialItem : remove) {
-            specialItems.remove(specialItem);
+        for (ShooterHealthAid specialItem : remove1) {
+            healthAids.remove(specialItem);
+        }
+
+        for (ShooterPointBuff specialItem : pointBuffs) {
+            specialItem.setY(specialItem.getY() + specialItem.velocity);
+            if (specialItem.getY() >= ShooterGameView.dHeight) {
+                remove2.add(specialItem);
+            }
+        }
+        for (ShooterPointBuff specialItem : remove2) {
+            pointBuffs.remove(specialItem);
         }
     }
     private void updateEnemy(){

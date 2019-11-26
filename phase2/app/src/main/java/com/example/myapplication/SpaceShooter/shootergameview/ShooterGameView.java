@@ -42,13 +42,12 @@ public class ShooterGameView extends View {
     static int dHeight;
     final long UPDATE_MILLIS = 60;
     SoundPool sp;
-    public boolean viewFinish;
+    public boolean activityFinish;
 
     public ShooterGameView(Context context) {
         super(context);
         this.context = context;
         handler = new Handler();
-        viewFinish = true;
 
     }
     public void setShooterGameStatus(ShooterGameStatus shooterGameStatus){
@@ -72,10 +71,9 @@ public class ShooterGameView extends View {
         sp = new SoundPool(3, AudioManager.STREAM_MUSIC, 0);
         enemyDown = sp.load(context, R.raw.enemy1_down, 1);
         bulletLoad = sp.load(context, R.raw.fire, 1);
-        startTimer();
 
     }
-    void startTimer(){
+    public void startTimer(){
         countDownTimer = new CountDownTimer(shooterGameStatus.millsecondLeft, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -118,11 +116,14 @@ public class ShooterGameView extends View {
         colisionManager.handleColision();
         drawItemManager.setCanvas(canvas);
         drawItemManager.draw();
-        if(shooterGameStatus.gameSuccess && !shooterGameStatus.levelFinish){
+        if(shooterGameStatus.gameSuccess && !shooterGameStatus.levelFinish && !activityFinish){
             handler.postDelayed(runnable, UPDATE_MILLIS);}
         else {
-            if(finish == 0){
+            if(finish == 0 && !activityFinish){
                 onViewFinish();
+                countDownTimer.cancel();
+            }
+            else if(finish == 0){
                 countDownTimer.cancel();
             }
         };
@@ -159,8 +160,6 @@ public class ShooterGameView extends View {
         finish ++;
         intent.putExtra("gameStatus", shooterGameStatus);
         context.startActivity(intent);
-        viewFinish = false;
-
         ((Activity) context).finish();
     }
     void onpause(){

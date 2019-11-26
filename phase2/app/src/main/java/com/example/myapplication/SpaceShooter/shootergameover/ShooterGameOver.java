@@ -8,16 +8,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.myapplication.GameMain;
 import com.example.myapplication.R;
-import com.example.myapplication.SpaceShooter.BackGroundMusic;
-import com.example.myapplication.SpaceShooter.ShooterGame;
+import com.example.myapplication.SpaceShooter.ShooterBackGroundMusic;
+import com.example.myapplication.SpaceShooter.shooterplanegame.ShooterGame;
 import com.example.myapplication.SpaceShooter.ShooterGameStatus;
 
 public class ShooterGameOver extends AppCompatActivity implements View.OnClickListener{
     Button next;
     TextView message;
     ShooterGameStatus shooterGameStatus;
-    Button backToMain;
+    Button backToMain, backToMenu;
     boolean viewFinish;
     ShooterGameOverLogic gameOverPresenter;
     boolean musicfinish;
@@ -33,6 +34,8 @@ public class ShooterGameOver extends AppCompatActivity implements View.OnClickLi
         next.setOnClickListener(this);
         backToMain = findViewById(R.id.backMain);
         backToMain.setOnClickListener(this);
+        backToMenu = findViewById(R.id.backToMenu);
+        backToMenu.setOnClickListener(this);
         musicfinish = false;
         message = findViewById(R.id.gamemassage);
     }
@@ -47,7 +50,7 @@ public class ShooterGameOver extends AppCompatActivity implements View.OnClickLi
             next.setVisibility(View.GONE);
         }
         if (musicfinish){
-            startService(new Intent(getApplicationContext(), BackGroundMusic.class));
+            startService(new Intent(getApplicationContext(), ShooterBackGroundMusic.class));
             musicfinish = false;
         }
         message.setText(gameOverPresenter.setText());
@@ -56,7 +59,7 @@ public class ShooterGameOver extends AppCompatActivity implements View.OnClickLi
     protected void onPause() {
         super.onPause();
         if(viewFinish){
-            stopService(new Intent(getApplicationContext(), BackGroundMusic.class));
+            stopService(new Intent(getApplicationContext(), ShooterBackGroundMusic.class));
             musicfinish = true;
         }
     }
@@ -65,7 +68,6 @@ public class ShooterGameOver extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.backMain:
-                gameOverPresenter.eraseGameState();
                 finish();
                 break;
             case R.id.nextStep:
@@ -76,6 +78,12 @@ public class ShooterGameOver extends AppCompatActivity implements View.OnClickLi
                 viewFinish = false;
                 finish();
                 break;
+            case R.id.backToMenu:
+                Intent intent1 = new Intent(getApplicationContext(), GameMain.class);
+                intent1.putExtra("user", shooterGameStatus.getName());
+                intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent1);
+                finish();
         }
     }
 }

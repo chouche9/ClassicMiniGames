@@ -24,9 +24,19 @@ public class ShooterPointBuff extends ShooterSpecialItem {
     }
 
     public void writeToParcel(Parcel out, int flags) {
-        out.writeInt(CLASS_TYPE_TWO);
         super.writeToParcel(out, flags);
     }
+    public static final Creator<ShooterPointBuff> CREATOR = new Creator<ShooterPointBuff>() {
+        @Override
+        public ShooterPointBuff createFromParcel(Parcel in) {
+            return new ShooterPointBuff(in);
+        }
+
+        @Override
+        public ShooterPointBuff[] newArray(int size) {
+            return new ShooterPointBuff[size];
+        }
+    };
 
     @Override
     public void setUpBitmap(Context context) {

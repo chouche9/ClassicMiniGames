@@ -25,9 +25,22 @@ public class ShooterHealthAid extends ShooterSpecialItem {
         shooterGameStatus.plane.life = Math.min(shooterGameStatus.plane.life, 10);
     }
     public void writeToParcel(Parcel out, int flags) {
-        out.writeInt(CLASS_TYPE_ONE);
         super.writeToParcel(out, flags);
     }
+
+
+
+    public static final Creator<ShooterHealthAid> CREATOR = new Creator<ShooterHealthAid>() {
+        @Override
+        public ShooterHealthAid createFromParcel(Parcel in) {
+            return new ShooterHealthAid(in);
+        }
+
+        @Override
+        public ShooterHealthAid[] newArray(int size) {
+            return new ShooterHealthAid[size];
+        }
+    };
 
     @Override
     public void setUpBitmap(Context context) {

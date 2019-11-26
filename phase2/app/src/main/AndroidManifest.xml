@@ -10,9 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".SpaceShooter.shootergameover.ShooterGameOver"></activity>
-        <activity android:name=".SpaceShooter.ShooterGame" />
+        <activity android:name=".SpaceShooter.shooterplanegame.ShooterGame" />
         <activity android:name=".SpaceShooter.ShooterSetting" />
-        <activity android:name=".SpaceShooter.ShooterStart" />
+        <activity android:name=".SpaceShooter.shootergamestart.ShooterStart" />
         <activity android:name=".Hangman.HangmanSetting" />
         <activity android:name=".Hangman.HangmanStageEnded" />
         <activity android:name=".Hangman.HangmanGameActivity" />
@@ -36,7 +36,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".SpaceShooter.BackGroundMusic" />
+        <service android:name=".SpaceShooter.ShooterBackGroundMusic" />
     </application>
 
 </manifest>

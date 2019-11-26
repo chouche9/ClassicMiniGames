@@ -10,7 +10,6 @@ public abstract class GameManager {
    * @return the GameStatus
    */
   public abstract GameStatus getGameStatus(String username);
-
   /**
    * Save the GameStatus for a particular user.
    *

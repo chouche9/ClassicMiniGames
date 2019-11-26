@@ -8,8 +8,10 @@ import com.example.myapplication.SpaceShooter.GameObject.ShooterBullet1;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterBullet2;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterEnemy1;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterEnemyExplosion;
+import com.example.myapplication.SpaceShooter.GameObject.ShooterHealthAid;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterPlane;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterPlaneExplosion;
+import com.example.myapplication.SpaceShooter.GameObject.ShooterPointBuff;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterSpecialItem;
 import com.example.myapplication.SpaceShooter.ShooterGameStatus;
 
@@ -22,7 +24,8 @@ public class ShooterDrawItemManager {
 
     ShooterGameStatus shooterGameStatus;
     List<ShooterBullet1> bullet1s;
-    List<ShooterSpecialItem> specialItems;
+    public List<ShooterHealthAid> healthAids;
+    public List<ShooterPointBuff> pointBuffs;
     List<ShooterBullet2> bullet2s;
     List<ShooterEnemyExplosion> enemyExplosions;
     List<ShooterPlaneExplosion> planeExplosions;
@@ -43,9 +46,10 @@ public class ShooterDrawItemManager {
         plane = shooterGameStatus.plane;
         bullet1s = shooterGameStatus.bullet1s;
         bullet2s = shooterGameStatus.bullet2s;
+        healthAids = shooterGameStatus.healthAids;
+        pointBuffs = shooterGameStatus.pointBuffs;
         enemyExplosions = shooterGameStatus.enemyExplosions;
         planeExplosions = shooterGameStatus.planeExplosions;
-        specialItems = shooterGameStatus.specialItems;
         enemy1s = shooterGameStatus.enemy1s;
     }
     void draw(){
@@ -92,7 +96,10 @@ public class ShooterDrawItemManager {
         for (ShooterEnemy1 enemy1: enemy1s){
             enemy1.onDraw(canvas);
         }
-        for (ShooterSpecialItem specialItem: specialItems){
+        for (ShooterPointBuff specialItem: pointBuffs){
+            specialItem.onDraw(canvas);
+        }
+        for (ShooterHealthAid specialItem: healthAids){
             specialItem.onDraw(canvas);
         }
     }

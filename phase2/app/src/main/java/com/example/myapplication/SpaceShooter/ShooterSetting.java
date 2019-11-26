@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.myapplication.R;
+import com.example.myapplication.SpaceShooter.shooterplanegame.ShooterGame;
 
 public class ShooterSetting extends AppCompatActivity implements View.OnClickListener{
     ImageButton plane1, plane2, plane3;
@@ -30,7 +31,7 @@ public class ShooterSetting extends AppCompatActivity implements View.OnClickLis
     protected void onPause() {
         super.onPause();
         if(viewFinish){
-            stopService(new Intent(getApplicationContext(), BackGroundMusic.class));
+            stopService(new Intent(getApplicationContext(), ShooterBackGroundMusic.class));
         }
     }
 

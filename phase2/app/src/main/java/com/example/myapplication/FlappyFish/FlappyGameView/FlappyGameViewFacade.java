@@ -88,7 +88,7 @@ public class FlappyGameViewFacade extends View {
     }
 
     if (bitmapManager.drawBonusGameBitmap()) {
-      activateBonusGame();
+//      activateBonusGame();
     }
 
 //    if (isPlayed) {
@@ -115,18 +115,18 @@ public class FlappyGameViewFacade extends View {
     context.startActivity(intent);
   }
 
-  private void activateBonusGame() {
-    ((FlappyMainActivity) activity).pauseTimer();
-    isPlayed = true;
-    Intent intent = new Intent(context, GuessMain.class);
-//    intent.putExtra(EXTRA_MESSAGE, gameStatus);
-    context.startActivity(intent);
-    GuessGameStat bonusStatus = (GuessGameStat) DBHandler.getInstance(activity).getGameStatus(gameStatus.getName(), DBHandler.Game.GUESSNUM);
-    if (bonusStatus.getCurrentTries() < 10) {
-      gameStatus.addBonusScore();
-    }
-    isPlayed = false;
-  }
+//  private void activateBonusGame() {
+//    ((FlappyMainActivity) activity).pauseTimer();
+//    isPlayed = true;
+//    Intent intent = new Intent(context, GuessMain.class);
+////    intent.putExtra(EXTRA_MESSAGE, gameStatus);
+//    context.startActivity(intent);
+//    GuessGameStat bonusStatus = (GuessGameStat) DBHandler.getInstance(activity).getGameStatus(gameStatus.getName(), DBHandler.Game.GUESSNUM);
+//    if (bonusStatus.getCurrentTries() < 10) {
+//      gameStatus.addBonusScore();
+//    }
+//    isPlayed = false;
+//  }
 
   /**
    * Change the speed of the fish object when a touch screen motion event occurs.

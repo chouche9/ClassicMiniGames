@@ -11,7 +11,7 @@ import android.os.Parcelable;
 
 import com.example.myapplication.R;
 
-public class BackGroundMusic extends Service {
+public class ShooterBackGroundMusic extends Service {
     MediaPlayer mediaPlayer;
     @Nullable
     @Override
