@@ -8,10 +8,10 @@ import com.example.myapplication.FlappyFish.FlappyGameStatus;
 public class FlappyGameShark extends FlappyGameObjects implements Parcelable{
 
     /** The default speed of the shark for easy mode. */
-    private static final int SHARK_SPEED_EASY = 20;
+    private static final int SHARK_SPEED_DEFAULT = 20;
 
     /** The default speed of the shark for hard mode. */
-    private static final int SHARK_SPEED_HARD = 30;
+    private static final int SHARK_SPEED_INCREASE = 5;
 
     /** The default x coordinate of an object when it collides with the fish. */
     private static final int DEAD_POS = -100;
@@ -21,26 +21,27 @@ public class FlappyGameShark extends FlappyGameObjects implements Parcelable{
      * the easy mode velocity as default.
      */
     public FlappyGameShark(){
-        super(0, 0, SHARK_SPEED_EASY);
+        super(0, 0, SHARK_SPEED_DEFAULT);
     }
 
     /**
      * Build the shark object from Parcel.
      * @param in the parcel that stores the previously saved shark object.
      */
-    public FlappyGameShark(Parcel in) {
+    private FlappyGameShark(Parcel in) {
         super(in);
     }
 
-    /** Set the game difficulty level to easy by adjusting the shark's velocity. */
-    public void setGameEasy() {
-        setVelocity(SHARK_SPEED_EASY);
+    @Override
+    public void setGameDefault() {
+        setVelocity(SHARK_SPEED_DEFAULT);
     }
 
-    /** Set the game difficulty level to hard by adjusting the shark's velocity. */
-    public void setGameHard() {
-        setVelocity(SHARK_SPEED_HARD);
+    @Override
+    public void increaseGameStage() {
+        setVelocity(getVelocity() + SHARK_SPEED_INCREASE);
     }
+
 
     /**
      * Move the shark according to its current velocity.
@@ -76,7 +77,7 @@ public class FlappyGameShark extends FlappyGameObjects implements Parcelable{
      * @param minY the minimum value for shark's y coordinate.
      * @param maxY the maximum value for shark's y coordinate.
      */
-    private void validCheck(int canvasWidth, int minY, int maxY) {
+    void validCheck(int canvasWidth, int minY, int maxY) {
         if (getX() < 0) {
             setX(canvasWidth + 10);
             setY((int) Math.floor(Math.random() * (maxY - minY)) + minY);
@@ -95,8 +96,8 @@ public class FlappyGameShark extends FlappyGameObjects implements Parcelable{
      * @return Return true if shark collides with the fish object; Otherwise, return false.
      */
     private boolean collideCheck(FlappyGameStatus gameStatus) {
-        FlappyGameFish fish = gameStatus.fish;
-        FlappyGameShark shark = gameStatus.shark;
+        FlappyGameObjects fish = gameStatus.fish;
+        FlappyGameObjects shark = gameStatus.shark;
         int fishX = fish.getX();
         int fishY = fish.getY();
         int sharkX = shark.getX();

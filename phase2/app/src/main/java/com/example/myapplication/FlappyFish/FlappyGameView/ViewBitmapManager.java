@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import com.example.myapplication.FlappyFish.FlappyGameStatus;
 import com.example.myapplication.FlappyFish.GameObjects.FlappyGameBonus;
 import com.example.myapplication.FlappyFish.GameObjects.FlappyGameFish;
+import com.example.myapplication.FlappyFish.GameObjects.FlappyGameObjects;
 import com.example.myapplication.FlappyFish.GameObjects.FlappyGameShark;
 import com.example.myapplication.FlappyFish.GameObjects.FlappyGameShrimp;
 import com.example.myapplication.R;
@@ -108,9 +109,9 @@ public class ViewBitmapManager {
     int canvasHeight = canvas.getHeight();
     int minY = fish.getHeight();
     int maxY = canvasHeight - minY * 4;
-    FlappyGameFish fishObj = gameStatus.fish;
-    FlappyGameShrimp shrimpObj = gameStatus.shrimp;
-    FlappyGameShark sharkObj = gameStatus.shark;
+    FlappyGameObjects fishObj = gameStatus.fish;
+    FlappyGameObjects shrimpObj = gameStatus.shrimp;
+    FlappyGameObjects sharkObj = gameStatus.shark;
 //    FlappyGameBonus bonusObj = gameStatus.bonus;
 
     fishObj.move();
@@ -118,7 +119,7 @@ public class ViewBitmapManager {
     canvas.drawBitmap(fish, fishObj.getX(), fishObj.getY(), null);
 
     shrimpObj.move();
-    shrimpObj.update(gameStatus, canvasWidth, minY, maxY);
+    boolean stageFinished = shrimpObj.update(gameStatus, canvasWidth, minY, maxY);
     canvas.drawBitmap(shrimp, shrimpObj.getX(), shrimpObj.getY(), null);
 
 //    bonusObj.move();
@@ -126,9 +127,9 @@ public class ViewBitmapManager {
 //    canvas.drawBitmap(bonus, bonusObj.getX(), bonusObj.getY(), null);
 
     sharkObj.move();
-    boolean gameOver = sharkObj.update(gameStatus, canvasWidth, minY, maxY);
+    boolean playerdied = sharkObj.update(gameStatus, canvasWidth, minY, maxY);
     canvas.drawBitmap(shark, sharkObj.getX(), sharkObj.getY(), null);
-    return gameOver;
+    return (stageFinished || playerdied);
   }
 
   boolean drawBonusGameBitmap() {
@@ -136,7 +137,7 @@ public class ViewBitmapManager {
     int canvasHeight = canvas.getHeight();
     int minY = fish.getHeight();
     int maxY = canvasHeight - minY * 4;
-    FlappyGameBonus bonusObj = gameStatus.bonus;
+    FlappyGameObjects bonusObj = gameStatus.bonus;
     bonusObj.move();
     boolean isActivated = bonusObj.update(gameStatus, canvasWidth, minY, maxY);
     canvas.drawBitmap(bonus, bonusObj.getX(), bonusObj.getY(), null);

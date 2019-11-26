@@ -10,10 +10,10 @@ import java.util.Random;
 public class FlappyGameBonus extends FlappyGameObjects implements Parcelable {
 
   /** The default speed of the bonus item for easy mode. */
-  private static final int BONUS_SPEED_EASY = 20;
+  private static final int BONUS_SPEED_DEFAULT = 20;
 
   /** The default speed of the bonus item for hard mode. */
-  private static final int BONUS_SPEED_HARD = 30;
+  private static final int BONUS_SPEED_INCREASE = 5;
 
   /** The default x coordinate of an object when it collides with the fish. */
   private static final int DEAD_POS = -100;
@@ -25,7 +25,7 @@ public class FlappyGameBonus extends FlappyGameObjects implements Parcelable {
    * Construct a new bonus object at the default starting coordinates with a velocity as default.
    */
   public FlappyGameBonus() {
-    super(0, 0, BONUS_SPEED_EASY);
+    super(0, 0, BONUS_SPEED_DEFAULT);
   }
 
   /**
@@ -33,18 +33,18 @@ public class FlappyGameBonus extends FlappyGameObjects implements Parcelable {
    *
    * @param in the parcel that stores the previously saved shrimp object.
    */
-  public FlappyGameBonus(Parcel in) {
+  private FlappyGameBonus(Parcel in) {
     super(in);
   }
 
-  /** Set the game difficulty level to easy by adjusting the bonus item's velocity. */
-  public void setGameEasy() {
-    setVelocity(BONUS_SPEED_EASY);
+  @Override
+  public void setGameDefault() {
+    setVelocity(BONUS_SPEED_DEFAULT);
   }
 
-  /** Set the game difficulty level to hard by adjusting the bonus item's velocity. */
-  public void setGameHard() {
-    setVelocity(BONUS_SPEED_HARD);
+  @Override
+  public void increaseGameStage() {
+    setVelocity(getVelocity() + BONUS_SPEED_INCREASE);
   }
 
   /** Move the bonus item according to its current velocity. */
@@ -77,7 +77,7 @@ public class FlappyGameBonus extends FlappyGameObjects implements Parcelable {
    * @param minY the minimum value for this bonus item's y coordinate.
    * @param maxY the maximum value for this bonus item's y coordinate.
    */
-  private void validCheck(int canvasWidth, int minY, int maxY) {
+  void validCheck(int canvasWidth, int minY, int maxY) {
     int randomNum = random.nextInt(200);
     if (getX() < 0 && randomNum == 100) {
       setX(canvasWidth + 10);
@@ -97,8 +97,8 @@ public class FlappyGameBonus extends FlappyGameObjects implements Parcelable {
    * @return Return true if obj collides with the fish object; Otherwise, return false.
    */
   private boolean collideCheck(FlappyGameStatus gameStatus) {
-    FlappyGameFish fish = gameStatus.fish;
-    FlappyGameBonus bonus = gameStatus.bonus;
+    FlappyGameObjects fish = gameStatus.fish;
+    FlappyGameObjects bonus = gameStatus.bonus;
     int fishX = fish.getX();
     int fishY = fish.getY();
     int bonusX = bonus.getX();

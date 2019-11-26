@@ -16,15 +16,6 @@ import com.example.myapplication.R;
  */
 public class FlappySetting extends AppCompatActivity implements View.OnClickListener {
 
-  /** The button that sets the game to an easy level when clicked. */
-  private Button lightBtn;
-
-  /** The button that sets the game to a hard level when clicked. */
-  private Button darkBtn;
-
-  /** The intent that took the previous activity to this setting page. */
-  private Intent settingIntent;
-
   /** The status of this game which belongs to the current user. */
   private FlappyGameStatus gameStatus;
 
@@ -41,21 +32,24 @@ public class FlappySetting extends AppCompatActivity implements View.OnClickList
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_flappy_setting);
 
-    settingIntent = getIntent();
-    gameStatus = settingIntent.getParcelableExtra("gamer");
+    // The intent that took the previous activity to this setting page.
+    Intent settingIntent = getIntent();
+    gameStatus = settingIntent.getParcelableExtra("gameStatus");
     setUpLightBgBtn();
     setUpDarkBgBtn();
   }
 
   /** Initializes the easy game button. */
   private void setUpLightBgBtn() {
-    lightBtn = findViewById(R.id.lightBtn);
+    // The button that sets the game to an easy level when clicked.
+    Button lightBtn = findViewById(R.id.lightBtn);
     lightBtn.setOnClickListener(this);
   }
 
   /** Initializes the hard game button. */
   private void setUpDarkBgBtn() {
-    darkBtn = findViewById(R.id.darkBtn);
+    // The button that sets the game to a hard level when clicked.
+    Button darkBtn = findViewById(R.id.darkBtn);
     darkBtn.setOnClickListener(this);
   }
 

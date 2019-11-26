@@ -8,10 +8,10 @@ import com.example.myapplication.FlappyFish.FlappyGameStatus;
 public class FlappyGameShrimp extends FlappyGameObjects implements Parcelable{
 
     /** The default speed of the shrimp for easy mode. */
-    private static final int SHRIMP_SPEED_EASY = 15;
+    private static final int SHRIMP_SPEED_DEFAULT = 15;
 
     /** The default speed of the shrimp for hard mode. */
-    private static final int SHRIMP_SPEED_HARD = 25;
+    private static final int SHRIMP_SPEED_INCREASE = 5;
 
     /** The default x coordinate of an object when it collides with the fish. */
     private static final int DEAD_POS = -100;
@@ -21,26 +21,27 @@ public class FlappyGameShrimp extends FlappyGameObjects implements Parcelable{
      * the easy mode velocity as default.
      */
     public FlappyGameShrimp() {
-        super(0, 0, SHRIMP_SPEED_EASY);
+        super(0, 0, SHRIMP_SPEED_DEFAULT);
     }
 
     /**
      * Build the shrimp object from Parcel.
      * @param in the parcel that stores the previously saved shrimp object.
      */
-    public FlappyGameShrimp(Parcel in) {
+    private FlappyGameShrimp(Parcel in) {
         super(in);
     }
 
-    /** Set the game difficulty level to easy by adjusting the shrimp's velocity. */
-    public void setGameEasy() {
-        setVelocity(SHRIMP_SPEED_EASY);
+    @Override
+    public void setGameDefault() {
+        setVelocity(SHRIMP_SPEED_DEFAULT);
     }
 
-    /** Set the game difficulty level to hard by adjusting the shrimp's velocity. */
-    public void setGameHard() {
-        setVelocity(SHRIMP_SPEED_HARD);
+    @Override
+    public void increaseGameStage() {
+        setVelocity(getVelocity() + SHRIMP_SPEED_INCREASE);
     }
+
 
     /**
      * Move the shrimp according to its current velocity.
@@ -62,6 +63,9 @@ public class FlappyGameShrimp extends FlappyGameObjects implements Parcelable{
         if (collideCheck(gameStatus)) {
             gameStatus.updateScore();
             kill();
+            if (gameStatus.getScore() % 100 == 0) {
+                return true;
+            }
         }
         validCheck(canvasWidth, minY, maxY);
         return false;
@@ -72,7 +76,7 @@ public class FlappyGameShrimp extends FlappyGameObjects implements Parcelable{
      * @param minY the minimum value for this shrimp's y coordinate.
      * @param maxY the maximum value for this shrimp's coordinate.
      */
-    private void validCheck(int canvasWidth, int minY, int maxY) {
+    void validCheck(int canvasWidth, int minY, int maxY) {
         if (getX() < 0) {
             setX(canvasWidth + 10);
             setY((int) Math.floor(Math.random() * (maxY - minY)) + minY);
@@ -91,8 +95,8 @@ public class FlappyGameShrimp extends FlappyGameObjects implements Parcelable{
      * @return Return true if obj collides with the fish object; Otherwise, return false.
      */
     private boolean collideCheck(FlappyGameStatus gameStatus) {
-        FlappyGameFish fish = gameStatus.fish;
-        FlappyGameShrimp shrimp = gameStatus.shrimp;
+        FlappyGameObjects fish = gameStatus.fish;
+        FlappyGameObjects shrimp = gameStatus.shrimp;
         int fishX = fish.getX();
         int fishY = fish.getY();
         int shrimpX = shrimp.getX();

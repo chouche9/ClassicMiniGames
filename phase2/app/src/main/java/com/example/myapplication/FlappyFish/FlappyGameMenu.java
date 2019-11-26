@@ -120,13 +120,14 @@ public class FlappyGameMenu extends AppCompatActivity implements View.OnClickLis
       case R.id.newGameBtn:
         Intent startSettingIntent = new Intent(this, FlappySetting.class);
         gameStatus.startUpdate();
-        startSettingIntent.putExtra("gamer", gameStatus);
+        gameStatus.setGameDefault();
+        startSettingIntent.putExtra("gameStatus", gameStatus);
         startActivityForResult(startSettingIntent, REQUEST_CODE2);
         break;
 
       case R.id.resumeGameBtn:
         Intent startGameIntent = new Intent(this, FlappyMainActivity.class);
-        startGameIntent.putExtra("gamer", gameStatus);
+        startGameIntent.putExtra("gameStatus", gameStatus);
         startActivityForResult(startGameIntent, REQUEST_CODE1);
         break;
 

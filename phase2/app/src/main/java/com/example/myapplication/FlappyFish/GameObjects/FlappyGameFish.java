@@ -14,10 +14,16 @@ public class FlappyGameFish extends FlappyGameObjects implements Parcelable {
     private static final int FISH_Y = 500;
 
     /** The default speed of the fish when falling down. */
-    private static final int DROP_SPEED = 2;
+    private static final int DEFAULT_DROP_SPEED = 2;
+
+    private static final double STAGE_INCREASE_SPEED = 0.1;
 
     /** The default speed of the fish when jumping up. */
-    private static final int JUMP_SPEED = -35;
+    private static final int DEFAULT_JUMP_SPEED = -35;
+
+    private int currDropSpeed;
+
+    private int currJumpSpeed;
 
     /**
      * Construct a new fish object at the default starting coordinates with velocity of 0.
@@ -30,8 +36,22 @@ public class FlappyGameFish extends FlappyGameObjects implements Parcelable {
      * Build the fish object from Parcel.
      * @param in the parcel that stores the previously saved fish object.
      */
-    public FlappyGameFish(Parcel in) {
+    private FlappyGameFish(Parcel in) {
         super(in);
+        currDropSpeed = in.readInt();
+        currJumpSpeed = in.readInt();
+    }
+
+    @Override
+    public void setGameDefault() {
+        this.currDropSpeed = DEFAULT_DROP_SPEED;
+        this.currJumpSpeed = DEFAULT_JUMP_SPEED;
+    }
+
+    @Override
+    public void increaseGameStage() {
+        this.currDropSpeed += STAGE_INCREASE_SPEED;
+        this.currJumpSpeed += STAGE_INCREASE_SPEED;
     }
 
     /**
@@ -51,7 +71,7 @@ public class FlappyGameFish extends FlappyGameObjects implements Parcelable {
      * @param maxY the maximum value for this fish's coordinate.
      */
     public boolean update(FlappyGameStatus gameStatus, int canvasWidth, int minY, int maxY) {
-        validCheck(minY, maxY);
+        validCheck(canvasWidth, minY, maxY);
         setFishFallSpeed();
         return false;
     }
@@ -61,7 +81,7 @@ public class FlappyGameFish extends FlappyGameObjects implements Parcelable {
      * @param minY the minimum value for this fish's y coordinate.
      * @param maxY the maximum value for this fish's coordinate.
      */
-    private void validCheck(int minY, int maxY) {
+    void validCheck(int canvasWidth, int minY, int maxY) {
         if (getY() < minY) {
             setY(minY);
         }
@@ -72,12 +92,12 @@ public class FlappyGameFish extends FlappyGameObjects implements Parcelable {
 
     /** Set the jump speed for fish. */
     public void setFishJumpSpeed() {
-        setVelocity(JUMP_SPEED);
+        setVelocity(currJumpSpeed);
     }
 
     /** Set the fall speed for fish. */
     private void setFishFallSpeed() {
-        setVelocity(getVelocity() + DROP_SPEED);
+        setVelocity(getVelocity() + currDropSpeed);
     }
 
     /**
@@ -92,4 +112,11 @@ public class FlappyGameFish extends FlappyGameObjects implements Parcelable {
             return new FlappyGameFish[size];
         }
     };
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        super.writeToParcel(parcel, i);
+        parcel.writeInt(currDropSpeed);
+        parcel.writeInt(currJumpSpeed);
+    }
 }

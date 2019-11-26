@@ -19,6 +19,8 @@ public class FlappyResultActivity extends AppCompatActivity implements View.OnCl
   private TextView resultText;
 
   /** The button the allows users to play the same game again when clicked. */
+  private Button nextStageBtn;
+
   private Button playAgainBtn;
 
   /** The button that takes the user to the menu of different games when clicked. */
@@ -42,25 +44,51 @@ public class FlappyResultActivity extends AppCompatActivity implements View.OnCl
 
     resultIntent = getIntent();
     gameStatus = resultIntent.getParcelableExtra(FlappyGameViewFacade.EXTRA_MESSAGE);
-    int finalScore = gameStatus.getScore();
-    String result = "Your Score : " + finalScore;
-    setResultText();
-    resultText.setText(result);
-    setPlayAgainBtn();
+    boolean result = true;
+    if(gameStatus.getLife_count() == 0) {
+      result = true;
+    } else if (gameStatus.getScore() % 100 == 0) {
+      result = false;
+    }
+    setResultText(result);
+    setPlayAgainBtn(result);
+    setNextStageBtn(result);
     setBackToMainBtn();
     //        setFinish();
   }
 
+  private void setNextStageBtn(boolean result) {
+    nextStageBtn = findViewById(R.id.nextStageBtn);
+    nextStageBtn.setOnClickListener(this);
+    if (result) {
+      nextStageBtn.setVisibility(View.GONE);
+    } else {
+      nextStageBtn.setVisibility(View.VISIBLE);
+    }
+  }
+
   /** Initializes the textview object that displays the player's final score. */
-  private void setResultText() {
+  private void setResultText(boolean result) {
     resultText = findViewById(R.id.result);
     resultText.setOnClickListener(this);
+    String resultTextStr;
+    if (result) {
+      resultTextStr = "Your score is " + gameStatus.getScore();
+    } else {
+      resultTextStr = "Congratulation! You finished stage" + gameStatus.getDifficulty();
+    }
+    resultText.setText(resultTextStr);
   }
 
   /** Initializes the button that plays the game again. */
-  private void setPlayAgainBtn() {
+  private void setPlayAgainBtn(boolean result) {
     playAgainBtn = findViewById(R.id.playAgainBtn);
     playAgainBtn.setOnClickListener(this);
+    if (result) {
+      playAgainBtn.setVisibility(View.VISIBLE);
+    } else {
+      playAgainBtn.setVisibility(View.GONE);
+    }
   }
 
   /** Initializes the button that returns to the menu of different games. */
@@ -91,6 +119,14 @@ public class FlappyResultActivity extends AppCompatActivity implements View.OnCl
         playAgainIntent.putExtra("user", gameStatus.getName());
         gameStatus.finishUpdate();
         startActivity(playAgainIntent);
+        finish();
+        break;
+      case R.id.nextStageBtn:
+        Intent nextStageIntent = new Intent(this, FlappyMainActivity.class);
+        nextStageIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        gameStatus.increaseGameStage();
+        nextStageIntent.putExtra("gameStatus", gameStatus);
+        startActivity(nextStageIntent);
         finish();
         break;
       case R.id.backToMainBtn:

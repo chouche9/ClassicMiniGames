@@ -15,6 +15,7 @@ import com.example.myapplication.DBHandler;
 import com.example.myapplication.FlappyFish.FlappyGameStatus;
 import com.example.myapplication.FlappyFish.FlappyMainActivity;
 import com.example.myapplication.FlappyFish.FlappyResultActivity;
+import com.example.myapplication.FlappyFish.GameObjects.FlappyGameFish;
 import com.example.myapplication.GameStatus;
 import com.example.myapplication.GuessNum.GuessGame;
 import com.example.myapplication.GuessNum.GuessGameStat;
@@ -138,7 +139,7 @@ public class FlappyGameViewFacade extends View {
   @Override
   public boolean onTouchEvent(MotionEvent event) {
     if (event.getAction() == MotionEvent.ACTION_DOWN) {
-      gameStatus.fish.setFishJumpSpeed();
+      ((FlappyGameFish)gameStatus.fish).setFishJumpSpeed();
     }
     return true;
   }

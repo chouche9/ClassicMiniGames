@@ -34,7 +34,7 @@ public class FlappyGameStatus extends GameStatus implements Parcelable {
   private int played;
 
   /** The difficulty the user chose. */
-  private String difficulty = "EASY";
+  private int difficulty = 1;
 
   /** The type of the game the user plays. */
   private String type;
@@ -70,24 +70,26 @@ public class FlappyGameStatus extends GameStatus implements Parcelable {
     score = in.readInt();
     life_count = in.readInt();
     played = in.readInt();
-    difficulty = in.readString();
+    difficulty = in.readInt();
     background = in.readByte() != 0;
   }
 
-  /** Set the game difficulty level to easy. */
-  void setGameEasy() {
-    shrimp.setGameEasy();
-    shark.setGameEasy();
-    bonus.setGameEasy();
-    this.difficulty = "EASY";
+  /** Set the game difficulty to the initial stage. */
+  void setGameDefault() {
+    fish.setGameDefault();
+    shrimp.setGameDefault();
+    shark.setGameDefault();
+    bonus.setGameDefault();
+    this.difficulty = 1;
   }
 
   /** Set the game difficulty level to hard. */
-  void setGameHard() {
-    shrimp.setGameHard();
-    shark.setGameHard();
-    bonus.setGameHard();
-    this.difficulty = "HARD";
+  void increaseGameStage() {
+    fish.increaseGameStage();
+    shrimp.increaseGameStage();
+    shark.increaseGameStage();
+    bonus.increaseGameStage();
+    this.difficulty += 1;
   }
 
   void setBgLight() {
@@ -98,26 +100,12 @@ public class FlappyGameStatus extends GameStatus implements Parcelable {
     this.background = true;
   }
 
-  /** Create FlappyGameStatatus by the super Creator object. */
-  public static final Creator<FlappyGameStatus> CREATOR =
-      new Creator<FlappyGameStatus>() {
-        @Override
-        public FlappyGameStatus createFromParcel(Parcel in) {
-          return new FlappyGameStatus(in);
-        }
-
-        @Override
-        public FlappyGameStatus[] newArray(int size) {
-          return new FlappyGameStatus[size];
-        }
-      };
-
   /**
    * Get the difficulty of the game.
    *
    * @return Return the difficulty of the game.
    */
-  public String getDifficulty() {
+  public int getDifficulty() {
     return this.difficulty;
   }
 
@@ -218,7 +206,21 @@ public class FlappyGameStatus extends GameStatus implements Parcelable {
     parcel.writeInt(score);
     parcel.writeInt(life_count);
     parcel.writeInt(played);
-    parcel.writeString(difficulty);
+    parcel.writeInt(difficulty);
     parcel.writeByte((byte)(background ? 1 : 0));
   }
+
+  /** Create FlappyGameStatatus by the super Creator object. */
+  public static final Creator<FlappyGameStatus> CREATOR =
+          new Creator<FlappyGameStatus>() {
+            @Override
+            public FlappyGameStatus createFromParcel(Parcel in) {
+              return new FlappyGameStatus(in);
+            }
+
+            @Override
+            public FlappyGameStatus[] newArray(int size) {
+              return new FlappyGameStatus[size];
+            }
+          };
 }

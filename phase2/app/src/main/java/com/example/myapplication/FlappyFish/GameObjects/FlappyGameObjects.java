@@ -9,6 +9,11 @@ import com.example.myapplication.FlappyFish.FlappyGameStatus;
  * A class representation of objects inside the flappy fish game.
  */
 public abstract class FlappyGameObjects implements Parcelable {
+    public static final int TYPE_FISH = 1;
+    public static final int TYPE_SHRIMP = 2;
+    public static final int TYPE_SHARK = 3;
+    public static final int TYPE_OBJECT = 4;
+
     /**
      * X coordinate of this game object.
      */
@@ -42,7 +47,7 @@ public abstract class FlappyGameObjects implements Parcelable {
      * @param y the y coordinate of the new game object.
      * @param vel the velocity of the new game object.
      */
-    public FlappyGameObjects(int x, int y, int vel) {
+    FlappyGameObjects(int x, int y, int vel) {
         this.x = x;
         this.y = y;
         this.velocity = vel;
@@ -52,10 +57,12 @@ public abstract class FlappyGameObjects implements Parcelable {
      * Build the game object from parcel
      * @param in the parcel that stores the previously saved game object.
      */
-    public FlappyGameObjects(Parcel in) {
+    FlappyGameObjects(Parcel in) {
         x = in.readInt();
         y = in.readInt();
         velocity = in.readInt();
+        width = in.readInt();
+        height = in.readInt();
     }
 
     /**
@@ -86,7 +93,7 @@ public abstract class FlappyGameObjects implements Parcelable {
      * Set the y coordinate of the game object to y.
      * @param y the new x coordinate of the game object.
      */
-    public void setY(int y) {
+    void setY(int y) {
         this.y = y;
     }
 
@@ -94,7 +101,7 @@ public abstract class FlappyGameObjects implements Parcelable {
      * Return the velocity of the game object.
      * @return the y coordinate of the game obejct.
      */
-    public int getVelocity() {
+    int getVelocity() {
         return velocity;
     }
 
@@ -102,15 +109,15 @@ public abstract class FlappyGameObjects implements Parcelable {
      * Set the velocity of the game object to velocity.
      * @param velocity the new velocity of the game object.
      */
-    public void setVelocity(int velocity) {
+    void setVelocity(int velocity) {
         this.velocity = velocity;
     }
 
-    public int getHeight() {
+    int getHeight() {
         return height;
     }
 
-    public int getWidth() {
+    int getWidth() {
         return width;
     }
 
@@ -121,6 +128,10 @@ public abstract class FlappyGameObjects implements Parcelable {
     public void setWidth(int width) {
         this.width = width;
     }
+
+    public abstract void setGameDefault();
+
+    public abstract void increaseGameStage();
 
     /**
      * Move the game object according to its current velocity.
@@ -134,6 +145,7 @@ public abstract class FlappyGameObjects implements Parcelable {
      */
     public abstract boolean update(FlappyGameStatus gameStatus, int canvasWidth, int minY, int maxY);
 
+    abstract void validCheck(int canvasWidth, int minY, int maxY);
 
     /**
      * Default method from the super class.
@@ -156,6 +168,8 @@ public abstract class FlappyGameObjects implements Parcelable {
         parcel.writeInt(x);
         parcel.writeInt(y);
         parcel.writeInt(velocity);
+        parcel.writeInt(width);
+        parcel.writeInt(height);
     }
 
 }
