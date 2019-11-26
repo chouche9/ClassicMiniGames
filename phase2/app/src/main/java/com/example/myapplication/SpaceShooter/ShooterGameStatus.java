@@ -13,7 +13,6 @@ import com.example.myapplication.SpaceShooter.GameObject.ShooterHealthAid;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterPlane;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterPlaneExplosion;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterPointBuff;
-import com.example.myapplication.SpaceShooter.GameObject.ShooterSpecialItem;
 
 import java.util.ArrayList;
 import java.util.List;

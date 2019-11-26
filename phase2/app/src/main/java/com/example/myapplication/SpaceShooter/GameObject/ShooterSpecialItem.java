@@ -13,7 +13,7 @@ public abstract class ShooterSpecialItem extends ShooterGameObject implements Pa
     ShooterSpecialItem(){
         super();
         Random random = new Random();
-        setX(random.nextInt(ShooterGameView.dWidth - 90));
+        setX(random.nextInt(ShooterGameView.dWidth - 150));
         setY(-60);
         velocity = 30;
     }
