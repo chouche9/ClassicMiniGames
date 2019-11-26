@@ -19,7 +19,7 @@ public class ShooterStart extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shooter_start);
-        shooterGameStatus = new ShooterGameStatus(getApplicationContext());
+        shooterGameStatus = new ShooterGameStatus("user");
         start = findViewById(R.id.start);
         start.setOnClickListener(this);
         exit = findViewById(R.id.exit);

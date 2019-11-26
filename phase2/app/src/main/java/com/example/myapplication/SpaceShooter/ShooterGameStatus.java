@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.example.myapplication.GameStatus;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterBullet1;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterBullet2;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterEnemy1;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ShooterGameStatus implements Parcelable {
+public class ShooterGameStatus extends GameStatus implements Parcelable {
     static int initaltime = 10000;
     public int level;
     public int point;
@@ -32,7 +33,8 @@ public class ShooterGameStatus implements Parcelable {
     public List<ShooterSpecialItem> specialItems = new ArrayList<>();
     public List<ShooterEnemyExplosion> enemyExplosions = new ArrayList<>();
     public List<ShooterPlaneExplosion> planeExplosions = new ArrayList<>();
-    ShooterGameStatus(Context context){
+    ShooterGameStatus(String name){
+        super(name);
         point = 0;
         gameSuccess = true;
         numCoin = 0;
@@ -43,6 +45,7 @@ public class ShooterGameStatus implements Parcelable {
     }
 
     protected ShooterGameStatus(Parcel in) {
+        super(in);
         level = in.readInt();
         point = in.readInt();
         numCoin = in.readInt();
@@ -60,6 +63,7 @@ public class ShooterGameStatus implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        super.writeToParcel(dest, flags);
         dest.writeInt(level);
         dest.writeInt(point);
         dest.writeInt(numCoin);
