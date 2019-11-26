@@ -9,11 +9,11 @@
     >
 
     <Button
-        android:id="@+id/guessNum"
+        android:id="@+id/planeShooter"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:text="Guess Number"
+        android:text="Space Shooter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +32,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guessNum"
+        app:layout_constraintTop_toBottomOf="@+id/planeShooter"
         android:background="@drawable/round_background"
         android:textColor="@color/white"
         android:textSize="15dp"
@@ -75,7 +75,7 @@
         android:text="Choose The Game Below"
         android:textSize="30sp"
         app:fontFamily="sans-serif-black"
-        app:layout_constraintBottom_toTopOf="@+id/guessNum"
+        app:layout_constraintBottom_toTopOf="@+id/planeShooter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

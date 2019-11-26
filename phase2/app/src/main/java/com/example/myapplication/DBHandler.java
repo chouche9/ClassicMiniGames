@@ -62,7 +62,7 @@ public class DBHandler extends SQLiteOpenHelper {
   /** Puts a key-value pair with key being the game type and value being its actual class type. */
   private void putGameTypeClass() {
     gameTypeClass.put(Game.FLAPPYFISH, FlappyGameStatus.class);
-    gameTypeClass.put(Game.SPACESHOOTER, ShooterGameStatus.class);
+//    gameTypeClass.put(Game.SPACESHOOTER, ShooterGameStatus.class);
     gameTypeClass.put(Game.HANGMAN, HangmanGameStatInteractor.class);
   }
 
