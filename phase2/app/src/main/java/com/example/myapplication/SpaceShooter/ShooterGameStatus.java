@@ -5,6 +5,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.example.myapplication.GameStatus;
+import com.example.myapplication.SpaceShooter.GameObject.ShooterBonus;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterBullet1;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterBullet2;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterEnemy1;
@@ -19,7 +20,7 @@ import java.util.List;
 
 
 public class ShooterGameStatus extends GameStatus implements Parcelable {
-    public static int initaltime = 10000;
+    public static int initaltime = 30000;
     public int level;
     public int point;
     int numCoin;
@@ -31,6 +32,7 @@ public class ShooterGameStatus extends GameStatus implements Parcelable {
     public List<ShooterEnemy1> enemy1s = new ArrayList<>();
     public List<ShooterBullet1> bullet1s = new ArrayList<>();
     public List<ShooterBullet2> bullet2s = new ArrayList<>();
+    public List<ShooterBonus> shooterBonuses = new ArrayList<>();
     public List<ShooterHealthAid> healthAids = new ArrayList<>();
     public List<ShooterPointBuff> pointBuffs = new ArrayList<>();
     public List<ShooterEnemyExplosion> enemyExplosions = new ArrayList<>();
@@ -58,6 +60,7 @@ public class ShooterGameStatus extends GameStatus implements Parcelable {
         enemy1s = in.createTypedArrayList(ShooterEnemy1.CREATOR);
         bullet1s = in.createTypedArrayList(ShooterBullet1.CREATOR);
         bullet2s = in.createTypedArrayList(ShooterBullet2.CREATOR);
+        shooterBonuses = in.createTypedArrayList(ShooterBonus.CREATOR);
         healthAids = in.createTypedArrayList(ShooterHealthAid.CREATOR);
         pointBuffs = in.createTypedArrayList(ShooterPointBuff.CREATOR);
         enemyExplosions = in.createTypedArrayList(ShooterEnemyExplosion.CREATOR);
@@ -77,6 +80,7 @@ public class ShooterGameStatus extends GameStatus implements Parcelable {
         dest.writeTypedList(enemy1s);
         dest.writeTypedList(bullet1s);
         dest.writeTypedList(bullet2s);
+        dest.writeTypedList(shooterBonuses);
         dest.writeTypedList(healthAids);
         dest.writeTypedList(pointBuffs);
         dest.writeTypedList(enemyExplosions);
@@ -104,6 +108,7 @@ public class ShooterGameStatus extends GameStatus implements Parcelable {
         if (plane != null){
         plane.resetPosition();}
         millsecondLeft = initaltime;
+        shooterBonuses = new ArrayList<>();
         bullet1s = new ArrayList<>();
         bullet2s = new ArrayList<>();
         enemy1s = new ArrayList<>();

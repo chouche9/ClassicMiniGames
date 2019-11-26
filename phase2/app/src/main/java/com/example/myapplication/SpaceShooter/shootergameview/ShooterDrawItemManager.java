@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import com.example.myapplication.SpaceShooter.GameObject.ShooterBonus;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterBullet1;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterBullet2;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterEnemy1;
@@ -23,6 +24,7 @@ public class ShooterDrawItemManager {
 
     ShooterGameStatus shooterGameStatus;
     List<ShooterBullet1> bullet1s;
+    List<ShooterBonus> shooterBonuses;
     public List<ShooterHealthAid> healthAids;
     public List<ShooterPointBuff> pointBuffs;
     List<ShooterBullet2> bullet2s;
@@ -45,6 +47,7 @@ public class ShooterDrawItemManager {
         plane = shooterGameStatus.plane;
         bullet1s = shooterGameStatus.bullet1s;
         bullet2s = shooterGameStatus.bullet2s;
+        shooterBonuses = shooterGameStatus.shooterBonuses;
         healthAids = shooterGameStatus.healthAids;
         pointBuffs = shooterGameStatus.pointBuffs;
         enemyExplosions = shooterGameStatus.enemyExplosions;
@@ -100,6 +103,9 @@ public class ShooterDrawItemManager {
         }
         for (ShooterHealthAid specialItem: healthAids){
             specialItem.onDraw(canvas);
+        }
+        for (ShooterBonus shooterBonus: shooterBonuses){
+            shooterBonus.onDraw(canvas);
         }
     }
     private void drawExplosion(){

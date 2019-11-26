@@ -3,16 +3,19 @@ package com.example.myapplication.SpaceShooter.shootergameview;
 import android.content.Context;
 import android.media.SoundPool;
 
+import com.example.myapplication.SpaceShooter.GameObject.ShooterBonus;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterBullet1;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterBullet2;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterEnemy1;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterEnemyExplosion;
+import com.example.myapplication.SpaceShooter.GameObject.ShooterGameObject;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterHealthAid;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterPlane;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterPlaneExplosion;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterPointBuff;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterSpecialItem;
 import com.example.myapplication.SpaceShooter.ShooterGameStatus;
+import com.example.myapplication.SpaceShooter.shooterplanegame.ShooterGame;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +23,7 @@ import java.util.List;
 public class ShooterColisionManager {
     ShooterGameStatus shooterGameStatus;
     List<ShooterBullet1> bullet1s;
+    List<ShooterBonus> shooterBonuses;
     public List<ShooterHealthAid> healthAids;
     public List<ShooterPointBuff> pointBuffs;
     List<ShooterBullet2> bullet2s;
@@ -42,6 +46,7 @@ public class ShooterColisionManager {
         level = shooterGameStatus.level;
         plane = shooterGameStatus.plane;
         bullet1s = shooterGameStatus.bullet1s;
+        shooterBonuses = shooterGameStatus.shooterBonuses;
         bullet2s = shooterGameStatus.bullet2s;
         enemyExplosions = shooterGameStatus.enemyExplosions;
         planeExplosions = shooterGameStatus.planeExplosions;
@@ -56,6 +61,7 @@ public class ShooterColisionManager {
         planeSpecialItemColision();
         if (level == 2){
             bullet2PlaneColide();}
+        bonusPlaneColison();
 
     }
 
@@ -146,7 +152,7 @@ public class ShooterColisionManager {
     }
 
 
-    private boolean planeSpecialItemCheck(ShooterSpecialItem specialItem){
+    private boolean planeSpecialItemCheck(ShooterGameObject specialItem){
         int count = 0;
         if ((plane.getX()<= specialItem.getX() && specialItem.getX() <= (plane.getX() + plane.getWidth()))
                 ||(plane.getX()<= specialItem.getX() + specialItem.getWidth() &&
@@ -177,5 +183,19 @@ public class ShooterColisionManager {
             bullet2s.remove(bullet2);
         }
     }
+    private void bonusPlaneColison(){
+        List<ShooterBonus> remove = new ArrayList<>();
+        for (ShooterBonus shooterBonus: shooterBonuses){
+            if (planeSpecialItemCheck(shooterBonus)){
+                ((ShooterGame)context).activateBonusGame();
+                remove.add(shooterBonus);
+            }
+        }
+        for (ShooterBonus shooterBonus: remove){
+            shooterBonuses.remove(shooterBonus);
+        }
+    }
+
+
 }
 

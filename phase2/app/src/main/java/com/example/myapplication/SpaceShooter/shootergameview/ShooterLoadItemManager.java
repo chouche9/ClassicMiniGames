@@ -3,6 +3,7 @@ package com.example.myapplication.SpaceShooter.shootergameview;
 import android.content.Context;
 import android.media.SoundPool;
 
+import com.example.myapplication.SpaceShooter.GameObject.ShooterBonus;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterBullet1;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterBullet2;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterEnemy1;
@@ -18,12 +19,14 @@ import java.util.Random;
 public class ShooterLoadItemManager {
     ShooterGameStatus shooterGameStatus;
     List<ShooterBullet1> bullet1s;
+    List<ShooterBonus> shooterBonuses;
     public List<ShooterHealthAid> healthAids;
     public List<ShooterPointBuff> pointBuffs;
     List<ShooterBullet2> bullet2s;
     int bullet1count = 0;
     int bullet2count = 0;
     int enemyCount = 0;
+    int bonusCount = 0;
     List<ShooterEnemy1> enemy1s;
     Context context;
     int level;
@@ -40,6 +43,7 @@ public class ShooterLoadItemManager {
     private void setUpManager() {
         level = shooterGameStatus.level;
         plane = shooterGameStatus.plane;
+        shooterBonuses = shooterGameStatus.shooterBonuses;
         healthAids = shooterGameStatus.healthAids;
         pointBuffs = shooterGameStatus.pointBuffs;
         bullet1s = shooterGameStatus.bullet1s;
@@ -53,6 +57,7 @@ public class ShooterLoadItemManager {
         if (level == 2){
             updateEnemybullet();}
         updatePlanebullet();
+        updateBonuses();
     }
 
     private void updateSpeacialItems() {
@@ -149,6 +154,23 @@ public class ShooterLoadItemManager {
             bullet1s.remove(bullet1);
         }
 
+    }
+    private void updateBonuses(){
+        bonusCount++;
+        List<ShooterBonus> remove = new ArrayList<>();
+        if (bonusCount == 100){
+            shooterBonuses.add(new ShooterBonus(context));
+            bonusCount = 0;
+        }
+        for (ShooterBonus shooterBonus: shooterBonuses){
+            shooterBonus.setY(shooterBonus.getY() + shooterBonus.velocity);
+            if (shooterBonus.getY()> ShooterGameView.dHeight){
+                remove.add(shooterBonus);
+            }
+        }
+        for (ShooterBonus shooterBonus: remove){
+            shooterBonuses.remove(shooterBonus);
+        }
     }
 
 

@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class ShooterBonus extends ShooterGameObject {
 
-    ShooterBonus(Context context){
+    public ShooterBonus(Context context){
         Random random = new Random();
         setX(random.nextInt(ShooterGameView.dWidth - 150));
         setY(-60);

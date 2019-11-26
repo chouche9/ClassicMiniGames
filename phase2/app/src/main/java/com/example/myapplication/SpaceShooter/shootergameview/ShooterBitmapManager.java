@@ -2,6 +2,7 @@ package com.example.myapplication.SpaceShooter.shootergameview;
 
 import android.content.Context;
 
+import com.example.myapplication.SpaceShooter.GameObject.ShooterBonus;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterBullet1;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterBullet2;
 import com.example.myapplication.SpaceShooter.GameObject.ShooterEnemy1;
@@ -19,6 +20,7 @@ public class ShooterBitmapManager {
     Context context;
     ShooterGameStatus shooterGameStatus;
     List<ShooterBullet1> bullet1s;
+    List<ShooterBonus> shooterBonuses;
     public List<ShooterHealthAid> healthAids;
     public List<ShooterPointBuff> pointBuffs;
     List<ShooterBullet2> bullet2s;
@@ -36,6 +38,7 @@ public class ShooterBitmapManager {
         plane = shooterGameStatus.plane;
         bullet1s = shooterGameStatus.bullet1s;
         bullet2s = shooterGameStatus.bullet2s;
+        shooterBonuses = shooterGameStatus.shooterBonuses;
         enemyExplosions = shooterGameStatus.enemyExplosions;
         planeExplosions = shooterGameStatus.planeExplosions;
         healthAids = shooterGameStatus.healthAids;
@@ -71,6 +74,9 @@ public class ShooterBitmapManager {
         }
         for (ShooterPointBuff shooterPointBuff: pointBuffs){
             shooterPointBuff.setUpBitmap(context);
+        }
+        for (ShooterBonus shooterBonus: shooterBonuses){
+            shooterBonus.setUpBitmap(context);
         }
     }
 

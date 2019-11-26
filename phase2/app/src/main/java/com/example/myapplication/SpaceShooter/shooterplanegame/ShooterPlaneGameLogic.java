@@ -25,4 +25,7 @@ Context context;
         ShooterGameManager shooterGameManager = ShooterGameManager.getInstance((Activity)context);
         shooterGameManager.saveGame(shooterGameStatus);
     }
+    void addBonusPoint(int bonus){
+        shooterGameStatus.point += bonus;
+    }
 }

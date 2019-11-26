@@ -20,7 +20,7 @@ public class ShooterPointBuff extends ShooterSpecialItem {
     }
     @Override
     public void getBuff(ShooterGameStatus shooterGameStatus) {
-        shooterGameStatus.point += 100;
+        shooterGameStatus.point += 40;
     }
 
     public void writeToParcel(Parcel out, int flags) {
