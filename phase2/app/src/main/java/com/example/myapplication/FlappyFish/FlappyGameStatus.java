@@ -135,8 +135,13 @@ public class FlappyGameStatus extends GameStatus implements Parcelable {
     this.score += DEFAULT_SCORE;
   }
 
-  public void addBonusScore() {
-    this.score += 50;
+  /**
+   * Add bonusScore to score.
+   *
+   * @param bonusScore the value that is added to the current score.
+   */
+  void addBonusScore(int bonusScore) {
+    this.score += bonusScore;
   }
 
   /**
@@ -219,6 +224,6 @@ public class FlappyGameStatus extends GameStatus implements Parcelable {
     parcel.writeInt(life_count);
     parcel.writeInt(played);
     parcel.writeString(difficulty);
-    parcel.writeByte((byte)(background ? 1 : 0));
+    parcel.writeByte((byte) (background ? 1 : 0));
   }
 }
