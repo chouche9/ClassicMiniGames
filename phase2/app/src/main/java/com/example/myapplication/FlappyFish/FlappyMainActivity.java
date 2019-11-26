@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.Toast;
 
+import com.example.myapplication.BonusLevel.BonusLevelDialog;
 import com.example.myapplication.FlappyFish.FlappyGameView.FlappyGameViewFacade;
 import com.example.myapplication.FlappyFish.FlappyGameView.ViewBitmapManager;
 import com.example.myapplication.FlappyFish.FlappyGameView.ViewPaintManager;
@@ -15,7 +17,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /** The user interface of the flappy fish game. */
-public class FlappyMainActivity extends AppCompatActivity {
+public class FlappyMainActivity extends AppCompatActivity
+    implements BonusLevelDialog.BonusLevelDialogListener {
 
   /** The game view the game uses. */
   private FlappyGameViewFacade gameView;
@@ -35,6 +38,9 @@ public class FlappyMainActivity extends AppCompatActivity {
   /** The activity code to start another activity. */
   private static final int REQUEST_CODE3 = 3;
 
+  /** The bonus level dialog that is displayed on the screen. */
+  private BonusLevelDialog dialog;
+
   /**
    * Create FlappyMainActivity activity.
    *
@@ -52,33 +58,39 @@ public class FlappyMainActivity extends AppCompatActivity {
     gameView.setUpView();
   }
 
-  /** Create a timer that is used to display the game view. */
+  /** Start a timer for displaying the game view. */
   @Override
   protected void onResume() {
     super.onResume();
     gameView.setGameStatus(gameStatus);
 
     if (timer == null) {
-      timer = new Timer();
-      timer.schedule(
-              new TimerTask() {
-                @Override
-                public void run() {
-                  handler.post(
-                          new Runnable() {
-                            @Override
-                            public void run() {
-                              gameView.invalidate();
-                            }
-                          });
-                }
-              },
-              0,
-              TIMER_INTERVAL);
+      startTimer();
     }
   }
 
-  public void pauseTimer() {
+  /** Create a timer that is used to display the game view. */
+  private void startTimer() {
+    timer = new Timer();
+    timer.schedule(
+        new TimerTask() {
+          @Override
+          public void run() {
+            handler.post(
+                new Runnable() {
+                  @Override
+                  public void run() {
+                    gameView.invalidate();
+                  }
+                });
+          }
+        },
+        0,
+        TIMER_INTERVAL);
+  }
+
+  /** Cancel the timer that is currently running. */
+  private void pauseTimer() {
     timer.cancel();
     timer = null;
   }
@@ -87,7 +99,9 @@ public class FlappyMainActivity extends AppCompatActivity {
   @Override
   protected void onPause() {
     super.onPause();
-    pauseTimer();
+    if (timer != null) {
+      pauseTimer();
+    }
     FlappyGameManager gameManager = FlappyGameManager.getInstance(this);
     gameManager.saveGame(gameStatus);
   }
@@ -105,5 +119,47 @@ public class FlappyMainActivity extends AppCompatActivity {
       setResult(RESULT_OK, data);
       finish();
     }
+  }
+
+  /** Stop the timer and activate the bonus level dialog. */
+  public void activateBonusGame() {
+    pauseTimer();
+    openDialog();
+  }
+
+  /**
+   * Create a new BonusLevelDialog and show the dialog on the screen. The user cannot dismiss the
+   * dialog by clicking outside the dialog once the dialog appears.
+   */
+  private void openDialog() {
+    dialog = new BonusLevelDialog();
+    dialog.setCancelable(false);
+    dialog.show(getSupportFragmentManager(), "Bonus Level Dialog");
+  }
+
+  /**
+   * Add bonusScore to the current score in the game, inform the user if he/she won the bonus game,
+   * dismiss the bonus level dialog, and resume the game.
+   *
+   * @param isWon indicate whether the user has won the bonus level or not.
+   * @param bonusSore the score that the user has won from the bonus level.
+   */
+  @Override
+  public void bonusLevelResult(boolean isWon, int bonusSore) {
+    if (isWon) {
+      gameStatus.addBonusScore(bonusSore);
+      Toast.makeText(this, "You guessed the correct number!\nPlus 100 points!", Toast.LENGTH_SHORT)
+          .show();
+    } else {
+      Toast.makeText(this, "Try Again Next Time!", Toast.LENGTH_SHORT).show();
+    }
+    dialog.dismiss();
+    startTimer();
+  }
+
+  /** Start the timer again to resume the game when the cancel button on the dialog is clicked. */
+  @Override
+  public void onCancel() {
+    startTimer();
   }
 }

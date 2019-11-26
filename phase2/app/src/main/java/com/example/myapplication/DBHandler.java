@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.example.myapplication.FlappyFish.FlappyGameStatus;
 import com.example.myapplication.GuessNum.GuessGameStat;
 import com.example.myapplication.Hangman.HangmanGameStatInteractor;
+import com.example.myapplication.SpaceShooter.ShooterGameStatus;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
@@ -42,8 +43,9 @@ public class DBHandler extends SQLiteOpenHelper {
   /** An enum that contains all the game types. */
   public enum Game {
     FLAPPYFISH,
-    GUESSNUM,
-    HANGMAN
+    SPACESHOOTER,
+    HANGMAN,
+    GUESSNUM
   }
 
   /** Maps each type of game to its corresponding table name in the database. */
@@ -62,15 +64,17 @@ public class DBHandler extends SQLiteOpenHelper {
   /** Puts a key-value pair with key being the game type and value being its actual class type. */
   private void putGameTypeClass() {
     gameTypeClass.put(Game.FLAPPYFISH, FlappyGameStatus.class);
-    gameTypeClass.put(Game.GUESSNUM, GuessGameStat.class);
+    gameTypeClass.put(Game.SPACESHOOTER, ShooterGameStatus.class);
     gameTypeClass.put(Game.HANGMAN, HangmanGameStatInteractor.class);
+    gameTypeClass.put(Game.GUESSNUM, GuessGameStat.class);
   }
 
   /** Puts a key-value pair with key being the game type and value being the name of the table. */
   private void putTables() {
     tables.put(Game.FLAPPYFISH, "FlappyFish");
-    tables.put(Game.GUESSNUM, "GuessNum");
+    tables.put(Game.SPACESHOOTER, "PlaneShooter");
     tables.put(Game.HANGMAN, "Hangman");
+    tables.put(Game.GUESSNUM, "Guessnum");
   }
 
   /**

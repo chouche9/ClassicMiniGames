@@ -9,22 +9,22 @@ import android.graphics.Canvas;
 import android.view.MotionEvent;
 import android.view.View;
 
-import androidx.annotation.Nullable;
-
-import com.example.myapplication.DBHandler;
 import com.example.myapplication.FlappyFish.FlappyGameStatus;
 import com.example.myapplication.FlappyFish.FlappyMainActivity;
 import com.example.myapplication.FlappyFish.FlappyResultActivity;
+<<<<<<< HEAD
 import com.example.myapplication.FlappyFish.GameObjects.FlappyGameFish;
 import com.example.myapplication.GameStatus;
 import com.example.myapplication.GuessNum.GuessGame;
 import com.example.myapplication.GuessNum.GuessGameStat;
 import com.example.myapplication.GuessNum.GuessMain;
+=======
+>>>>>>> dcfd57b9dc5e56b080660fe7e901fe031ffc0dfe
 
 /** The Flappy fish game view. */
 public class FlappyGameViewFacade extends View {
 
-  /** * The key that is responsible for the score. */
+  /** The key that is responsible for the score. */
   public static final String EXTRA_MESSAGE = "SCORE";
 
   /** The game status object of this user. */
@@ -41,8 +41,6 @@ public class FlappyGameViewFacade extends View {
 
   /** The object that manages all the paint representations of objects drawn on the screen. */
   private ViewPaintManager paintManager;
-
-  private boolean isPlayed = false;
 
   /**
    * Construct a new flappy fish game in the context environment.
@@ -88,17 +86,10 @@ public class FlappyGameViewFacade extends View {
       gameOver();
     }
 
+    // Bonus item
     if (bitmapManager.drawBonusGameBitmap()) {
       activateBonusGame();
     }
-
-//    if (isPlayed) {
-//      GuessGameStat bonusStatus = (GuessGameStat) DBHandler.getInstance(activity).getGameStatus(gameStatus.getName(), DBHandler.Game.GUESSNUM);
-//      if (bonusStatus.getCurrentTries() < 10) {
-//        gameStatus.addBonusScore();
-//      }
-//      isPlayed = false;
-//    }
 
     // Score
     paintManager.drawScore();
@@ -116,17 +107,9 @@ public class FlappyGameViewFacade extends View {
     context.startActivity(intent);
   }
 
+  /** Activate the bonus level dialog. */
   private void activateBonusGame() {
-    ((FlappyMainActivity) activity).pauseTimer();
-    isPlayed = true;
-    Intent intent = new Intent(context, GuessMain.class);
-//    intent.putExtra(EXTRA_MESSAGE, gameStatus);
-    context.startActivity(intent);
-    GuessGameStat bonusStatus = (GuessGameStat) DBHandler.getInstance(activity).getGameStatus(gameStatus.getName(), DBHandler.Game.GUESSNUM);
-    if (bonusStatus.getCurrentTries() < 10) {
-      gameStatus.addBonusScore();
-    }
-    isPlayed = false;
+    ((FlappyMainActivity) activity).activateBonusGame();
   }
 
   /**

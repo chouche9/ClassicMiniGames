@@ -8,8 +8,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.myapplication.FlappyFish.FlappyGameMenu;
-import com.example.myapplication.GuessNum.GuessMain;
 import com.example.myapplication.Hangman.HangmanMain;
+import com.example.myapplication.SpaceShooter.shootergamestart.ShooterStart;
 
 /** Main page of all three games. */
 public class GameMain extends AppCompatActivity implements View.OnClickListener {
@@ -38,7 +38,7 @@ public class GameMain extends AppCompatActivity implements View.OnClickListener 
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_game_main);
-    guessNum = findViewById(R.id.guessNum);
+    guessNum = findViewById(R.id.planeShooter);
     guessNum.setOnClickListener(this);
     hangman = findViewById(R.id.hangMan);
     hangman.setOnClickListener(this);
@@ -58,8 +58,8 @@ public class GameMain extends AppCompatActivity implements View.OnClickListener 
   @Override
   public void onClick(View view) {
     switch (view.getId()) {
-      case R.id.guessNum:
-        Intent intent = new Intent(this, GuessMain.class);
+      case R.id.planeShooter:
+        Intent intent = new Intent(this, ShooterStart.class);
         intent.putExtra("user", user);
         startActivity(intent);
         break;

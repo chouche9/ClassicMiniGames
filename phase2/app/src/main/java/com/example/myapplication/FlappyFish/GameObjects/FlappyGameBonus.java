@@ -7,6 +7,7 @@ import com.example.myapplication.FlappyFish.FlappyGameStatus;
 
 import java.util.Random;
 
+/** A class representation of the bonus items inside the flappy fish game. */
 public class FlappyGameBonus extends FlappyGameObjects implements Parcelable {
 
   /** The default speed of the bonus item for easy mode. */
@@ -17,9 +18,6 @@ public class FlappyGameBonus extends FlappyGameObjects implements Parcelable {
 
   /** The default x coordinate of an object when it collides with the fish. */
   private static final int DEAD_POS = -100;
-
-
-  private Random random = new Random();
 
   /**
    * Construct a new bonus object at the default starting coordinates with a velocity as default.
@@ -63,7 +61,6 @@ public class FlappyGameBonus extends FlappyGameObjects implements Parcelable {
    */
   public boolean update(FlappyGameStatus gameStatus, int canvasWidth, int minY, int maxY) {
     if (collideCheck(gameStatus)) {
-//      gameStatus.updateScore();
       kill();
       return true;
     }
@@ -77,8 +74,14 @@ public class FlappyGameBonus extends FlappyGameObjects implements Parcelable {
    * @param minY the minimum value for this bonus item's y coordinate.
    * @param maxY the maximum value for this bonus item's y coordinate.
    */
+<<<<<<< HEAD
   void validCheck(int canvasWidth, int minY, int maxY) {
     int randomNum = random.nextInt(200);
+=======
+  private void validCheck(int canvasWidth, int minY, int maxY) {
+    Random random = new Random();
+    int randomNum = random.nextInt(200); // change to a bigger number later!!
+>>>>>>> dcfd57b9dc5e56b080660fe7e901fe031ffc0dfe
     if (getX() < 0 && randomNum == 100) {
       setX(canvasWidth + 10);
       setY((int) Math.floor(Math.random() * (maxY - minY)) + minY);

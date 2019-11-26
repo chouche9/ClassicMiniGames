@@ -115,15 +115,22 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
 
       case R.id.btnSettings:
         intent1 = new Intent(getApplicationContext(), HangmanSetting.class);
-        finish();
         break;
 
       case R.id.btnBackToHome:
         intent1 = new Intent(getApplicationContext(), GameMain.class);
-        finish();
+        intent1.putExtra("user", hangmanGameStat.getName());
+        intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         break;
     }
     intent1.putExtra(getGamestatusMsg(), hangmanGameStat);
     startActivity(intent1);
+  }
+
+  @Override
+  protected void onPause() {
+    super.onPause();
+    HangmanGameManager hangmanGameManager = HangmanGameManager.getInstance(this);
+    hangmanGameManager.saveGame(hangmanGameStat);
   }
 }
