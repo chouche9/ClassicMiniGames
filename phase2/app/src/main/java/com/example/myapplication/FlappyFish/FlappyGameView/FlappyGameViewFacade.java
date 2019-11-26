@@ -12,14 +12,8 @@ import android.view.View;
 import com.example.myapplication.FlappyFish.FlappyGameStatus;
 import com.example.myapplication.FlappyFish.FlappyMainActivity;
 import com.example.myapplication.FlappyFish.FlappyResultActivity;
-<<<<<<< HEAD
 import com.example.myapplication.FlappyFish.GameObjects.FlappyGameFish;
-import com.example.myapplication.GameStatus;
-import com.example.myapplication.GuessNum.GuessGame;
-import com.example.myapplication.GuessNum.GuessGameStat;
-import com.example.myapplication.GuessNum.GuessMain;
-=======
->>>>>>> dcfd57b9dc5e56b080660fe7e901fe031ffc0dfe
+
 
 /** The Flappy fish game view. */
 public class FlappyGameViewFacade extends View {

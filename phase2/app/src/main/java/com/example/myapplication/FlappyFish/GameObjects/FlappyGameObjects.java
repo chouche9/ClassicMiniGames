@@ -9,10 +9,6 @@ import com.example.myapplication.FlappyFish.FlappyGameStatus;
  * A class representation of objects inside the flappy fish game.
  */
 public abstract class FlappyGameObjects implements Parcelable {
-    public static final int TYPE_FISH = 1;
-    public static final int TYPE_SHRIMP = 2;
-    public static final int TYPE_SHARK = 3;
-    public static final int TYPE_OBJECT = 4;
 
     /**
      * X coordinate of this game object.
