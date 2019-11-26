@@ -44,7 +44,8 @@ public class DBHandler extends SQLiteOpenHelper {
   public enum Game {
     FLAPPYFISH,
     SPACESHOOTER,
-    HANGMAN
+    HANGMAN,
+    GUESSNUM
   }
 
   /** Maps each type of game to its corresponding table name in the database. */
@@ -65,6 +66,7 @@ public class DBHandler extends SQLiteOpenHelper {
     gameTypeClass.put(Game.FLAPPYFISH, FlappyGameStatus.class);
     gameTypeClass.put(Game.SPACESHOOTER, ShooterGameStatus.class);
     gameTypeClass.put(Game.HANGMAN, HangmanGameStatInteractor.class);
+    gameTypeClass.put(Game.GUESSNUM, GuessGameStat.class);
   }
 
   /** Puts a key-value pair with key being the game type and value being the name of the table. */
@@ -72,6 +74,7 @@ public class DBHandler extends SQLiteOpenHelper {
     tables.put(Game.FLAPPYFISH, "FlappyFish");
     tables.put(Game.SPACESHOOTER, "PlaneShooter");
     tables.put(Game.HANGMAN, "Hangman");
+    tables.put(Game.GUESSNUM, "Guessnum");
   }
 
   /**
