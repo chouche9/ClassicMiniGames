@@ -15,22 +15,8 @@ import com.example.myapplication.R;
 /** The result page that is shown when the game finishes. */
 public class FlappyResultActivity extends AppCompatActivity implements View.OnClickListener {
 
-  /** The text the displays the player's final score. */
-  private TextView resultText;
-
-  /** The button the allows users to play the same game again when clicked. */
-  private Button nextStageBtn;
-
-  private Button playAgainBtn;
-
-  /** The button that takes the user to the menu of different games when clicked. */
-  private Button backToMainBtn;
-
   /** The status of this game which belongs to the current user. */
   private FlappyGameStatus gameStatus;
-
-  /** The intent that took the previous activity to this result page. */
-  private Intent resultIntent;
 
   /**
    * Initializes this result page.
@@ -42,23 +28,19 @@ public class FlappyResultActivity extends AppCompatActivity implements View.OnCl
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_flappy_result);
 
-    resultIntent = getIntent();
+    // The intent that took the previous activity to this result page.
+    Intent resultIntent = getIntent();
     gameStatus = resultIntent.getParcelableExtra(FlappyGameViewFacade.EXTRA_MESSAGE);
-    boolean result = true;
-    if(gameStatus.getLife_count() == 0) {
-      result = true;
-    } else if (gameStatus.getScore() % 100 == 0) {
-      result = false;
-    }
+    boolean result = gameStatus.getLife_count() == 0;
     setResultText(result);
     setPlayAgainBtn(result);
     setNextStageBtn(result);
     setBackToMainBtn();
-    //        setFinish();
   }
 
   private void setNextStageBtn(boolean result) {
-    nextStageBtn = findViewById(R.id.nextStageBtn);
+    // The button the allows users to play the same game again when clicked.
+    Button nextStageBtn = findViewById(R.id.nextStageBtn);
     nextStageBtn.setOnClickListener(this);
     if (result) {
       nextStageBtn.setVisibility(View.GONE);
@@ -69,20 +51,21 @@ public class FlappyResultActivity extends AppCompatActivity implements View.OnCl
 
   /** Initializes the textview object that displays the player's final score. */
   private void setResultText(boolean result) {
-    resultText = findViewById(R.id.result);
+    // The text the displays the player's final score.
+    TextView resultText = findViewById(R.id.result);
     resultText.setOnClickListener(this);
     String resultTextStr;
     if (result) {
       resultTextStr = "Your score is " + gameStatus.getScore();
     } else {
-      resultTextStr = "Congratulation! You finished stage" + gameStatus.getDifficulty();
+      resultTextStr = "Congratulation! You finished stage " + (gameStatus.getStage() - 1);
     }
     resultText.setText(resultTextStr);
   }
 
   /** Initializes the button that plays the game again. */
   private void setPlayAgainBtn(boolean result) {
-    playAgainBtn = findViewById(R.id.playAgainBtn);
+    Button playAgainBtn = findViewById(R.id.playAgainBtn);
     playAgainBtn.setOnClickListener(this);
     if (result) {
       playAgainBtn.setVisibility(View.VISIBLE);
@@ -93,7 +76,8 @@ public class FlappyResultActivity extends AppCompatActivity implements View.OnCl
 
   /** Initializes the button that returns to the menu of different games. */
   private void setBackToMainBtn() {
-    backToMainBtn = findViewById(R.id.backToMainBtn);
+    // The button that takes the user to the menu of different games when clicked.
+    Button backToMainBtn = findViewById(R.id.backToMainBtn);
     backToMainBtn.setOnClickListener(this);
   }
 
@@ -124,7 +108,6 @@ public class FlappyResultActivity extends AppCompatActivity implements View.OnCl
       case R.id.nextStageBtn:
         Intent nextStageIntent = new Intent(this, FlappyMainActivity.class);
         nextStageIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        gameStatus.increaseGameStage();
         nextStageIntent.putExtra("gameStatus", gameStatus);
         startActivity(nextStageIntent);
         finish();
@@ -133,7 +116,9 @@ public class FlappyResultActivity extends AppCompatActivity implements View.OnCl
         Intent backToMainIntent = new Intent(this, GameMain.class);
         backToMainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         backToMainIntent.putExtra("user", gameStatus.getName());
-        gameStatus.finishUpdate();
+        if (gameStatus.getLife_count() == 0) {
+          gameStatus.finishUpdate();
+        }
         startActivity(backToMainIntent);
         finish();
         break;

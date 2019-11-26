@@ -21,9 +21,6 @@ public class FlappyGameMenu extends AppCompatActivity implements View.OnClickLis
   /** The button the continues the game from where the user last played this game when clicked. */
   private Button resumeGameBtn;
 
-  /** The button that goes back to the menu of different games when clicked. */
-  private Button quitGameBtn;
-
   /** The status of this game which belongs to the current user. */
   private FlappyGameStatus gameStatus;
 
@@ -105,7 +102,8 @@ public class FlappyGameMenu extends AppCompatActivity implements View.OnClickLis
 
   /** Initializes the exit game button. */
   private void setQuitBtn() {
-    quitGameBtn = findViewById(R.id.quitGameBtn);
+    // The button that goes back to the menu of different games when clicked.
+    Button quitGameBtn = findViewById(R.id.quitGameBtn);
     quitGameBtn.setOnClickListener(this);
   }
 

@@ -15,9 +15,9 @@ import android.graphics.Canvas;
 
 public class ViewBitmapManager {
 
-  FlappyGameStatus gameStatus;
+  private FlappyGameStatus gameStatus;
 
-  Canvas canvas;
+  private Canvas canvas;
 
   /** The background of this game view. */
   private Bitmap bg;
@@ -112,7 +112,6 @@ public class ViewBitmapManager {
     FlappyGameObjects fishObj = gameStatus.fish;
     FlappyGameObjects shrimpObj = gameStatus.shrimp;
     FlappyGameObjects sharkObj = gameStatus.shark;
-//    FlappyGameBonus bonusObj = gameStatus.bonus;
 
     fishObj.move();
     fishObj.update(gameStatus, canvasWidth, minY, maxY);
@@ -122,14 +121,11 @@ public class ViewBitmapManager {
     boolean stageFinished = shrimpObj.update(gameStatus, canvasWidth, minY, maxY);
     canvas.drawBitmap(shrimp, shrimpObj.getX(), shrimpObj.getY(), null);
 
-//    bonusObj.move();
-//    bonusObj.update(gameStatus, canvasWidth, minY, maxY);
-//    canvas.drawBitmap(bonus, bonusObj.getX(), bonusObj.getY(), null);
-
     sharkObj.move();
-    boolean playerdied = sharkObj.update(gameStatus, canvasWidth, minY, maxY);
+    boolean playerDied = sharkObj.update(gameStatus, canvasWidth, minY, maxY);
     canvas.drawBitmap(shark, sharkObj.getX(), sharkObj.getY(), null);
-    return (stageFinished || playerdied);
+    if(stageFinished) {gameStatus.increaseGameStage();}
+    return (stageFinished || playerDied);
   }
 
   boolean drawBonusGameBitmap() {

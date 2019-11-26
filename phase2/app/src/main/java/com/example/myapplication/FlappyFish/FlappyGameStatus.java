@@ -33,8 +33,8 @@ public class FlappyGameStatus extends GameStatus implements Parcelable {
   /** Indicate whether the user has played the game. */
   private int played;
 
-  /** The difficulty the user chose. */
-  private int difficulty = 1;
+  /** The stage the user is currently playing at. */
+  private int stage = 1;
 
   /** The type of the game the user plays. */
   private String type;
@@ -70,7 +70,7 @@ public class FlappyGameStatus extends GameStatus implements Parcelable {
     score = in.readInt();
     life_count = in.readInt();
     played = in.readInt();
-    difficulty = in.readInt();
+    stage = in.readInt();
     background = in.readByte() != 0;
   }
 
@@ -80,16 +80,16 @@ public class FlappyGameStatus extends GameStatus implements Parcelable {
     shrimp.setGameDefault();
     shark.setGameDefault();
     bonus.setGameDefault();
-    this.difficulty = 1;
+    this.stage = 1;
   }
 
   /** Set the game difficulty level to hard. */
-  void increaseGameStage() {
+  public void increaseGameStage() {
     fish.increaseGameStage();
     shrimp.increaseGameStage();
     shark.increaseGameStage();
     bonus.increaseGameStage();
-    this.difficulty += 1;
+    this.stage += 1;
   }
 
   void setBgLight() {
@@ -105,8 +105,8 @@ public class FlappyGameStatus extends GameStatus implements Parcelable {
    *
    * @return Return the difficulty of the game.
    */
-  public int getDifficulty() {
-    return this.difficulty;
+  public int getStage() {
+    return this.stage;
   }
 
   /**
@@ -178,7 +178,7 @@ public class FlappyGameStatus extends GameStatus implements Parcelable {
 
   /** Stop updating the game status. */
   void finishUpdate() {
-    this.played = 0;
+    setPlayed(false);
     fish = new FlappyGameFish();
     life_count = 3;
     score = 0;
@@ -211,7 +211,7 @@ public class FlappyGameStatus extends GameStatus implements Parcelable {
     parcel.writeInt(score);
     parcel.writeInt(life_count);
     parcel.writeInt(played);
-    parcel.writeInt(difficulty);
+    parcel.writeInt(stage);
     parcel.writeByte((byte) (background ? 1 : 0));
   }
 

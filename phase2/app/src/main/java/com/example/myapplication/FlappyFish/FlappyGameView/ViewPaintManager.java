@@ -9,9 +9,9 @@ import com.example.myapplication.FlappyFish.FlappyGameStatus;
 
 public class ViewPaintManager {
 
-    FlappyGameStatus gameStatus;
+    private FlappyGameStatus gameStatus;
 
-    Canvas canvas;
+    private Canvas canvas;
 
     /** The score the user gets. */
     private Paint score = new Paint();
@@ -55,7 +55,7 @@ public class ViewPaintManager {
 
     void drawLevel() {
         int canvasWidth = canvas.getWidth();
-        canvas.drawText("" + gameStatus.getDifficulty(), canvasWidth / 2, 80, level);
+        canvas.drawText("Stage: " + gameStatus.getStage(), canvasWidth / 2, 80, level);
     }
 
 

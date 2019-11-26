@@ -116,7 +116,7 @@ public class FlappyGameViewFacade extends View {
   @Override
   public boolean onTouchEvent(MotionEvent event) {
     if (event.getAction() == MotionEvent.ACTION_DOWN) {
-      ((FlappyGameFish)gameStatus.fish).setFishJumpSpeed();
+      gameStatus.fish.setFishJumpSpeed();
     }
     return true;
   }
