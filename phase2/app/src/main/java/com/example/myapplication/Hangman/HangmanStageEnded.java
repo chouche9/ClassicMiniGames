@@ -21,7 +21,7 @@ public class HangmanStageEnded extends AppCompatActivity
     /**
      * A HangmanGameStatInteractor that stores the hangman game status.
      */
-    private HangmanGameStatInteractor hangmanGameStat;
+    private HangmanGameStatFacade hangmanGameStat;
 
     /**
      * A String to store the original gender

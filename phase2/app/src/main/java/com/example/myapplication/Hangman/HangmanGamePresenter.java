@@ -2,13 +2,13 @@ package com.example.myapplication.Hangman;
 
 import com.example.myapplication.GameStatus;
 
-public class HangmanGamePresenter implements HangmanGameStatInteractor.OnValidateCharListener{
+public class HangmanGamePresenter implements HangmanGameStatFacade.OnValidateCharListener{
 
     private HangmanGameActivity hangmanGameActivity;
-    private HangmanGameStatInteractor hangmanGameStat;
+    private HangmanGameStatFacade hangmanGameStat;
     private HangmanWordGenerator hangmanWordGenerator;
 
-    HangmanGamePresenter(HangmanGameActivity view, HangmanGameStatInteractor interactor) {
+    HangmanGamePresenter(HangmanGameActivity view, HangmanGameStatFacade interactor) {
         this.hangmanGameActivity = view;
         this.hangmanGameStat = interactor;
         this.hangmanWordGenerator = new HangmanWordGenerator(view);
@@ -81,7 +81,7 @@ public class HangmanGamePresenter implements HangmanGameStatInteractor.OnValidat
     }
 
     @Override
-    public void onGameEnd(HangmanGameStatInteractor hm) {
+    public void onGameEnd(HangmanGameStatFacade hm) {
         if (hangmanGameActivity != null) {
             hangmanGameActivity.gameEnded(hm);
         }

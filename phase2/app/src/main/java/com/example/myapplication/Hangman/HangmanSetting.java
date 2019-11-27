@@ -14,7 +14,7 @@ import com.example.myapplication.R;
 public class HangmanSetting extends AppCompatActivity implements View.OnClickListener {
 
   /** A variable to store the hangmanGameStat */
-  private HangmanGameStatInteractor hangmanGameStat;
+  private HangmanGameStatFacade hangmanGameStat;
 
   /**
    * Initializes this HangmanMain activity.

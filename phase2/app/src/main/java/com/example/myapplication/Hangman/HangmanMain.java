@@ -32,7 +32,7 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
   private String settingsGender;
 
   /** Game state for this HangmanGame of the user that is currently playing. */
-  private HangmanGameStatInteractor hangmanGameStat;
+  private HangmanGameStatFacade hangmanGameStat;
 
   /**
    * Name used globally to send/retrieve the HangmanGameStat instance to/from an intent.
