@@ -78,8 +78,8 @@ public class HangmanGameStatFacade extends GameStatus
 
     private boolean bonusLevelActivated = false;
 
-    private HangmanGameGuessedLetter hangmanGameGuessedLetter;
-    private HangmanGameGuessedWord hangmanGameGuessedWord;
+    private HangmanGameGuessedLetter hangmanGameGuessedLetter = new HangmanGameGuessedLetter();
+    private HangmanGameGuessedWord hangmanGameGuessedWord = new HangmanGameGuessedWord();
 
     /**
      * A constructor to construct the HangmanGame statistics

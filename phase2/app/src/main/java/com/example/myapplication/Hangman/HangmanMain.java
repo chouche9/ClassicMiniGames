@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -75,6 +76,8 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
     btnResumeGame.setOnClickListener(this);
     btnSettings.setOnClickListener(this);
     btnBackToMain.setOnClickListener(this);
+
+    Log.e("HangmanMain", "ONCREATE");
   }
 
   /** Resumes this HangmanMain activity. */
@@ -93,6 +96,7 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
       btnResumeGame.setVisibility(View.GONE);
     }
     startService(new Intent(this, HangmanBackgroundMusic.class));
+    Log.e("HangmanMain", "ONRESUME");
   }
 
   /**

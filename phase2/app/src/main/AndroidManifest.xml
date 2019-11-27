@@ -36,8 +36,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".Hangman.HangmanBackgroundMusic"
-            android:process=".HangmanBackgroundService"/>
+        <service android:name=".Hangman.HangmanBackgroundMusic" />
         <service android:name=".SpaceShooter.ShooterBackGroundMusic" />
     </application>
 

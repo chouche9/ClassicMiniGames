@@ -85,12 +85,6 @@ public class HangmanStageEnded extends AppCompatActivity
         setBonusLevelButton();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        startService(new Intent(this, HangmanBackgroundMusic.class));
-    }
-
     private void stageEndedResult() {
         String firstMessage;
         String valueMessage;
@@ -235,6 +229,7 @@ public class HangmanStageEnded extends AppCompatActivity
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        stopService(new Intent(getApplicationContext(), HangmanBackgroundMusic.class));
                         Intent intent = new Intent(getApplicationContext(), GameMain.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         intent.putExtra(HangmanMain.getGamestatusMsg(), hangmanGameStat);
@@ -243,7 +238,6 @@ public class HangmanStageEnded extends AppCompatActivity
                         finish();
                     }
                 });
-        stopService(new Intent(this, HangmanBackgroundMusic.class));
     }
 
     /**
