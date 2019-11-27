@@ -118,7 +118,7 @@ public class HangmanGameActivity extends AppCompatActivity
         picture_index = 0;
 
         Intent intent = getIntent();
-        HangmanGameStatInteractor hangmanGameStat =
+        HangmanGameStatFacade hangmanGameStat =
                 intent.getParcelableExtra(HangmanMain.getGamestatusMsg());
 
         hangmanGamePresenter = new HangmanGamePresenter(this, hangmanGameStat);
@@ -300,7 +300,7 @@ public class HangmanGameActivity extends AppCompatActivity
     }
 
     @Override
-    public void gameEnded(HangmanGameStatInteractor hm) {
+    public void gameEnded(HangmanGameStatFacade hm) {
         // intent opens up the "game lost" activity
         Intent intent = new Intent(this, HangmanStageEnded.class);
         intent.putExtra(HangmanMain.getGamestatusMsg(), hm);
