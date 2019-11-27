@@ -85,6 +85,12 @@ public class HangmanStageEnded extends AppCompatActivity
         setBonusLevelButton();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        startService(new Intent(this, HangmanBackgroundMusic.class));
+    }
+
     private void stageEndedResult() {
         String firstMessage;
         String valueMessage;
@@ -237,6 +243,7 @@ public class HangmanStageEnded extends AppCompatActivity
                         finish();
                     }
                 });
+        stopService(new Intent(this, HangmanBackgroundMusic.class));
     }
 
     /**

@@ -5,6 +5,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,7 +19,7 @@ import com.example.myapplication.R;
  * The User Interface of this Hangman Game.
  */
 public class HangmanGameActivity extends AppCompatActivity
-        implements HangmanGameView, HangmanDialog.HangmanDialogListener {
+        implements HangmanGameView, HangmanDialog.HangmanDialogListener, View.OnClickListener {
 
     /**
      * Name used globally to send/retrieve the winning/losing message to/from an intent.
@@ -87,6 +88,10 @@ public class HangmanGameActivity extends AppCompatActivity
 
     private TextView txtStageNum;
 
+    private Button btnPlayMusic;
+
+    private Button btnStopMusic;
+
     /**
      * Initializes this HangmanGame activity.
      *
@@ -105,6 +110,8 @@ public class HangmanGameActivity extends AppCompatActivity
         btnGuessLetter = findViewById(R.id.btnGuess);
         btnGuessWord = findViewById(R.id.btnGuessWord);
         txtStageNum = findViewById(R.id.txtStageNum);
+        btnPlayMusic = findViewById(R.id.btnPlayMusic);
+        btnStopMusic = findViewById(R.id.btnStopMusic);
 
         ConstraintLayout layout = findViewById(R.id.hangman_game_layout);
 
@@ -122,33 +129,45 @@ public class HangmanGameActivity extends AppCompatActivity
 
         if (gender.equals("FEMALE")) {
             pictures =
-                new int[]{
-                        R.drawable.start,
-                        R.drawable.female_head,
-                        R.drawable.female_leftarm,
-                        R.drawable.female_rightarm,
-                        R.drawable.female_body,
-                        R.drawable.female_leftleg,
-                        R.drawable.female_rightleg
-                };
+                    new int[]{
+                            R.drawable.start,
+                            R.drawable.female_head,
+                            R.drawable.female_leftarm,
+                            R.drawable.female_rightarm,
+                            R.drawable.female_body,
+                            R.drawable.female_leftleg,
+                            R.drawable.female_rightleg
+                    };
 
             layout.setBackgroundResource(R.drawable.hangman_bg_female);
         } else {
             pictures =
-                new int[]{
-                        R.drawable.start,
-                        R.drawable.male_head,
-                        R.drawable.male_leftarm,
-                        R.drawable.male_rightarm,
-                        R.drawable.male_body,
-                        R.drawable.male_leftleg,
-                        R.drawable.male_rightleg
-                };
+                    new int[]{
+                            R.drawable.start,
+                            R.drawable.male_head,
+                            R.drawable.male_leftarm,
+                            R.drawable.male_rightarm,
+                            R.drawable.male_body,
+                            R.drawable.male_leftleg,
+                            R.drawable.male_rightleg
+                    };
 
             layout.setBackgroundResource(R.drawable.hangman_bg_male);
         }
+
+        btnPlayMusic.setOnClickListener(this);
+        btnStopMusic.setOnClickListener(this);
         setBtnGuessLetter();
         setBtnGuessWord();
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view == btnPlayMusic) {
+            startService(new Intent(this, HangmanBackgroundMusic.class));
+        } else if (view == btnStopMusic) {
+            stopService(new Intent(this, HangmanBackgroundMusic.class));
+        }
     }
 
     /**

@@ -92,6 +92,7 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
     } else {
       btnResumeGame.setVisibility(View.GONE);
     }
+    startService(new Intent(this, HangmanBackgroundMusic.class));
   }
 
   /**
@@ -121,6 +122,7 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
         intent1 = new Intent(getApplicationContext(), GameMain.class);
         intent1.putExtra("user", hangmanGameStat.getName());
         intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        stopService(new Intent(this, HangmanBackgroundMusic.class));
         break;
     }
     intent1.putExtra(getGamestatusMsg(), hangmanGameStat);
@@ -132,5 +134,11 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
     super.onPause();
     HangmanGameManager hangmanGameManager = HangmanGameManager.getInstance(this);
     hangmanGameManager.saveGame(hangmanGameStat);
+  }
+
+  @Override
+  public void onBackPressed() {
+    super.onBackPressed();
+    stopService(new Intent(this, HangmanBackgroundMusic.class));
   }
 }
