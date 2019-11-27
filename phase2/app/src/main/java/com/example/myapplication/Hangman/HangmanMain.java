@@ -114,7 +114,6 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
    */
   @Override
   public void onClick(View view) {
-
     if (view == btnPlayMusic) {
       startService(new Intent(this, HangmanBackgroundMusic.class));
     } else if (view == btnStopMusic) {
