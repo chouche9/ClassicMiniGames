@@ -7,27 +7,33 @@
     android:background="@drawable/hangman_main"
     tools:context=".Hangman.HangmanMain">
 
-<!--    <TextView-->
-<!--        android:id="@+id/txtHangman"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        android:text="@string/hangman_app_name"-->
-<!--        android:textColor="@color/colorHangmanAccent"-->
-<!--        android:textSize="40sp"-->
-<!--        android:textStyle="bold|italic"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
+    <Button
+        android:id="@+id/btnPlayMusic"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="261dp"
+        android:layout_marginLeft="261dp"
+        android:layout_marginTop="185dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/sound_on"
+        app:layout_constraintEnd_toStartOf="@+id/btnStopMusic"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-<!--    <View-->
-<!--        android:id="@+id/topDivider"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="10dp"-->
-<!--        android:layout_marginTop="24dp"-->
-<!--        android:background="@color/colorHangmanAccent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/txtHangman"-->
-<!--        tools:layout_editor_absoluteX="0dp" />-->
+    <Button
+        android:id="@+id/btnStopMusic"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="185dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginRight="60dp"
+        android:background="@drawable/sound_off"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnNewGame"

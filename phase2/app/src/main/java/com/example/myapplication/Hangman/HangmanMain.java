@@ -35,6 +35,12 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
   /** Game state for this HangmanGame of the user that is currently playing. */
   private HangmanGameStatFacade hangmanGameStat;
 
+  /** Button that the user clicks to play background music. */
+  private Button btnPlayMusic;
+
+  /** Button that the user clicks to stop background music. */
+  private Button btnStopMusic;
+
   /**
    * Name used globally to send/retrieve the HangmanGameStat instance to/from an intent.
    *
@@ -58,6 +64,8 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
     btnResumeGame = findViewById(R.id.btnResumeGame);
     btnSettings = findViewById(R.id.btnSettings);
     btnBackToMain = findViewById(R.id.btnBackToHome);
+    btnPlayMusic = findViewById(R.id.btnPlayMusic);
+    btnStopMusic = findViewById(R.id.btnStopMusic);
 
     HangmanGameManager hangmanGameManager = HangmanGameManager.getInstance(this);
     Intent intent = getIntent();
@@ -77,7 +85,8 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
     btnSettings.setOnClickListener(this);
     btnBackToMain.setOnClickListener(this);
 
-    Log.e("HangmanMain", "ONCREATE");
+    btnPlayMusic.setOnClickListener(this);
+    btnStopMusic.setOnClickListener(this);
   }
 
   /** Resumes this HangmanMain activity. */
@@ -96,7 +105,6 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
       btnResumeGame.setVisibility(View.GONE);
     }
     startService(new Intent(this, HangmanBackgroundMusic.class));
-    Log.e("HangmanMain", "ONRESUME");
   }
 
   /**
@@ -107,30 +115,36 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
   @Override
   public void onClick(View view) {
 
-    switch (view.getId()) {
-      case R.id.btnNewGame:
-        hangmanGameStat.resetGameStatus();
-        hangmanGameStat.setGender(settingsGender);
-        intent1 = new Intent(getApplicationContext(), HangmanGameActivity.class);
-        break;
+    if (view == btnPlayMusic) {
+      startService(new Intent(this, HangmanBackgroundMusic.class));
+    } else if (view == btnStopMusic) {
+      stopService(new Intent(this, HangmanBackgroundMusic.class));
+    } else {
+      switch (view.getId()) {
+        case R.id.btnNewGame:
+          hangmanGameStat.resetGameStatus();
+          hangmanGameStat.setGender(settingsGender);
+          intent1 = new Intent(getApplicationContext(), HangmanGameActivity.class);
+          break;
 
-      case R.id.btnResumeGame:
-        intent1 = new Intent(getApplicationContext(), HangmanGameActivity.class);
-        break;
+        case R.id.btnResumeGame:
+          intent1 = new Intent(getApplicationContext(), HangmanGameActivity.class);
+          break;
 
-      case R.id.btnSettings:
-        intent1 = new Intent(getApplicationContext(), HangmanSetting.class);
-        break;
+        case R.id.btnSettings:
+          intent1 = new Intent(getApplicationContext(), HangmanSetting.class);
+          break;
 
-      case R.id.btnBackToHome:
-        intent1 = new Intent(getApplicationContext(), GameMain.class);
-        intent1.putExtra("user", hangmanGameStat.getName());
-        intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        stopService(new Intent(this, HangmanBackgroundMusic.class));
-        break;
+        case R.id.btnBackToHome:
+          intent1 = new Intent(getApplicationContext(), GameMain.class);
+          intent1.putExtra("user", hangmanGameStat.getName());
+          intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+          stopService(new Intent(this, HangmanBackgroundMusic.class));
+          break;
+      }
+      intent1.putExtra(getGamestatusMsg(), hangmanGameStat);
+      startActivity(intent1);
     }
-    intent1.putExtra(getGamestatusMsg(), hangmanGameStat);
-    startActivity(intent1);
   }
 
   @Override

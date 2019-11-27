@@ -7,24 +7,29 @@
     tools:context=".Hangman.HangmanStageEnded"
     android:background="@drawable/hangman_game_ends">
 
-<!--    <TextView-->
-<!--        android:id="@+id/txtHangman"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="@string/hangman_app_name"-->
-<!--        android:textColor="@color/colorHangmanAccent"-->
-<!--        android:textSize="40sp"-->
-<!--        android:textStyle="bold|italic"-->
-<!--        tools:layout_editor_absoluteX="50dp"-->
-<!--        tools:layout_editor_absoluteY="16dp" />-->
+    <Button
+        android:id="@+id/btnPlayMusic"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginRight="3dp"
+        android:background="@drawable/sound_on"
+        app:layout_constraintEnd_toStartOf="@+id/btnStopMusic"
+        app:layout_constraintTop_toTopOf="parent" />
 
-<!--    <View-->
-<!--        android:id="@+id/topDivider"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="10dp"-->
-<!--        android:background="@color/colorHangmanAccent"-->
-<!--        tools:layout_editor_absoluteX="0dp"-->
-<!--        tools:layout_editor_absoluteY="94dp" />-->
+    <Button
+        android:id="@+id/btnStopMusic"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/sound_off"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/bottomDivider"
