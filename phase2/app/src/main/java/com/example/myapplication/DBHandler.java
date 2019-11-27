@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.myapplication.FlappyFish.FlappyGameStatus;
 import com.example.myapplication.GuessNum.GuessGameStat;
-import com.example.myapplication.Hangman.HangmanGameStatInteractor;
+import com.example.myapplication.Hangman.HangmanGameStatFacade;
 import com.example.myapplication.SpaceShooter.ShooterGameStatus;
 import com.google.gson.Gson;
 
@@ -65,7 +65,7 @@ public class DBHandler extends SQLiteOpenHelper {
   private void putGameTypeClass() {
     gameTypeClass.put(Game.FLAPPYFISH, FlappyGameStatus.class);
     gameTypeClass.put(Game.SPACESHOOTER, ShooterGameStatus.class);
-    gameTypeClass.put(Game.HANGMAN, HangmanGameStatInteractor.class);
+    gameTypeClass.put(Game.HANGMAN, HangmanGameStatFacade.class);
     gameTypeClass.put(Game.GUESSNUM, GuessGameStat.class);
   }
 
