@@ -3,7 +3,7 @@ package com.example.myapplication.GuessNum;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.example.myapplication.GameStatus;
+import com.example.myapplication.Domain.GameStatus;
 /** the class that store a particular player's Guessing Game info . */
 public class GuessGameStat extends GameStatus implements Parcelable {
   /** color of the Text for the GuessGame player choose */

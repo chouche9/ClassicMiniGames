@@ -3,8 +3,8 @@ package com.example.myapplication.FlappyFish;
 import android.app.Activity;
 
 import com.example.myapplication.databaseconnector.GameEnum;
-import com.example.myapplication.GameManager;
-import com.example.myapplication.GameStatus;
+import com.example.myapplication.Domain.GameManager;
+import com.example.myapplication.Domain.GameStatus;
 import com.example.myapplication.databaseconnector.GameStatusDaoImpl;
 
 /** The game manager for this flappy fish game. */

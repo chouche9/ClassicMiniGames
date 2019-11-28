@@ -1,10 +1,6 @@
-package com.example.myapplication;
+package com.example.myapplication.Domain;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.SharedPreferences;
-
-import com.google.gson.Gson;
 
 /** A UserManager for this application. */
 public class UserManager {

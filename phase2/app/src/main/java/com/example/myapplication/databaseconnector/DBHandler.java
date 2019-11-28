@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.myapplication.FlappyFish.FlappyGameStatus;
-import com.example.myapplication.GameStatus;
+import com.example.myapplication.Domain.GameStatus;
 import com.example.myapplication.GuessNum.GuessGameStat;
 import com.example.myapplication.Hangman.HangmanGameStatFacade;
 import com.example.myapplication.SpaceShooter.ShooterGameStatus;

@@ -1,6 +1,6 @@
 package com.example.myapplication.Hangman;
 
-import com.example.myapplication.GameStatus;
+import com.example.myapplication.Domain.GameStatus;
 
 public class HangmanGamePresenter implements HangmanGameStatFacade.OnValidateCharListener{
 

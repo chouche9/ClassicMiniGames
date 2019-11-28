@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.example.myapplication.AppMainPage.GameMain;
 import com.example.myapplication.R;
-import com.example.myapplication.UserManager;
+import com.example.myapplication.Domain.UserManager;
 
 /** A login activity. */
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, LoginView {

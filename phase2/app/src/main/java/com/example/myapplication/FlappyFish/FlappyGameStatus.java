@@ -8,7 +8,7 @@ import com.example.myapplication.FlappyFish.GameObjects.FlappyGameFish;
 import com.example.myapplication.FlappyFish.GameObjects.FlappyGameObjects;
 import com.example.myapplication.FlappyFish.GameObjects.FlappyGameShark;
 import com.example.myapplication.FlappyFish.GameObjects.FlappyGameShrimp;
-import com.example.myapplication.GameStatus;
+import com.example.myapplication.Domain.GameStatus;
 
 /** The flappy fish game status. */
 public class FlappyGameStatus extends GameStatus implements Parcelable {

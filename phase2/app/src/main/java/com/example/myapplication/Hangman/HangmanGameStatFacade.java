@@ -3,7 +3,7 @@ package com.example.myapplication.Hangman;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.example.myapplication.GameStatus;
+import com.example.myapplication.Domain.GameStatus;
 
 public class HangmanGameStatFacade extends GameStatus
         implements Parcelable, HangmanGameGuessedLetter.onHangmanGameGuessedLetterListener,

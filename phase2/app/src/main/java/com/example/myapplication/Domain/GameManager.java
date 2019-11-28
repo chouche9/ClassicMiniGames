@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.Domain;
 
 /** A game manager. */
 public abstract class GameManager {

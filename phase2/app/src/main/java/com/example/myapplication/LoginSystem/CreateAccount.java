@@ -10,8 +10,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.myapplication.R;
-import com.example.myapplication.User;
-import com.example.myapplication.UserManager;
+import com.example.myapplication.Domain.User;
+import com.example.myapplication.Domain.UserManager;
 
 /** Activity that creates a user account. */
 public class CreateAccount extends AppCompatActivity implements View.OnClickListener {

@@ -1,6 +1,6 @@
 package com.example.myapplication.LoginSystem;
 
-import com.example.myapplication.UserManager;
+import com.example.myapplication.Domain.UserManager;
 
 public class LoginInteractor {
 
