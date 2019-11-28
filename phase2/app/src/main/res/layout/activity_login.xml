@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginSystem.LoginActivity"
+    tools:context=".LoginSystem.Login.LoginActivity"
     android:background="@color/pink">
     <EditText
         android:id="@+id/nameEntry"

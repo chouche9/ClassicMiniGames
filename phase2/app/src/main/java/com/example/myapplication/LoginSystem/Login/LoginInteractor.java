@@ -1,8 +1,8 @@
-package com.example.myapplication.LoginSystem;
+package com.example.myapplication.LoginSystem.Login;
 
 import com.example.myapplication.Domain.UserManager;
 
-public class LoginInteractor {
+class LoginInteractor {
 
     interface onLoginInteractorListener {
 

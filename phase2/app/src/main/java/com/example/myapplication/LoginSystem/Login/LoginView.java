@@ -1,6 +1,6 @@
-package com.example.myapplication.LoginSystem;
+package com.example.myapplication.LoginSystem.Login;
 
-public interface LoginView {
+interface LoginView {
 
     void onUsernameEmptyError();
 

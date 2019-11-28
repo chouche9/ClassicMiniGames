@@ -1,6 +1,6 @@
-package com.example.myapplication.LoginSystem;
+package com.example.myapplication.LoginSystem.Login;
 
-public class LoginPresenter implements LoginInteractor.onLoginInteractorListener{
+class LoginPresenter implements LoginInteractor.onLoginInteractorListener{
     
     private LoginActivity loginActivity;
     
