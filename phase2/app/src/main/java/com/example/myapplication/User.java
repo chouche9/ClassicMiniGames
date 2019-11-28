@@ -21,7 +21,7 @@ public class User implements Parcelable {
    * @param name the username of this user.
    * @param password the password of this user.
    */
-  User(String name, String password) {
+  public User(String name, String password) {
     this.name = name;
     this.password = password;
   }

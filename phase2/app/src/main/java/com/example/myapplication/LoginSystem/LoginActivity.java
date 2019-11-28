@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.LoginSystem;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,8 +10,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.myapplication.AppMainPage.GameMain;
+import com.example.myapplication.R;
+import com.example.myapplication.UserManager;
+
 /** A login activity. */
-public class Login extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
   /** The input field used to get the username. */
   EditText account;

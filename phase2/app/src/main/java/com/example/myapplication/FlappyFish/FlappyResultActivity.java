@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.myapplication.FlappyFish.FlappyGameView.FlappyGameViewFacade;
-import com.example.myapplication.GameMain;
+import com.example.myapplication.AppMainPage.GameMain;
 import com.example.myapplication.R;
 
 /** The result page that is shown when the game finishes. */

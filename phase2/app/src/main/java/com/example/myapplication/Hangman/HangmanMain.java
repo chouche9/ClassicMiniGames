@@ -4,11 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.myapplication.GameMain;
+import com.example.myapplication.AppMainPage.GameMain;
 import com.example.myapplication.R;
 
 /** Main page of this Hangman Game. */

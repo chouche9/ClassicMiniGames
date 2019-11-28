@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.LoginSystem;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.myapplication.R;
 
 /** Main page of this application. */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(intentCreate);
         break;
       case R.id.login:
-        Intent intentLogin = new Intent(this, Login.class);
+        Intent intentLogin = new Intent(this, LoginActivity.class);
         startActivity(intentLogin);
         break;
 

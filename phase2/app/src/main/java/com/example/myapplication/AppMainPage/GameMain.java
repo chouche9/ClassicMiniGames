@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.AppMainPage;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import com.example.myapplication.FlappyFish.FlappyGameMenu;
 import com.example.myapplication.Hangman.HangmanMain;
+import com.example.myapplication.R;
 import com.example.myapplication.SpaceShooter.shootergamestart.ShooterStart;
 
 /** Main page of all three games. */

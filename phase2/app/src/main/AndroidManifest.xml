@@ -25,10 +25,10 @@
         <activity android:name=".GuessNum.GuessMain" />
         <activity android:name=".GuessNum.GuessGame" />
         <activity android:name=".GuessNum.GuessCongratulation" />
-        <activity android:name=".Login" />
-        <activity android:name=".GameMain" />
-        <activity android:name=".CreateAccount" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".LoginSystem.LoginActivity" />
+        <activity android:name=".AppMainPage.GameMain" />
+        <activity android:name=".LoginSystem.CreateAccount" />
+        <activity android:name=".LoginSystem.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

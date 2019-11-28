@@ -1,8 +1,10 @@
 package com.example.myapplication;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 
-import com.example.myapplication.databaseconnector.UserDaoImpl;
+import com.google.gson.Gson;
 
 /** A UserManager for this application. */
 public class UserManager {
@@ -38,8 +40,8 @@ public class UserManager {
    *
    * @param user the user that is to be saved.
    */
-  void saveUser(User user) {
-    UserDaoImpl.getInstance(activity).saveUser(user);
+  public void saveUser(User user) {
+    DBHandler.getInstance(activity).saveUser(user);
   }
 
   /**
@@ -49,7 +51,7 @@ public class UserManager {
    * @return User the user instance with the username userName.
    */
   private User getUser(String username) {
-    return UserDaoImpl.getInstance(activity).getUser(username);
+    return DBHandler.getInstance(activity).getUser(username);
   }
 
   /**
@@ -59,7 +61,7 @@ public class UserManager {
    * @param password the password.
    * @return true if userName and password are valid.
    */
-  boolean authenticate(String userName, String password) {
+  public boolean authenticate(String userName, String password) {
     User user = getUser(userName);
     if (user == null) {
       return false;
@@ -73,7 +75,7 @@ public class UserManager {
    * @param userName the username.
    * @return true if a user with userName doesn't exist.
    */
-  boolean createAuthenticate(String userName) {
+  public boolean createAuthenticate(String userName) {
     User user = userManager.getUser(userName);
     return user == null;
   }

@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.myapplication.BonusLevel.BonusLevelDialog;
-import com.example.myapplication.GameMain;
+import com.example.myapplication.AppMainPage.GameMain;
 import com.example.myapplication.R;
 
 /** Activity that get activated when a stage ends in hangman. */

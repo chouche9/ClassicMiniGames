@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.myapplication.GameMain;
+import com.example.myapplication.AppMainPage.GameMain;
 import com.example.myapplication.R;
 import com.example.myapplication.SpaceShooter.ShooterBackGroundMusic;
 import com.example.myapplication.SpaceShooter.shooterplanegame.ShooterGame;
