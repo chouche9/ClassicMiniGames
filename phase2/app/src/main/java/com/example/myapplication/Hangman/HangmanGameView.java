@@ -1,6 +1,6 @@
 package com.example.myapplication.Hangman;
 
-public interface HangmanGameView {
+interface HangmanGameView {
 
     void showEmptyError();
 

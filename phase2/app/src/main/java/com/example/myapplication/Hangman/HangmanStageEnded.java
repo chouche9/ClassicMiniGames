@@ -13,7 +13,7 @@ import com.example.myapplication.AppMainPage.GameMain;
 import com.example.myapplication.R;
 
 /** Activity that get activated when a stage ends in hangman. */
-public class HangmanStageEnded extends AppCompatActivity
+class HangmanStageEnded extends AppCompatActivity
     implements BonusLevelDialog.BonusLevelDialogListener, View.OnClickListener {
 
   /** A HangmanGameStatInteractor that stores the hangman game status. */

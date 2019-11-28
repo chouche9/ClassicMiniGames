@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.example.myapplication.R;
 
 /** The User Interface of this Hangman Game. */
-public class HangmanGameActivity extends AppCompatActivity
+class HangmanGameActivity extends AppCompatActivity
     implements HangmanGameView, HangmanDialog.HangmanDialogListener, View.OnClickListener {
 
   /** Name used globally to send/retrieve the winning/losing message to/from an intent. */

@@ -2,7 +2,7 @@ package com.example.myapplication.Hangman;
 
 import com.example.myapplication.Domain.GameStatus;
 
-public class HangmanGamePresenter implements HangmanGameStatFacade.OnValidateCharListener{
+class HangmanGamePresenter implements HangmanGameStatFacade.OnValidateCharListener{
 
     private HangmanGameActivity hangmanGameActivity;
     private HangmanGameStatFacade hangmanGameStat;

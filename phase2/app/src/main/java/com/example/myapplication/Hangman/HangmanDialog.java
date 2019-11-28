@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 import com.example.myapplication.R;
 
 /** The dialog that is activated when the user wishes to guess the full word. */
-public class HangmanDialog extends AppCompatDialogFragment {
+class HangmanDialog extends AppCompatDialogFragment {
     /** The input field used to get the user's guessed word. */
     private EditText edtWordGuessed;
 

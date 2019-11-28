@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 import com.example.myapplication.Domain.GameStatus;
 
-public class HangmanGameStatFacade extends GameStatus
+class HangmanGameStatFacade extends GameStatus
         implements Parcelable, HangmanGameGuessedLetter.onHangmanGameGuessedLetterListener,
         HangmanGameGuessedWord.onHangmanGameGuessedWordListener{
 

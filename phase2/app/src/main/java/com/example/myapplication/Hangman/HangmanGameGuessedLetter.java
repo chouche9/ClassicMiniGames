@@ -1,6 +1,6 @@
 package com.example.myapplication.Hangman;
 
-public class HangmanGameGuessedLetter {
+class HangmanGameGuessedLetter {
     interface onHangmanGameGuessedLetterListener {
         void onCorrectLetter(char guessedLetter);
 
