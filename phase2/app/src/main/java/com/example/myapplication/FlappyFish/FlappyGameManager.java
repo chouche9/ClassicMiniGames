@@ -2,9 +2,10 @@ package com.example.myapplication.FlappyFish;
 
 import android.app.Activity;
 
-import com.example.myapplication.DBHandler;
+import com.example.myapplication.databaseconnector.GameEnum;
 import com.example.myapplication.GameManager;
 import com.example.myapplication.GameStatus;
+import com.example.myapplication.databaseconnector.GameStatusDaoImpl;
 
 /** The game manager for this flappy fish game. */
 class FlappyGameManager extends GameManager {
@@ -37,7 +38,7 @@ class FlappyGameManager extends GameManager {
    * @param gameStatus the new GameStatus want to get saved.
    */
   public void saveGame(GameStatus gameStatus) {
-    DBHandler.getInstance(activity).saveGameStatus(gameStatus, DBHandler.Game.FLAPPYFISH);
+    GameStatusDaoImpl.getInstance(activity).saveGameStatus(gameStatus, GameEnum.FLAPPYFISH);
   }
 
   /**
@@ -48,8 +49,8 @@ class FlappyGameManager extends GameManager {
    */
   public FlappyGameStatus getGameStatus(String username) {
     FlappyGameStatus flappyGameStatus =
-            (FlappyGameStatus)
-                    DBHandler.getInstance(activity).getGameStatus(username, DBHandler.Game.FLAPPYFISH);
+        (FlappyGameStatus)
+            GameStatusDaoImpl.getInstance(activity).getGameStatus(username, GameEnum.FLAPPYFISH);
     if (flappyGameStatus == null) {
       flappyGameStatus = new FlappyGameStatus(username);
     }

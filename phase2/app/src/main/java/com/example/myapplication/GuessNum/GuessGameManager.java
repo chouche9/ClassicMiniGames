@@ -2,9 +2,10 @@ package com.example.myapplication.GuessNum;
 
 import android.app.Activity;
 
-import com.example.myapplication.DBHandler;
+import com.example.myapplication.databaseconnector.GameEnum;
 import com.example.myapplication.GameManager;
 import com.example.myapplication.GameStatus;
+import com.example.myapplication.databaseconnector.GameStatusDaoImpl;
 
 /** the class that manager all GuessGameStat. */
 class GuessGameManager extends GameManager {
@@ -37,7 +38,7 @@ class GuessGameManager extends GameManager {
    * @param gameStatus the new GameStatus want to get saved.
    */
   public void saveGame(GameStatus gameStatus) {
-    DBHandler.getInstance(activity).saveGameStatus(gameStatus, DBHandler.Game.GUESSNUM);
+    GameStatusDaoImpl.getInstance(activity).saveGameStatus(gameStatus, GameEnum.GUESSNUM);
   }
 
   /**
@@ -48,8 +49,8 @@ class GuessGameManager extends GameManager {
    */
   public GuessGameStat getGameStatus(String username) {
     GuessGameStat guessGameStat =
-            (GuessGameStat)
-                    DBHandler.getInstance(activity).getGameStatus(username, DBHandler.Game.GUESSNUM);
+        (GuessGameStat)
+            GameStatusDaoImpl.getInstance(activity).getGameStatus(username, GameEnum.GUESSNUM);
     if (guessGameStat == null) {
       guessGameStat = new GuessGameStat(username);
     }

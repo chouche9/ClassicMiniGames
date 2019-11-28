@@ -2,9 +2,10 @@ package com.example.myapplication.Hangman;
 
 import android.app.Activity;
 
-import com.example.myapplication.DBHandler;
+import com.example.myapplication.databaseconnector.GameEnum;
 import com.example.myapplication.GameManager;
 import com.example.myapplication.GameStatus;
+import com.example.myapplication.databaseconnector.GameStatusDaoImpl;
 
 /** Game manager for this Hangman game. */
 class HangmanGameManager extends GameManager {
@@ -37,7 +38,7 @@ class HangmanGameManager extends GameManager {
    * @param gameStatus the new GameStatus want to get saved.
    */
   public void saveGame(GameStatus gameStatus) {
-    DBHandler.getInstance(activity).saveGameStatus(gameStatus, DBHandler.Game.HANGMAN);
+    GameStatusDaoImpl.getInstance(activity).saveGameStatus(gameStatus, GameEnum.HANGMAN);
   }
 
   /**
@@ -48,9 +49,8 @@ class HangmanGameManager extends GameManager {
    */
   public HangmanGameStatFacade getGameStatus(String username) {
     HangmanGameStatFacade hangmanGameStat =
-            (HangmanGameStatFacade)
-                    DBHandler.getInstance(activity)
-                            .getGameStatus(username, DBHandler.Game.HANGMAN);
+        (HangmanGameStatFacade)
+            GameStatusDaoImpl.getInstance(activity).getGameStatus(username, GameEnum.HANGMAN);
 
     if (hangmanGameStat == null) {
       hangmanGameStat = new HangmanGameStatFacade(username);
