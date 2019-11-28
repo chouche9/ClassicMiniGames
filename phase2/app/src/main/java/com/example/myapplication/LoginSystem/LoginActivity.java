@@ -15,25 +15,27 @@ import com.example.myapplication.R;
 import com.example.myapplication.UserManager;
 
 /** A login activity. */
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener, LoginView {
 
   /** The input field used to get the username. */
-  EditText account;
+  EditText edtUsername;
 
   /** The input field used to get password. */
-  EditText password;
+  EditText edtPassword;
 
   /** Button used to log in. */
-  Button login;
+  Button btnLogin;
 
   /** Button used to go back to the main page of the application. */
-  Button backFront;
+  Button btnBackFront;
 
   /** Username that was input into EditText account. */
   String name;
 
   /** The code used to match the correct activity launch. */
   final int REQUEST_CODE = 5;
+
+  private LoginPresenter loginPresenter;
 
   /**
    * Initializes this login activity.
@@ -44,12 +46,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_login);
-    account = findViewById(R.id.nameEntry);
-    password = findViewById(R.id.passwordEntry);
-    login = findViewById(R.id.login);
-    login.setOnClickListener(this);
-    backFront = findViewById(R.id.backfront);
-    backFront.setOnClickListener(this);
+
+    edtUsername = findViewById(R.id.nameEntry);
+    edtPassword = findViewById(R.id.passwordEntry);
+    btnLogin = findViewById(R.id.login);
+    btnLogin.setOnClickListener(this);
+    btnBackFront = findViewById(R.id.backfront);
+    loginPresenter = new LoginPresenter(this);
+
+    btnBackFront.setOnClickListener(this);
   }
 
   /**
@@ -73,8 +78,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
    * @return true if the login is verified.
    */
   private boolean verifyLogin() {
-    name = account.getText().toString().trim();
-    String passwordString = password.getText().toString().trim();
+    name = edtUsername.getText().toString().trim();
+    String passwordString = edtPassword.getText().toString().trim();
     UserManager userManager = UserManager.getInstance(this);
     return userManager.authenticate(name, passwordString);
   }
@@ -88,12 +93,24 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
   public void onClick(View view) {
     switch (view.getId()) {
       case R.id.login:
-        if (verifyLogin()) {
-          Intent intent = new Intent(this, GameMain.class);
-          intent.putExtra("user", name);
-          startActivityForResult(intent, REQUEST_CODE);
-        } else {
-          Toast.makeText(this, "Incorrect Username or Password", Toast.LENGTH_SHORT).show();
+
+        boolean isUsernameEmpty = false;
+        boolean isPasswordEmpty = false;
+
+        if (edtUsername.getText().length() == 0) {
+          onUsernameEmptyError();
+          isUsernameEmpty = true;
+        }
+
+        if (edtPassword.getText().length() == 0) {
+          onPasswordEmptyError();
+          isPasswordEmpty = true;
+        }
+
+        if (!isUsernameEmpty && !isPasswordEmpty){
+          name = edtUsername.getText().toString().trim();
+          String passwordString = edtPassword.getText().toString().trim();
+          loginPresenter.verify(name, passwordString);
         }
         break;
       case R.id.backfront:
@@ -101,4 +118,27 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         break;
     }
   }
+
+  @Override
+  public void onUsernameEmptyError() {
+    edtUsername.setError("Please enter username!");
+  }
+
+  @Override
+  public void onPasswordEmptyError() {
+    edtPassword.setError("Please enter password!");
+  }
+
+  @Override
+  public void onFail() {
+    Toast.makeText(this, "Incorrect Username or Password", Toast.LENGTH_SHORT).show();
+  }
+
+  @Override
+  public void onSuccess() {
+    Intent intent = new Intent(this, GameMain.class);
+    intent.putExtra("user", name);
+    startActivityForResult(intent, REQUEST_CODE);
+  }
+
 }
