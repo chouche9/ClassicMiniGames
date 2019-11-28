@@ -1,6 +1,6 @@
 package com.example.myapplication.BonusLevel;
 
-public interface BonusLevelView {
+interface BonusLevelView {
 
     void updateTries(int numTries);
 
