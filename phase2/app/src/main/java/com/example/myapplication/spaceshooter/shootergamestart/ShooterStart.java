@@ -86,4 +86,31 @@ public class ShooterStart extends AppCompatActivity implements View.OnClickListe
             stopService(new Intent(getApplicationContext(), ShooterBackGroundMusic.class));
         }
     }
+    void startMusic(){
+        startService(new Intent(getApplicationContext(), ShooterBackGroundMusic.class));
+    }
+    void stopMusic(){
+        stopService(new Intent(getApplicationContext(), ShooterBackGroundMusic.class));
+    }
+    void startGame(){
+        Intent intent = new Intent(this, ShooterSetting.class);
+        shooterStartLogic.eraseGameStat();
+        intent.putExtra("gameStatus", shooterStartLogic.getShooterGameStatus());
+        finish = false;
+        startActivity(intent);
+    }
+    void resumeGame(){
+        if (shooterStartLogic.checkAtLevel1Finish()){
+            Intent intent1 = new Intent(this, ShooterGameOver.class);
+            intent1.putExtra("gameStatus", shooterStartLogic.getShooterGameStatus());
+            finish = false;
+            startActivity(intent1);
+        }
+        else {
+            Intent intent1 = new Intent(this, ShooterGame.class);
+            intent1.putExtra("gameStatus", shooterStartLogic.getShooterGameStatus());
+            finish = false;
+            startActivity(intent1);
+        }
+    }
 }
