@@ -94,10 +94,10 @@ public class ShooterGameView extends View {
     void setBackground(){
         switch (shooterGameStatus.level){
             case 1:
-                background = BitmapFactory.decodeResource(getResources(), R.drawable.psbackground1);
+                background = BitmapFactory.decodeResource(getResources(), R.drawable.spaceshooter_bggame1);
                 break;
             case 2:
-                background = BitmapFactory.decodeResource(getResources(), R.drawable.psbackground2);
+                background = BitmapFactory.decodeResource(getResources(), R.drawable.spaceshooter_bggame2);
                 break;
         }
         Display display = ((Activity) getContext()).getWindowManager().getDefaultDisplay();

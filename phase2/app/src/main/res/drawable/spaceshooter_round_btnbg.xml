@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<shape
+    android:shape="rectangle"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <corners android:radius="40dp" />
+        <stroke android:width="4dp" android:color="@color/white" />
+<!--        <solid android:color="@color/spaceshooter_btn"/>-->
+
+<!--        <padding android:left="20dp" android:top="20dp"-->
+<!--            android:right="20dp" android:bottom="20dp" />-->
+    <gradient
+        android:type="linear"
+        android:angle="270"
+        android:startColor="@color/spaceshooter_btn"
+        android:endColor="@color/hangman_blue"
+        />
+    <corners android:radius="40dp"/>
+
+</shape>

@@ -4,53 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".spaceshooter.ShooterSetting">
+    tools:context=".spaceshooter.ShooterSetting"
+    android:background="@drawable/spaceshooter_bgchoose">
+
     <ImageButton
         android:id="@+id/plane1"
         android:layout_width="131dp"
         android:layout_height="64dp"
-        android:layout_marginBottom="56dp"
-        app:layout_constraintBottom_toTopOf="@+id/plane2"
+        android:background="#00000000"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.453"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.39"
         app:srcCompat="@drawable/psplane1" />
 
     <ImageButton
         android:id="@+id/plane2"
         android:layout_width="128dp"
         android:layout_height="73dp"
-        android:layout_marginBottom="88dp"
-        app:layout_constraintBottom_toTopOf="@+id/plane3"
+        android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.448"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/psplane2" />
+        app:layout_constraintTop_toBottomOf="@+id/plane1"
+        app:srcCompat="@drawable/psplane2"
+        android:background="#00000000"/>
 
     <ImageButton
         android:id="@+id/plane3"
         android:layout_width="123dp"
         android:layout_height="66dp"
-        android:layout_marginBottom="116dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.44"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/psplane3" />
+        app:layout_constraintTop_toBottomOf="@+id/plane2"
+        app:srcCompat="@drawable/psplane3"
+        android:background="#00000000"/>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="158dp"
-        android:layout_height="28dp"
-        android:text="Choose Your Plane"
-        android:textStyle="bold"
-        app:fontFamily="monospace"
-        app:layout_constraintBottom_toTopOf="@+id/plane1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.43"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.641" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
