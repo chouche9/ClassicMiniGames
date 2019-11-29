@@ -1,6 +1,6 @@
-package com.example.myapplication.LoginSystem.CreateAccount;
+package com.example.myapplication.loginsystem.CreateAccount;
 
-import com.example.myapplication.Domain.UserManager;
+import com.example.myapplication.domain.UserManager;
 
 public class CreateAccountInteractor {
 

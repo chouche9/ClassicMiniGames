@@ -1,4 +1,4 @@
-package com.example.myapplication.LoginSystem;
+package com.example.myapplication.loginsystem;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,8 +7,8 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.myapplication.LoginSystem.CreateAccount.CreateAccountActivity;
-import com.example.myapplication.LoginSystem.Login.LoginActivity;
+import com.example.myapplication.loginsystem.CreateAccount.CreateAccountActivity;
+import com.example.myapplication.loginsystem.Login.LoginActivity;
 import com.example.myapplication.R;
 
 /** Main page of this application. */

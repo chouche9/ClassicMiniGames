@@ -31,7 +31,7 @@ public class ShooterGameOverLogic {
             string = "Sorry, you did not finish the game, your score is " + point;
         }
         else {
-            string = "Congradulation, you finish game with " + point +"points!!!";
+            string = "Congratulation, you finish game with " + point +"points!!!";
         }
         return string;
     }

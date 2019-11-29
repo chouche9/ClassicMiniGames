@@ -37,7 +37,7 @@ public class ShooterGameOver extends AppCompatActivity implements View.OnClickLi
         backToMenu = findViewById(R.id.backToMenu);
         backToMenu.setOnClickListener(this);
         musicfinish = false;
-        message = findViewById(R.id.gamemassage);
+        message = findViewById(R.id.gamemessage);
     }
     @Override
     protected void onResume() {
