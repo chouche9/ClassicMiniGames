@@ -13,13 +13,11 @@ import com.example.myapplication.spaceshooter.shooterplanegame.ShooterGame;
 import com.example.myapplication.spaceshooter.ShooterSetting;
 import com.example.myapplication.spaceshooter.shootergameover.ShooterGameOver;
 
-public class ShooterStart extends AppCompatActivity implements View.OnClickListener{
+public class ShooterStart extends AppCompatActivity implements View.OnClickListener, ShooterStartView{
     Button start, exit, resume;
     boolean finish = true;
-    boolean musicstop;
-    ShooterStartLogic shooterStartLogic;
+    ShooterStartPresenter shooterStartPresenter;
     String user;
-    int i;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,49 +29,27 @@ public class ShooterStart extends AppCompatActivity implements View.OnClickListe
         resume = findViewById(R.id.resume);
         resume.setOnClickListener(this);
         user = getIntent().getStringExtra("user");
-        i = 0;
     }
     @Override
     protected void onResume() {
-        i++;
-        finish = true;
         super.onResume();
-        shooterStartLogic = new ShooterStartLogic(this, user);
-        startService(new Intent(getApplicationContext(), ShooterBackGroundMusic.class));
-        if(shooterStartLogic.ResumeBtnAppear()){
-            resume.setVisibility(View.VISIBLE);
-        }
-        else {
-            resume.setVisibility(View.GONE);
-        }
+        ShooterStartLogic shooterStartLogic = new ShooterStartLogic(this, user);
+        shooterStartPresenter = new ShooterStartPresenter(shooterStartLogic, this);
+        shooterStartPresenter.startMusic();
+        shooterStartPresenter.checkResumeAppear();
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.start:
-                Intent intent = new Intent(this, ShooterSetting.class);
-                shooterStartLogic.eraseGameStat();
-                intent.putExtra("gameStatus", shooterStartLogic.getShooterGameStatus());
-                finish = false;
-                startActivity(intent);
+                shooterStartPresenter.startNewGame();
                 break;
             case R.id.exit:
                 finish();
                 break;
             case R.id.resume:
-                if (shooterStartLogic.checkAtLevel1Finish()){
-                    Intent intent1 = new Intent(this, ShooterGameOver.class);
-                    intent1.putExtra("gameStatus", shooterStartLogic.getShooterGameStatus());
-                    finish = false;
-                    startActivity(intent1);
-                }
-                else {
-                    Intent intent1 = new Intent(this, ShooterGame.class);
-                    intent1.putExtra("gameStatus", shooterStartLogic.getShooterGameStatus());
-                    finish = false;
-                    startActivity(intent1);
-                }
+                shooterStartPresenter.resumeGame();
                 break;
         }
 
@@ -82,35 +58,46 @@ public class ShooterStart extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onPause() {
         super.onPause();
-        if(finish){
-            stopService(new Intent(getApplicationContext(), ShooterBackGroundMusic.class));
-        }
+        shooterStartPresenter.pauseMusic();
     }
-    void startMusic(){
+    public void startMusic(){
         startService(new Intent(getApplicationContext(), ShooterBackGroundMusic.class));
     }
-    void stopMusic(){
+    public void stopMusic(){
         stopService(new Intent(getApplicationContext(), ShooterBackGroundMusic.class));
     }
-    void startGame(){
-        Intent intent = new Intent(this, ShooterSetting.class);
-        shooterStartLogic.eraseGameStat();
-        intent.putExtra("gameStatus", shooterStartLogic.getShooterGameStatus());
-        finish = false;
-        startActivity(intent);
+
+
+    @Override
+    public void resumeAppear() {
+        resume.setVisibility(View.VISIBLE);
     }
-    void resumeGame(){
-        if (shooterStartLogic.checkAtLevel1Finish()){
-            Intent intent1 = new Intent(this, ShooterGameOver.class);
-            intent1.putExtra("gameStatus", shooterStartLogic.getShooterGameStatus());
-            finish = false;
-            startActivity(intent1);
-        }
-        else {
-            Intent intent1 = new Intent(this, ShooterGame.class);
-            intent1.putExtra("gameStatus", shooterStartLogic.getShooterGameStatus());
-            finish = false;
-            startActivity(intent1);
-        }
+
+
+    @Override
+    public void resumeGone() {
+        resume.setVisibility(View.GONE);
     }
+
+    @Override
+    public void startFinishPage() {
+        Intent startFinishPage = new Intent(this, ShooterGameOver.class);
+        startFinishPage.putExtra("gameStatus", shooterStartPresenter.getGameStatus());
+        startActivity(startFinishPage);
+    }
+
+    @Override
+    public void startGamePage() {
+        Intent startGameIntent = new Intent(this, ShooterGame.class);
+        startGameIntent.putExtra("gameStatus", shooterStartPresenter.getGameStatus());
+        startActivity(startGameIntent);
+    }
+
+    @Override
+    public void startSettingPage() {
+        Intent startSettingIntent = new Intent(this, ShooterSetting.class);
+        startSettingIntent.putExtra("gameStatus", shooterStartPresenter.getGameStatus());
+        startActivity(startSettingIntent);
+    }
+
 }

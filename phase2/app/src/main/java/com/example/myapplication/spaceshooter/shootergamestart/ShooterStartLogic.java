@@ -11,11 +11,13 @@ public class ShooterStartLogic {
     ShooterGameManager shooterGameManager;
     private ShooterGameStatus shooterGameStatus;
     String user;
+    private boolean musicFinish;
     ShooterStartLogic(Context context, String user){
         this.context = context;
         this.user = user;
         shooterGameManager = ShooterGameManager.getInstance((Activity)context);
         shooterGameStatus = shooterGameManager.getGameStatus(user);
+        musicFinish = true;
     }
     boolean ResumeBtnAppear(){
         if (!shooterGameStatus.gameSuccess){
@@ -27,19 +29,23 @@ public class ShooterStartLogic {
         else if(shooterGameStatus.level == 1 && shooterGameStatus.levelFinish){
             return true;
         }
-        else if(shooterGameStatus.level == 2 && shooterGameStatus.levelFinish){
-            return false;
-        }
-        return true;
+        else return shooterGameStatus.level != 2 || !shooterGameStatus.levelFinish;
     }
     void eraseGameStat(){
         shooterGameStatus.eraseGameStatus();
     }
+    void setMusicFinish(boolean musicFinish){
+        this.musicFinish = musicFinish;
+    }
+
     boolean checkAtLevel1Finish(){
         return shooterGameStatus.levelFinish;
     }
     ShooterGameStatus getShooterGameStatus(){
         return shooterGameStatus;
+    }
+    boolean getMusicFinish(){
+        return musicFinish;
     }
 
 }
