@@ -7,7 +7,7 @@ import com.example.myapplication.domain.GameManager;
 import com.example.myapplication.domain.GameStatus;
 import com.example.myapplication.databaseconnector.GameStatusDaoImpl;
 
-/** Game manager for this Hangman game. */
+/** The game manager for this Hangman game. */
 class HangmanGameManager extends GameManager {
 
   /** The singleton HangmanGameManager. */
@@ -31,12 +31,12 @@ class HangmanGameManager extends GameManager {
   }
 
   /**
-   * Returns the gameStatus instance that this HangmanGameManager is managing.
+   * Returns the HangmanGameManager instance that belongs to a user with specified username.
    *
    * @param username the username of the user playing this game.
-   * @return HangmanGameStat the HangmanGameStat instance of this user.
+   * @return HangmanGameStatFacade the HangmanGameStatFacade instance of this user.
    */
-  public HangmanGameStatFacade getGameStatus(String username) {
+  protected HangmanGameStatFacade getGameStatus(String username) {
     HangmanGameStatFacade hangmanGameStat =
             (HangmanGameStatFacade)
                     GameStatusDaoImpl.getInstance(getActivity()).getGameStatus(username, GameEnum.HANGMAN);

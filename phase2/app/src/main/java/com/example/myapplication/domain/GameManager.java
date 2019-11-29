@@ -15,7 +15,7 @@ public abstract class GameManager {
    *
    * @param activity the activity that called this GameManager.
    */
-  public GameManager(Activity activity) {
+  protected GameManager(Activity activity) {
     this.activity = activity;
   }
 
@@ -24,7 +24,7 @@ public abstract class GameManager {
    *
    * @return the activity that called this GameManager.
    */
-  public Activity getActivity() {
+  protected Activity getActivity() {
     return activity;
   }
 
@@ -34,7 +34,7 @@ public abstract class GameManager {
    * @param username name of this user
    * @return the GameStatus
    */
-  public abstract GameStatus getGameStatus(String username);
+  protected abstract GameStatus getGameStatus(String username);
   /**
    * Save the GameStatus for a particular user.
    *
