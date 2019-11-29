@@ -11,7 +11,7 @@ import android.widget.Button;
 import com.example.myapplication.R;
 
 /** Hangman Game Settings Page */
-class HangmanSetting extends AppCompatActivity implements View.OnClickListener {
+public class HangmanSetting extends AppCompatActivity implements View.OnClickListener {
 
   /** A variable to store the hangmanGameStat */
   private HangmanGameStatFacade hangmanGameStat;

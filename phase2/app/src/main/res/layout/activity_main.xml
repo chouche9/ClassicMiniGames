@@ -5,65 +5,64 @@
     android:id="@+id/MainPage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginSystem.MainActivity"
     android:background="@drawable/login_background"
-    >
+    tools:context=".LoginSystem.MainActivity">
 
     <Button
         android:id="@+id/login"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="132dp"
-        android:text="Log in"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.26"
+        android:layout_marginTop="75dp"
         android:background="@drawable/round_background"
-        android:textColor= "@color/white"
-        android:textSize="20sp"/>
+        android:text="Log in"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title" />
 
     <Button
         android:id="@+id/createAccount"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:text="create account"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login"
+        android:layout_marginTop="65dp"
         android:background="@drawable/round_background"
-        android:textColor= "@color/white"
-        android:textSize="20sp"/>
-
+        android:text="create account"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login" />
 
 
     <Button
         android:id="@+id/exit"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="65dp"
+        android:background="@drawable/round_background"
         android:text="EXIT"
+        android:textColor="@color/white"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createAccount" android:background="@drawable/round_background"
-        android:textColor= "@color/white"
-        android:textSize="20sp"/>
+        app:layout_constraintTop_toBottomOf="@+id/createAccount" />
 
     <TextView
         android:id="@+id/Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
         android:text="Classic Mini Games"
         android:textSize="36sp"
-        android:typeface="sans"
-        app:layout_constraintBottom_toTopOf="@+id/login"
+        app:fontFamily="sans-serif-black"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.64" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,8 +11,8 @@
         android:id="@+id/result"
         android:layout_width="317dp"
         android:layout_height="76dp"
+        android:layout_marginTop="220dp"
         android:gravity="center"
-        android:layout_marginTop="270dp"
         android:text="TextView"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -23,10 +23,12 @@
 
     <Button
         android:id="@+id/playAgainBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_width="115dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bubble"
         android:text="Play Again"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,10 +36,12 @@
 
     <Button
         android:id="@+id/backToMainBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_width="115dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/bubble"
         android:text="Main Page"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,12 +49,14 @@
 
     <Button
         android:id="@+id/nextStageBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_width="115dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bubble"
         android:text="Next Stage"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/backToMainBtn" />
 

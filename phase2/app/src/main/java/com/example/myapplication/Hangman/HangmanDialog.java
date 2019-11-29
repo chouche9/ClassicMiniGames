@@ -14,67 +14,67 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 import com.example.myapplication.R;
 
 /** The dialog that is activated when the user wishes to guess the full word. */
-class HangmanDialog extends AppCompatDialogFragment {
-    /** The input field used to get the user's guessed word. */
-    private EditText edtWordGuessed;
+public class HangmanDialog extends AppCompatDialogFragment {
+  /** The input field used to get the user's guessed word. */
+  private EditText edtWordGuessed;
 
-    /** Button that the user clicks to guess the full word. */
-    private Button btnDialogGuessWord;
+  /** Button that the user clicks to guess the full word. */
+  private Button btnDialogGuessWord;
 
-    /** The user interface of this hangman game. */
-    private HangmanGameActivity hangmanGameActivity;
+  /** The user interface of this hangman game. */
+  private HangmanGameActivity hangmanGameActivity;
 
-    public interface HangmanDialogListener {
-        /**
-         * Checks whether if the full word guessed is correct or not.
-         *
-         * @param wordGuessed the full word guessed by the player.
-         */
-        void validateGuessedWord(String wordGuessed);
-    }
-
+  public interface HangmanDialogListener {
     /**
-     * Initializes this dialog.
+     * Checks whether if the full word guessed is correct or not.
      *
-     * @param savedInstanceState a bundle of the resources in this activity.
-     * @return the dialog that is displayed on the screen.
+     * @param wordGuessed the full word guessed by the player.
      */
-    @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.activity_hangman_guessword_dialog, null);
+    void validateGuessedWord(String wordGuessed);
+  }
 
-        builder.setView(view);
+  /**
+   * Initializes this dialog.
+   *
+   * @param savedInstanceState a bundle of the resources in this activity.
+   * @return the dialog that is displayed on the screen.
+   */
+  @Override
+  public Dialog onCreateDialog(Bundle savedInstanceState) {
+    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+    LayoutInflater inflater = getActivity().getLayoutInflater();
+    View view = inflater.inflate(R.layout.activity_hangman_guessword_dialog, null);
 
-        edtWordGuessed = view.findViewById(R.id.edtWordGuessed);
-        btnDialogGuessWord = view.findViewById(R.id.btnDialogGuessWord);
+    builder.setView(view);
 
-        setBtnDialogGuessWord();
+    edtWordGuessed = view.findViewById(R.id.edtWordGuessed);
+    btnDialogGuessWord = view.findViewById(R.id.btnDialogGuessWord);
 
-        return builder.create();
-    }
+    setBtnDialogGuessWord();
 
-    /** Event that happens after the btnDialogGuessWord button is clicked. */
-    private void setBtnDialogGuessWord() {
-        btnDialogGuessWord.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        String guessedWord = edtWordGuessed.getText().toString();
-                        hangmanGameActivity.validateGuessedWord(guessedWord);
-                    }
-                });
-    }
+    return builder.create();
+  }
 
-    /**
-     * Called when the dialog fragment is first attached to the context.
-     *
-     * @param context the context of the activity.
-     */
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        hangmanGameActivity = (HangmanGameActivity) context;
-    }
+  /** Event that happens after the btnDialogGuessWord button is clicked. */
+  private void setBtnDialogGuessWord() {
+    btnDialogGuessWord.setOnClickListener(
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+            String guessedWord = edtWordGuessed.getText().toString();
+            hangmanGameActivity.validateGuessedWord(guessedWord);
+          }
+        });
+  }
+
+  /**
+   * Called when the dialog fragment is first attached to the context.
+   *
+   * @param context the context of the activity.
+   */
+  @Override
+  public void onAttach(Context context) {
+    super.onAttach(context);
+    hangmanGameActivity = (HangmanGameActivity) context;
+  }
 }

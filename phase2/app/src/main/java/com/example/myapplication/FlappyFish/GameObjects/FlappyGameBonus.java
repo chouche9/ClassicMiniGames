@@ -74,11 +74,10 @@ public class FlappyGameBonus extends FlappyGameObjects implements Parcelable {
    * @param minY the minimum value for this bonus item's y coordinate.
    * @param maxY the maximum value for this bonus item's y coordinate.
    */
-
   void validCheck(int canvasWidth, int minY, int maxY) {
     Random random = new Random();
-    int randomNum = random.nextInt(200); // change to a bigger number later!!
-    if (getX() < 0 && randomNum == 100) {
+    int randomNum = random.nextInt(300);
+    if (getX() < 0 && randomNum == 150) {
       setX(canvasWidth + 10);
       setY((int) Math.floor(Math.random() * (maxY - minY)) + minY);
     }

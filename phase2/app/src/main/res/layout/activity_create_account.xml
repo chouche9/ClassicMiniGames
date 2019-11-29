@@ -4,17 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginSystem.CreateAccount"
-    android:background="@color/pink">
+    android:background="@color/pink"
+    tools:context=".LoginSystem.CreateAccount">
+
     <EditText
         android:id="@+id/accountEntry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="156dp"
+        android:layout_marginTop="155dp"
         android:ems="10"
         android:hint="Enter Account"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,11 +24,12 @@
         android:id="@+id/password1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:hint="Enter password"
+        android:layout_marginTop="55dp"
         android:ems="10"
+        android:hint="Enter password"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/accountEntry" />
 
@@ -34,14 +37,12 @@
         android:id="@+id/password2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
-        android:layout_marginLeft="96dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="55dp"
         android:ems="10"
         android:hint="Enter password again"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.029"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password1" />
 
@@ -49,9 +50,10 @@
         android:id="@+id/enterButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="70dp"
         android:text="Create Account"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

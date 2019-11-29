@@ -48,6 +48,8 @@ public class FlappyGameMenu extends AppCompatActivity implements View.OnClickLis
     setNewGameBtn();
     setResumeGameBtn();
     setQuitBtn();
+    setPlayMusicBtn();
+    setStopMusicBtn();
   }
 
   /**
@@ -67,6 +69,7 @@ public class FlappyGameMenu extends AppCompatActivity implements View.OnClickLis
       newGameBtn.setVisibility(View.VISIBLE);
       resumeGameBtn.setVisibility(View.VISIBLE);
     }
+    startService(new Intent(this, FlappyBackgroundMusic.class));
   }
 
   /**
@@ -108,6 +111,18 @@ public class FlappyGameMenu extends AppCompatActivity implements View.OnClickLis
     quitGameBtn.setOnClickListener(this);
   }
 
+  /** Initializes the play music button. */
+  private void setPlayMusicBtn() {
+    Button playMusicBtn = findViewById(R.id.playMusicBtn);
+    playMusicBtn.setOnClickListener(this);
+  }
+
+  /** Initializes the stop music button. */
+  private void setStopMusicBtn() {
+    Button stopMusicBtn = findViewById(R.id.stopMusicBtn);
+    stopMusicBtn.setOnClickListener(this);
+  }
+
   /**
    * Events that takes place when any of the buttons are clicked.
    *
@@ -131,7 +146,23 @@ public class FlappyGameMenu extends AppCompatActivity implements View.OnClickLis
         break;
 
       case R.id.quitGameBtn:
+        stopService(new Intent(this, FlappyBackgroundMusic.class));
         finish();
+        break;
+
+      case R.id.playMusicBtn:
+        startService(new Intent(this, FlappyBackgroundMusic.class));
+        break;
+
+      case R.id.stopMusicBtn:
+        stopService(new Intent(this, FlappyBackgroundMusic.class));
+        break;
     }
+  }
+
+  @Override
+  public void onBackPressed() {
+    super.onBackPressed();
+    stopService(new Intent(this, FlappyBackgroundMusic.class));
   }
 }

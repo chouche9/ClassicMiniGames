@@ -114,6 +114,7 @@ public class FlappyResultActivity extends AppCompatActivity implements View.OnCl
         finish();
         break;
       case R.id.backToMainBtn:
+        stopService(new Intent(this, FlappyBackgroundMusic.class));
         Intent backToMainIntent = new Intent(this, GameMain.class);
         backToMainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         backToMainIntent.putExtra("user", gameStatus.getName());
