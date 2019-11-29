@@ -1,4 +1,4 @@
-package com.example.myapplication.loginsystem;
+package com.example.myapplication.LoginSystem;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +7,8 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.myapplication.loginsystem.Login.LoginActivity;
+import com.example.myapplication.LoginSystem.CreateAccount.CreateAccountActivity;
+import com.example.myapplication.LoginSystem.Login.LoginActivity;
 import com.example.myapplication.R;
 
 /** Main page of this application. */
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
   public void onClick(View v) {
     switch (v.getId()) {
       case R.id.createAccount:
-        Intent intentCreate = new Intent(MainActivity.this, CreateAccount.class);
+        Intent intentCreate = new Intent(MainActivity.this, CreateAccountActivity.class);
         startActivity(intentCreate);
         break;
       case R.id.login:
