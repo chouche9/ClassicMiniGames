@@ -1,4 +1,4 @@
-package com.example.myapplication.LoginSystem.CreateAccount;
+package com.example.myapplication.loginsystem.CreateAccount;
 
 interface CreateAccountView {
 

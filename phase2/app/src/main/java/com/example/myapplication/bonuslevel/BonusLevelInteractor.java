@@ -37,7 +37,7 @@ class BonusLevelInteractor {
 
 
     public void validateNumberInteractor(int guessedNumber, BonusLevelPresenter listener) {
-        if(guessedNumber == targetNum){
+        if (guessedNumber == targetNum) {
             listener.onGameEnd(true, BONUS_SCORE);
         } else if (guessedNumber > targetNum) {
             triesLeft--;

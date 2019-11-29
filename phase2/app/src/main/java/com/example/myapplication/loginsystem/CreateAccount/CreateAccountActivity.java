@@ -1,4 +1,4 @@
-package com.example.myapplication.LoginSystem.CreateAccount;
+package com.example.myapplication.loginsystem.CreateAccount;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,13 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.myapplication.AppMainPage.GameMain;
-import com.example.myapplication.Domain.User;
-import com.example.myapplication.LoginSystem.MainActivity;
+import com.example.myapplication.domain.User;
 import com.example.myapplication.R;
-import com.example.myapplication.Domain.UserManager;
+import com.example.myapplication.domain.UserManager;
 
-public class CreateAccountActivity extends AppCompatActivity implements View.OnClickListener, CreateAccountView{
+public class CreateAccountActivity extends AppCompatActivity implements View.OnClickListener, com.example.myapplication.loginsystem.CreateAccount.CreateAccountView {
 
     /** EditText of the accountName */
     EditText accountEntry;
@@ -41,7 +39,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
     /** singleton userManager */
     UserManager userManager;
 
-    private CreateAccountPresenter createAccountPresenter;
+    private com.example.myapplication.loginsystem.CreateAccount.CreateAccountPresenter createAccountPresenter;
 
 
 
@@ -56,7 +54,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
         password2 = findViewById(R.id.password2);
         createAccount = findViewById(R.id.enterButton);
         createAccount.setOnClickListener(this);
-        createAccountPresenter = new CreateAccountPresenter(this);
+        createAccountPresenter = new com.example.myapplication.loginsystem.CreateAccount.CreateAccountPresenter(this);
     }
 
     @Override

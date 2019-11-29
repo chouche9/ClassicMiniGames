@@ -176,7 +176,7 @@ public class HangmanStageEnded extends AppCompatActivity
 
   @Override
   public void onCancel() {
-    bonusLevel.setEnabled(false);
+    bonusLevel.setVisibility(View.GONE);
   }
 
   /** Event that happens after playAgain button is clicked. */

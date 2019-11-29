@@ -9,26 +9,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginSystem.CreateAccount.CreateAccountActivity"></activity>
-        <activity android:name=".SpaceShooter.shootergameover.ShooterGameOver" />
-        <activity android:name=".SpaceShooter.shooterplanegame.ShooterGame" />
-        <activity android:name=".SpaceShooter.ShooterSetting" />
-        <activity android:name=".SpaceShooter.shootergamestart.ShooterStart" />
-        <activity android:name=".Hangman.HangmanSetting" />
-        <activity android:name=".Hangman.HangmanStageEnded" />
-        <activity android:name=".Hangman.HangmanGameActivity" />
-        <activity android:name=".Hangman.HangmanMain" />
-        <activity android:name=".FlappyFish.FlappyGameMenu" />
-        <activity android:name=".FlappyFish.FlappyResultActivity" />
-        <activity android:name=".FlappyFish.FlappySetting" />
-        <activity android:name=".FlappyFish.FlappyMainActivity" />
-        <activity android:name=".GuessNum.GuessSetting" />
-        <activity android:name=".GuessNum.GuessMain" />
-        <activity android:name=".GuessNum.GuessGame" />
-        <activity android:name=".GuessNum.GuessCongratulation" />
-        <activity android:name=".LoginSystem.Login.LoginActivity" />
-        <activity android:name=".AppMainPage.GameMain" />
-        <activity android:name=".LoginSystem.MainActivity">
+        <activity android:name=".loginsystem.CreateAccount.CreateAccountActivity"></activity>
+        <activity android:name=".spaceshooter.shootergameover.ShooterGameOver" />
+        <activity android:name=".spaceshooter.shooterplanegame.ShooterGame" />
+        <activity android:name=".spaceshooter.ShooterSetting" />
+        <activity android:name=".spaceshooter.shootergamestart.ShooterStart" />
+        <activity android:name=".hangman.HangmanSetting" />
+        <activity android:name=".hangman.HangmanStageEnded" />
+        <activity android:name=".hangman.HangmanGameActivity" />
+        <activity android:name=".hangman.HangmanMain" />
+        <activity android:name=".flappyfish.FlappyGameMenu" />
+        <activity android:name=".flappyfish.FlappyResultActivity" />
+        <activity android:name=".flappyfish.FlappySetting" />
+        <activity android:name=".flappyfish.FlappyMainActivity" />
+<!--        <activity android:name=".GuessNum.GuessSetting" />-->
+<!--        <activity android:name=".GuessNum.GuessMain" />-->
+<!--        <activity android:name=".GuessNum.GuessGame" />-->
+<!--        <activity android:name=".GuessNum.GuessCongratulation" />-->
+        <activity android:name=".loginsystem.Login.LoginActivity" />
+        <activity android:name=".mainpage.GameMain" />
+        <activity android:name=".loginsystem.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,9 +36,9 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".FlappyFish.FlappyBackgroundMusic" />
-        <service android:name=".Hangman.HangmanBackgroundMusic" />
-        <service android:name=".SpaceShooter.ShooterBackGroundMusic" />
+        <service android:name=".flappyfish.FlappyBackgroundMusic" />
+        <service android:name=".hangman.HangmanBackgroundMusic" />
+        <service android:name=".spaceshooter.ShooterBackGroundMusic" />
     </application>
 
 </manifest>
