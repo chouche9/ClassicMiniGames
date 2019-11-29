@@ -3,6 +3,7 @@ package com.example.myapplication.flappyfish.FlappyGameStatus;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.example.myapplication.databaseconnector.GameEnum;
 import com.example.myapplication.flappyfish.GameObjects.FlappyGameBonus;
 import com.example.myapplication.flappyfish.GameObjects.FlappyGameFish;
 import com.example.myapplication.flappyfish.GameObjects.FlappyGameShark;
@@ -16,17 +17,13 @@ public class FlappyGameStatusFacade extends GameStatus implements Parcelable {
 
   private LevelManager levelManager = new LevelManager();
 
-  /** The type of the game the user plays. */
-  private String type;
-
   /**
    * Construct a new game status for the user with name name.
    *
    * @param name the name of the user.
    */
   public FlappyGameStatusFacade(String name) {
-    super(name);
-    this.type = "FlappyGameStatusFacade";
+    super(name, GameEnum.FLAPPYFISH);
   }
 
   /**
@@ -36,9 +33,9 @@ public class FlappyGameStatusFacade extends GameStatus implements Parcelable {
    */
   private FlappyGameStatusFacade(Parcel in) {
     super(in);
+    setGameType(GameEnum.valueOf(in.readString()));
     levelManager = in.readParcelable(LevelManager.class.getClassLoader());
     objectManager = in.readParcelable(ObjectManager.class.getClassLoader());
-    type = in.readString();
   }
 
   public void setLevelManager(LevelManager levelManager) {
@@ -174,9 +171,9 @@ public class FlappyGameStatusFacade extends GameStatus implements Parcelable {
   @Override
   public void writeToParcel(Parcel parcel, int i) {
     super.writeToParcel(parcel, i);
+    parcel.writeString(getGameType().toString());
     parcel.writeParcelable(levelManager, i);
     parcel.writeParcelable(objectManager, i);
-    parcel.writeString(type);
   }
 
   /** Create FlappyGameStatatus by the super Creator object. */

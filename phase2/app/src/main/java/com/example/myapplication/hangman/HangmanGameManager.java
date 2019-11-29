@@ -13,11 +13,9 @@ class HangmanGameManager extends GameManager {
   /** The singleton HangmanGameManager. */
   private static HangmanGameManager hangmanGameManager;
 
-  private Activity activity;
-
   /** Constructs a HangmanGameManager. */
   private HangmanGameManager(Activity activity) {
-    this.activity = activity;
+    super(activity);
   }
 
   /**
@@ -33,15 +31,6 @@ class HangmanGameManager extends GameManager {
   }
 
   /**
-   * Save the GameStatus for a particular user.
-   *
-   * @param gameStatus the new GameStatus want to get saved.
-   */
-  public void saveGame(GameStatus gameStatus) {
-    GameStatusDaoImpl.getInstance(activity).saveGameStatus(gameStatus, GameEnum.HANGMAN);
-  }
-
-  /**
    * Returns the gameStatus instance that this HangmanGameManager is managing.
    *
    * @param username the username of the user playing this game.
@@ -49,8 +38,8 @@ class HangmanGameManager extends GameManager {
    */
   public HangmanGameStatFacade getGameStatus(String username) {
     HangmanGameStatFacade hangmanGameStat =
-        (HangmanGameStatFacade)
-            GameStatusDaoImpl.getInstance(activity).getGameStatus(username, GameEnum.HANGMAN);
+            (HangmanGameStatFacade)
+                    GameStatusDaoImpl.getInstance(getActivity()).getGameStatus(username, GameEnum.HANGMAN);
 
     if (hangmanGameStat == null) {
       hangmanGameStat = new HangmanGameStatFacade(username);

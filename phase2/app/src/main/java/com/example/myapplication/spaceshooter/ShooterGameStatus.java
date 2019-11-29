@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.example.myapplication.databaseconnector.GameEnum;
 import com.example.myapplication.domain.GameStatus;
 import com.example.myapplication.spaceshooter.GameObject.ShooterBonus;
 import com.example.myapplication.spaceshooter.GameObject.ShooterBullet1;
@@ -38,18 +39,18 @@ public class ShooterGameStatus extends GameStatus implements Parcelable {
     public List<ShooterEnemyExplosion> enemyExplosions = new ArrayList<>();
     public List<ShooterPlaneExplosion> planeExplosions = new ArrayList<>();
     public ShooterGameStatus(String name){
-        super(name);
+        super(name, GameEnum.SPACESHOOTER);
         point = 0;
         gameSuccess = true;
         numCoin = 0;
         level = 1;
         levelFinish = false;
         millsecondLeft = initaltime;
-
     }
 
     protected ShooterGameStatus(Parcel in) {
         super(in);
+        setGameType(GameEnum.valueOf(in.readString()));
         level = in.readInt();
         point = in.readInt();
         numCoin = in.readInt();
@@ -70,6 +71,7 @@ public class ShooterGameStatus extends GameStatus implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         super.writeToParcel(dest, flags);
+        dest.writeString(getGameType().toString());
         dest.writeInt(level);
         dest.writeInt(point);
         dest.writeInt(numCoin);
@@ -106,7 +108,7 @@ public class ShooterGameStatus extends GameStatus implements Parcelable {
 
     public void resetGameStatus(){
         if (plane != null){
-        plane.resetPosition();}
+            plane.resetPosition();}
         millsecondLeft = initaltime;
         shooterBonuses = new ArrayList<>();
         bullet1s = new ArrayList<>();
@@ -131,6 +133,7 @@ public class ShooterGameStatus extends GameStatus implements Parcelable {
         this.level = level;
         ShooterEnemy1.level = level;
     }
+
     void setPlane(int planeNum, Context context){
         plane = new ShooterPlane(context, planeNum);
     }

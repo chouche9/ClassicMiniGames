@@ -14,11 +14,9 @@ class FlappyGameManager extends GameManager {
   /** The singleton FlappyGameManager. */
   private static FlappyGameManager gameManager;
 
-  private Activity activity;
-
   /** Constructs a FlappyGameManager. */
   private FlappyGameManager(Activity activity) {
-    this.activity = activity;
+    super(activity);
   }
 
   /**
@@ -34,15 +32,6 @@ class FlappyGameManager extends GameManager {
   }
 
   /**
-   * Save the GameStatus for a particular user.
-   *
-   * @param gameStatus the new GameStatus want to get saved.
-   */
-  public void saveGame(GameStatus gameStatus) {
-    GameStatusDaoImpl.getInstance(activity).saveGameStatus(gameStatus, GameEnum.FLAPPYFISH);
-  }
-
-  /**
    * Returns the gameStatus instance that this FlappyGameManager is managing.
    *
    * @param username the username of the user playing this game.
@@ -50,8 +39,8 @@ class FlappyGameManager extends GameManager {
    */
   public FlappyGameStatusFacade getGameStatus(String username) {
     FlappyGameStatusFacade flappyGameStatusFacade =
-        (FlappyGameStatusFacade)
-            GameStatusDaoImpl.getInstance(activity).getGameStatus(username, GameEnum.FLAPPYFISH);
+            (FlappyGameStatusFacade)
+                    GameStatusDaoImpl.getInstance(getActivity()).getGameStatus(username, GameEnum.FLAPPYFISH);
     if (flappyGameStatusFacade == null) {
       flappyGameStatusFacade = new FlappyGameStatusFacade(username);
     }

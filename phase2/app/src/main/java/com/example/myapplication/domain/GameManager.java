@@ -1,7 +1,32 @@
 package com.example.myapplication.domain;
 
+import android.app.Activity;
+
+import com.example.myapplication.databaseconnector.GameStatusDaoImpl;
+
 /** A game manager. */
 public abstract class GameManager {
+
+  /** The activity that called this GameManager. */
+  private Activity activity;
+
+  /**
+   * Construct this GameManger.
+   *
+   * @param activity the activity that called this GameManager.
+   */
+  public GameManager(Activity activity) {
+    this.activity = activity;
+  }
+
+  /**
+   * Get the activity that called this GameManager.
+   *
+   * @return the activity that called this GameManager.
+   */
+  public Activity getActivity() {
+    return activity;
+  }
 
   /**
    * Get the GameStatus for a particular game for a particular user.
@@ -15,6 +40,7 @@ public abstract class GameManager {
    *
    * @param gameStatus the new GameStatus want to get saved.
    */
-  public abstract void saveGame(GameStatus gameStatus);
-
+  public void saveGame(GameStatus gameStatus) {
+    GameStatusDaoImpl.getInstance(activity).saveGameStatus(gameStatus, gameStatus.getGameType());
+  }
 }
