@@ -55,7 +55,7 @@
         android:text="Try Again Next Time!"
         android:gravity="center"
         android:textColor="@color/white"
-        android:textSize="15sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
