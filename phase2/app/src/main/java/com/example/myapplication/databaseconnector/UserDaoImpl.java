@@ -16,13 +16,10 @@ public class UserDaoImpl implements UserDao {
 
   private DBHandler dbHandler;
 
-  private HashMap<GameEnum, String> tables;
-
   private Gson gson = new Gson();
 
   private UserDaoImpl(Activity activity) {
     this.dbHandler = DBHandler.getInstance(activity);
-    this.tables = dbHandler.getTables();
   }
 
   public static UserDaoImpl getInstance(Activity activity) {
@@ -50,7 +47,7 @@ public class UserDaoImpl implements UserDao {
     ContentValues usernameValue = new ContentValues();
     for (GameEnum type : GameEnum.values()) {
       usernameValue.put(DBHandler.COLUMN_USERNAME, user.getName());
-      database.insert(tables.get(type), null, usernameValue);
+      database.insert(dbHandler.getTables().get(type), null, usernameValue);
     }
   }
 
