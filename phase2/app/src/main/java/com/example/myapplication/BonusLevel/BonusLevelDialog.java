@@ -14,131 +14,133 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.myapplication.Hangman.HangmanStageEnded;
 import com.example.myapplication.R;
 
-public class BonusLevelDialog extends AppCompatDialogFragment implements BonusLevelView{
+public class BonusLevelDialog extends AppCompatDialogFragment implements BonusLevelView {
 
-    public interface BonusLevelDialogListener {
-        public void bonusLevelResult(boolean isWon, int bonusSore);
+  public interface BonusLevelDialogListener {
 
-        public void onCancel();
-    }
+    void bonusLevelResult(boolean isWon, int bonusSore);
 
-    private EditText edtGuessNumber;
+    void onCancel();
+  }
 
-    private TextView txtTries;
+  private EditText edtGuessNumber;
 
-    private Button btnDialogGuessNumber;
+  private TextView txtTries;
 
-//    private HangmanStageEnded hangmanStageEnded;
+  private Button btnDialogGuessNumber;
 
-    private BonusLevelDialogListener listener;
+  //    private HangmanStageEnded hangmanStageEnded;
 
-    private BonusLevelPresenter bonusLevelPresenter;
+  private BonusLevelDialogListener listener;
 
-    /**
-     * Initializes this dialog.
-     *
-     * @param savedInstanceState a bundle of the resources in this activity.
-     * @return the dialog that is displayed on the screen.
-     */
-    @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.activity_dialog_bonus_level, null);
+  private BonusLevelPresenter bonusLevelPresenter;
 
-        builder.setView(view)
-        .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
+  /**
+   * Initializes this dialog.
+   *
+   * @param savedInstanceState a bundle of the resources in this activity.
+   * @return the dialog that is displayed on the screen.
+   */
+  @Override
+  public Dialog onCreateDialog(Bundle savedInstanceState) {
+    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+    LayoutInflater inflater = getActivity().getLayoutInflater();
+    View view = inflater.inflate(R.layout.activity_dialog_bonus_level, null);
+
+    builder
+        .setView(view)
+        .setNegativeButton(
+            "cancel",
+            new DialogInterface.OnClickListener() {
+              @Override
+              public void onClick(DialogInterface dialog, int which) {
                 listener.onCancel();
+              }
+            });
+
+    edtGuessNumber = view.findViewById(R.id.edtGuessNumber);
+    txtTries = view.findViewById(R.id.txtTries);
+    btnDialogGuessNumber = view.findViewById(R.id.btnDialogGuessNumber);
+
+    bonusLevelPresenter = new BonusLevelPresenter(this);
+    setBtnDialogGuessNumber();
+
+    return builder.create();
+  }
+
+  /** Event that happens after the btnDialogGuessWord button is clicked. */
+  private void setBtnDialogGuessNumber() {
+    btnDialogGuessNumber.setOnClickListener(
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+            Editable input = edtGuessNumber.getText();
+
+            if (input.length() > 0) {
+
+              String value = input.toString();
+              int guessedNumber = Integer.parseInt(value);
+
+              if (0 < guessedNumber && guessedNumber < 21) {
+                bonusLevelPresenter.validateGuessNumber(guessedNumber);
+              } else {
+                showOutOfBoundsError();
+              }
+            } else {
+              showEmptyError();
             }
+          }
         });
+  }
 
-        edtGuessNumber = view.findViewById(R.id.edtGuessNumber);
-        txtTries = view.findViewById(R.id.txtTries);
-        btnDialogGuessNumber = view.findViewById(R.id.btnDialogGuessNumber);
+  /**
+   * Called when the dialog fragment is first attached to the context.
+   *
+   * @param context the context of the activity.
+   */
+  @Override
+  public void onAttach(Context context) {
+    super.onAttach(context);
 
-        bonusLevelPresenter = new BonusLevelPresenter(this);
-        setBtnDialogGuessNumber();
+    //        hangmanStageEnded = (HangmanStageEnded) context;
 
-        return builder.create();
+    try {
+      listener = (BonusLevelDialogListener) context;
+    } catch (ClassCastException e) {
+      throw new ClassCastException(context.toString() + "must implement BonusLevelDialogListener");
     }
+  }
 
-    /** Event that happens after the btnDialogGuessWord button is clicked. */
-    private void setBtnDialogGuessNumber() {
-        btnDialogGuessNumber.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Editable input = edtGuessNumber.getText();
+  @Override
+  public void updateTries(int numTries) {
+    String tries = "X " + String.valueOf(numTries) + "Tries";
+    txtTries.setText(tries);
+  }
 
-                        if (input.length() >0) {
+  @Override
+  public void showEmptyError() {
+    edtGuessNumber.setError("Please input a number!");
+  }
 
-                            String value = input.toString();
-                            int guessedNumber = Integer.parseInt(value);
+  @Override
+  public void showOutOfBoundsError() {
+    edtGuessNumber.setError("Your number is outside the limit. Please try again");
+  }
 
-                            if ( 0 < guessedNumber && guessedNumber < 21 ) {
-                                bonusLevelPresenter.validateGuessNumber(guessedNumber);
-                            } else {
-                                showOutOfBoundsError();
-                            }
-                        } else {
-                            showEmptyError();
-                        }
-                    }
-                });
-    }
+  @Override
+  public void showNumberToHighError() {
+    edtGuessNumber.setError("Your number is too High! Try Again!");
+  }
 
-    /**
-     * Called when the dialog fragment is first attached to the context.
-     *
-     * @param context the context of the activity.
-     */
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
+  @Override
+  public void showNumberToLowError() {
+    edtGuessNumber.setError("Your number is too Low! Try Again!");
+  }
 
-//        hangmanStageEnded = (HangmanStageEnded) context;
-
-        try {
-            listener = (BonusLevelDialogListener) context;
-        } catch (ClassCastException e) {
-            throw  new ClassCastException(context.toString() +
-                    "must implement BonusLevelDialogListener");
-        }
-    }
-
-    @Override
-    public void updateTries(int numTries) {
-        String tries = "X " + String.valueOf(numTries) + "Tries";
-        txtTries.setText(tries);
-    }
-
-    @Override
-    public void showEmptyError() {
-        edtGuessNumber.setError("Please input a number!");
-    }
-
-    @Override
-    public void showOutOfBoundsError() {
-        edtGuessNumber.setError("Your number is outside the limit. Please try again");
-    }
-
-    @Override
-    public void showNumberToHighError() {
-        edtGuessNumber.setError("Your number is too High! Try Again!");
-    }
-
-    @Override
-    public void showNumberToLowError() {
-        edtGuessNumber.setError("Your number is too Low! Try Again!");
-    }
-
-    @Override
-    public void GameEnd(boolean isWon, int bonusSore) {
-        listener.bonusLevelResult(isWon, bonusSore);
-    }
+  @Override
+  public void GameEnd(boolean isWon, int bonusSore) {
+    listener.bonusLevelResult(isWon, bonusSore);
+  }
 }

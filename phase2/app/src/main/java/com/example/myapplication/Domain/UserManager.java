@@ -2,6 +2,8 @@ package com.example.myapplication.Domain;
 
 import android.app.Activity;
 
+import com.example.myapplication.databaseconnector.UserDaoImpl;
+
 /** A UserManager for this application. */
 public class UserManager {
 
@@ -37,7 +39,7 @@ public class UserManager {
    * @param user the user that is to be saved.
    */
   public void saveUser(User user) {
-    DBHandler.getInstance(activity).saveUser(user);
+    UserDaoImpl.getInstance(activity).saveUser(user);
   }
 
   /**
@@ -47,7 +49,7 @@ public class UserManager {
    * @return User the user instance with the username userName.
    */
   private User getUser(String username) {
-    return DBHandler.getInstance(activity).getUser(username);
+    return UserDaoImpl.getInstance(activity).getUser(username);
   }
 
   /**
