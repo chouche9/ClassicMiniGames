@@ -3,7 +3,7 @@ package com.example.myapplication.FlappyFish.FlappyGameView;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import com.example.myapplication.FlappyFish.FlappyGameStatus;
+import com.example.myapplication.FlappyFish.FlappyGameStatus.FlappyGameStatusFacade;
 import com.example.myapplication.FlappyFish.GameObjects.FlappyGameBonus;
 import com.example.myapplication.FlappyFish.GameObjects.FlappyGameFish;
 import com.example.myapplication.FlappyFish.GameObjects.FlappyGameObjects;
@@ -15,7 +15,7 @@ import android.graphics.Canvas;
 
 public class ViewBitmapManager {
 
-  private FlappyGameStatus gameStatus;
+  private FlappyGameStatusFacade gameStatus;
 
   private Canvas canvas;
 
@@ -37,7 +37,7 @@ public class ViewBitmapManager {
   /** The life the user has. */
   private Bitmap[] life = new Bitmap[2];
 
-  public ViewBitmapManager(FlappyGameStatus gameStatus) {
+  public ViewBitmapManager(FlappyGameStatusFacade gameStatus) {
     this.gameStatus = gameStatus;
   }
 
@@ -53,7 +53,7 @@ public class ViewBitmapManager {
   }
 
   private void setUpBackground(Resources resources) {
-    if (gameStatus.background) {
+    if (gameStatus.getBg()) {
       bg = BitmapFactory.decodeResource(resources, R.drawable.darkocean);
     } else {
       bg = BitmapFactory.decodeResource(resources, R.drawable.lightocean);
@@ -94,14 +94,18 @@ public class ViewBitmapManager {
   }
 
   private void setUpObjects() {
-    gameStatus.fish.setWidth(fish.getWidth());
-    gameStatus.fish.setHeight(fish.getHeight());
-    gameStatus.shrimp.setWidth(shrimp.getWidth());
-    gameStatus.shrimp.setHeight(shrimp.getHeight());
-    gameStatus.shark.setWidth(shark.getWidth());
-    gameStatus.shark.setHeight(shark.getHeight());
-    gameStatus.bonus.setWidth(bonus.getWidth());
-    gameStatus.bonus.setHeight(bonus.getHeight());
+    FlappyGameFish fishObj = gameStatus.getFish();
+    FlappyGameShrimp shrimpObj = gameStatus.getShrimp();
+    FlappyGameShark sharkObj = gameStatus.getShark();
+    FlappyGameBonus bonusObj = gameStatus.getBonus();
+    fishObj.setWidth(fish.getWidth());
+    fishObj.setHeight(fish.getHeight());
+    shrimpObj.setWidth(shrimp.getWidth());
+    shrimpObj.setHeight(shrimp.getHeight());
+    sharkObj.setWidth(shark.getWidth());
+    sharkObj.setHeight(shark.getHeight());
+    bonusObj.setWidth(bonus.getWidth());
+    bonusObj.setHeight(bonus.getHeight());
   }
 
   boolean drawBitmaps() {
@@ -109,9 +113,9 @@ public class ViewBitmapManager {
     int canvasHeight = canvas.getHeight();
     int minY = fish.getHeight();
     int maxY = canvasHeight - minY * 4;
-    FlappyGameObjects fishObj = gameStatus.fish;
-    FlappyGameObjects shrimpObj = gameStatus.shrimp;
-    FlappyGameObjects sharkObj = gameStatus.shark;
+    FlappyGameObjects fishObj = gameStatus.getFish();
+    FlappyGameObjects shrimpObj = gameStatus.getShrimp();
+    FlappyGameObjects sharkObj = gameStatus.getShark();
 
     fishObj.move();
     fishObj.update(gameStatus, canvasWidth, minY, maxY);
@@ -133,7 +137,7 @@ public class ViewBitmapManager {
     int canvasHeight = canvas.getHeight();
     int minY = fish.getHeight();
     int maxY = canvasHeight - minY * 4;
-    FlappyGameObjects bonusObj = gameStatus.bonus;
+    FlappyGameObjects bonusObj = gameStatus.getBonus();
     bonusObj.move();
     boolean isActivated = bonusObj.update(gameStatus, canvasWidth, minY, maxY);
     canvas.drawBitmap(bonus, bonusObj.getX(), bonusObj.getY(), null);

@@ -5,11 +5,11 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 
-import com.example.myapplication.FlappyFish.FlappyGameStatus;
+import com.example.myapplication.FlappyFish.FlappyGameStatus.FlappyGameStatusFacade;
 
 public class ViewPaintManager {
 
-    private FlappyGameStatus gameStatus;
+    private FlappyGameStatusFacade gameStatus;
 
     private Canvas canvas;
 
@@ -19,7 +19,7 @@ public class ViewPaintManager {
     /** The game level the user plays. */
     private Paint level = new Paint();
 
-    public ViewPaintManager(FlappyGameStatus gameStatus) {
+    public ViewPaintManager(FlappyGameStatusFacade gameStatus) {
         this.gameStatus = gameStatus;
     }
 

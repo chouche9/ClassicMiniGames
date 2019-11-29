@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.myapplication.FlappyFish.FlappyGameStatus.FlappyGameStatusFacade;
 import com.example.myapplication.R;
 
 /**
@@ -17,7 +18,7 @@ import com.example.myapplication.R;
 public class FlappySetting extends AppCompatActivity implements View.OnClickListener {
 
   /** The status of this game which belongs to the current user. */
-  private FlappyGameStatus gameStatus;
+  private FlappyGameStatusFacade gameStatus;
 
   /** The request code for starting the next activity. */
   private static final int REQUEST_CODE = 5;

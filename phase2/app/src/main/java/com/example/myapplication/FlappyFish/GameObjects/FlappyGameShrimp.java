@@ -3,7 +3,7 @@ package com.example.myapplication.FlappyFish.GameObjects;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.example.myapplication.FlappyFish.FlappyGameStatus;
+import com.example.myapplication.FlappyFish.FlappyGameStatus.FlappyGameStatusFacade;
 
 public class FlappyGameShrimp extends FlappyGameObjects implements Parcelable{
 
@@ -59,7 +59,7 @@ public class FlappyGameShrimp extends FlappyGameObjects implements Parcelable{
      * @param minY the minimum value for this shrimp's y coordinate.
      * @param maxY the maximum value for this shrimp's coordinate.
      */
-    public boolean update(FlappyGameStatus gameStatus, int canvasWidth, int minY, int maxY) {
+    public boolean update(FlappyGameStatusFacade gameStatus, int canvasWidth, int minY, int maxY) {
         if (collideCheck(gameStatus)) {
             gameStatus.updateScore();
             kill();
@@ -94,9 +94,9 @@ public class FlappyGameShrimp extends FlappyGameObjects implements Parcelable{
      * @param gameStatus the gameStatus object that tracks the two game objects.
      * @return Return true if obj collides with the fish object; Otherwise, return false.
      */
-    private boolean collideCheck(FlappyGameStatus gameStatus) {
-        FlappyGameObjects fish = gameStatus.fish;
-        FlappyGameObjects shrimp = gameStatus.shrimp;
+    private boolean collideCheck(FlappyGameStatusFacade gameStatus) {
+        FlappyGameObjects fish = gameStatus.getFish();
+        FlappyGameObjects shrimp = gameStatus.getShrimp();
         int fishX = fish.getX();
         int fishY = fish.getY();
         int shrimpX = shrimp.getX();

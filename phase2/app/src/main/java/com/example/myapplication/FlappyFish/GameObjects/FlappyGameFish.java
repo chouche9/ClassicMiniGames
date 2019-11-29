@@ -3,7 +3,7 @@ package com.example.myapplication.FlappyFish.GameObjects;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.example.myapplication.FlappyFish.FlappyGameStatus;
+import com.example.myapplication.FlappyFish.FlappyGameStatus.FlappyGameStatusFacade;
 
 public class FlappyGameFish extends FlappyGameObjects implements Parcelable {
 
@@ -70,7 +70,7 @@ public class FlappyGameFish extends FlappyGameObjects implements Parcelable {
      * @param minY the minimum value for this fish's y coordinate.
      * @param maxY the maximum value for this fish's coordinate.
      */
-    public boolean update(FlappyGameStatus gameStatus, int canvasWidth, int minY, int maxY) {
+    public boolean update(FlappyGameStatusFacade gameStatus, int canvasWidth, int minY, int maxY) {
         validCheck(canvasWidth, minY, maxY);
         setFishFallSpeed();
         return false;

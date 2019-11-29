@@ -9,10 +9,9 @@ import android.graphics.Canvas;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.example.myapplication.FlappyFish.FlappyGameStatus;
+import com.example.myapplication.FlappyFish.FlappyGameStatus.FlappyGameStatusFacade;
 import com.example.myapplication.FlappyFish.FlappyMainActivity;
 import com.example.myapplication.FlappyFish.FlappyResultActivity;
-import com.example.myapplication.FlappyFish.GameObjects.FlappyGameFish;
 
 
 /** The Flappy fish game view. */
@@ -22,7 +21,7 @@ public class FlappyGameViewFacade extends View {
   public static final String EXTRA_MESSAGE = "SCORE";
 
   /** The game status object of this user. */
-  private FlappyGameStatus gameStatus;
+  private FlappyGameStatusFacade gameStatus;
 
   /** The activity that the game view is on. */
   private Context context;
@@ -116,7 +115,7 @@ public class FlappyGameViewFacade extends View {
   @Override
   public boolean onTouchEvent(MotionEvent event) {
     if (event.getAction() == MotionEvent.ACTION_DOWN) {
-      gameStatus.fish.setFishJumpSpeed();
+      gameStatus.setFishJumpSpeed();
     }
     return true;
   }
@@ -126,7 +125,7 @@ public class FlappyGameViewFacade extends View {
    *
    * @param gameStatus the game status that is being used.
    */
-  public void setGameStatus(FlappyGameStatus gameStatus) {
+  public void setGameStatus(FlappyGameStatusFacade gameStatus) {
     this.gameStatus = gameStatus;
   }
 }

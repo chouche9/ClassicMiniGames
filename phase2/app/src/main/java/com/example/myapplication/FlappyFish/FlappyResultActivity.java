@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.myapplication.FlappyFish.FlappyGameStatus.FlappyGameStatusFacade;
 import com.example.myapplication.FlappyFish.FlappyGameView.FlappyGameViewFacade;
 import com.example.myapplication.AppMainPage.GameMain;
 import com.example.myapplication.R;
@@ -16,7 +17,7 @@ import com.example.myapplication.R;
 public class FlappyResultActivity extends AppCompatActivity implements View.OnClickListener {
 
   /** The status of this game which belongs to the current user. */
-  private FlappyGameStatus gameStatus;
+  private FlappyGameStatusFacade gameStatus;
 
   /**
    * Initializes this result page.

@@ -3,7 +3,7 @@ package com.example.myapplication.FlappyFish.GameObjects;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.example.myapplication.FlappyFish.FlappyGameStatus;
+import com.example.myapplication.FlappyFish.FlappyGameStatus.FlappyGameStatusFacade;
 
 /**
  * A class representation of objects inside the flappy fish game.
@@ -139,7 +139,7 @@ public abstract class FlappyGameObjects implements Parcelable {
      * and ensure the game object does not move out of the screen
      * using canvasWidth, minY and maxY.
      */
-    public abstract boolean update(FlappyGameStatus gameStatus, int canvasWidth, int minY, int maxY);
+    public abstract boolean update(FlappyGameStatusFacade gameStatus, int canvasWidth, int minY, int maxY);
 
     abstract void validCheck(int canvasWidth, int minY, int maxY);
 

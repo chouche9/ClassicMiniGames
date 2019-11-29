@@ -3,7 +3,7 @@ package com.example.myapplication.FlappyFish.GameObjects;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.example.myapplication.FlappyFish.FlappyGameStatus;
+import com.example.myapplication.FlappyFish.FlappyGameStatus.FlappyGameStatusFacade;
 
 import java.util.Random;
 
@@ -59,7 +59,7 @@ public class FlappyGameBonus extends FlappyGameObjects implements Parcelable {
    * @param minY the minimum value for this bonus item's y coordinate.
    * @param maxY the maximum value for this bonus item's y coordinate.
    */
-  public boolean update(FlappyGameStatus gameStatus, int canvasWidth, int minY, int maxY) {
+  public boolean update(FlappyGameStatusFacade gameStatus, int canvasWidth, int minY, int maxY) {
     if (collideCheck(gameStatus)) {
       kill();
       return true;
@@ -95,9 +95,9 @@ public class FlappyGameBonus extends FlappyGameObjects implements Parcelable {
    * @param gameStatus the gameStatus object that tracks the two game objects.
    * @return Return true if obj collides with the fish object; Otherwise, return false.
    */
-  private boolean collideCheck(FlappyGameStatus gameStatus) {
-    FlappyGameObjects fish = gameStatus.fish;
-    FlappyGameObjects bonus = gameStatus.bonus;
+  private boolean collideCheck(FlappyGameStatusFacade gameStatus) {
+    FlappyGameObjects fish = gameStatus.getFish();
+    FlappyGameObjects bonus = gameStatus.getBonus();
     int fishX = fish.getX();
     int fishY = fish.getY();
     int bonusX = bonus.getX();

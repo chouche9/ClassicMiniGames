@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.myapplication.FlappyFish.FlappyGameStatus.FlappyGameStatusFacade;
 import com.example.myapplication.R;
 
 /**
@@ -22,7 +23,7 @@ public class FlappyGameMenu extends AppCompatActivity implements View.OnClickLis
   private Button resumeGameBtn;
 
   /** The status of this game which belongs to the current user. */
-  private FlappyGameStatus gameStatus;
+  private FlappyGameStatusFacade gameStatus;
 
   /** The request code for resuming the game from its previous state. */
   private final int REQUEST_CODE1 = 1;

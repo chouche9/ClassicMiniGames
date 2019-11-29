@@ -2,6 +2,7 @@ package com.example.myapplication.FlappyFish;
 
 import android.app.Activity;
 
+import com.example.myapplication.FlappyFish.FlappyGameStatus.FlappyGameStatusFacade;
 import com.example.myapplication.databaseconnector.GameEnum;
 import com.example.myapplication.Domain.GameManager;
 import com.example.myapplication.Domain.GameStatus;
@@ -47,13 +48,13 @@ class FlappyGameManager extends GameManager {
    * @param username the username of the user playing this game.
    * @return FlappyGameStat the HangmanGameStat instance of this user.
    */
-  public FlappyGameStatus getGameStatus(String username) {
-    FlappyGameStatus flappyGameStatus =
-        (FlappyGameStatus)
+  public FlappyGameStatusFacade getGameStatus(String username) {
+    FlappyGameStatusFacade flappyGameStatusFacade =
+        (FlappyGameStatusFacade)
             GameStatusDaoImpl.getInstance(activity).getGameStatus(username, GameEnum.FLAPPYFISH);
-    if (flappyGameStatus == null) {
-      flappyGameStatus = new FlappyGameStatus(username);
+    if (flappyGameStatusFacade == null) {
+      flappyGameStatusFacade = new FlappyGameStatusFacade(username);
     }
-    return flappyGameStatus;
+    return flappyGameStatusFacade;
   }
 }

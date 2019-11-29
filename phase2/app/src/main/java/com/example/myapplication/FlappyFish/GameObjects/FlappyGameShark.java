@@ -3,7 +3,7 @@ package com.example.myapplication.FlappyFish.GameObjects;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.example.myapplication.FlappyFish.FlappyGameStatus;
+import com.example.myapplication.FlappyFish.FlappyGameStatus.FlappyGameStatusFacade;
 
 public class FlappyGameShark extends FlappyGameObjects implements Parcelable{
 
@@ -59,7 +59,7 @@ public class FlappyGameShark extends FlappyGameObjects implements Parcelable{
      * @param minY the minimum value for this fish's y coordinate.
      * @param maxY the maximum value for this fish's coordinate.
      */
-    public boolean update(FlappyGameStatus gameStatus, int canvasWidth, int minY, int maxY) {
+    public boolean update(FlappyGameStatusFacade gameStatus, int canvasWidth, int minY, int maxY) {
         if (collideCheck(gameStatus)) {
             gameStatus.reduceLife_count();
             kill();
@@ -95,9 +95,9 @@ public class FlappyGameShark extends FlappyGameObjects implements Parcelable{
      * @param gameStatus the gameStatus object that tracks the two game objects.
      * @return Return true if shark collides with the fish object; Otherwise, return false.
      */
-    private boolean collideCheck(FlappyGameStatus gameStatus) {
-        FlappyGameObjects fish = gameStatus.fish;
-        FlappyGameObjects shark = gameStatus.shark;
+    private boolean collideCheck(FlappyGameStatusFacade gameStatus) {
+        FlappyGameObjects fish = gameStatus.getFish();
+        FlappyGameObjects shark = gameStatus.getShark();
         int fishX = fish.getX();
         int fishY = fish.getY();
         int sharkX = shark.getX();

@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.widget.Toast;
 
 import com.example.myapplication.BonusLevel.BonusLevelDialog;
+import com.example.myapplication.FlappyFish.FlappyGameStatus.FlappyGameStatusFacade;
 import com.example.myapplication.FlappyFish.FlappyGameView.FlappyGameViewFacade;
 import com.example.myapplication.FlappyFish.FlappyGameView.ViewBitmapManager;
 import com.example.myapplication.FlappyFish.FlappyGameView.ViewPaintManager;
@@ -24,7 +25,7 @@ public class FlappyMainActivity extends AppCompatActivity
   private FlappyGameViewFacade gameView;
 
   /** The game status the game uses. */
-  private FlappyGameStatus gameStatus;
+  private FlappyGameStatusFacade gameStatus;
 
   /** The timer used by the game view. */
   private Timer timer = null;
