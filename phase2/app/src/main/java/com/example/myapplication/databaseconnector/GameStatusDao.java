@@ -1,6 +1,6 @@
 package com.example.myapplication.databaseconnector;
 
-import com.example.myapplication.Domain.GameStatus;
+import com.example.myapplication.domain.GameStatus;
 
 interface GameStatusDao {
 

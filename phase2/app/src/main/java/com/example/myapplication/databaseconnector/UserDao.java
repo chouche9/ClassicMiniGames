@@ -1,6 +1,6 @@
 package com.example.myapplication.databaseconnector;
 
-import com.example.myapplication.Domain.User;
+import com.example.myapplication.domain.User;
 
 interface UserDao {
 

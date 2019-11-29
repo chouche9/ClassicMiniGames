@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Hangman.HangmanStageEnded"
+    tools:context=".hangman.HangmanStageEnded"
     android:background="@drawable/hangman_game_ends">
 
     <Button

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/lightocean"
-    tools:context="FlappyFish.FlappySetting">
+    tools:context="flappyfish.FlappySetting">
 
     <TextView
         android:id="@+id/SettingTitle"
