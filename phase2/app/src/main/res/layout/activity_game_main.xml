@@ -8,7 +8,7 @@
     tools:context=".mainpage.GameMain">
 
     <Button
-        android:id="@+id/planeShooter"
+        android:id="@+id/spaceShooter"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:background="@drawable/spaceshooter_round_btnbg"
@@ -23,7 +23,7 @@
         app:layout_constraintVertical_bias="0.38" />
 
     <Button
-        android:id="@+id/hangMan"
+        android:id="@+id/hangman"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -34,7 +34,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/planeShooter" />
+        app:layout_constraintTop_toBottomOf="@+id/spaceShooter" />
 
     <Button
         android:id="@+id/flappyFish"
@@ -48,7 +48,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hangMan" />
+        app:layout_constraintTop_toBottomOf="@+id/hangman" />
 
     <Button
         android:id="@+id/logout"

@@ -15,23 +15,11 @@ import com.example.myapplication.spaceshooter.shootergamestart.ShooterStart;
 /** Main page of all three games. */
 public class GameMain extends AppCompatActivity implements View.OnClickListener {
 
-  /** Button for going to guess number game */
-  Button guessNum;
-
-  /** Button for going to hangman game */
-  Button hangman;
-
-  /** Button for going to flappy Fish game */
-  Button flappyFish;
-
-  /** Button for logging out */
-  Button logOut;
-
-  /** the username */
-  String user;
+  /** The username of a user playing the game. */
+  private String username;
 
   /**
-   * Create GameMain activity
+   * Create GameMain activity.
    *
    * @param savedInstanceState bundle of the resource in this activity
    */
@@ -39,40 +27,43 @@ public class GameMain extends AppCompatActivity implements View.OnClickListener 
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_game_main);
-    guessNum = findViewById(R.id.planeShooter);
-    guessNum.setOnClickListener(this);
-    hangman = findViewById(R.id.hangMan);
-    hangman.setOnClickListener(this);
-    flappyFish = findViewById(R.id.flappyFish);
-    flappyFish.setOnClickListener(this);
+
+    Button spaceShooter = findViewById(R.id.spaceShooter);
+    Button hangman = findViewById(R.id.hangman);
+    Button flappyFish = findViewById(R.id.flappyFish);
+    Button logout = findViewById(R.id.logout);
+
     Intent intent = getIntent();
-    user = intent.getStringExtra("user");
-    logOut = findViewById(R.id.logout);
-    logOut.setOnClickListener(this);
+    username = intent.getStringExtra("user");
+
+    spaceShooter.setOnClickListener(this);
+    hangman.setOnClickListener(this);
+    flappyFish.setOnClickListener(this);
+    logout.setOnClickListener(this);
   }
 
   /**
-   * Method when player click a button, controlling which game he/she goes to
+   * Method that gets called when player clicks a button, controlling which game they go to.
    *
    * @param view the button that gets clicked
    */
   @Override
   public void onClick(View view) {
     switch (view.getId()) {
-      case R.id.planeShooter:
-        Intent intent = new Intent(this, ShooterStart.class);
-        intent.putExtra("user", user);
-        startActivity(intent);
+      case R.id.spaceShooter:
+        Intent shooterIntent = new Intent(this, ShooterStart.class);
+        shooterIntent.putExtra("user", username);
+        startActivity(shooterIntent);
         break;
-      case R.id.hangMan:
-        Intent intent1 = new Intent(this, HangmanMain.class);
-        intent1.putExtra("user", user);
-        startActivity(intent1);
+      case R.id.hangman:
+        Intent hangmanIntent = new Intent(this, HangmanMain.class);
+        hangmanIntent.putExtra("user", username);
+        startActivity(hangmanIntent);
         break;
       case R.id.flappyFish:
-        Intent intent2 = new Intent(this, FlappyGameMenu.class);
-        intent2.putExtra("user", user);
-        startActivity(intent2);
+        Intent flappyIntent = new Intent(this, FlappyGameMenu.class);
+        flappyIntent.putExtra("user", username);
+        startActivity(flappyIntent);
         break;
       case R.id.logout:
         setResult(RESULT_OK);

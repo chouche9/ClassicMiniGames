@@ -10,6 +10,7 @@ public class UserManager {
   /** The single static instance of UserManager. */
   private static UserManager userManager = null;
 
+  /** The activity that called this user manager. */
   private Activity activity;
 
   /**
@@ -55,12 +56,12 @@ public class UserManager {
   /**
    * Return whether if userName and password are valid.
    *
-   * @param userName the username.
+   * @param username the username.
    * @param password the password.
    * @return true if userName and password are valid.
    */
-  public boolean authenticate(String userName, String password) {
-    User user = getUser(userName);
+  public boolean authenticate(String username, String password) {
+    User user = getUser(username);
     if (user == null) {
       return false;
     }
@@ -68,13 +69,13 @@ public class UserManager {
   }
 
   /**
-   * Return whether if a user with a username userName has an account already.
+   * Return whether if a user with a specified username has an account already.
    *
-   * @param userName the username.
-   * @return true if a user with userName doesn't exist.
+   * @param username the username of a user.
+   * @return true if a user with username doesn't exist, false otherwise.
    */
-  public boolean createAuthenticate(String userName) {
-    User user = userManager.getUser(userName);
+  public boolean createAuthenticate(String username) {
+    User user = userManager.getUser(username);
     return user == null;
   }
 }
