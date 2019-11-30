@@ -8,20 +8,33 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.myapplication.domain.User;
 import com.google.gson.Gson;
 
-import java.util.HashMap;
-
+/** The implementation of the UserDao. */
 public class UserDaoImpl implements UserDao {
 
+  /** The singleton userDao. */
   private static UserDaoImpl userDao;
 
+  /** DBHandler object that manages the database. */
   private DBHandler dbHandler;
 
+  /** Gson that handles json. */
   private Gson gson = new Gson();
 
+  /**
+   * Construct this UserDaoImpl.
+   *
+   * @param activity the activity that called this object.
+   */
   private UserDaoImpl(Activity activity) {
     this.dbHandler = DBHandler.getInstance(activity);
   }
 
+  /**
+   * Get the singleton instance of this UserDaoImpl.
+   *
+   * @param activity the activity that called this object.
+   * @return the singleton instance of this UserDaoImpl.
+   */
   public static UserDaoImpl getInstance(Activity activity) {
     if (userDao == null) {
       userDao = new UserDaoImpl(activity);
@@ -29,21 +42,21 @@ public class UserDaoImpl implements UserDao {
     return userDao;
   }
 
+  /**
+   * Save the user into the database.
+   *
+   * @param user the user to be saved into the database.
+   */
   @Override
   public void saveUser(User user) {
-
-    // Gets the data repository in write mode
     SQLiteDatabase database = dbHandler.getWritableDatabase();
-
     String json = gson.toJson(user);
 
-    // Create a new map of values, where column names are the keys
     ContentValues userValues = new ContentValues();
     userValues.put(DBHandler.COLUMN_USERNAME, user.getName());
     userValues.put(DBHandler.COLUMN_USER_INSTANCE, json);
     database.insert(DBHandler.TABLE_USER, null, userValues);
 
-    // Store the username into every game tables
     ContentValues usernameValue = new ContentValues();
     for (GameEnum type : GameEnum.values()) {
       usernameValue.put(DBHandler.COLUMN_USERNAME, user.getName());
@@ -51,20 +64,26 @@ public class UserDaoImpl implements UserDao {
     }
   }
 
+  /**
+   * Get the user object with the specified username from the database.
+   *
+   * @param username the username of the user.
+   * @return the user object with the specified username.
+   */
   @Override
   public User getUser(String username) {
     SQLiteDatabase database = dbHandler.getWritableDatabase();
     String query =
-        " SELECT "
-            + DBHandler.COLUMN_USER_INSTANCE
-            + " FROM "
-            + DBHandler.TABLE_USER
-            + " WHERE "
-            + DBHandler.COLUMN_USERNAME
-            + " = "
-            + "'"
-            + username
-            + "'";
+            " SELECT "
+                    + DBHandler.COLUMN_USER_INSTANCE
+                    + " FROM "
+                    + DBHandler.TABLE_USER
+                    + " WHERE "
+                    + DBHandler.COLUMN_USERNAME
+                    + " = "
+                    + "'"
+                    + username
+                    + "'";
 
     Cursor cursor = database.rawQuery(query, null);
     if (cursor.moveToFirst()) {
