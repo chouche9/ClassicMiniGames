@@ -13,8 +13,7 @@ import com.example.myapplication.flappyfish.FlappyGameStatus.FlappyGameStatusFac
 import com.example.myapplication.R;
 
 /**
- * The setting page of this flappy fish game in which the user gets to choose the level of
- * difficulty.
+ * The setting page of this flappy fish game in which the user gets to choose the background theme.
  */
 public class FlappySetting extends AppCompatActivity implements View.OnClickListener {
 
@@ -41,14 +40,14 @@ public class FlappySetting extends AppCompatActivity implements View.OnClickList
     setUpDarkBgBtn();
   }
 
-  /** Initializes the easy game button. */
+  /** Initializes the light background button. */
   private void setUpLightBgBtn() {
     // The button that sets the game to an easy level when clicked.
     Button lightBtn = findViewById(R.id.lightBtn);
     lightBtn.setOnClickListener(this);
   }
 
-  /** Initializes the hard game button. */
+  /** Initializes the dark background button. */
   private void setUpDarkBgBtn() {
     // The button that sets the game to a hard level when clicked.
     Button darkBtn = findViewById(R.id.darkBtn);
