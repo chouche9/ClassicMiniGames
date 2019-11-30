@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.myapplication.backgroundmusic.BackgroundMusic;
 import com.example.myapplication.mainpage.GameMain;
 import com.example.myapplication.R;
 
@@ -39,6 +40,9 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
 
   /** Button that the user clicks to stop background music. */
   private Button btnStopMusic;
+
+  /** Indicates whether the user chooses to play the background music or not. */
+  public static boolean isPlaying = true;
 
   /**
    * Name used globally to send/retrieve the HangmanGameStat instance to/from an intent.
@@ -103,7 +107,9 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
     } else {
       btnResumeGame.setVisibility(View.GONE);
     }
-    startService(new Intent(this, HangmanBackgroundMusic.class));
+    if (isPlaying) {
+      startService(new Intent(this, HangmanBackgroundMusic.class));
+    }
   }
 
   /**
@@ -115,8 +121,10 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
   public void onClick(View view) {
     if (view == btnPlayMusic) {
       startService(new Intent(this, HangmanBackgroundMusic.class));
+      isPlaying = true;
     } else if (view == btnStopMusic) {
       stopService(new Intent(this, HangmanBackgroundMusic.class));
+      isPlaying = false;
     } else {
       switch (view.getId()) {
         case R.id.btnNewGame:
@@ -145,13 +153,18 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
     }
   }
 
+  /** Pauses this activity and stops the background music if the home key is pressed. */
   @Override
   protected void onPause() {
     super.onPause();
+    if (BackgroundMusic.isApplicationSentToBackground(this)) {
+      stopService(new Intent(this, HangmanBackgroundMusic.class));
+    }
     HangmanGameManager hangmanGameManager = HangmanGameManager.getInstance(this);
     hangmanGameManager.saveGame(hangmanGameStat);
   }
 
+  /** Stops the background music when the back key is pressed. */
   @Override
   public void onBackPressed() {
     super.onBackPressed();

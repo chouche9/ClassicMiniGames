@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Toast;
 
+import com.example.myapplication.backgroundmusic.BackgroundMusic;
 import com.example.myapplication.bonuslevel.BonusLevelDialog;
 import com.example.myapplication.flappyfish.FlappyGameStatus.FlappyGameStatusFacade;
 import com.example.myapplication.flappyfish.FlappyGameView.FlappyGameViewFacade;
@@ -64,7 +65,9 @@ public class FlappyMainActivity extends AppCompatActivity
   protected void onResume() {
     super.onResume();
     gameView.setGameStatus(gameStatus);
-
+    if (FlappyGameMenu.isPlaying) {
+      startService(new Intent(this, FlappyBackgroundMusic.class));
+    }
     if (timer == null) {
       startTimer();
     }
@@ -100,6 +103,9 @@ public class FlappyMainActivity extends AppCompatActivity
   @Override
   protected void onPause() {
     super.onPause();
+    if (BackgroundMusic.isApplicationSentToBackground(this)) {
+      stopService(new Intent(this, FlappyBackgroundMusic.class));
+    }
     if (timer != null) {
       pauseTimer();
     }

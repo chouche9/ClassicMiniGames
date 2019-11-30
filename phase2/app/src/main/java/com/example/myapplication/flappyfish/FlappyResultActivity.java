@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.myapplication.backgroundmusic.BackgroundMusic;
 import com.example.myapplication.flappyfish.FlappyGameStatus.FlappyGameStatusFacade;
 import com.example.myapplication.flappyfish.FlappyGameView.FlappyGameViewFacade;
 import com.example.myapplication.mainpage.GameMain;
@@ -86,6 +87,9 @@ public class FlappyResultActivity extends AppCompatActivity implements View.OnCl
   @Override
   protected void onPause() {
     super.onPause();
+    if (BackgroundMusic.isApplicationSentToBackground(this)) {
+      stopService(new Intent(this, FlappyBackgroundMusic.class));
+    }
     FlappyGameManager gameManager = FlappyGameManager.getInstance(this);
     gameManager.saveGame(gameStatus);
   }
@@ -124,6 +128,15 @@ public class FlappyResultActivity extends AppCompatActivity implements View.OnCl
         startActivity(backToMainIntent);
         finish();
         break;
+    }
+  }
+
+  /** Resumes this activity and checks whether the background music should be played or not. */
+  @Override
+  protected void onResume() {
+    super.onResume();
+    if (FlappyGameMenu.isPlaying) {
+      startService(new Intent(this, FlappyBackgroundMusic.class));
     }
   }
 }

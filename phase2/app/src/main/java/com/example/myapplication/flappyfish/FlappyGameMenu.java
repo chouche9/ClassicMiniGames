@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.myapplication.backgroundmusic.BackgroundMusic;
 import com.example.myapplication.flappyfish.FlappyGameStatus.FlappyGameStatusFacade;
 import com.example.myapplication.R;
 
@@ -33,6 +34,9 @@ public class FlappyGameMenu extends AppCompatActivity implements View.OnClickLis
 
   /** The intent that took the previous activity to this page. */
   private Intent menuIntent;
+
+  /** Indicates whether the user chooses to play the background music or not. */
+  public static boolean isPlaying = true;
 
   /**
    * Initializes this game menu activity.
@@ -69,7 +73,9 @@ public class FlappyGameMenu extends AppCompatActivity implements View.OnClickLis
       newGameBtn.setVisibility(View.VISIBLE);
       resumeGameBtn.setVisibility(View.VISIBLE);
     }
-    startService(new Intent(this, FlappyBackgroundMusic.class));
+    if (isPlaying) {
+      startService(new Intent(this, FlappyBackgroundMusic.class));
+    }
   }
 
   /**
@@ -152,17 +158,29 @@ public class FlappyGameMenu extends AppCompatActivity implements View.OnClickLis
 
       case R.id.playMusicBtn:
         startService(new Intent(this, FlappyBackgroundMusic.class));
+        isPlaying = true;
         break;
 
       case R.id.stopMusicBtn:
         stopService(new Intent(this, FlappyBackgroundMusic.class));
+        isPlaying = false;
         break;
     }
   }
 
+  /** Stops the background music when the back key is pressed. */
   @Override
   public void onBackPressed() {
     super.onBackPressed();
     stopService(new Intent(this, FlappyBackgroundMusic.class));
+  }
+
+  /** Pauses this activity and stops the background music if the home key is pressed. */
+  @Override
+  protected void onPause() {
+    super.onPause();
+    if (BackgroundMusic.isApplicationSentToBackground(this)) {
+      stopService(new Intent(this, FlappyBackgroundMusic.class));
+    }
   }
 }

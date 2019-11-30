@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.myapplication.backgroundmusic.BackgroundMusic;
 import com.example.myapplication.bonuslevel.BonusLevelDialog;
 import com.example.myapplication.mainpage.GameMain;
 import com.example.myapplication.R;
@@ -131,8 +132,10 @@ public class HangmanStageEnded extends AppCompatActivity
   public void onClick(View view) {
     if (view == btnPlayMusic) {
       startService(new Intent(this, HangmanBackgroundMusic.class));
+      HangmanMain.isPlaying = true;
     } else if (view == btnStopMusic) {
       stopService(new Intent(this, HangmanBackgroundMusic.class));
+      HangmanMain.isPlaying = false;
     }
   }
 
@@ -250,10 +253,22 @@ public class HangmanStageEnded extends AppCompatActivity
         });
   }
 
-  /** Pause the Game */
+  /** Resumes this activity and checks whether the background music should be played or not. */
+  @Override
+  protected void onResume() {
+    super.onResume();
+    if (HangmanMain.isPlaying) {
+      startService(new Intent(this, HangmanBackgroundMusic.class));
+    }
+  }
+
+  /** Pause the Game. */
   @Override
   protected void onPause() {
     super.onPause();
+    if (BackgroundMusic.isApplicationSentToBackground(this)) {
+      stopService(new Intent(this, HangmanBackgroundMusic.class));
+    }
     HangmanGameManager hangmanGameManager = HangmanGameManager.getInstance(this);
     hangmanGameManager.saveGame(hangmanGameStat);
   }
