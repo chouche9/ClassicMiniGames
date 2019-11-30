@@ -6,8 +6,10 @@ import android.view.View;
 import com.example.myapplication.spaceshooter.shooterplanegame.ShooterGame;
 
 public class ShooterGameOverPresenter {
+
     private ShooterGameOverLogic shooterGameOverLogic;
     private ShooterGameOverView shooterGameOverView;
+
     ShooterGameOverPresenter(ShooterGameOverLogic shooterGameOverLogic,
                              ShooterGameOverView shooterGameOverView){
         this.shooterGameOverLogic = shooterGameOverLogic;

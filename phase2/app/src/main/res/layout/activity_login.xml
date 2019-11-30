@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/pink"
+    android:background="@drawable/main_bg_login"
     tools:context=".loginsystem.Login.LoginActivity">
 
     <EditText
@@ -35,10 +35,12 @@
 
     <Button
         android:id="@+id/login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
         android:layout_marginTop="70dp"
         android:text="Log in"
+        android:textColor="@color/white"
+        android:background="@drawable/spaceshooter_round_btnbg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,10 +48,12 @@
 
     <Button
         android:id="@+id/backfront"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
         android:layout_marginTop="55dp"
         android:text="Back to Front"
+        android:textColor="@color/white"
+        android:background="@drawable/spaceshooter_round_btnbg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
