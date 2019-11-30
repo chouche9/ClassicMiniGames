@@ -15,6 +15,7 @@ import android.graphics.Canvas;
 
 public class ViewBitmapManager {
 
+
   private FlappyGameStatusFacade gameStatus;
 
   private Canvas canvas;

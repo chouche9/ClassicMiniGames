@@ -46,14 +46,25 @@ public class FlappyGameViewFacade extends View {
     this.activity = activity;
   }
 
+  /**
+   * Set the bitmapManager of this game view to bitmapManager.
+   * @param bitmapManager the new bitmapManager of this game view.
+   */
   public void setBitmapManager(ViewBitmapManager bitmapManager) {
     this.bitmapManager = bitmapManager;
   }
 
+  /**
+   * Set the paintManager of this game view to bitmapManager.
+   * @param paintManager the new bitmapManager of this game view.
+   */
   public void setPaintManager(ViewPaintManager paintManager) {
     this.paintManager = paintManager;
   }
 
+  /**
+   * Set up this game view by initializing the attributes tracked by the two managers.
+   */
   public void setUpView() {
     Resources resources = getResources();
     bitmapManager.setUpGame(resources);
@@ -94,6 +105,9 @@ public class FlappyGameViewFacade extends View {
     bitmapManager.drawLife();
   }
 
+  /**
+   * Start the result activity page.
+   */
   private void gameOver() {
     Intent intent = new Intent(context, FlappyResultActivity.class);
     intent.putExtra(EXTRA_MESSAGE, gameStatus);
@@ -115,7 +129,7 @@ public class FlappyGameViewFacade extends View {
   @Override
   public boolean onTouchEvent(MotionEvent event) {
     if (event.getAction() == MotionEvent.ACTION_DOWN) {
-      gameStatus.setFishJumpSpeed();
+      gameStatus.getFish().setFishJumpSpeed();
     }
     return true;
   }
