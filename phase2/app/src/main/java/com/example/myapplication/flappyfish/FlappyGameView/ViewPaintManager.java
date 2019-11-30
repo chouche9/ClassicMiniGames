@@ -7,10 +7,20 @@ import android.graphics.Typeface;
 
 import com.example.myapplication.flappyfish.FlappyGameStatus.FlappyGameStatusFacade;
 
+/**
+ * The manager object that is responsible of tracking all paint representations of game objects
+ *  * in this game view.
+ */
 public class ViewPaintManager {
 
+    /**
+     * The game status that utilizes this paint manager.
+     */
     private FlappyGameStatusFacade gameStatus;
 
+    /**
+     * The canvas of which all paints are drawn on.
+     */
     private Canvas canvas;
 
     /** The score the user gets. */
@@ -19,15 +29,26 @@ public class ViewPaintManager {
     /** The game level the user plays. */
     private Paint level = new Paint();
 
+    /**
+     * Constructs a paint manager with the specified game status.
+     * @param gameStatus the game status object that utilizes this paint manager.
+     */
     public ViewPaintManager(FlappyGameStatusFacade gameStatus) {
         this.gameStatus = gameStatus;
     }
 
+    /**
+     * Initializes all the paint representations tracked by this paint manager.
+     */
     void setUpGame() {
         setUpLevel();
         setUpScore();
     }
 
+    /**
+     * Set the canvas tracked by the bitmap manager to canvas.
+     * @param canvas the canvas of which all the bitmaps are drawn.
+     */
     void setCanvas(Canvas canvas) {
         this.canvas = canvas;
     }
@@ -49,10 +70,16 @@ public class ViewPaintManager {
         score.setAntiAlias(true);
     }
 
+    /**
+     * Draw the paint representation of the score on the canvas.
+     */
     void drawScore() {
         canvas.drawText("Score : " + gameStatus.getScore(), 50, 80, score);
     }
 
+    /**
+     * Draw the paint representation of the score on the canvas.
+     */
     void drawLevel() {
         int canvasWidth = canvas.getWidth();
         canvas.drawText("Stage: " + gameStatus.getStage(), canvasWidth / 2, 80, level);
