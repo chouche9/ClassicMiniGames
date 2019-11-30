@@ -13,9 +13,9 @@ import com.example.myapplication.domain.GameStatus;
 /** The flappy fish game status. */
 public class FlappyGameStatusFacade extends GameStatus implements Parcelable {
 
-  private ObjectManager objectManager = new ObjectManager();
+  private ObjectManager objectManager;
 
-  private LevelManager levelManager = new LevelManager();
+  private LevelManager levelManager;
 
   /**
    * Construct a new game status for the user with name name.
@@ -38,10 +38,18 @@ public class FlappyGameStatusFacade extends GameStatus implements Parcelable {
     objectManager = in.readParcelable(ObjectManager.class.getClassLoader());
   }
 
+  /**
+   * Set the level manager of this game status to levelManager.
+   * @param levelManager the new level manager of this game status object.
+   */
   public void setLevelManager(LevelManager levelManager) {
     this.levelManager = levelManager;
   }
 
+  /**
+   * Set the object manager of this game status to levelManager.
+   * @param objectManager the new object manager of this game status object.
+   */
   public void setObjectManager(ObjectManager objectManager) {
     this.objectManager = objectManager;
   }
@@ -58,14 +66,24 @@ public class FlappyGameStatusFacade extends GameStatus implements Parcelable {
     levelManager.increaseStage();
   }
 
+  /**
+   * Set the background of this game status to the light theme.
+   */
   public void setBgLight() {
     levelManager.setBgLight();
   }
 
+  /**
+   * Set the background of this game status to the dark theme.
+   */
   public void setBgDark() {
     levelManager.setBgDark();
   }
 
+  /**
+   * Return the background of this game status object.
+   * @return the background of this game status object.
+   */
   public boolean getBg() {
     return levelManager.getBackground();
   }
@@ -93,6 +111,10 @@ public class FlappyGameStatusFacade extends GameStatus implements Parcelable {
     levelManager.updateScore();
   }
 
+  /**
+   * Increase the score of this game status by bonusScore.
+   * @param bonusScore the score obtained by winning the bonus game.
+   */
   public void addBonusScore(int bonusScore) {
     levelManager.addBonusScore(bonusScore);
   }
@@ -132,25 +154,37 @@ public class FlappyGameStatusFacade extends GameStatus implements Parcelable {
     levelManager.finishUpdate();
   }
 
-  public void setFishJumpSpeed() {
-    objectManager.setFishJumpSpeed();
-  }
-
+  /**
+   * Return the fish object tracked by this game status object.
+   * @return the fish object tracker by this game status object.
+   */
   public FlappyGameFish getFish() {
     return objectManager.getFish();
   }
 
+  /**
+   * Return the shrimp object tracked by this game status object.
+   * @return the shrimp object tracker by this game status object.
+   */
   public FlappyGameShrimp getShrimp() {
     return objectManager.getShrimp();
   }
 
+  /**
+   * Return the shark object tracked by this game status object.
+   * @return the shark object tracker by this game status object.
+   */
   public FlappyGameShark getShark() {
     return objectManager.getShark();
   }
+
+  /**
+   * Return the bonus game object tracked by this game status object.
+   * @return the bonus game object tracker by this game status object.
+   */
   public FlappyGameBonus getBonus() {
     return objectManager.getBonus();
   }
-
 
   /**
    * Default method from the super class.
