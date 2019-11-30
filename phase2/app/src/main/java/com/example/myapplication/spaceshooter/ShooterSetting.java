@@ -28,12 +28,17 @@ public class ShooterSetting extends AppCompatActivity implements View.OnClickLis
         viewFinish = true;
     }
     @Override
+    protected void onResume() {
+        super.onResume();
+        startService(new Intent(getApplicationContext(), ShooterBackGroundMusic.class));
+    }
+    @Override
     protected void onPause() {
         super.onPause();
-        if(viewFinish){
-            stopService(new Intent(getApplicationContext(), ShooterBackGroundMusic.class));
-        }
+        if (viewFinish){
+        stopService(new Intent(getApplicationContext(), ShooterBackGroundMusic.class));}
     }
+
 
     @Override
     public void onClick(View v) {
@@ -59,6 +64,7 @@ public class ShooterSetting extends AppCompatActivity implements View.OnClickLis
         startActivity(intent);
         this.finish();
     }
+
 
 
 

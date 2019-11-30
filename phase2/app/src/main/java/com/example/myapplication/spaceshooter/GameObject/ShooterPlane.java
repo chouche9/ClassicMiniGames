@@ -74,6 +74,10 @@ public class ShooterPlane extends ShooterGameObject implements Parcelable  {
         }
     };
 
+    public boolean touchInRange(float touchX, float touchY){
+        return getX()<= touchX&& touchX<= getX()+ getWidth()
+                && getY() <= touchY && touchY <=getY() + getHeight();
+    }
 
     public void resetPosition(){
         setX(1080/2 - 150);

@@ -1,5 +1,6 @@
 package com.example.myapplication.spaceshooter.shootergameview;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -27,7 +28,7 @@ public class ShooterGameView extends View {
     static int bulletLoad = 0;
     ShooterGameStatus shooterGameStatus;
     Bitmap background;
-    ShooterColisionManager colisionManager;
+    ShooterColisionManager shooterColisionManager;
     ShooterLoadItemManager loadItemManager;
     ShooterDrawItemManager drawItemManager;
     ShooterBitmapManager bitmapManager;
@@ -42,7 +43,7 @@ public class ShooterGameView extends View {
     static int dHeight;
     final long UPDATE_MILLIS = 60;
     SoundPool sp;
-    public boolean activityFinish;
+    private boolean activityFinish;
 
     public ShooterGameView(Context context) {
         super(context);
@@ -55,7 +56,7 @@ public class ShooterGameView extends View {
         plane = shooterGameStatus.plane;
         setBackground();
         setUpSoundPool();
-        this.colisionManager = new ShooterColisionManager(shooterGameStatus, context, sp);
+        this.shooterColisionManager = new ShooterColisionManager(shooterGameStatus, context, sp);
         this.loadItemManager = new ShooterLoadItemManager(shooterGameStatus, context, sp);
         this.drawItemManager = new ShooterDrawItemManager(shooterGameStatus);
         this.bitmapManager = new ShooterBitmapManager(context, shooterGameStatus);
@@ -113,7 +114,7 @@ public class ShooterGameView extends View {
         super.onDraw(canvas);
         canvas.drawBitmap(background, null, rect, null);
         loadItemManager.loadItem();
-        colisionManager.handleColision();
+        shooterColisionManager.handleColision();
         drawItemManager.setCanvas(canvas);
         drawItemManager.draw();
         if(shooterGameStatus.gameSuccess && !shooterGameStatus.levelFinish && !activityFinish){
@@ -129,6 +130,7 @@ public class ShooterGameView extends View {
         };
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         float touchX = event.getX();
@@ -137,6 +139,9 @@ public class ShooterGameView extends View {
         int planewidth = plane.getWidth()/2;
         int planeHeight = plane.getHeight()/2;
         if (action == MotionEvent.ACTION_MOVE) {
+            if (!plane.touchInRange(touchX, touchY)){
+                return true;
+            }
             if (touchX < planewidth){
                 touchX = planewidth;
             }
@@ -162,8 +167,11 @@ public class ShooterGameView extends View {
         context.startActivity(intent);
         ((Activity) context).finish();
     }
-    void onpause(){
-
+    public void setActivityFinish(boolean finish){
+        this.activityFinish = finish;
+    }
+    public boolean getActivityFinish(){
+        return activityFinish;
     }
 
 }
