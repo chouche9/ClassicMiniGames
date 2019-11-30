@@ -13,11 +13,20 @@ import com.example.myapplication.R;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 
+/**
+ * The manager object that is responsible of tracking all bitmap representations of game objects
+ * in this game view.
+ */
 public class ViewBitmapManager {
 
-
+  /**
+   * The game status that utilizes this bitmap manager.
+   */
   private FlappyGameStatusFacade gameStatus;
 
+  /**
+   * The canvas of which all bitmaps are drawn on.
+   */
   private Canvas canvas;
 
   /** The background of this game view. */
@@ -38,10 +47,18 @@ public class ViewBitmapManager {
   /** The life the user has. */
   private Bitmap[] life = new Bitmap[2];
 
+  /**
+   * Constructs a bitmap manager with the specified game status.
+   * @param gameStatus the game status object that utilizes this bitmap manager.
+   */
   public ViewBitmapManager(FlappyGameStatusFacade gameStatus) {
     this.gameStatus = gameStatus;
   }
 
+  /**
+   * Initializes all the bitmap representations tracked by this bitmap manager.
+   * @param resources the resources used to draw the bitmaps.
+   */
   void setUpGame(Resources resources) {
     setUpBackground(resources);
     setUpSprite(resources);
@@ -49,10 +66,18 @@ public class ViewBitmapManager {
     setUpObjects();
   }
 
+  /**
+   * Set the canvas tracked by the bitmap manager to canvas.
+   * @param canvas the canvas of which all the bitmaps are drawn.
+   */
   void setCanvas(Canvas canvas) {
     this.canvas = canvas;
   }
 
+  /**
+   * Set the bitmap representations of background based on the background in game status.
+   * @param resources the resources used to draw the bitmaps.
+   */
   private void setUpBackground(Resources resources) {
     if (gameStatus.getBg()) {
       bg = BitmapFactory.decodeResource(resources, R.drawable.darkocean);
@@ -61,7 +86,7 @@ public class ViewBitmapManager {
     }
   }
 
-  /** Set up the background and the sprites for the moving objects. */
+  /** Set up the sprites for the moving objects. */
   private void setUpSprite(Resources resources) {
     fish = BitmapFactory.decodeResource(resources, R.drawable.fish);
     shrimp = BitmapFactory.decodeResource(resources, R.drawable.shrimp);
@@ -75,10 +100,16 @@ public class ViewBitmapManager {
     life[1] = BitmapFactory.decodeResource(resources, R.drawable.heart_empty);
   }
 
+  /**
+   * Draw the bitmap representation of the background.
+   */
   void drawBackground() {
     canvas.drawBitmap(bg, 0, 0, null);
   }
 
+  /**
+   * Draw the bitmap representation of the lives of the player.
+   */
   void drawLife() {
     int canvasWidth = canvas.getWidth();
     for (int i = 0; i < 3; i++) {
@@ -94,6 +125,9 @@ public class ViewBitmapManager {
     }
   }
 
+  /**
+   * Set up the width and height of all the game objects with their bitmap representation.
+   */
   private void setUpObjects() {
     FlappyGameFish fishObj = gameStatus.getFish();
     FlappyGameShrimp shrimpObj = gameStatus.getShrimp();
@@ -109,6 +143,10 @@ public class ViewBitmapManager {
     bonusObj.setHeight(bonus.getHeight());
   }
 
+  /**
+   * Draw all the bitmaps tracked by this bitmap manager.
+   * @return whether the player has finished the current stage or ran out of lives.
+   */
   boolean drawBitmaps() {
     int canvasWidth = canvas.getWidth();
     int canvasHeight = canvas.getHeight();
@@ -133,6 +171,10 @@ public class ViewBitmapManager {
     return (stageFinished || playerDied);
   }
 
+  /**
+   * Draw the bitmap representation of the bonus game item.
+   * @return whether the player has activated the bonus game.
+   */
   boolean drawBonusGameBitmap() {
     int canvasWidth = canvas.getWidth();
     int canvasHeight = canvas.getHeight();

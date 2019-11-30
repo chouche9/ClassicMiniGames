@@ -40,8 +40,11 @@ public class FlappyResultActivity extends AppCompatActivity implements View.OnCl
     setBackToMainBtn();
   }
 
+  /**
+   * Set up the next stage button which when clicked, takes the player to the next stage.
+   * @param result whether the player has finished the current stage or ran out of lives.
+   */
   private void setNextStageBtn(boolean result) {
-    // The button the allows users to play the same game again when clicked.
     Button nextStageBtn = findViewById(R.id.nextStageBtn);
     nextStageBtn.setOnClickListener(this);
     if (result) {
