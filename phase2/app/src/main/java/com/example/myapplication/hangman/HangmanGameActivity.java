@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.R;
+import com.example.myapplication.backgroundmusic.BackgroundMusic;
 
 /** The User Interface of this Hangman Game. */
 public class HangmanGameActivity extends AppCompatActivity
@@ -140,8 +141,10 @@ public class HangmanGameActivity extends AppCompatActivity
   public void onClick(View view) {
     if (view == btnPlayMusic) {
       startService(new Intent(this, HangmanBackgroundMusic.class));
+      HangmanMain.isPlaying = true;
     } else if (view == btnStopMusic) {
       stopService(new Intent(this, HangmanBackgroundMusic.class));
+      HangmanMain.isPlaying = false;
     }
   }
 
@@ -196,6 +199,9 @@ public class HangmanGameActivity extends AppCompatActivity
   @Override
   protected void onPause() {
     super.onPause();
+    if (BackgroundMusic.isApplicationSentToBackground(this)) {
+      stopService(new Intent(this, HangmanBackgroundMusic.class));
+    }
     HangmanGameManager hangmanGameManager = HangmanGameManager.getInstance(this);
     hangmanGameManager.saveGame(hangmanGamePresenter.getHangmanGameStat());
   }
@@ -204,6 +210,9 @@ public class HangmanGameActivity extends AppCompatActivity
   @Override
   protected void onResume() {
     super.onResume();
+    if (HangmanMain.isPlaying) {
+      startService(new Intent(this, HangmanBackgroundMusic.class));
+    }
     // go back to HangmanStageEnded activity if the game has already ended before pausing the game
     if (hangmanGamePresenter.onCheckIfGameEnded()) {
       hangmanGamePresenter.onOpenGameEndedActivity();

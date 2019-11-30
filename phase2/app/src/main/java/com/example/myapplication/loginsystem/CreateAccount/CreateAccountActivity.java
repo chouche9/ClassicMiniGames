@@ -30,10 +30,19 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
     /** the intent that get passed in */
     Intent createAccountIntent;
 
+    /**
+     * String representation of the username entered by the user.
+     */
     String username;
 
+    /**
+     * String representation of the first password entered by the user.
+     */
     String password1Str;
 
+    /**
+     * String representation of the second password entered by the user.
+     */
     String password2Str;
 
     /** singleton userManager */
@@ -41,8 +50,11 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
 
     private com.example.myapplication.loginsystem.CreateAccount.CreateAccountPresenter createAccountPresenter;
 
-
-
+    /**
+     * Initializes this login activity.
+     *
+     * @param savedInstanceState a bundle of the resources in this activity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +69,11 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
         createAccountPresenter = new com.example.myapplication.loginsystem.CreateAccount.CreateAccountPresenter(this);
     }
 
+    /**
+     * Events that happen when each of the buttons in this activity is clicked.
+     *
+     * @param view view responsible for event handling.
+     */
     @Override
     public void onClick(View view) {
         boolean isUsernameEmpty = false;
@@ -86,20 +103,35 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
         }
     }
 
+    /**
+     * Called when the user fails to enter a username.
+     */
     @Override
     public void onUsernameEmptyError() { accountEntry.setError("Please enter a username"); }
 
+    /**
+     * Called when the user fails to enter either the first or second password.
+     */
     @Override
     public void onPasswordEmptyError() { password1.setError("Please enter a password!"); }
 
+    /**
+     * Called when the two passwords entered by the user does not match.
+     */
     @Override
     public void onPasswordMismatchError() { password1.setError("Please enter the same password!"); }
 
+    /**
+     * Called when the username entered is already taken.
+     */
     @Override
     public void onFail() {
         Toast.makeText(this, "This user name is already taken!", Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * Called when the account is created successfully.
+     */
     @Override
     public void onSuccess() {
         User newUser = new User(username, password2Str);

@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.myapplication.R;
+import com.example.myapplication.backgroundmusic.BackgroundMusic;
 
 /** Hangman Game Settings Page */
 public class HangmanSetting extends AppCompatActivity implements View.OnClickListener {
@@ -61,5 +62,23 @@ public class HangmanSetting extends AppCompatActivity implements View.OnClickLis
     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
     startActivity(intent);
     finish();
+  }
+
+  /** Resumes this activity and checks whether the background music should be played or not. */
+  @Override
+  protected void onResume() {
+    super.onResume();
+    if (HangmanMain.isPlaying) {
+      startService(new Intent(this, HangmanBackgroundMusic.class));
+    }
+  }
+
+  /** Pauses this activity and stops the background music if the home key is pressed. */
+  @Override
+  protected void onPause() {
+    super.onPause();
+    if (BackgroundMusic.isApplicationSentToBackground(this)) {
+      stopService(new Intent(this, HangmanBackgroundMusic.class));
+    }
   }
 }

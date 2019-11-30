@@ -7,6 +7,8 @@ import com.example.myapplication.databaseconnector.GameEnum;
 import com.example.myapplication.domain.GameManager;
 import com.example.myapplication.domain.GameStatus;
 import com.example.myapplication.databaseconnector.GameStatusDaoImpl;
+import com.example.myapplication.flappyfish.FlappyGameStatus.LevelManager;
+import com.example.myapplication.flappyfish.FlappyGameStatus.ObjectManager;
 
 /** The game manager for this flappy fish game. */
 class FlappyGameManager extends GameManager {
@@ -46,6 +48,8 @@ class FlappyGameManager extends GameManager {
                     GameStatusDaoImpl.getInstance(getActivity()).getGameStatus(username, GameEnum.FLAPPYFISH);
     if (flappyGameStatusFacade == null) {
       flappyGameStatusFacade = new FlappyGameStatusFacade(username);
+      flappyGameStatusFacade.setLevelManager(new LevelManager());
+      flappyGameStatusFacade.setObjectManager(new ObjectManager());
     }
     return flappyGameStatusFacade;
   }

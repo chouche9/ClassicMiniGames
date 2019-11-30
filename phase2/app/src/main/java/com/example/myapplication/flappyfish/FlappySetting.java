@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.myapplication.backgroundmusic.BackgroundMusic;
 import com.example.myapplication.flappyfish.FlappyGameStatus.FlappyGameStatusFacade;
 import com.example.myapplication.R;
 
@@ -94,6 +95,24 @@ public class FlappySetting extends AppCompatActivity implements View.OnClickList
         gameStatus.setBgDark();
         startGame();
         break;
+    }
+  }
+
+  /** Resumes this activity and checks whether the background music should be played or not. */
+  @Override
+  protected void onResume() {
+    super.onResume();
+    if (FlappyGameMenu.isPlaying) {
+      startService(new Intent(this, FlappyBackgroundMusic.class));
+    }
+  }
+
+  /** Pauses this activity and stops the background music if the home key is pressed. */
+  @Override
+  protected void onPause() {
+    super.onPause();
+    if (BackgroundMusic.isApplicationSentToBackground(this)) {
+      stopService(new Intent(this, FlappyBackgroundMusic.class));
     }
   }
 }

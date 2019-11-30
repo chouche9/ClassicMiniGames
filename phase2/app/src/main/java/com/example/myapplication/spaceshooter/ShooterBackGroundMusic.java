@@ -1,32 +1,13 @@
 package com.example.myapplication.spaceshooter;
 
-import android.app.Service;
-import android.content.Intent;
-import android.media.MediaPlayer;
-import android.os.IBinder;
-
-import androidx.annotation.Nullable;
-
 import com.example.myapplication.R;
+import com.example.myapplication.backgroundmusic.BackgroundMusic;
 
-public class ShooterBackGroundMusic extends Service {
-    MediaPlayer mediaPlayer;
-    @Nullable
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
-    }
+/** The background music in space shooter game. */
+public class ShooterBackGroundMusic extends BackgroundMusic {
 
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        mediaPlayer = MediaPlayer.create(this, R.raw.game_music);
-        mediaPlayer.setLooping(true);
-        mediaPlayer.start();
-        return START_STICKY;
-    }
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mediaPlayer.release();
-    }
+  /** Constructs a new background music in space shooter game. */
+  public ShooterBackGroundMusic() {
+    super(R.raw.game_music);
+  }
 }
