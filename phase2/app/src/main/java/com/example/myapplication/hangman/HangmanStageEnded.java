@@ -15,10 +15,10 @@ import com.example.myapplication.R;
 
 /** Activity that get activated when a stage ends in hangman. */
 public class HangmanStageEnded extends AppCompatActivity
-    implements BonusLevelDialog.BonusLevelDialogListener, View.OnClickListener {
+        implements BonusLevelDialog.BonusLevelDialogListener, View.OnClickListener {
 
   /** A HangmanGameStatInteractor that stores the hangman game status. */
-  private HangmanGameStatFacade hangmanGameStat;
+  private HangmanGameStatus hangmanGameStat;
 
   /** A String to store the original gender */
   private String originalGender;
@@ -93,12 +93,12 @@ public class HangmanStageEnded extends AppCompatActivity
 
     if (hangmanGameStat.getFalseGuess() == 6) { // game lost
       firstMessage =
-          "You lost! The correct word was "
-              + hangmanGameStat.getSecretWord()
-              + ". \n"
-              + "You made it to stage "
-              + hangmanGameStat.getStageNum()
-              + ".";
+              "You lost! The correct word was "
+                      + hangmanGameStat.getSecretWord()
+                      + ". \n"
+                      + "You made it to stage "
+                      + hangmanGameStat.getStageNum()
+                      + ".";
       valueMessage = "Total score: " + hangmanGameStat.getAccumulatedScore();
       hangmanGameStat.resetGameStatus();
       hangmanGameStat.setGender(originalGender);
@@ -106,11 +106,11 @@ public class HangmanStageEnded extends AppCompatActivity
     } else {
       firstMessage = "Congratulations, you guessed the correct word!";
       valueMessage =
-          "Score this stage: "
-              + hangmanGameStat.getCurrentScore()
-              + "\n"
-              + "Total score: "
-              + hangmanGameStat.getAccumulatedScore();
+              "Score this stage: "
+                      + hangmanGameStat.getCurrentScore()
+                      + "\n"
+                      + "Total score: "
+                      + hangmanGameStat.getAccumulatedScore();
       playAgain.setVisibility(View.GONE);
 
       if (hangmanGameStat.getStageNum() % 3 == 0) {
@@ -141,14 +141,14 @@ public class HangmanStageEnded extends AppCompatActivity
 
   private void setBonusLevelButton() {
     bonusLevel.setOnClickListener(
-        new View.OnClickListener() {
-          @Override
-          public void onClick(View view) {
-            openDialog();
-            hangmanGameStat.setBonusLevelActivated(true);
-            onCancel();
-          }
-        });
+            new View.OnClickListener() {
+              @Override
+              public void onClick(View view) {
+                openDialog();
+                hangmanGameStat.setBonusLevelActivated(true);
+                onCancel();
+              }
+            });
   }
 
   private void openDialog() {
@@ -163,7 +163,7 @@ public class HangmanStageEnded extends AppCompatActivity
     String valueMessage;
 
     if (isWon) {
-      hangmanGameStat.addAccumulatedScore(bonusScore);
+      hangmanGameStat.setAccumulatedScore(hangmanGameStat.getAccumulatedScore() + bonusScore);
       firstMessage = "Congratulations, you guessed the correct number!";
       valueMessage = "Your new total score: " + hangmanGameStat.getAccumulatedScore();
     } else {
@@ -185,72 +185,72 @@ public class HangmanStageEnded extends AppCompatActivity
   /** Event that happens after playAgain button is clicked. */
   private void setPlayAgainButton() {
     playAgain.setOnClickListener(
-        new View.OnClickListener() {
-          @Override
-          public void onClick(View view) {
-            Intent intent = new Intent(getApplicationContext(), HangmanGameActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            intent.putExtra(HangmanMain.getGamestatusMsg(), hangmanGameStat);
-            startActivity(intent);
-            finish();
-          }
-        });
+            new View.OnClickListener() {
+              @Override
+              public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), HangmanGameActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra(HangmanMain.getGamestatusMsg(), hangmanGameStat);
+                startActivity(intent);
+                finish();
+              }
+            });
   }
 
   private void setNextStageButton() {
     nextStage.setOnClickListener(
-        new View.OnClickListener() {
-          @Override
-          public void onClick(View view) {
-            Intent intent = new Intent(getApplicationContext(), HangmanGameActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            int falseGuess = hangmanGameStat.getFalseGuess();
-            int stageNum = hangmanGameStat.getStageNum();
-            int accumulatedScore = hangmanGameStat.getAccumulatedScore();
-            hangmanGameStat.resetGameStatus();
-            if (falseGuess > 0) {
-              hangmanGameStat.setFalseGuess(falseGuess - 1);
-            }
-            hangmanGameStat.setAccumulatedScore(accumulatedScore);
-            hangmanGameStat.setStageNum(stageNum);
-            hangmanGameStat.setGender(originalGender);
-            intent.putExtra(HangmanMain.getGamestatusMsg(), hangmanGameStat);
-            startActivity(intent);
-            finish();
-          }
-        });
+            new View.OnClickListener() {
+              @Override
+              public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), HangmanGameActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                int falseGuess = hangmanGameStat.getFalseGuess();
+                int stageNum = hangmanGameStat.getStageNum();
+                int accumulatedScore = hangmanGameStat.getAccumulatedScore();
+                hangmanGameStat.resetGameStatus();
+                if (falseGuess > 0) {
+                  hangmanGameStat.setFalseGuess(falseGuess - 1);
+                }
+                hangmanGameStat.setAccumulatedScore(accumulatedScore);
+                hangmanGameStat.setStageNum(stageNum);
+                hangmanGameStat.setGender(originalGender);
+                intent.putExtra(HangmanMain.getGamestatusMsg(), hangmanGameStat);
+                startActivity(intent);
+                finish();
+              }
+            });
   }
 
   /** Event that happens after mainMenu button is clicked. */
   private void setMainMenuButton() {
     mainMenu.setOnClickListener(
-        new View.OnClickListener() {
-          @Override
-          public void onClick(View view) {
-            Intent intent = new Intent(getApplicationContext(), HangmanMain.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            intent.putExtra(HangmanMain.getGamestatusMsg(), hangmanGameStat);
-            startActivity(intent);
-            finish();
-          }
-        });
+            new View.OnClickListener() {
+              @Override
+              public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), HangmanMain.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra(HangmanMain.getGamestatusMsg(), hangmanGameStat);
+                startActivity(intent);
+                finish();
+              }
+            });
   }
 
   /** Event that happens after backToHome button is clicked. */
   private void setBackToHome() {
     backToHome.setOnClickListener(
-        new View.OnClickListener() {
-          @Override
-          public void onClick(View view) {
-            stopService(new Intent(getApplicationContext(), HangmanBackgroundMusic.class));
-            Intent intent = new Intent(getApplicationContext(), GameMain.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            intent.putExtra(HangmanMain.getGamestatusMsg(), hangmanGameStat);
-            intent.putExtra("user", hangmanGameStat.getName());
-            startActivity(intent);
-            finish();
-          }
-        });
+            new View.OnClickListener() {
+              @Override
+              public void onClick(View view) {
+                stopService(new Intent(getApplicationContext(), HangmanBackgroundMusic.class));
+                Intent intent = new Intent(getApplicationContext(), GameMain.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra(HangmanMain.getGamestatusMsg(), hangmanGameStat);
+                intent.putExtra("user", hangmanGameStat.getName());
+                startActivity(intent);
+                finish();
+              }
+            });
   }
 
   /** Resumes this activity and checks whether the background music should be played or not. */

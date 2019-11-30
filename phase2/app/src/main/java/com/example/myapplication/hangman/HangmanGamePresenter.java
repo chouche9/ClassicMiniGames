@@ -1,54 +1,52 @@
 package com.example.myapplication.hangman;
 
-import com.example.myapplication.domain.GameStatus;
-
-class HangmanGamePresenter implements HangmanGameStatFacade.OnValidateCharListener{
+class HangmanGamePresenter implements HangmanGameInteractor.OnValidateCharListener{
 
     private HangmanGameActivity hangmanGameActivity;
-    private HangmanGameStatFacade hangmanGameStat;
+    private HangmanGameInteractor hangmanGameInteractor;
     private HangmanWordGenerator hangmanWordGenerator;
 
-    HangmanGamePresenter(HangmanGameActivity view, HangmanGameStatFacade interactor) {
+    HangmanGamePresenter(HangmanGameActivity view, HangmanGameInteractor hangmanGameInteractor) {
         this.hangmanGameActivity = view;
-        this.hangmanGameStat = interactor;
+        this.hangmanGameInteractor = hangmanGameInteractor;
         this.hangmanWordGenerator = new HangmanWordGenerator(view);
     }
 
-    public void validateChar(char c) {
-        hangmanGameStat.validateCharInteractor(c, this);
+    void validateChar(char c) {
+        hangmanGameInteractor.validateChar(c, this);
     }
 
-    public void validateWord(String guessedWord) {
-        hangmanGameStat.validateWordInteractor(guessedWord, this);
+    void validateWord(String guessedWord) {
+        hangmanGameInteractor.validateWord(guessedWord, this);
     }
 
-    public GameStatus getHangmanGameStat() {
-        return this.hangmanGameStat;
+    HangmanGameStatus getHangmanGameStat() {
+        return hangmanGameInteractor.getHangmanGameStat();
     }
 
-    public boolean getPlayed() {
-        return hangmanGameStat.getPlayed();
+    boolean getPlayed() {
+        return getHangmanGameStat().isPlayed();
     }
 
-    public void getNewWord() {
+    void getNewWord() {
         String chosenWord = hangmanWordGenerator.getChosenWord();
-        hangmanGameStat.generateWord(chosenWord);
+        hangmanGameInteractor.generateWord(chosenWord);
     }
 
-    public boolean onCheckIfGameEnded() {
-        return hangmanGameStat.gameEndedInteractor();
+    boolean onCheckIfGameEnded() {
+        return hangmanGameInteractor.gameEnded();
     }
 
-    public void onOpenGameEndedActivity() {
-        onGameEnd(hangmanGameStat);
+    void onOpenGameEndedActivity() {
+        onGameEnd(getHangmanGameStat());
     }
 
-    public void onResuming() {
-        hangmanGameActivity.showTxtStageNum(hangmanGameStat.getStageNum());
-        hangmanGameActivity.showTxtMaskedWord(hangmanGameStat.getDisplayedMaskedWord().toString());
-        hangmanGameActivity.showTxtScore(hangmanGameStat.getCurrentScore());
-        hangmanGameActivity.showLettersGuessed(hangmanGameStat.getLettersGuessed().toString());
-        hangmanGameActivity.setPictureIndex(hangmanGameStat.getFalseGuess());
+    void onResuming() {
+        hangmanGameActivity.showTxtStageNum(getHangmanGameStat().getStageNum());
+        hangmanGameActivity.showTxtMaskedWord(getHangmanGameStat().getDisplayedMaskedWord().toString());
+        hangmanGameActivity.showTxtScore(getHangmanGameStat().getCurrentScore());
+        hangmanGameActivity.showLettersGuessed(getHangmanGameStat().getLettersGuessed().toString());
+        hangmanGameActivity.setPictureIndex(getHangmanGameStat().getFalseGuess());
         hangmanGameActivity.showImage();
     }
 
@@ -70,18 +68,18 @@ class HangmanGamePresenter implements HangmanGameStatFacade.OnValidateCharListen
     @Override
     public void onDisplayViews() {
         if (hangmanGameActivity != null) {
-            hangmanGameActivity.showTxtStageNum(hangmanGameStat.getStageNum());
-            hangmanGameActivity.setPictureIndex(hangmanGameStat.getFalseGuess());
-            hangmanGameActivity.showTxtMaskedWord(hangmanGameStat.getDisplayedMaskedWord().toString());
-            hangmanGameActivity.showLettersGuessed(hangmanGameStat.getLettersGuessed().toString());
-            hangmanGameActivity.showTxtScore(hangmanGameStat.getCurrentScore());
+            hangmanGameActivity.showTxtStageNum(getHangmanGameStat().getStageNum());
+            hangmanGameActivity.setPictureIndex(getHangmanGameStat().getFalseGuess());
+            hangmanGameActivity.showTxtMaskedWord(getHangmanGameStat().getDisplayedMaskedWord().toString());
+            hangmanGameActivity.showLettersGuessed(getHangmanGameStat().getLettersGuessed().toString());
+            hangmanGameActivity.showTxtScore(getHangmanGameStat().getCurrentScore());
             hangmanGameActivity.showImage();
             hangmanGameActivity.clearEdtLetterGuess();
         }
     }
 
     @Override
-    public void onGameEnd(HangmanGameStatFacade hm) {
+    public void onGameEnd(HangmanGameStatus hm) {
         if (hangmanGameActivity != null) {
             hangmanGameActivity.gameEnded(hm);
         }

@@ -15,7 +15,7 @@ import com.example.myapplication.backgroundmusic.BackgroundMusic;
 public class HangmanSetting extends AppCompatActivity implements View.OnClickListener {
 
   /** A variable to store the hangmanGameStat */
-  private HangmanGameStatFacade hangmanGameStat;
+  private HangmanGameStatus hangmanGameStat;
 
   /**
    * Initializes this HangmanMain activity.

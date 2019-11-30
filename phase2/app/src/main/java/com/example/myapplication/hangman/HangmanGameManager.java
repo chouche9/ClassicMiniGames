@@ -4,7 +4,6 @@ import android.app.Activity;
 
 import com.example.myapplication.databaseconnector.GameEnum;
 import com.example.myapplication.domain.GameManager;
-import com.example.myapplication.domain.GameStatus;
 import com.example.myapplication.databaseconnector.GameStatusDaoImpl;
 
 /** The game manager for this Hangman game. */
@@ -34,15 +33,15 @@ class HangmanGameManager extends GameManager {
    * Returns the HangmanGameManager instance that belongs to a user with specified username.
    *
    * @param username the username of the user playing this game.
-   * @return HangmanGameStatFacade the HangmanGameStatFacade instance of this user.
+   * @return HangmanGameStatus the HangmanGameStatus instance of this user.
    */
-  protected HangmanGameStatFacade getGameStatus(String username) {
-    HangmanGameStatFacade hangmanGameStat =
-            (HangmanGameStatFacade)
+  protected HangmanGameStatus getGameStatus(String username) {
+    HangmanGameStatus hangmanGameStat =
+            (HangmanGameStatus)
                     GameStatusDaoImpl.getInstance(getActivity()).getGameStatus(username, GameEnum.HANGMAN);
 
     if (hangmanGameStat == null) {
-      hangmanGameStat = new HangmanGameStatFacade(username);
+      hangmanGameStat = new HangmanGameStatus(username);
     }
 
     return hangmanGameStat;

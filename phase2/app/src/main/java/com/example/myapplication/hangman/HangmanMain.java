@@ -33,7 +33,7 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
   private String settingsGender;
 
   /** Game state for this HangmanGame of the user that is currently playing. */
-  private HangmanGameStatFacade hangmanGameStat;
+  private HangmanGameStatus hangmanGameStat;
 
   /** Button that the user clicks to play background music. */
   private Button btnPlayMusic;
@@ -102,7 +102,7 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
     // during the game
     hangmanGameStat.setGender(settingsGender);
 
-    if (hangmanGameStat.getPlayed()) {
+    if (hangmanGameStat.isPlayed()) {
       btnResumeGame.setVisibility(View.VISIBLE);
     } else {
       btnResumeGame.setVisibility(View.GONE);

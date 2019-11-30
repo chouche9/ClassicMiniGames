@@ -17,13 +17,7 @@ import com.example.myapplication.backgroundmusic.BackgroundMusic;
 
 /** The User Interface of this Hangman Game. */
 public class HangmanGameActivity extends AppCompatActivity
-    implements HangmanGameView, HangmanDialog.HangmanDialogListener, View.OnClickListener {
-
-  /** Name used globally to send/retrieve the winning/losing message to/from an intent. */
-  private static final String MESSAGE = "message";
-
-  /** Name used globally to send/retrieve the score of this user to/from an intent. */
-  private static final String SCORE_MESSAGE = "score";
+        implements HangmanGameView, HangmanDialog.HangmanDialogListener, View.OnClickListener {
 
   /** Images used in this hangman game. */
   private ImageView hangmanImage;
@@ -94,10 +88,10 @@ public class HangmanGameActivity extends AppCompatActivity
     picture_index = 0;
 
     Intent intent = getIntent();
-    HangmanGameStatFacade hangmanGameStat =
-        intent.getParcelableExtra(HangmanMain.getGamestatusMsg());
+    HangmanGameStatus hangmanGameStat =
+            intent.getParcelableExtra(HangmanMain.getGamestatusMsg());
 
-    hangmanGamePresenter = new HangmanGamePresenter(this, hangmanGameStat);
+    hangmanGamePresenter = new HangmanGamePresenter(this, new HangmanGameInteractor(hangmanGameStat));
 
     // Review Below!
     assert hangmanGameStat != null;
@@ -105,28 +99,28 @@ public class HangmanGameActivity extends AppCompatActivity
 
     if (gender.equals("FEMALE")) {
       pictures =
-          new int[] {
-            R.drawable.start,
-            R.drawable.female_head,
-            R.drawable.female_leftarm,
-            R.drawable.female_rightarm,
-            R.drawable.female_body,
-            R.drawable.female_leftleg,
-            R.drawable.female_rightleg
-          };
+              new int[] {
+                      R.drawable.start,
+                      R.drawable.female_head,
+                      R.drawable.female_leftarm,
+                      R.drawable.female_rightarm,
+                      R.drawable.female_body,
+                      R.drawable.female_leftleg,
+                      R.drawable.female_rightleg
+              };
 
       layout.setBackgroundResource(R.drawable.hangman_bg_female);
     } else {
       pictures =
-          new int[] {
-            R.drawable.start,
-            R.drawable.male_head,
-            R.drawable.male_leftarm,
-            R.drawable.male_rightarm,
-            R.drawable.male_body,
-            R.drawable.male_leftleg,
-            R.drawable.male_rightleg
-          };
+              new int[] {
+                      R.drawable.start,
+                      R.drawable.male_head,
+                      R.drawable.male_leftarm,
+                      R.drawable.male_rightarm,
+                      R.drawable.male_body,
+                      R.drawable.male_leftleg,
+                      R.drawable.male_rightleg
+              };
 
       layout.setBackgroundResource(R.drawable.hangman_bg_male);
     }
@@ -151,29 +145,29 @@ public class HangmanGameActivity extends AppCompatActivity
   /** Event that happens after the btnGuessLetter button is clicked. */
   private void setBtnGuessLetter() {
     btnGuessLetter.setOnClickListener(
-        new View.OnClickListener() {
-          @Override
-          public void onClick(View view) {
-            if (edtLetterGuess.getText().length() > 0) {
-              String letterGuessed = edtLetterGuess.getText().toString().toLowerCase();
-              char c = letterGuessed.charAt(0);
-              hangmanGamePresenter.validateChar(c);
-            } else {
-              showEmptyError();
-            }
-          }
-        });
+            new View.OnClickListener() {
+              @Override
+              public void onClick(View view) {
+                if (edtLetterGuess.getText().length() > 0) {
+                  String letterGuessed = edtLetterGuess.getText().toString().toLowerCase();
+                  char c = letterGuessed.charAt(0);
+                  hangmanGamePresenter.validateChar(c);
+                } else {
+                  showEmptyError();
+                }
+              }
+            });
   }
 
   /** Event that happens after the btnGuessWord button is clicked. */
   private void setBtnGuessWord() {
     btnGuessWord.setOnClickListener(
-        new View.OnClickListener() {
-          @Override
-          public void onClick(View view) {
-            openDialog();
-          }
-        });
+            new View.OnClickListener() {
+              @Override
+              public void onClick(View view) {
+                openDialog();
+              }
+            });
   }
 
   /** Opens the dialog for guessing the full word. */
@@ -235,7 +229,7 @@ public class HangmanGameActivity extends AppCompatActivity
             getApplicationContext(),
             "Letter " + c + " is already used! Try again.",
             Toast.LENGTH_SHORT)
-        .show();
+            .show();
   }
 
   @Override
@@ -274,7 +268,7 @@ public class HangmanGameActivity extends AppCompatActivity
   }
 
   @Override
-  public void gameEnded(HangmanGameStatFacade hm) {
+  public void gameEnded(HangmanGameStatus hm) {
     // intent opens up the "game lost" activity
     Intent intent = new Intent(this, HangmanStageEnded.class);
     intent.putExtra(HangmanMain.getGamestatusMsg(), hm);
@@ -285,6 +279,6 @@ public class HangmanGameActivity extends AppCompatActivity
   @Override
   public void showGuessWordFailed() {
     Toast.makeText(getApplicationContext(), "You guessed the wrong word!", Toast.LENGTH_SHORT)
-        .show();
+            .show();
   }
 }
