@@ -41,7 +41,7 @@ private int start;
         start--;
     }
     void handleOnPause(){
-        shooterGameView.setActivityFinish(false);
+        shooterGameView.setActivityFinish(true);
         saveGameState();
     }
 

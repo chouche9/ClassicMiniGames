@@ -124,7 +124,7 @@ public class ShooterGameView extends View {
                 onViewFinish();
                 countDownTimer.cancel();
             }
-            else if(finish == 0){
+            else {
                 countDownTimer.cancel();
             }
         };
