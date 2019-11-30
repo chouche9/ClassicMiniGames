@@ -3,10 +3,11 @@ package com.example.myapplication.hangman;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.example.myapplication.databaseconnector.GameEnum;
 import com.example.myapplication.domain.GameStatus;
 
 public class HangmanGameStatFacade extends GameStatus
-    implements Parcelable,
+        implements Parcelable,
         HangmanGameGuessedLetter.onHangmanGameGuessedLetterListener,
         HangmanGameGuessedWord.onHangmanGameGuessedWordListener {
 
@@ -21,9 +22,6 @@ public class HangmanGameStatFacade extends GameStatus
 
     void onGuessWordFailed();
   }
-
-  /** A string type that passes on the type of the game */
-  private String type;
 
   /** A boolean string that shows whether the game has been played before or not */
   private boolean played = false;
@@ -70,8 +68,7 @@ public class HangmanGameStatFacade extends GameStatus
    * @param name: Name of the user
    */
   HangmanGameStatFacade(String name) {
-    super(name);
-    this.type = "HangmanGameStat";
+    super(name, GameEnum.HANGMAN);
   }
 
   /**
@@ -81,6 +78,7 @@ public class HangmanGameStatFacade extends GameStatus
    */
   private HangmanGameStatFacade(Parcel in) {
     super(in);
+    setGameType(GameEnum.valueOf(in.readString()));
     played = in.readByte() != 0;
     secretWord = in.readString();
     secretWordCharArray = in.createCharArray();
@@ -90,25 +88,48 @@ public class HangmanGameStatFacade extends GameStatus
     gender = in.readString();
     lettersGuessed = new StringBuilder(in.readString());
     displayedMaskedWord = new StringBuilder(in.readString());
-    type = in.readString();
     stageNum = in.readInt();
     accumulatedScore = in.readInt();
     bonusLevelActivated = in.readByte() != 0;
   }
 
+  /**
+   * Write the attribute of this GameStatus to parcel.
+   *
+   * @param parcel parcel to write the attributes of this GameStatus.
+   * @param i flags.
+   */
+  @Override
+  public void writeToParcel(Parcel parcel, int i) {
+    super.writeToParcel(parcel, i);
+    parcel.writeString(getGameType().toString());
+    parcel.writeByte((byte) (played ? 1 : 0));
+    parcel.writeString(secretWord);
+    parcel.writeCharArray(secretWordCharArray);
+    parcel.writeCharArray(maskedWordCharArray);
+    parcel.writeInt(currentScore);
+    parcel.writeInt(falseGuess);
+    parcel.writeString(gender);
+    parcel.writeString(lettersGuessed.toString());
+    parcel.writeString(displayedMaskedWord.toString());
+    parcel.writeInt(stageNum);
+    parcel.writeInt(accumulatedScore);
+    parcel.writeByte((byte) (bonusLevelActivated ? 1 : 0));
+  }
+
   /** Binds the GameStatus object. */
   public static final Creator<HangmanGameStatFacade> CREATOR =
-      new Creator<HangmanGameStatFacade>() {
-        @Override
-        public HangmanGameStatFacade createFromParcel(Parcel in) {
-          return new HangmanGameStatFacade(in);
-        }
+          new Creator<HangmanGameStatFacade>() {
+            @Override
+            public HangmanGameStatFacade createFromParcel(Parcel in) {
+              return new HangmanGameStatFacade(in);
+            }
 
-        @Override
-        public HangmanGameStatFacade[] newArray(int size) {
-          return new HangmanGameStatFacade[size];
-        }
-      };
+            @Override
+            public HangmanGameStatFacade[] newArray(int size) {
+              return new HangmanGameStatFacade[size];
+            }
+          };
 
   // GETTER & SETTER //
   boolean getPlayed() {
@@ -334,7 +355,6 @@ public class HangmanGameStatFacade extends GameStatus
     gender = "MALE";
     lettersGuessed = new StringBuilder();
     displayedMaskedWord = new StringBuilder();
-    type = "HangmanGameStat";
     stageNum = 0;
     accumulatedScore = 0;
   }
@@ -347,30 +367,6 @@ public class HangmanGameStatFacade extends GameStatus
   @Override
   public int describeContents() {
     return 0;
-  }
-
-  /**
-   * Write the attribute of this GameStatus to parcel.
-   *
-   * @param parcel parcel to write the attributes of this GameStatus.
-   * @param i flags.
-   */
-  @Override
-  public void writeToParcel(Parcel parcel, int i) {
-    super.writeToParcel(parcel, i);
-    parcel.writeByte((byte) (played ? 1 : 0));
-    parcel.writeString(secretWord);
-    parcel.writeCharArray(secretWordCharArray);
-    parcel.writeCharArray(maskedWordCharArray);
-    parcel.writeInt(currentScore);
-    parcel.writeInt(falseGuess);
-    parcel.writeString(gender);
-    parcel.writeString(lettersGuessed.toString());
-    parcel.writeString(displayedMaskedWord.toString());
-    parcel.writeString(type);
-    parcel.writeInt(stageNum);
-    parcel.writeInt(accumulatedScore);
-    parcel.writeByte((byte) (bonusLevelActivated ? 1 : 0));
   }
 
   boolean gameEndedInteractor() {

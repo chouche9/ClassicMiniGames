@@ -5,5 +5,4 @@ public enum GameEnum {
   FLAPPYFISH,
   SPACESHOOTER,
   HANGMAN,
-  GUESSNUM
 }

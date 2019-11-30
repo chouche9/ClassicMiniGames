@@ -3,19 +3,43 @@ package com.example.myapplication.domain;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.example.myapplication.databaseconnector.GameEnum;
+
 /** GameStatus of a game. */
 public class GameStatus implements Parcelable {
 
   /** The name of the user that this GameStatus is responsible for. */
   private String name;
 
+  /** The game type of this GameStatus. */
+  private GameEnum gameType;
+
   /**
    * Constructs this GameStatus.
    *
    * @param name the name of the user that this GameStatus is responsible for.
    */
-  public GameStatus(String name) {
+  protected GameStatus(String name, GameEnum gameType) {
     this.name = name;
+    this.gameType = gameType;
+  }
+
+  /**
+   * Get the game type of this GameStatus.
+   *
+   * @return the game type of this GameStatus.
+   */
+  protected GameEnum getGameType() {
+    return gameType;
+  }
+
+  /**
+   * Set the game type of this GameStatus.
+   *
+   * @param gameType the game type of this GameStatus.
+   */
+  protected void setGameType(GameEnum gameType) {
+    this.gameType = gameType;
   }
 
   /**
@@ -25,6 +49,7 @@ public class GameStatus implements Parcelable {
    */
   protected GameStatus(Parcel in) {
     name = in.readString();
+    gameType = GameEnum.valueOf(in.readString());
   }
 
   /** Binds the GameStatus object. */
@@ -69,5 +94,6 @@ public class GameStatus implements Parcelable {
   @Override
   public void writeToParcel(Parcel parcel, int i) {
     parcel.writeString(name);
+    parcel.writeString(gameType.name());
   }
 }

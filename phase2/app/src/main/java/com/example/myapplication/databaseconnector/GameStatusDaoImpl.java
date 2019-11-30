@@ -16,16 +16,10 @@ public class GameStatusDaoImpl implements GameStatusDao {
 
   private DBHandler dbHandler;
 
-  private HashMap<GameEnum, String> tables;
-
-  private HashMap<GameEnum, Class<? extends GameStatus>> gameTypeClass;
-
   private Gson gson = new Gson();
 
   private GameStatusDaoImpl(Activity activity) {
     this.dbHandler = DBHandler.getInstance(activity);
-    this.tables = dbHandler.getTables();
-    this.gameTypeClass = dbHandler.getGameTypeClass();
   }
 
   public static GameStatusDaoImpl getInstance(Activity activity) {
@@ -47,7 +41,7 @@ public class GameStatusDaoImpl implements GameStatusDao {
 
     values.put(DBHandler.COLUMN_STATUS, json);
     database.update(
-        tables.get(type),
+        dbHandler.getTables().get(type),
         values,
         DBHandler.COLUMN_USERNAME + " = " + "'" + gameStatus.getName() + "'",
         null);
@@ -60,7 +54,7 @@ public class GameStatusDaoImpl implements GameStatusDao {
         "SELECT "
             + DBHandler.COLUMN_STATUS
             + " FROM "
-            + tables.get(type)
+            + dbHandler.getTables().get(type)
             + " WHERE "
             + DBHandler.COLUMN_USERNAME
             + " = "
@@ -73,7 +67,7 @@ public class GameStatusDaoImpl implements GameStatusDao {
       String json = cursor.getString(0);
       cursor.close();
 
-      return gson.fromJson(json, gameTypeClass.get(type));
+      return gson.fromJson(json, dbHandler.getGameTypeClass().get(type));
     }
     return null;
   }
