@@ -69,8 +69,8 @@ public class HangmanStageEnded extends AppCompatActivity
     txtFirstMessage = findViewById(R.id.txtFirstMessage);
     txtValueMessage = findViewById(R.id.txtValueMessage);
 
-    Intent received_intent = getIntent();
-    hangmanGameStat = received_intent.getParcelableExtra(HangmanMain.getGamestatusMsg());
+    Intent receivedIntent = getIntent();
+    hangmanGameStat = receivedIntent.getParcelableExtra(HangmanMain.getGamestatusMsg());
     originalGender = hangmanGameStat.getGender();
 
     stageEndedResult();
