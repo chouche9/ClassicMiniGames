@@ -23,9 +23,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+
     Button createAccount = findViewById(R.id.createAccount);
     Button login = findViewById(R.id.login);
     Button exit = findViewById(R.id.exit);
+
     createAccount.setOnClickListener(this);
     login.setOnClickListener(this);
     exit.setOnClickListener(this);
@@ -46,7 +48,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intentLogin = new Intent(this, LoginActivity.class);
         startActivity(intentLogin);
         break;
-
       case R.id.exit:
         finish();
         break;
