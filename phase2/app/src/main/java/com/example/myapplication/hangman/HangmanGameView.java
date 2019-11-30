@@ -1,26 +1,66 @@
 package com.example.myapplication.hangman;
 
+/** Interface that contains all methods that the view of hangman must implement. */
 interface HangmanGameView {
 
-    void showEmptyError();
+  /** Shows an empty error in the display. */
+  void showEmptyError();
 
-    void showLetterUsedError(char c);
+  /**
+   * Shows a letter used error in the display.
+   *
+   * @param letter the character that was already guessed.
+   */
+  void showLetterUsedError(char letter);
 
-    void showImage();
+  /** Shows the hangman image in the display. */
+  void showImage();
 
-    void showTxtMaskedWord(String word);
+  /**
+   * Shows the masked word in the display.
+   *
+   * @param word the masked word.
+   */
+  void showTxtMaskedWord(String word);
 
-    void clearEdtLetterGuess();
+  /** Clears the letters guessed in the display. */
+  void clearEdtLetterGuess();
 
-    void showLettersGuessed(String word);
+  /**
+   * Shows the letters guessed so far in the display.
+   *
+   * @param lettersGuessed the letters guessed so far.
+   */
+  void showLettersGuessed(String lettersGuessed);
 
-    void showTxtScore(int score);
+  /**
+   * Shows the current score in the display.
+   *
+   * @param score the current score.
+   */
+  void showTxtScore(int score);
 
-    void setPictureIndex(int index);
+  /**
+   * Sets the picture index.
+   *
+   * @param index the picture index.
+   */
+  void setPictureIndex(int index);
 
-    void gameEnded(HangmanGameStatus hm);
+  /**
+   * Event that happens after the current game has ended.
+   *
+   * @param hm the game status of the hangman game.
+   */
+  void gameEnded(HangmanGameStatus hm);
 
-    void showGuessWordFailed();
+  /** Show that the guessed word was incorrect on the display. */
+  void showGuessWordFailed();
 
-    void showTxtStageNum(int stageNum);
+  /**
+   * Shows the current stage number in the display.
+   *
+   * @param stageNum the current stage number.
+   */
+  void showTxtStageNum(int stageNum);
 }

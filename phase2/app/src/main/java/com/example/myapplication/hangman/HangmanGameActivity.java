@@ -17,7 +17,7 @@ import com.example.myapplication.backgroundmusic.BackgroundMusic;
 
 /** The User Interface of this Hangman Game. */
 public class HangmanGameActivity extends AppCompatActivity
-        implements HangmanGameView, HangmanDialog.HangmanDialogListener, View.OnClickListener {
+    implements HangmanGameView, HangmanDialog.HangmanDialogListener, View.OnClickListener {
 
   /** Images used in this hangman game. */
   private ImageView hangmanImage;
@@ -43,9 +43,7 @@ public class HangmanGameActivity extends AppCompatActivity
   /** The dialog that pops up when the user presses btnGuessWord. */
   private HangmanDialog dialog;
 
-  /**
-   * Array for storing all possible pictures for this Hangman Game (specific to the gender chosen).
-   */
+  /** Array for storing all possible pictures for this Hangman Game depending on gender. */
   private int[] pictures;
 
   /** Number of false guesses made by this user so far. */
@@ -54,6 +52,7 @@ public class HangmanGameActivity extends AppCompatActivity
   /** The presenter of this hangman game. */
   private HangmanGamePresenter hangmanGamePresenter;
 
+  /** Text that displays the current stage number. */
   private TextView txtStageNum;
 
   /** Button that the user clicks to play background music. */
@@ -82,46 +81,40 @@ public class HangmanGameActivity extends AppCompatActivity
     txtStageNum = findViewById(R.id.txtStageNum);
     btnPlayMusic = findViewById(R.id.btnPlayMusic);
     btnStopMusic = findViewById(R.id.btnStopMusic);
-
     ConstraintLayout layout = findViewById(R.id.hangman_game_layout);
-
     picture_index = 0;
 
     Intent intent = getIntent();
-    HangmanGameStatus hangmanGameStat =
-            intent.getParcelableExtra(HangmanMain.getGamestatusMsg());
+    HangmanGameStatus hangmanGameStat = intent.getParcelableExtra(HangmanMain.getGamestatusMsg());
+    hangmanGamePresenter =
+        new HangmanGamePresenter(this, new HangmanGameInteractor(hangmanGameStat));
 
-    hangmanGamePresenter = new HangmanGamePresenter(this, new HangmanGameInteractor(hangmanGameStat));
-
-    // Review Below!
     assert hangmanGameStat != null;
     String gender = hangmanGameStat.getGender();
 
     if (gender.equals("FEMALE")) {
       pictures =
-              new int[] {
-                      R.drawable.start,
-                      R.drawable.female_head,
-                      R.drawable.female_leftarm,
-                      R.drawable.female_rightarm,
-                      R.drawable.female_body,
-                      R.drawable.female_leftleg,
-                      R.drawable.female_rightleg
-              };
-
+          new int[] {
+            R.drawable.start,
+            R.drawable.female_head,
+            R.drawable.female_leftarm,
+            R.drawable.female_rightarm,
+            R.drawable.female_body,
+            R.drawable.female_leftleg,
+            R.drawable.female_rightleg
+          };
       layout.setBackgroundResource(R.drawable.hangman_bg_female);
     } else {
       pictures =
-              new int[] {
-                      R.drawable.start,
-                      R.drawable.male_head,
-                      R.drawable.male_leftarm,
-                      R.drawable.male_rightarm,
-                      R.drawable.male_body,
-                      R.drawable.male_leftleg,
-                      R.drawable.male_rightleg
-              };
-
+          new int[] {
+            R.drawable.start,
+            R.drawable.male_head,
+            R.drawable.male_leftarm,
+            R.drawable.male_rightarm,
+            R.drawable.male_body,
+            R.drawable.male_leftleg,
+            R.drawable.male_rightleg
+          };
       layout.setBackgroundResource(R.drawable.hangman_bg_male);
     }
 
@@ -131,6 +124,11 @@ public class HangmanGameActivity extends AppCompatActivity
     btnStopMusic.setOnClickListener(this);
   }
 
+  /**
+   * Event that happens when btnPlayMusic or btnStopMusic is pressed.
+   *
+   * @param view the view that called this method.
+   */
   @Override
   public void onClick(View view) {
     if (view == btnPlayMusic) {
@@ -145,29 +143,29 @@ public class HangmanGameActivity extends AppCompatActivity
   /** Event that happens after the btnGuessLetter button is clicked. */
   private void setBtnGuessLetter() {
     btnGuessLetter.setOnClickListener(
-            new View.OnClickListener() {
-              @Override
-              public void onClick(View view) {
-                if (edtLetterGuess.getText().length() > 0) {
-                  String letterGuessed = edtLetterGuess.getText().toString().toLowerCase();
-                  char c = letterGuessed.charAt(0);
-                  hangmanGamePresenter.validateChar(c);
-                } else {
-                  showEmptyError();
-                }
-              }
-            });
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+            if (edtLetterGuess.getText().length() > 0) {
+              String letterGuessed = edtLetterGuess.getText().toString().toLowerCase();
+              char letter = letterGuessed.charAt(0);
+              hangmanGamePresenter.validateLetter(letter);
+            } else {
+              showEmptyError();
+            }
+          }
+        });
   }
 
   /** Event that happens after the btnGuessWord button is clicked. */
   private void setBtnGuessWord() {
     btnGuessWord.setOnClickListener(
-            new View.OnClickListener() {
-              @Override
-              public void onClick(View view) {
-                openDialog();
-              }
-            });
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+            openDialog();
+          }
+        });
   }
 
   /** Opens the dialog for guessing the full word. */
@@ -218,55 +216,83 @@ public class HangmanGameActivity extends AppCompatActivity
     }
   }
 
+  /** Shows an empty error in the display. */
   @Override
   public void showEmptyError() {
     Toast.makeText(getApplicationContext(), "Please input a letter!", Toast.LENGTH_SHORT).show();
   }
 
+  /**
+   * Shows a letter used error in the display.
+   *
+   * @param letter the character that was already guessed.
+   */
   @Override
-  public void showLetterUsedError(char c) {
+  public void showLetterUsedError(char letter) {
     Toast.makeText(
             getApplicationContext(),
-            "Letter " + c + " is already used! Try again.",
+            "Letter " + letter + " is already used! Try again.",
             Toast.LENGTH_SHORT)
-            .show();
+        .show();
   }
 
+  /** Shows the hangman image in the display. */
   @Override
   public void showImage() {
     hangmanImage.setImageResource(pictures[picture_index]);
   }
 
+  /**
+   * Shows the masked word in the display.
+   *
+   * @param word the masked word.
+   */
   @Override
   public void showTxtMaskedWord(String word) {
     txtMaskedWord.setText(word);
   }
 
+  /** Clears the letters guessed in the display. */
   @Override
   public void clearEdtLetterGuess() {
     edtLetterGuess.setText("");
   }
 
+  /**
+   * Shows the letters guessed so far in the display.
+   *
+   * @param lettersGuessed the letters guessed so far.
+   */
   @Override
-  public void showLettersGuessed(String word) {
-    txtLettersGuessed.setText(word);
+  public void showLettersGuessed(String lettersGuessed) {
+    txtLettersGuessed.setText(lettersGuessed);
   }
 
+  /**
+   * Shows the current score in the display.
+   *
+   * @param score the current score.
+   */
   @Override
   public void showTxtScore(int score) {
     txtScore.setText(String.valueOf(score));
   }
 
+  /**
+   * Sets the picture index.
+   *
+   * @param index the picture index.
+   */
   @Override
   public void setPictureIndex(int index) {
     picture_index = index;
   }
 
-  @Override
-  public void showTxtStageNum(int stageNum) {
-    txtStageNum.setText(String.valueOf(stageNum));
-  }
-
+  /**
+   * Event that happens after the current game has ended.
+   *
+   * @param hm the game status of the hangman game.
+   */
   @Override
   public void gameEnded(HangmanGameStatus hm) {
     // intent opens up the "game lost" activity
@@ -276,9 +302,21 @@ public class HangmanGameActivity extends AppCompatActivity
     finish();
   }
 
+  /** Show that the guessed word was incorrect on the display. */
   @Override
   public void showGuessWordFailed() {
     Toast.makeText(getApplicationContext(), "You guessed the wrong word!", Toast.LENGTH_SHORT)
-            .show();
+        .show();
   }
+
+  /**
+   * Shows the current stage number in the display.
+   *
+   * @param stageNum the current stage number.
+   */
+  @Override
+  public void showTxtStageNum(int stageNum) {
+    txtStageNum.setText(String.valueOf(stageNum));
+  }
+
 }

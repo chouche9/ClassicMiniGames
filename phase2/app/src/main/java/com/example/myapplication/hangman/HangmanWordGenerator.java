@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
+/** Generates all possible words of the hangman game. */
 class HangmanWordGenerator {
 
   /** ArrayList that stores all of the possible words that can be generated in this Hangman game. */
@@ -69,5 +70,4 @@ class HangmanWordGenerator {
     listOfWords.remove(0);
     return chosenWord;
   }
-
 }

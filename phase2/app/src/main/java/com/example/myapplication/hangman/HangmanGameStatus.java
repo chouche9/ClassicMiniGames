@@ -6,9 +6,10 @@ import android.os.Parcelable;
 import com.example.myapplication.databaseconnector.GameEnum;
 import com.example.myapplication.domain.GameStatus;
 
+/** GameStatus for hangman game - stores the current game state. */
 public class HangmanGameStatus extends GameStatus implements Parcelable {
 
-  /** A boolean string that shows whether the game has been played before or not */
+  /** A boolean that indicates whether the game has been played before or not */
   private boolean played = false;
 
   /** A string that represent the secret word for the hangman game */
@@ -23,13 +24,10 @@ public class HangmanGameStatus extends GameStatus implements Parcelable {
   /** An int that store the total value of the game */
   private int currentScore = 120;
 
-  /**
-   * An int falseGuess stores the value in which it increases whenever player failed to guess the
-   * letter
-   */
+  /** Keeps track of number of guesses that failed. */
   private int falseGuess = 0;
 
-  /** String gender stored the type of gender chosen for this game */
+  /** The chosen for this game */
   private String gender = "MALE";
 
   /** A StringBuilder that will store the letters that has been guessed by the user */
@@ -38,16 +36,19 @@ public class HangmanGameStatus extends GameStatus implements Parcelable {
   /** A StringBuilder that will store the word to be displayed on the game but are masked. */
   private StringBuilder displayedMaskedWord = new StringBuilder();
 
+  /** The current stage number. */
   private int stageNum = 0;
 
+  /** The score accumulated so far. */
   private int accumulatedScore = 0;
 
+  /** Indicates whether if the bonus level is currently activated or not. */
   private boolean bonusLevelActivated = false;
 
   /**
-   * A constructor to construct the HangmanGame statistics
+   * A constructor to construct the HangmanGameStatus.
    *
-   * @param name: Name of the user
+   * @param name the name of the user
    */
   HangmanGameStatus(String name) {
     super(name, GameEnum.HANGMAN);
@@ -101,17 +102,17 @@ public class HangmanGameStatus extends GameStatus implements Parcelable {
 
   /** Binds the GameStatus object. */
   public static final Creator<HangmanGameStatus> CREATOR =
-          new Creator<HangmanGameStatus>() {
-            @Override
-            public HangmanGameStatus createFromParcel(Parcel in) {
-              return new HangmanGameStatus(in);
-            }
+      new Creator<HangmanGameStatus>() {
+        @Override
+        public HangmanGameStatus createFromParcel(Parcel in) {
+          return new HangmanGameStatus(in);
+        }
 
-            @Override
-            public HangmanGameStatus[] newArray(int size) {
-              return new HangmanGameStatus[size];
-            }
-          };
+        @Override
+        public HangmanGameStatus[] newArray(int size) {
+          return new HangmanGameStatus[size];
+        }
+      };
 
   /**
    * Default method from Parcelable interface.
@@ -123,103 +124,223 @@ public class HangmanGameStatus extends GameStatus implements Parcelable {
     return 0;
   }
 
+  /**
+   * Get whether if the hangman game is played or not.
+   *
+   * @return true if the hangman game has been played, false otherwise.
+   */
   boolean isPlayed() {
     return played;
   }
 
+  /**
+   * Set whether if the hangman game is played or not.
+   *
+   * @param played indicates whether if the hangman game is played or not.
+   */
   void setPlayed(boolean played) {
     this.played = played;
   }
 
+  /**
+   * Get the secret word of this hangman game.
+   *
+   * @return the secret word of this hangman game.
+   */
   String getSecretWord() {
     return secretWord;
   }
 
+  /**
+   * Set the secret word of this hangman game.
+   *
+   * @param secretWord the secret word of this hangman game.
+   */
   void setSecretWord(String secretWord) {
     this.secretWord = secretWord;
   }
 
+  /**
+   * Get the SecretWordCharArray of this hangman game.
+   *
+   * @return the SecretWordCharArray of this hangman game.
+   */
   char[] getSecretWordCharArray() {
     return secretWordCharArray;
   }
 
+  /**
+   * Set the SecretWordCharArray of this hangman game.
+   *
+   * @param secretWordCharArray the SecretWordCharArray of this hangman game.
+   */
   void setSecretWordCharArray(char[] secretWordCharArray) {
     this.secretWordCharArray = secretWordCharArray;
   }
 
+  /**
+   * Get the MaskedWordCharArray of this hangman game.
+   *
+   * @return the MaskedWordCharArray of this hangman game.
+   */
   char[] getMaskedWordCharArray() {
     return maskedWordCharArray;
   }
 
+  /**
+   * Set the MaskedWordCharArray of this hangman game.
+   *
+   * @param maskedWordCharArray the MaskedWordCharArray of this hangman game.
+   */
   void setMaskedWordCharArray(char[] maskedWordCharArray) {
     this.maskedWordCharArray = maskedWordCharArray;
   }
 
+  /**
+   * Get the current score of this hangman game.
+   *
+   * @return the current score of this hangman game.
+   */
   int getCurrentScore() {
     return currentScore;
   }
 
+  /**
+   * Set the current score of this hangman game.
+   *
+   * @param currentScore the current score of this hangman game.
+   */
   void setCurrentScore(int currentScore) {
     this.currentScore = currentScore;
   }
 
+  /**
+   * Get the current number of false guesses of this hangman game.
+   *
+   * @return the current number of false guesses of this hangman game.
+   */
   int getFalseGuess() {
     return falseGuess;
   }
 
+  /**
+   * Set the current number of false guesses of this hangman game.
+   *
+   * @param falseGuess the current number of false guesses of this hangman game.
+   */
   void setFalseGuess(int falseGuess) {
     this.falseGuess = falseGuess;
   }
 
+  /**
+   * Get the chosen gender of this hangman game.
+   *
+   * @return the chosen gender of this hangman game.
+   */
   String getGender() {
     return gender;
   }
 
+  /**
+   * Set the chosen gender of this hangman game.
+   *
+   * @param gender the chosen gender of this hangman game.
+   */
   void setGender(String gender) {
     this.gender = gender;
   }
 
+  /**
+   * Get the letters guessed so far of this hangman game.
+   *
+   * @return the letters guessed so far of this hangman game.
+   */
   StringBuilder getLettersGuessed() {
     return lettersGuessed;
   }
 
+  /**
+   * Set the letters guessed so far of this hangman game.
+   *
+   * @param lettersGuessed the letters guessed so far of this hangman game.
+   */
   void setLettersGuessed(StringBuilder lettersGuessed) {
     this.lettersGuessed = lettersGuessed;
   }
 
+  /**
+   * Get the displayedMaskedWord of this hangman game.
+   *
+   * @return the displayedMaskedWord of this hangman game.
+   */
   StringBuilder getDisplayedMaskedWord() {
     return displayedMaskedWord;
   }
 
+  /**
+   * Set the the displayedMaskedWord of this hangman game.
+   *
+   * @param displayedMaskedWord the displayedMaskedWord of this hangman game.
+   */
   void setDisplayedMaskedWord(StringBuilder displayedMaskedWord) {
     this.displayedMaskedWord = displayedMaskedWord;
   }
 
+  /**
+   * Get the current stage number of this hangman game.
+   *
+   * @return the current stage number of this hangman game.
+   */
   int getStageNum() {
     return stageNum;
   }
 
+  /**
+   * Set the stage number of this hangman game.
+   *
+   * @param stageNum the stage number of this hangman game.
+   */
   void setStageNum(int stageNum) {
     this.stageNum = stageNum;
   }
 
+  /**
+   * Get the current accumulated score of this hangman game.
+   *
+   * @return the current accumulated score of this hangman game.
+   */
   int getAccumulatedScore() {
     return accumulatedScore;
   }
 
+  /**
+   * Set the current accumulated score of this hangman game.
+   *
+   * @param accumulatedScore the current accumulated score of this hangman game.
+   */
   void setAccumulatedScore(int accumulatedScore) {
     this.accumulatedScore = accumulatedScore;
   }
 
+  /**
+   * Get whether if the bonus level is activated or not.
+   *
+   * @return true if the bonus level is activated, false otherwise.
+   */
   boolean isBonusLevelActivated() {
     return bonusLevelActivated;
   }
 
+  /**
+   * Set whether if the bonus level is activated or not.
+   *
+   * @param bonusLevelActivated whether if the bonus level is activated or not.
+   */
   void setBonusLevelActivated(boolean bonusLevelActivated) {
     this.bonusLevelActivated = bonusLevelActivated;
   }
 
-  /** A method to reset the Game Status */
+  /** Resets this HangmanGameStatus. */
   void resetGameStatus() {
     played = false;
     secretWord = "";

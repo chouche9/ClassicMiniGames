@@ -15,19 +15,10 @@ import com.example.myapplication.R;
 public class HangmanMain extends AppCompatActivity implements View.OnClickListener {
 
   /** Intent that sends this activity to the next activity. */
-  private Intent intent1;
-
-  /** Button for starting the game. */
-  private Button btnStartGame;
+  private Intent intent;
 
   /** Button for resuming the game. */
   private Button btnResumeGame;
-
-  /** Button for settings */
-  private Button btnSettings;
-
-  /** Button for Back To Main Menu */
-  private Button btnBackToMain;
 
   /** The gender that was chosen by the user in settings. */
   private String settingsGender;
@@ -63,10 +54,10 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_hangman_main);
 
-    btnStartGame = findViewById(R.id.btnNewGame);
+    Button btnStartGame = findViewById(R.id.btnNewGame);
+    Button btnSettings = findViewById(R.id.btnSettings);
+    Button btnBackToMain = findViewById(R.id.btnBackToHome);
     btnResumeGame = findViewById(R.id.btnResumeGame);
-    btnSettings = findViewById(R.id.btnSettings);
-    btnBackToMain = findViewById(R.id.btnBackToHome);
     btnPlayMusic = findViewById(R.id.btnPlayMusic);
     btnStopMusic = findViewById(R.id.btnStopMusic);
 
@@ -130,26 +121,26 @@ public class HangmanMain extends AppCompatActivity implements View.OnClickListen
         case R.id.btnNewGame:
           hangmanGameStat.resetGameStatus();
           hangmanGameStat.setGender(settingsGender);
-          intent1 = new Intent(getApplicationContext(), HangmanGameActivity.class);
+          intent = new Intent(getApplicationContext(), HangmanGameActivity.class);
           break;
 
         case R.id.btnResumeGame:
-          intent1 = new Intent(getApplicationContext(), HangmanGameActivity.class);
+          intent = new Intent(getApplicationContext(), HangmanGameActivity.class);
           break;
 
         case R.id.btnSettings:
-          intent1 = new Intent(getApplicationContext(), HangmanSetting.class);
+          intent = new Intent(getApplicationContext(), HangmanSetting.class);
           break;
 
         case R.id.btnBackToHome:
-          intent1 = new Intent(getApplicationContext(), GameMain.class);
-          intent1.putExtra("user", hangmanGameStat.getName());
-          intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+          intent = new Intent(getApplicationContext(), GameMain.class);
+          intent.putExtra("user", hangmanGameStat.getName());
+          intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
           stopService(new Intent(this, HangmanBackgroundMusic.class));
           break;
       }
-      intent1.putExtra(getGamestatusMsg(), hangmanGameStat);
-      startActivity(intent1);
+      intent.putExtra(getGamestatusMsg(), hangmanGameStat);
+      startActivity(intent);
     }
   }
 
