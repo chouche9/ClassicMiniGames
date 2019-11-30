@@ -14,76 +14,98 @@ import com.example.myapplication.spaceshooter.ShooterBackGroundMusic;
 import com.example.myapplication.spaceshooter.shooterplanegame.ShooterGame;
 import com.example.myapplication.spaceshooter.ShooterGameStatus;
 
-public class ShooterGameOver extends AppCompatActivity implements View.OnClickListener{
+public class ShooterGameOver extends AppCompatActivity implements View.OnClickListener, ShooterGameOverView{
     Button next;
     TextView message;
     ShooterGameStatus shooterGameStatus;
+    ShooterGameOverPresenter shooterGameOverPresenter;
     Button backToMain, backToMenu;
-    boolean viewFinish;
-    ShooterGameOverLogic gameOverPresenter;
-    boolean musicfinish;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shooter_game_over);
         shooterGameStatus = getIntent().getParcelableExtra("gameStatus");
         assert shooterGameStatus != null;
-        gameOverPresenter = new ShooterGameOverLogic(shooterGameStatus);
+        ShooterGameOverLogic shooterGameOverLogic = new ShooterGameOverLogic(shooterGameStatus);
+        shooterGameOverPresenter = new ShooterGameOverPresenter(shooterGameOverLogic, this);
         next = findViewById(R.id.nextStep);
-        next.setText("next level");
         next.setOnClickListener(this);
         backToMain = findViewById(R.id.backMain);
         backToMain.setOnClickListener(this);
         backToMenu = findViewById(R.id.backToMenu);
         backToMenu.setOnClickListener(this);
-        musicfinish = false;
         message = findViewById(R.id.gamemessage);
+
     }
     @Override
     protected void onResume() {
-        viewFinish = true;
         super.onResume();
-        if (gameOverPresenter.checkNextLevelAppear()){
-            next.setVisibility(View.VISIBLE);
-        }
-        else {
-            next.setVisibility(View.GONE);
-        }
-        if (musicfinish){
-            startService(new Intent(getApplicationContext(), ShooterBackGroundMusic.class));
-            musicfinish = false;
-        }
-        message.setText(gameOverPresenter.setText());
+        super.onResume();
+        shooterGameOverPresenter.checkNextLevelAppear();
+        shooterGameOverPresenter.checkMusicStart();
+        shooterGameOverPresenter.setUpGameMessage();
     }
 
     protected void onPause() {
         super.onPause();
-        if(viewFinish){
-            stopService(new Intent(getApplicationContext(), ShooterBackGroundMusic.class));
-            musicfinish = true;
-        }
+        shooterGameOverPresenter.checkMusicStop();
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.backMain:
+                shooterGameOverPresenter.checkMusicStop();
                 finish();
                 break;
             case R.id.nextStep:
-                gameOverPresenter.levelUpGamestate();
-                Intent intent = new Intent(this, ShooterGame.class);
-                intent.putExtra("gameStatus", shooterGameStatus);
-                startActivity(intent);
-                viewFinish = false;
+                shooterGameOverPresenter.handleNextLevel();
                 finish();
                 break;
             case R.id.backToMenu:
-                Intent intent1 = new Intent(getApplicationContext(), GameMain.class);
-                intent1.putExtra("user", shooterGameStatus.getName());
-                intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent1);
+                shooterGameOverPresenter.handleBackToMain();
                 finish();
         }
     }
+
+    @Override
+    public void nextLevelAppear() {
+        next.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void nextLevelGone() {
+        next.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void startMusic() {
+        startService(new Intent(getApplicationContext(), ShooterBackGroundMusic.class));
+    }
+
+    @Override
+    public void stopMusic() {
+        stopService(new Intent(getApplicationContext(), ShooterBackGroundMusic.class));
+    }
+
+    @Override
+    public void setGameText(String message) {
+        this.message.setText(message);
+    }
+
+    @Override
+    public void startNewLevel() {
+        Intent newLevelIntent = new Intent(this, ShooterGame.class);
+        newLevelIntent.putExtra("gameStatus", shooterGameStatus);
+        startActivity(newLevelIntent);
+    }
+
+    @Override
+    public void backToMenu() {
+        Intent backToMenuIntent = new Intent(getApplicationContext(), GameMain.class);
+        backToMenuIntent.putExtra("user", shooterGameStatus.getName());
+        backToMenuIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(backToMenuIntent);
+    }
+
 }

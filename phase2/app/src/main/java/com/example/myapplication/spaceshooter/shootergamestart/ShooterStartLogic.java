@@ -6,16 +6,11 @@ import android.content.Context;
 import com.example.myapplication.spaceshooter.ShooterGameManager;
 import com.example.myapplication.spaceshooter.ShooterGameStatus;
 
-public class ShooterStartLogic {
-    Context context;
-    ShooterGameManager shooterGameManager;
+class ShooterStartLogic {
     private ShooterGameStatus shooterGameStatus;
-    String user;
     private boolean musicFinish;
     ShooterStartLogic(Context context, String user){
-        this.context = context;
-        this.user = user;
-        shooterGameManager = ShooterGameManager.getInstance((Activity)context);
+        ShooterGameManager shooterGameManager = ShooterGameManager.getInstance((Activity) context);
         shooterGameStatus = shooterGameManager.getGameStatus(user);
         musicFinish = true;
     }
@@ -34,8 +29,8 @@ public class ShooterStartLogic {
     void eraseGameStat(){
         shooterGameStatus.eraseGameStatus();
     }
-    void setMusicFinish(boolean musicFinish){
-        this.musicFinish = musicFinish;
+    void setMusicFinish(){
+        this.musicFinish = false;
     }
 
     boolean checkAtLevel1Finish(){

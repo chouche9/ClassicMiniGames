@@ -15,9 +15,9 @@ import com.example.myapplication.spaceshooter.shootergameover.ShooterGameOver;
 
 public class ShooterStart extends AppCompatActivity implements View.OnClickListener, ShooterStartView{
     Button start, exit, resume;
-    boolean finish = true;
     ShooterStartPresenter shooterStartPresenter;
     String user;
+    int i = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +57,7 @@ public class ShooterStart extends AppCompatActivity implements View.OnClickListe
 
     @Override
     protected void onPause() {
+        i++;
         super.onPause();
         shooterStartPresenter.pauseMusic();
     }

@@ -5,6 +5,7 @@ import com.example.myapplication.spaceshooter.ShooterGameStatus;
 public class ShooterGameOverLogic {
     ShooterGameStatus shooterGameStatus;
     int level;
+    private boolean musicFinish;
     boolean gameSuccess;
     int point;
     boolean levelfinish;
@@ -15,6 +16,7 @@ public class ShooterGameOverLogic {
         gameSuccess = shooterGameStatus.gameSuccess;
         levelfinish = shooterGameStatus.levelFinish;
         point = shooterGameStatus.point;
+        musicFinish = false;
     }
     boolean checkNextLevelAppear(){
         if (!gameSuccess){
@@ -22,7 +24,7 @@ public class ShooterGameOverLogic {
         }
         return level == 1 && levelfinish;
     }
-    String setText(){
+    String getText(){
         String string;
         if(gameSuccess && level == 1){
             string = "Congratulation, you finish level 1 with " + point + " points, Continue??";
@@ -35,7 +37,12 @@ public class ShooterGameOverLogic {
         }
         return string;
     }
-
+    void setMusicFinish(boolean finish){
+        musicFinish = finish;
+    }
+    boolean getMusicFinish(){
+        return musicFinish;
+    }
     void levelUpGamestate(){
         shooterGameStatus.resetGameStatus();
         shooterGameStatus.updateLevel(2);

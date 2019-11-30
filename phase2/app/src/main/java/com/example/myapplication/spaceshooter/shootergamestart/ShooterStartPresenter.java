@@ -23,7 +23,7 @@ public class ShooterStartPresenter {
         }
     }
     private void setMusicFinishFalse(){
-        shooterStartLogic.setMusicFinish(false);
+        shooterStartLogic.setMusicFinish();
     }
     GameStatus getGameStatus(){
         return shooterStartLogic.getShooterGameStatus();
