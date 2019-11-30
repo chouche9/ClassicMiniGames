@@ -13,7 +13,7 @@ import com.example.myapplication.spaceshooter.GameObject.ShooterHealthAid;
 import com.example.myapplication.spaceshooter.GameObject.ShooterPlane;
 import com.example.myapplication.spaceshooter.GameObject.ShooterPlaneExplosion;
 import com.example.myapplication.spaceshooter.GameObject.ShooterPointBuff;
-import com.example.myapplication.spaceshooter.ShooterGameStatus;
+import com.example.myapplication.spaceshooter.ShooterGameStatus.ShooterGameStatusFacade;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,7 @@ public class ShooterDrawItemManager {
     Canvas canvas;
     final static int Textsize = 50;
 
-    ShooterGameStatus shooterGameStatus;
+    ShooterGameStatusFacade shooterGameStatus;
     List<ShooterBullet1> bullet1s;
     List<ShooterBonus> shooterBonuses;
     public List<ShooterHealthAid> healthAids;
@@ -34,7 +34,7 @@ public class ShooterDrawItemManager {
     int level;
     ShooterPlane plane;
     Paint scorePaint, levelPaint, healthPaint;
-    ShooterDrawItemManager(ShooterGameStatus shooterGameStatus){
+    ShooterDrawItemManager(ShooterGameStatusFacade shooterGameStatus){
 
         this.shooterGameStatus = shooterGameStatus;
         setUpManager();
@@ -43,16 +43,16 @@ public class ShooterDrawItemManager {
         this.canvas = canvas;
     }
     private void setUpManager() {
-        level = shooterGameStatus.level;
-        plane = shooterGameStatus.plane;
-        bullet1s = shooterGameStatus.bullet1s;
-        bullet2s = shooterGameStatus.bullet2s;
-        shooterBonuses = shooterGameStatus.shooterBonuses;
-        healthAids = shooterGameStatus.healthAids;
-        pointBuffs = shooterGameStatus.pointBuffs;
-        enemyExplosions = shooterGameStatus.enemyExplosions;
-        planeExplosions = shooterGameStatus.planeExplosions;
-        enemy1s = shooterGameStatus.enemy1s;
+        level = shooterGameStatus.getShooterCrossLevelManager().getLevel();
+        plane = shooterGameStatus.getShooterGameLevelManager().getPlane();
+        bullet1s = shooterGameStatus.getShooterGameLevelManager().getBullet1s();
+        bullet2s = shooterGameStatus.getShooterGameLevelManager().getBullet2s();
+        shooterBonuses = shooterGameStatus.getShooterGameLevelManager().getShooterBonuses();
+        healthAids = shooterGameStatus.getShooterGameLevelManager().getHealthAids();
+        pointBuffs = shooterGameStatus.getShooterGameLevelManager().getPointBuffs();
+        enemyExplosions = shooterGameStatus.getShooterGameLevelManager().getEnemyExplosions();
+        planeExplosions = shooterGameStatus.getShooterGameLevelManager().getPlaneExplosions();
+        enemy1s = shooterGameStatus.getShooterGameLevelManager().getEnemy1s();
     }
     void draw(){
         drawText();
@@ -79,14 +79,16 @@ public class ShooterDrawItemManager {
             setPaint();}
         canvas.drawText("Life", ShooterGameView.dWidth -120, Textsize, healthPaint);
         canvas.drawRect(ShooterGameView.dWidth - 110, 10, ShooterGameView.dWidth - 110 +
-                10 * plane.life, Textsize, healthPaint);
-        canvas.drawText("Pts: " + shooterGameStatus.point, 20, Textsize, scorePaint);
-        canvas.drawText("Level: " + shooterGameStatus.level, ShooterGameView.dWidth/2, Textsize, levelPaint);
+                10 * plane.getLife(), Textsize, healthPaint);
+        canvas.drawText("Pts: " + shooterGameStatus.getShooterCrossLevelManager().getPoint(),
+                20, Textsize, scorePaint);
+        canvas.drawText("Level: " + shooterGameStatus.getShooterCrossLevelManager().getLevel()
+                , ShooterGameView.dWidth/2, Textsize, levelPaint);
 
     }
     private void drawGameObject(){
-        if (plane.life <= 0){
-            shooterGameStatus.gameSuccess = false;
+        if (plane.getLife() <= 0){
+            shooterGameStatus.setGameSuccess(false);
         }
         plane.onDraw(canvas);
         for(ShooterBullet1 bullet1: bullet1s){

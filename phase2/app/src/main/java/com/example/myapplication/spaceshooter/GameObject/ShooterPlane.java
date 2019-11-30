@@ -9,21 +9,21 @@ import android.os.Parcelable;
 import com.example.myapplication.R;
 
 public class ShooterPlane extends ShooterGameObject implements Parcelable  {
-    public int life = 10;
-    int planeStyle = 1;
+    private int life = 10;
+    private int planeStyle = 1;
     public ShooterPlane(Context context, int planeStyle){
         int dWidth = 1080;
         int dHeight = 2028;
         this.planeStyle = planeStyle;
         if (planeStyle == 1){
-            object = BitmapFactory.decodeResource(context.getResources(), R.drawable.psplane1);}
+            setObject(BitmapFactory.decodeResource(context.getResources(), R.drawable.psplane1));}
         else if (planeStyle == 2){
-            object = BitmapFactory.decodeResource(context.getResources(), R.drawable.psplane2);}
+            setObject(BitmapFactory.decodeResource(context.getResources(), R.drawable.psplane2));}
         else if(planeStyle == 3){
-            object = BitmapFactory.decodeResource(context.getResources(), R.drawable.psplane3);
+            setObject(BitmapFactory.decodeResource(context.getResources(), R.drawable.psplane3));
         }
-        object = Bitmap.createScaledBitmap(
-                object, 300, 200, false);
+        setObject(Bitmap.createScaledBitmap(
+                getObject(), 300, 200, false));
         setX(dWidth/2 - 150);
         setY(dHeight - 300);
         setWidthHeight();
@@ -46,14 +46,14 @@ public class ShooterPlane extends ShooterGameObject implements Parcelable  {
     @Override
     public void setUpBitmap(Context context) {
         if (planeStyle == 1){
-            object = BitmapFactory.decodeResource(context.getResources(), R.drawable.psplane1);}
+            setObject(BitmapFactory.decodeResource(context.getResources(), R.drawable.psplane1));}
         else if (planeStyle == 2){
-            object = BitmapFactory.decodeResource(context.getResources(), R.drawable.psplane2);}
+            setObject(BitmapFactory.decodeResource(context.getResources(), R.drawable.psplane2));}
         else if(planeStyle == 3){
-            object = BitmapFactory.decodeResource(context.getResources(), R.drawable.psplane3);
+            setObject(BitmapFactory.decodeResource(context.getResources(), R.drawable.psplane3));
         }
-        object = Bitmap.createScaledBitmap(
-                object, 300, 200, false);
+        setObject(Bitmap.createScaledBitmap(
+                getObject(), 300, 200, false));
     }
 
     @Override
@@ -84,4 +84,19 @@ public class ShooterPlane extends ShooterGameObject implements Parcelable  {
         setY(2028 - 300);
     }
 
+    public int getLife() {
+        return life;
+    }
+
+    public void setLife(int life) {
+        this.life = life;
+    }
+
+    public int getPlaneStyle() {
+        return planeStyle;
+    }
+
+    public void setPlaneStyle(int planeStyle) {
+        this.planeStyle = planeStyle;
+    }
 }

@@ -16,10 +16,10 @@ public class ShooterBonus extends ShooterGameObject {
         Random random = new Random();
         setX(random.nextInt(ShooterGameView.dWidth - 150));
         setY(-60);
-        velocity = 30;
-        object =  BitmapFactory.decodeResource(context.getResources(), R.drawable.treasure_chest);
-        object = Bitmap.createScaledBitmap(
-                object, 150, 150, false);
+        setVelocity(30);
+        setObject(BitmapFactory.decodeResource(context.getResources(), R.drawable.treasure_chest));
+        setObject(Bitmap.createScaledBitmap(
+                getObject(), 150, 150, false));
         setWidthHeight();
     }
 
@@ -50,9 +50,9 @@ public class ShooterBonus extends ShooterGameObject {
 
     @Override
     public void setUpBitmap(Context context) {
-       object =  BitmapFactory.decodeResource(context.getResources(), R.drawable.treasure_chest);
-       object = Bitmap.createScaledBitmap(
-                object, 150, 150, false);
+       setObject(BitmapFactory.decodeResource(context.getResources(), R.drawable.treasure_chest));
+       setObject(Bitmap.createScaledBitmap(
+               getObject(), 150, 150, false));
     }
 
 

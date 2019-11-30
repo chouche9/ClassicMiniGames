@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.example.myapplication.domain.GameStatus;
 import com.example.myapplication.flappyfish.FlappyGameStatus.FlappyGameStatusFacade;
 import com.example.myapplication.hangman.HangmanGameStatFacade;
-import com.example.myapplication.spaceshooter.ShooterGameStatus;
+import com.example.myapplication.spaceshooter.ShooterGameStatus.ShooterGameStatusFacade;
 
 import java.util.HashMap;
 
@@ -50,7 +50,7 @@ class DBHandler extends SQLiteOpenHelper {
   /** Puts a key-value pair with key being the game type and value being its actual class type. */
   private void putGameTypeClass() {
     gameTypeClass.put(GameEnum.FLAPPYFISH, FlappyGameStatusFacade.class);
-    gameTypeClass.put(GameEnum.SPACESHOOTER, ShooterGameStatus.class);
+    gameTypeClass.put(GameEnum.SPACESHOOTER, ShooterGameStatusFacade.class);
     gameTypeClass.put(GameEnum.HANGMAN, HangmanGameStatFacade.class);
   }
 

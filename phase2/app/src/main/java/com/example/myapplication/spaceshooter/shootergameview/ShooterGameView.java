@@ -19,14 +19,14 @@ import android.view.View;
 
 import com.example.myapplication.R;
 import com.example.myapplication.spaceshooter.GameObject.ShooterPlane;
-import com.example.myapplication.spaceshooter.ShooterGameStatus;
+import com.example.myapplication.spaceshooter.ShooterGameStatus.ShooterGameStatusFacade;
 import com.example.myapplication.spaceshooter.shootergameover.ShooterGameOver;
 
 
 public class ShooterGameView extends View {
     static int enemyDown = 0;
     static int bulletLoad = 0;
-    ShooterGameStatus shooterGameStatus;
+    ShooterGameStatusFacade shooterGameStatus;
     Bitmap background;
     ShooterColisionManager shooterColisionManager;
     ShooterLoadItemManager loadItemManager;
@@ -51,9 +51,9 @@ public class ShooterGameView extends View {
         handler = new Handler();
 
     }
-    public void setShooterGameStatus(ShooterGameStatus shooterGameStatus){
+    public void setShooterGameStatus(ShooterGameStatusFacade shooterGameStatus){
         this.shooterGameStatus = shooterGameStatus;
-        plane = shooterGameStatus.plane;
+        plane = shooterGameStatus.getShooterGameLevelManager().getPlane();
         setBackground();
         setUpSoundPool();
         this.shooterColisionManager = new ShooterColisionManager(shooterGameStatus, context, sp);
@@ -75,15 +75,16 @@ public class ShooterGameView extends View {
 
     }
     public void startTimer(){
-        countDownTimer = new CountDownTimer(shooterGameStatus.millsecondLeft, 1000) {
+        countDownTimer = new CountDownTimer(shooterGameStatus.getShooterGameLevelManager().getMillsecondLeft(), 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                shooterGameStatus.millsecondLeft = (int) millisUntilFinished;
+                shooterGameStatus.getShooterGameLevelManager().setMillsecondLeft(
+                        (int) millisUntilFinished);
             }
 
             @Override
             public void onFinish() {
-                shooterGameStatus.levelFinish = true;
+                shooterGameStatus.getShooterCrossLevelManager().setLevelFinish(true);
 
                 if (finish == 0){
                     onViewFinish();
@@ -93,7 +94,7 @@ public class ShooterGameView extends View {
     }
 
     void setBackground(){
-        switch (shooterGameStatus.level){
+        switch (shooterGameStatus.getShooterCrossLevelManager().getLevel()){
             case 1:
                 background = BitmapFactory.decodeResource(getResources(), R.drawable.psbackground1);
                 break;
@@ -117,7 +118,9 @@ public class ShooterGameView extends View {
         shooterColisionManager.handleColision();
         drawItemManager.setCanvas(canvas);
         drawItemManager.draw();
-        if(shooterGameStatus.gameSuccess && !shooterGameStatus.levelFinish && !activityFinish){
+        if(shooterGameStatus.getShooterCrossLevelManager().isGameSuccess() &&
+                !shooterGameStatus.getShooterCrossLevelManager().isLevelFinish() &&
+                !activityFinish){
             handler.postDelayed(runnable, UPDATE_MILLIS);}
         else {
             if(finish == 0 && !activityFinish){

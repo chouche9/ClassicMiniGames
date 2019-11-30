@@ -12,12 +12,12 @@ import com.example.myapplication.mainpage.GameMain;
 import com.example.myapplication.R;
 import com.example.myapplication.spaceshooter.ShooterBackGroundMusic;
 import com.example.myapplication.spaceshooter.shooterplanegame.ShooterGame;
-import com.example.myapplication.spaceshooter.ShooterGameStatus;
+import com.example.myapplication.spaceshooter.ShooterGameStatus.ShooterGameStatusFacade;
 
 public class ShooterGameOver extends AppCompatActivity implements View.OnClickListener, ShooterGameOverView{
     Button next;
     TextView message;
-    ShooterGameStatus shooterGameStatus;
+    ShooterGameStatusFacade shooterGameStatus;
     ShooterGameOverPresenter shooterGameOverPresenter;
     Button backToMain, backToMenu;
     @Override

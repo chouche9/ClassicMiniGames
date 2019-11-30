@@ -6,8 +6,8 @@ import android.graphics.Canvas;
 import android.os.Parcel;
 
 public abstract class ShooterGameObject extends ShooterItem {
-    Bitmap object;
-    public int velocity;
+    private Bitmap object;
+    private int velocity;
     ShooterGameObject(int x, int y) {
         super(x, y);
     }
@@ -38,6 +38,22 @@ public abstract class ShooterGameObject extends ShooterItem {
     void setWidthHeight() {
         setWidth(object.getWidth());
         setHeight(object.getHeight());
+    }
+
+    public Bitmap getObject() {
+        return object;
+    }
+
+    public void setObject(Bitmap object) {
+        this.object = object;
+    }
+
+    public int getVelocity() {
+        return velocity;
+    }
+
+    public void setVelocity(int velocity) {
+        this.velocity = velocity;
     }
 }
 

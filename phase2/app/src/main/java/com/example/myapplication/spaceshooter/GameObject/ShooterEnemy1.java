@@ -17,17 +17,17 @@ public class ShooterEnemy1 extends ShooterGameObject implements Parcelable {
 
         switch (level){
             case 1:
-                object = BitmapFactory.decodeResource(context.getResources(), R.drawable.psenemy1);
+                setObject(BitmapFactory.decodeResource(context.getResources(), R.drawable.psenemy1));
                 break;
             case 2:
-                object = BitmapFactory.decodeResource(context.getResources(), R.drawable.psenemy2);
+                setObject(BitmapFactory.decodeResource(context.getResources(), R.drawable.psenemy2));
                 break;
         }
-        object = Bitmap.createScaledBitmap(
-                object, 180, 180, false);
+        setObject(Bitmap.createScaledBitmap(
+                getObject(), 180, 180, false));
         resetPosition();
         setWidthHeight();
-        velocity = 40;
+        setVelocity(40);
     }
 
     protected ShooterEnemy1(Parcel in) {
@@ -43,14 +43,14 @@ public class ShooterEnemy1 extends ShooterGameObject implements Parcelable {
     public void setUpBitmap(Context context) {
         switch (level){
             case 1:
-                object = BitmapFactory.decodeResource(context.getResources(), R.drawable.psenemy1);
+                setObject(BitmapFactory.decodeResource(context.getResources(), R.drawable.psenemy1));
                 break;
             case 2:
-                object = BitmapFactory.decodeResource(context.getResources(), R.drawable.psenemy2);
+                setObject(BitmapFactory.decodeResource(context.getResources(), R.drawable.psenemy2));
                 break;
         }
-        object = Bitmap.createScaledBitmap(
-                object, 150, 150, false);
+        setObject(Bitmap.createScaledBitmap(
+                getObject(), 150, 150, false));
     }
 
     @Override

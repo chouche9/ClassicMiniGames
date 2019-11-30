@@ -1,6 +1,7 @@
 package com.example.myapplication.spaceshooter.shootergamestart;
 
 import com.example.myapplication.domain.GameStatus;
+import com.example.myapplication.spaceshooter.ShooterGameStatus.ShooterGameStatusFacade;
 
 public class ShooterStartPresenter {
     private ShooterStartLogic shooterStartLogic;
@@ -25,7 +26,7 @@ public class ShooterStartPresenter {
     private void setMusicFinishFalse(){
         shooterStartLogic.setMusicFinish();
     }
-    GameStatus getGameStatus(){
+    ShooterGameStatusFacade getGameStatus(){
         return shooterStartLogic.getShooterGameStatus();
     }
     void startMusic(){

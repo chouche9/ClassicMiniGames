@@ -13,14 +13,14 @@ import com.example.myapplication.spaceshooter.GameObject.ShooterHealthAid;
 import com.example.myapplication.spaceshooter.GameObject.ShooterPlane;
 import com.example.myapplication.spaceshooter.GameObject.ShooterPlaneExplosion;
 import com.example.myapplication.spaceshooter.GameObject.ShooterPointBuff;
-import com.example.myapplication.spaceshooter.ShooterGameStatus;
+import com.example.myapplication.spaceshooter.ShooterGameStatus.ShooterGameStatusFacade;
 import com.example.myapplication.spaceshooter.shooterplanegame.ShooterGame;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ShooterColisionManager {
-    ShooterGameStatus shooterGameStatus;
+    ShooterGameStatusFacade shooterGameStatus;
     List<ShooterBullet1> bullet1s;
     List<ShooterBonus> shooterBonuses;
     public List<ShooterHealthAid> healthAids;
@@ -33,8 +33,9 @@ public class ShooterColisionManager {
     int level;
     ShooterPlane plane;
     SoundPool sp;
+    int k = 0;
 
-    ShooterColisionManager(ShooterGameStatus shooterGameStatus, Context context, SoundPool sp) {
+    ShooterColisionManager(ShooterGameStatusFacade shooterGameStatus, Context context, SoundPool sp) {
         this.shooterGameStatus = shooterGameStatus;
         this.context = context;
         setUpManager();
@@ -42,16 +43,16 @@ public class ShooterColisionManager {
     }
 
     private void setUpManager() {
-        level = shooterGameStatus.level;
-        plane = shooterGameStatus.plane;
-        bullet1s = shooterGameStatus.bullet1s;
-        shooterBonuses = shooterGameStatus.shooterBonuses;
-        bullet2s = shooterGameStatus.bullet2s;
-        enemyExplosions = shooterGameStatus.enemyExplosions;
-        planeExplosions = shooterGameStatus.planeExplosions;
-        healthAids = shooterGameStatus.healthAids;
-        pointBuffs = shooterGameStatus.pointBuffs;
-        enemy1s = shooterGameStatus.enemy1s;
+        level = shooterGameStatus.getShooterCrossLevelManager().getLevel();
+        plane = shooterGameStatus.getShooterGameLevelManager().getPlane();
+        bullet1s = shooterGameStatus.getShooterGameLevelManager().getBullet1s();
+        shooterBonuses = shooterGameStatus.getShooterGameLevelManager().getShooterBonuses();
+        bullet2s = shooterGameStatus.getShooterGameLevelManager().getBullet2s();
+        enemyExplosions = shooterGameStatus.getShooterGameLevelManager().getEnemyExplosions();
+        planeExplosions = shooterGameStatus.getShooterGameLevelManager().getPlaneExplosions();
+        healthAids = shooterGameStatus.getShooterGameLevelManager().getHealthAids();
+        pointBuffs = shooterGameStatus.getShooterGameLevelManager().getPointBuffs();
+        enemy1s = shooterGameStatus.getShooterGameLevelManager().getEnemy1s();
     }
 
     void handleColision() {
@@ -68,7 +69,7 @@ public class ShooterColisionManager {
         List<ShooterEnemy1> remove = new ArrayList<>();
         for (ShooterEnemy1 enemy1 : enemy1s) {
             if (checkEnemyPlaneColide(enemy1)){
-                plane.life -= 5;
+                plane.setLife(plane.getLife() - 5);
                 planeExplosions.add(new ShooterPlaneExplosion(context,
                         (enemy1.getX() + enemy1.getWidth()/2),
                         enemy1.getY() + enemy1.getHeight()/2));
@@ -95,23 +96,24 @@ public class ShooterColisionManager {
     }
 
     private void bullet1EnemyColide(){
-        List<ShooterBullet1> removebullet = new ArrayList<>();
+        List<ShooterBullet1> removeBullet = new ArrayList<>();
         for (int i = 0; i < bullet1s.size(); i++){
             ShooterBullet1 bullet1 = bullet1s.get(i);
-
-            if(hitEnemy(bullet1) != -1) {
-                ShooterEnemy1 enemy1 =  enemy1s.get(hitEnemy(bullet1));
+            int enemyHit = hitEnemy(bullet1);
+            if(enemyHit != -1) {
+                ShooterEnemy1 enemy1 =  enemy1s.get(enemyHit);
                 enemy1s.remove(enemy1);
-                removebullet.add(bullet1s.get(i));
+                removeBullet.add(bullet1s.get(i));
             }
         }
-        for (ShooterBullet1 bullet1:removebullet){
+        for (ShooterBullet1 bullet1:removeBullet){
             bullet1s.remove(bullet1);
         }
     }
     private int hitEnemy(ShooterBullet1 bullet1) {
 
         for (int i = 0; i < enemy1s.size(); i++) {
+            k++;
             ShooterEnemy1 enemy1 = enemy1s.get(i);
             if ((bullet1.getX()>= enemy1.getX()) && bullet1.getX() <= (enemy1.getX() + enemy1.getWidth())
                     && bullet1.getY()>= enemy1.getY() && bullet1.getY() <= (enemy1.getY() + enemy1.getHeight())){
@@ -119,7 +121,7 @@ public class ShooterColisionManager {
                 sp.play(ShooterGameView.enemyDown, 1, 1, 0, 0, 1);
                 ShooterEnemyExplosion enemyExplosion = new ShooterEnemyExplosion(context,enemy1.getX(), enemy1.getY() );
                 enemyExplosions.add(enemyExplosion);
-                shooterGameStatus.point+= 10;
+                shooterGameStatus.addPoint(10);
                 return i;
             }
         }
@@ -175,7 +177,7 @@ public class ShooterColisionManager {
             ){
                 removeBullet.add(bullet2);
                 planeExplosions.add(new ShooterPlaneExplosion(context, bullet2.getX(), bullet2.getY()));
-                plane.life --;
+                plane.setLife(plane.getLife() - 1);
             }
         }
         for (ShooterBullet2 bullet2: removeBullet){

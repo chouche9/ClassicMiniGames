@@ -5,22 +5,22 @@ import android.graphics.BitmapFactory;
 import android.os.Parcel;
 
 import com.example.myapplication.R;
-import com.example.myapplication.spaceshooter.ShooterGameStatus;
+import com.example.myapplication.spaceshooter.ShooterGameStatus.ShooterGameStatusFacade;
 
 public class ShooterPointBuff extends ShooterSpecialItem {
     public ShooterPointBuff(Context context){
         super();
-        object = BitmapFactory.decodeResource(context.getResources(), R.drawable.psgold);
-        object = Bitmap.createScaledBitmap(
-                object, 150, 150, false);
+        setObject(BitmapFactory.decodeResource(context.getResources(), R.drawable.psgold));
+        setObject(Bitmap.createScaledBitmap(
+                getObject(), 150, 150, false));
     }
 
     ShooterPointBuff(Parcel in){
         super(in);
     }
     @Override
-    public void getBuff(ShooterGameStatus shooterGameStatus) {
-        shooterGameStatus.point += 40;
+    public void getBuff(ShooterGameStatusFacade shooterGameStatus) {
+        shooterGameStatus.addPoint(50);
     }
 
     public void writeToParcel(Parcel out, int flags) {
@@ -40,9 +40,9 @@ public class ShooterPointBuff extends ShooterSpecialItem {
 
     @Override
     public void setUpBitmap(Context context) {
-        object = BitmapFactory.decodeResource(context.getResources(), R.drawable.psgold);
-        object = Bitmap.createScaledBitmap(
-                object, 150, 150, false);
+        setObject(BitmapFactory.decodeResource(context.getResources(), R.drawable.psgold));
+        setObject(Bitmap.createScaledBitmap(
+                getObject(), 150, 150, false));
     }
 
     @Override

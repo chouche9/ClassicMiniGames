@@ -10,12 +10,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.bonuslevel.BonusLevelDialog;
 import com.example.myapplication.spaceshooter.ShooterBackGroundMusic;
-import com.example.myapplication.spaceshooter.ShooterGameStatus;
+import com.example.myapplication.spaceshooter.ShooterGameStatus.ShooterGameStatusFacade;
 import com.example.myapplication.spaceshooter.shootergameview.ShooterGameView;
 
 public class ShooterGame extends AppCompatActivity implements BonusLevelDialog.BonusLevelDialogListener, ShooterGameInterface {
     ShooterGameView gameView;
-    ShooterGameStatus shooterGameStatus;
+    ShooterGameStatusFacade shooterGameStatus;
     ShooterGamePresenter shooterGamePresenter;
     private BonusLevelDialog dialog;
     boolean bonusopen;

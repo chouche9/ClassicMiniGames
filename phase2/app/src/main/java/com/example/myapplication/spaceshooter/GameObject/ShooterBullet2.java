@@ -11,13 +11,13 @@ import com.example.myapplication.R;
 
 public class ShooterBullet2 extends ShooterGameObject implements Parcelable {
     public ShooterBullet2(Context context, int pX, int pY){
-        object = BitmapFactory.decodeResource(context.getResources(), R.drawable.psbullet2);
-        object = Bitmap.createScaledBitmap(
-                object, 50, 50, false);
+        setObject(BitmapFactory.decodeResource(context.getResources(), R.drawable.psbullet2));
+        setObject(Bitmap.createScaledBitmap(
+                getObject(), 50, 50, false));
         setWidthHeight();
         setX(pX - getWidth()/2);
         setY(pY);
-        velocity = 80;
+        setVelocity(80);
     }
 
     ShooterBullet2(Parcel in) {
@@ -50,9 +50,9 @@ public class ShooterBullet2 extends ShooterGameObject implements Parcelable {
 
     @Override
     public void setUpBitmap(Context context) {
-        object = BitmapFactory.decodeResource(context.getResources(), R.drawable.psbullet2);
-        object = Bitmap.createScaledBitmap(
-                object, 50, 50, false);
+        setObject(BitmapFactory.decodeResource(context.getResources(), R.drawable.psbullet2));
+        setObject(Bitmap.createScaledBitmap(
+                getObject(), 50, 50, false));
     }
 
 }

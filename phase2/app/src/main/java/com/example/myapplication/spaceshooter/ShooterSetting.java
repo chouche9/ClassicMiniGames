@@ -8,16 +8,19 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.myapplication.R;
+import com.example.myapplication.domain.GameStatus;
+import com.example.myapplication.spaceshooter.ShooterGameStatus.ShooterGameStatusFacade;
 import com.example.myapplication.spaceshooter.shooterplanegame.ShooterGame;
 
 public class ShooterSetting extends AppCompatActivity implements View.OnClickListener{
     ImageButton plane1, plane2, plane3;
-    ShooterGameStatus shooterGameStatus;
+    ShooterGameStatusFacade shooterGameStatus;
     boolean viewFinish;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shooter_setting);
+        GameStatus gameStatus = getIntent().getParcelableExtra("gameStatus");
         shooterGameStatus = getIntent().getParcelableExtra("gameStatus");
         plane1 = findViewById(R.id.plane1);
         plane2 = findViewById(R.id.plane2);

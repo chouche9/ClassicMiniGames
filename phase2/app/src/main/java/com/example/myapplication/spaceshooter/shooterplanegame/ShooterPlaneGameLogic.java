@@ -4,17 +4,17 @@ import android.app.Activity;
 import android.content.Context;
 
 import com.example.myapplication.spaceshooter.ShooterGameManager;
-import com.example.myapplication.spaceshooter.ShooterGameStatus;
+import com.example.myapplication.spaceshooter.ShooterGameStatus.ShooterGameStatusFacade;
 import com.example.myapplication.spaceshooter.shootergameview.ShooterGameView;
 
 class ShooterPlaneGameLogic {
-private ShooterGameStatus shooterGameStatus;
+private ShooterGameStatusFacade shooterGameStatus;
 private Context context;
 private ShooterGameView shooterGameView;
 private boolean bonusOpen;
 private int start;
 
-    ShooterPlaneGameLogic(ShooterGameStatus shooterGameStatus, Context context,
+    ShooterPlaneGameLogic(ShooterGameStatusFacade shooterGameStatus, Context context,
                           ShooterGameView shooterGameView){
         this.shooterGameStatus = shooterGameStatus;
         this.context = context;
@@ -23,7 +23,8 @@ private int start;
         bonusOpen = false;
     }
     boolean shouldMusicStop(){
-        return !shooterGameStatus.levelFinish && shooterGameStatus.gameSuccess;
+        return !shooterGameStatus.getShooterCrossLevelManager().isLevelFinish() &&
+                shooterGameStatus.getShooterCrossLevelManager().isGameSuccess();
 
     }
     private void saveGameState(){
@@ -31,7 +32,7 @@ private int start;
         shooterGameManager.saveGame(shooterGameStatus);
     }
     void addBonusPoint(int bonus){
-        shooterGameStatus.point += bonus;
+        shooterGameStatus.addPoint(bonus);
     }
     void handleOnResume(){
         shooterGameView.setActivityFinish(false);

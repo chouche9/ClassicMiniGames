@@ -12,13 +12,13 @@ import com.example.myapplication.spaceshooter.GameObject.ShooterHealthAid;
 import com.example.myapplication.spaceshooter.GameObject.ShooterPlane;
 import com.example.myapplication.spaceshooter.GameObject.ShooterPlaneExplosion;
 import com.example.myapplication.spaceshooter.GameObject.ShooterPointBuff;
-import com.example.myapplication.spaceshooter.ShooterGameStatus;
+import com.example.myapplication.spaceshooter.ShooterGameStatus.ShooterGameStatusFacade;
 
 import java.util.List;
 
 public class ShooterBitmapManager {
     Context context;
-    ShooterGameStatus shooterGameStatus;
+    ShooterGameStatusFacade shooterGameStatus;
     List<ShooterBullet1> bullet1s;
     List<ShooterBonus> shooterBonuses;
     public List<ShooterHealthAid> healthAids;
@@ -28,22 +28,22 @@ public class ShooterBitmapManager {
     List<ShooterPlaneExplosion> planeExplosions;
     List<ShooterEnemy1> enemy1s;
     ShooterPlane plane;
-    ShooterBitmapManager(Context context, ShooterGameStatus shooterGameStatus){
+    ShooterBitmapManager(Context context, ShooterGameStatusFacade shooterGameStatus){
         this.context = context;
         this.shooterGameStatus = shooterGameStatus;
         loadManager();
 
     }
     private void loadManager(){
-        plane = shooterGameStatus.plane;
-        bullet1s = shooterGameStatus.bullet1s;
-        bullet2s = shooterGameStatus.bullet2s;
-        shooterBonuses = shooterGameStatus.shooterBonuses;
-        enemyExplosions = shooterGameStatus.enemyExplosions;
-        planeExplosions = shooterGameStatus.planeExplosions;
-        healthAids = shooterGameStatus.healthAids;
-        pointBuffs = shooterGameStatus.pointBuffs;
-        enemy1s = shooterGameStatus.enemy1s;
+        plane = shooterGameStatus.getShooterGameLevelManager().getPlane();
+        bullet1s = shooterGameStatus.getShooterGameLevelManager().getBullet1s();
+        bullet2s = shooterGameStatus.getShooterGameLevelManager().getBullet2s();
+        shooterBonuses = shooterGameStatus.getShooterGameLevelManager().getShooterBonuses();
+        enemyExplosions = shooterGameStatus.getShooterGameLevelManager().getEnemyExplosions();
+        planeExplosions = shooterGameStatus.getShooterGameLevelManager().getPlaneExplosions();
+        healthAids = shooterGameStatus.getShooterGameLevelManager().getHealthAids();
+        pointBuffs = shooterGameStatus.getShooterGameLevelManager().getPointBuffs();
+        enemy1s = shooterGameStatus.getShooterGameLevelManager().getEnemy1s();
     }
 
     void  loadBitmap(){

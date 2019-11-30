@@ -1,21 +1,24 @@
 package com.example.myapplication.spaceshooter.shootergameover;
 
-import com.example.myapplication.spaceshooter.ShooterGameStatus;
+import com.example.myapplication.spaceshooter.ShooterGameStatus.ShooterCrossLevelManager;
+import com.example.myapplication.spaceshooter.ShooterGameStatus.ShooterGameStatusFacade;
 
 public class ShooterGameOverLogic {
-    ShooterGameStatus shooterGameStatus;
+    ShooterGameStatusFacade shooterGameStatus;
+    ShooterCrossLevelManager shooterCrossLevelManager;
     int level;
     private boolean musicFinish;
     boolean gameSuccess;
     int point;
     boolean levelfinish;
 
-    ShooterGameOverLogic(ShooterGameStatus shooterGameStatus){
+    ShooterGameOverLogic(ShooterGameStatusFacade shooterGameStatus){
         this.shooterGameStatus = shooterGameStatus;
-        level = shooterGameStatus.level;
-        gameSuccess = shooterGameStatus.gameSuccess;
-        levelfinish = shooterGameStatus.levelFinish;
-        point = shooterGameStatus.point;
+        shooterCrossLevelManager = shooterGameStatus.getShooterCrossLevelManager();
+        level = shooterCrossLevelManager.getLevel();
+        gameSuccess = shooterCrossLevelManager.isGameSuccess();
+        levelfinish = shooterCrossLevelManager.isLevelFinish();
+        point = shooterCrossLevelManager.getPoint();
         musicFinish = false;
     }
     boolean checkNextLevelAppear(){
@@ -45,7 +48,7 @@ public class ShooterGameOverLogic {
     }
     void levelUpGamestate(){
         shooterGameStatus.resetGameStatus();
-        shooterGameStatus.updateLevel(2);
+        shooterCrossLevelManager.updateLevel(2);
     }
     void eraseGameState(){
         shooterGameStatus.eraseGameStatus();

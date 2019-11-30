@@ -10,14 +10,14 @@ import com.example.myapplication.spaceshooter.GameObject.ShooterEnemy1;
 import com.example.myapplication.spaceshooter.GameObject.ShooterHealthAid;
 import com.example.myapplication.spaceshooter.GameObject.ShooterPlane;
 import com.example.myapplication.spaceshooter.GameObject.ShooterPointBuff;
-import com.example.myapplication.spaceshooter.ShooterGameStatus;
+import com.example.myapplication.spaceshooter.ShooterGameStatus.ShooterGameStatusFacade;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class ShooterLoadItemManager {
-    ShooterGameStatus shooterGameStatus;
+    ShooterGameStatusFacade shooterGameStatus;
     List<ShooterBullet1> bullet1s;
     List<ShooterBonus> shooterBonuses;
     public List<ShooterHealthAid> healthAids;
@@ -33,7 +33,7 @@ public class ShooterLoadItemManager {
     ShooterPlane plane;
     SoundPool sp;
 
-    ShooterLoadItemManager(ShooterGameStatus shooterGameStatus, Context context, SoundPool sp) {
+    ShooterLoadItemManager(ShooterGameStatusFacade shooterGameStatus, Context context, SoundPool sp) {
         this.shooterGameStatus = shooterGameStatus;
         this.context = context;
         setUpManager();
@@ -41,14 +41,14 @@ public class ShooterLoadItemManager {
     }
 
     private void setUpManager() {
-        level = shooterGameStatus.level;
-        plane = shooterGameStatus.plane;
-        shooterBonuses = shooterGameStatus.shooterBonuses;
-        healthAids = shooterGameStatus.healthAids;
-        pointBuffs = shooterGameStatus.pointBuffs;
-        bullet1s = shooterGameStatus.bullet1s;
-        bullet2s = shooterGameStatus.bullet2s;
-        enemy1s = shooterGameStatus.enemy1s;
+        level = shooterGameStatus.getShooterCrossLevelManager().getLevel();
+        plane = shooterGameStatus.getShooterGameLevelManager().getPlane();
+        shooterBonuses = shooterGameStatus.getShooterGameLevelManager().getShooterBonuses();
+        healthAids = shooterGameStatus.getShooterGameLevelManager().getHealthAids();
+        pointBuffs = shooterGameStatus.getShooterGameLevelManager().getPointBuffs();
+        bullet1s = shooterGameStatus.getShooterGameLevelManager().getBullet1s();
+        bullet2s = shooterGameStatus.getShooterGameLevelManager().getBullet2s();
+        enemy1s = shooterGameStatus.getShooterGameLevelManager().getEnemy1s();
     }
 
     void loadItem() {
@@ -72,7 +72,7 @@ public class ShooterLoadItemManager {
             pointBuffs.add(new ShooterPointBuff(context));
         }
         for (ShooterHealthAid specialItem : healthAids) {
-            specialItem.setY(specialItem.getY() + specialItem.velocity);
+            specialItem.setY(specialItem.getY() + specialItem.getVelocity());
             if (specialItem.getY() >= ShooterGameView.dHeight) {
                 remove1.add(specialItem);
             }
@@ -82,7 +82,7 @@ public class ShooterLoadItemManager {
         }
 
         for (ShooterPointBuff specialItem : pointBuffs) {
-            specialItem.setY(specialItem.getY() + specialItem.velocity);
+            specialItem.setY(specialItem.getY() + specialItem.getVelocity());
             if (specialItem.getY() >= ShooterGameView.dHeight) {
                 remove2.add(specialItem);
             }
@@ -92,7 +92,6 @@ public class ShooterLoadItemManager {
         }
     }
     private void updateEnemy(){
-        ShooterEnemy1.level = shooterGameStatus.level;
         List<ShooterEnemy1> remove = new ArrayList<>();
         enemyCount++;
         if(enemyCount == 10){
@@ -102,7 +101,7 @@ public class ShooterLoadItemManager {
         for (ShooterEnemy1 enemy1: enemy1s){
             enemy1.setY(
                     enemy1.getY() +
-                            enemy1.velocity);
+                            enemy1.getVelocity());
 
             if (enemy1.getY() > ShooterGameView.dHeight){
                 remove.add(enemy1);
@@ -126,7 +125,7 @@ public class ShooterLoadItemManager {
             bullet2count = 0;
         }
         for (ShooterBullet2 bullet2: bullet2s){
-            bullet2.setY(bullet2.getY() + bullet2.velocity);
+            bullet2.setY(bullet2.getY() + bullet2.getVelocity());
             if (bullet2.getY() > ShooterGameView.dHeight){
                 remove.add(bullet2);
             }
@@ -145,7 +144,7 @@ public class ShooterLoadItemManager {
             bullet1count = 0;
         }
         for (ShooterBullet1 bullet1: bullet1s){
-            bullet1.setY(bullet1.getY() - bullet1.velocity);
+            bullet1.setY(bullet1.getY() - bullet1.getVelocity());
             if (bullet1.getY() < 0){
                 remove.add(bullet1);
             }
@@ -163,7 +162,7 @@ public class ShooterLoadItemManager {
             bonusCount = 0;
         }
         for (ShooterBonus shooterBonus: shooterBonuses){
-            shooterBonus.setY(shooterBonus.getY() + shooterBonus.velocity);
+            shooterBonus.setY(shooterBonus.getY() + shooterBonus.getVelocity());
             if (shooterBonus.getY()> ShooterGameView.dHeight){
                 remove.add(shooterBonus);
             }
