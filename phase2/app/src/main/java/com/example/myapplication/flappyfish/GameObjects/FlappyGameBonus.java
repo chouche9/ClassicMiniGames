@@ -20,7 +20,7 @@ public class FlappyGameBonus extends FlappyGameObjects implements Parcelable {
   private static final int DEAD_POS = -100;
 
   /**
-   * Construct a new bonus object at the default starting coordinates with a velocity as default.
+   * Construct a new bonus object at the default starting coordinates with default velocity.
    */
   public FlappyGameBonus() {
     super(0, 0, BONUS_SPEED_DEFAULT);
@@ -35,11 +35,17 @@ public class FlappyGameBonus extends FlappyGameObjects implements Parcelable {
     super(in);
   }
 
+  /**
+   * Set the velocity of this bonus game object to the default value.
+   */
   @Override
   public void setGameDefault() {
     setVelocity(BONUS_SPEED_DEFAULT);
   }
 
+  /**
+   * Increase the velocity of this bonus game object by the defined increment.
+   */
   @Override
   public void increaseGameStage() {
     setVelocity(getVelocity() + BONUS_SPEED_INCREASE);
@@ -92,7 +98,7 @@ public class FlappyGameBonus extends FlappyGameObjects implements Parcelable {
    * Check whether the specified fish object collides with this bonus object.
    *
    * @param gameStatus the gameStatus object that tracks the two game objects.
-   * @return Return true if obj collides with the fish object; Otherwise, return false.
+   * @return Return true if the bonus game object collides with the fish object; Otherwise, return false.
    */
   private boolean collideCheck(FlappyGameStatusFacade gameStatus) {
     FlappyGameObjects fish = gameStatus.getFish();

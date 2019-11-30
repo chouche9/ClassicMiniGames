@@ -21,8 +21,14 @@ public class FlappyGameFish extends FlappyGameObjects implements Parcelable {
     /** The default speed of the fish when jumping up. */
     private static final int DEFAULT_JUMP_SPEED = -35;
 
+    /**
+     * The current falling speed of this fish object.
+     */
     private int currDropSpeed;
 
+    /**
+     * The current jumping speed of this fish object.
+     */
     private int currJumpSpeed;
 
     /**
@@ -42,12 +48,18 @@ public class FlappyGameFish extends FlappyGameObjects implements Parcelable {
         currJumpSpeed = in.readInt();
     }
 
+    /**
+     * Set the velocity of this fish object to the default value.
+     */
     @Override
     public void setGameDefault() {
         this.currDropSpeed = DEFAULT_DROP_SPEED;
         this.currJumpSpeed = DEFAULT_JUMP_SPEED;
     }
 
+    /**
+     * Increase the velocity of this bonus game object by the defined increment.
+     */
     @Override
     public void increaseGameStage() {
         this.currDropSpeed += STAGE_INCREASE_SPEED;
@@ -113,6 +125,12 @@ public class FlappyGameFish extends FlappyGameObjects implements Parcelable {
         }
     };
 
+    /**
+     * Default method from the super class.
+     *
+     * @param parcel parcel to write the attributes of this GameStatus.
+     * @param i flags.
+     */
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         super.writeToParcel(parcel, i);

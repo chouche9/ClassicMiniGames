@@ -109,24 +109,46 @@ public abstract class FlappyGameObjects implements Parcelable {
         this.velocity = velocity;
     }
 
+    /**
+     * Return the height of the bitmap representation of this game object.
+     * @return the height of the bitmap representation of this game object.
+     */
     int getHeight() {
         return height;
     }
 
+    /**
+     * Return the width of the bitmap representation of this game object.
+     * @return the width of the bitmap representation of this game object.
+     */
     int getWidth() {
         return width;
     }
 
+    /**
+     * Set the height of this game object to height.
+     * @param height the height of the bitmap representation of this game object.
+     */
     public void setHeight(int height) {
         this.height = height;
     }
 
+    /**
+     * Set the width of this game object to height.
+     * @param width the height of the bitmap representation of this game object.
+     */
     public void setWidth(int width) {
         this.width = width;
     }
 
+    /**
+     * Set the velocity of this game object to the default value.
+     */
     public abstract void setGameDefault();
 
+    /**
+     * Increase the velocity of this game object by the defined increment.
+     */
     public abstract void increaseGameStage();
 
     /**

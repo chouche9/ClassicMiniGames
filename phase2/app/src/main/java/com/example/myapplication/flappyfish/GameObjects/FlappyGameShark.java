@@ -7,10 +7,10 @@ import com.example.myapplication.flappyfish.FlappyGameStatus.FlappyGameStatusFac
 
 public class FlappyGameShark extends FlappyGameObjects implements Parcelable{
 
-    /** The default speed of the shark for easy mode. */
+    /** The default speed of the shark. */
     private static final int SHARK_SPEED_DEFAULT = 20;
 
-    /** The default speed of the shark for hard mode. */
+    /** The default increment of speed of the shark. */
     private static final int SHARK_SPEED_INCREASE = 5;
 
     /** The default x coordinate of an object when it collides with the fish. */
@@ -32,11 +32,17 @@ public class FlappyGameShark extends FlappyGameObjects implements Parcelable{
         super(in);
     }
 
+    /**
+     * Set the velocity of this shrimp object to the default value.
+     */
     @Override
     public void setGameDefault() {
         setVelocity(SHARK_SPEED_DEFAULT);
     }
 
+    /**
+     * Increase the velocity of this shrimp object by the defined increment.
+     */
     @Override
     public void increaseGameStage() {
         setVelocity(getVelocity() + SHARK_SPEED_INCREASE);
