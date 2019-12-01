@@ -16,25 +16,54 @@ import android.widget.TextView;
 
 import com.example.myapplication.R;
 
+/**
+ * Class BonusLevelDialog
+ */
 public class BonusLevelDialog extends AppCompatDialogFragment implements BonusLevelView {
 
+  /**
+   * Interface BonusLevelDialogListener
+   */
   public interface BonusLevelDialogListener {
 
+    /**
+     * Abstract Method for doing something upon game ended to show the result of the bonus level
+     * @param isWon: boolean to show whether game isWon or not
+     * @param bonusSore: the score of the game
+     */
     void bonusLevelResult(boolean isWon, int bonusSore);
 
+    /**
+     * Abstract Method for doing something upon cancelling the bonus game.
+     */
     void onCancel();
   }
 
+  /**
+   * EditText Guess number attribute
+   */
   private EditText edtGuessNumber;
 
+  /**
+   * TextView attribute that linked to the text field for number of tries
+   */
   private TextView txtTries;
 
+  /**
+   * Button that linked to the button to guess the number
+   */
   private Button btnDialogGuessNumber;
 
   //    private HangmanStageEnded hangmanStageEnded;
 
+  /**
+   * attribute that saves the bonus level dialog listener instance
+   */
   private BonusLevelDialogListener listener;
 
+  /**
+   * attribute that saves the bonus level presenter instance
+   */
   private BonusLevelPresenter bonusLevelPresenter;
 
   /**

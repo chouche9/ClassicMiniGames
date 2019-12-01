@@ -119,21 +119,33 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
   }
 
+  /**
+   * Method to show username error
+   */
   @Override
   public void onUsernameEmptyError() {
     edtUsername.setError("Please enter username!");
   }
 
+  /**
+   * Method to show password error
+   */
   @Override
   public void onPasswordEmptyError() {
     edtPassword.setError("Please enter password!");
   }
 
+  /**
+   * Method to show error when username does not match the password
+   */
   @Override
   public void onFail() {
     Toast.makeText(this, "Incorrect Username or Password", Toast.LENGTH_SHORT).show();
   }
 
+  /**
+   * Method that implements upon login success
+   */
   @Override
   public void onSuccess() {
     Intent intent = new Intent(this, GameMain.class);

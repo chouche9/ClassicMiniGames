@@ -2,33 +2,72 @@ package com.example.myapplication.bonuslevel;
 
 import java.util.Random;
 
+/**
+ * class Bonus Level Interactor
+ */
 class BonusLevelInteractor {
 
+    /**
+     * interface onValidateNumberListener
+     */
     interface OnValidateNumberListener {
 
+        /**
+         * abstract method when number is too high
+         */
         void onNumberToHigh();
 
+        /**
+         * abstract method when number is too low
+         */
         void onNumberToLow();
 
+        /**
+         * abstract method when game ended
+         * @param isWon
+         * @param bonusScore
+         */
         void onGameEnd(boolean isWon, int bonusScore);
     }
 
+    /**
+     * attribute that saves the bonus score when win
+     */
     private int BONUS_SCORE = 100;
 
+    /**
+     * attribute that saves the score when lose
+     */
     private int FAIL_SCORE = 0;
 
+    /**
+     * attribute that saves the target number to be guessed
+     */
     private int targetNum;
 
+    /**
+     * attribute that saves the number of tries left
+     */
     private int triesLeft = 5;
 
-    public int getTriesLeft() {
+    /**
+     * method that return the number of tries left
+     * @return number of tries left
+     */
+    int getTriesLeft() {
         return triesLeft;
     }
 
+    /**
+     * Constructor method of BonusLevelInteractor
+     */
     BonusLevelInteractor() {
         createRanNum();
     }
 
+    /**
+     * Method that creates a random number between 1 and 20 that needs to be
+     */
     private void createRanNum() {
         final int min = 1;
         final int max = 20;
