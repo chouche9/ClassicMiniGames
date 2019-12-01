@@ -12,7 +12,7 @@ import com.example.myapplication.mainpage.GameMain;
 import com.example.myapplication.R;
 import com.example.myapplication.spaceshooter.ShooterBackGroundMusic;
 import com.example.myapplication.spaceshooter.shooterplanegame.ShooterGame;
-import com.example.myapplication.spaceshooter.ShooterGameStatus.ShooterGameStatusFacade;
+import com.example.myapplication.spaceshooter.shootergamestatus.ShooterGameStatusFacade;
 
 /**
  * The type Shooter game over.

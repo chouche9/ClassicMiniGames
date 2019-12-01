@@ -10,10 +10,10 @@ import android.widget.Toast;
 
 import com.example.myapplication.backgroundmusic.BackgroundMusic;
 import com.example.myapplication.bonuslevel.BonusLevelDialog;
-import com.example.myapplication.flappyfish.FlappyGameStatus.FlappyGameStatusFacade;
-import com.example.myapplication.flappyfish.FlappyGameView.FlappyGameViewFacade;
-import com.example.myapplication.flappyfish.FlappyGameView.ViewBitmapManager;
-import com.example.myapplication.flappyfish.FlappyGameView.ViewPaintManager;
+import com.example.myapplication.flappyfish.flappygamestatus.FlappyGameStatusFacade;
+import com.example.myapplication.flappyfish.flappygameview.FlappyGameViewFacade;
+import com.example.myapplication.flappyfish.flappygameview.ViewBitmapManager;
+import com.example.myapplication.flappyfish.flappygameview.ViewPaintManager;
 
 import java.util.Timer;
 import java.util.TimerTask;

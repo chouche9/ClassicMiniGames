@@ -5,8 +5,8 @@ import android.content.Context;
 
 import com.example.myapplication.domain.GameStatus;
 import com.example.myapplication.spaceshooter.ShooterGameManager;
-import com.example.myapplication.spaceshooter.ShooterGameStatus.ShooterGameLevelManager;
-import com.example.myapplication.spaceshooter.ShooterGameStatus.ShooterGameStatusFacade;
+import com.example.myapplication.spaceshooter.shootergamestatus.ShooterGameLevelManager;
+import com.example.myapplication.spaceshooter.shootergamestatus.ShooterGameStatusFacade;
 
 /**
  * The model Shooter start logic.

@@ -9,8 +9,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.myapplication.backgroundmusic.BackgroundMusic;
-import com.example.myapplication.flappyfish.FlappyGameStatus.FlappyGameStatusFacade;
-import com.example.myapplication.flappyfish.FlappyGameView.FlappyGameViewFacade;
+import com.example.myapplication.flappyfish.flappygamestatus.FlappyGameStatusFacade;
+import com.example.myapplication.flappyfish.flappygameview.FlappyGameViewFacade;
 import com.example.myapplication.mainpage.GameMain;
 import com.example.myapplication.R;
 

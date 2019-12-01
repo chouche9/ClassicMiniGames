@@ -1,7 +1,7 @@
 package com.example.myapplication.spaceshooter.shootergameover;
 
-import com.example.myapplication.spaceshooter.ShooterGameStatus.ShooterCrossLevelManager;
-import com.example.myapplication.spaceshooter.ShooterGameStatus.ShooterGameStatusFacade;
+import com.example.myapplication.spaceshooter.shootergamestatus.ShooterCrossLevelManager;
+import com.example.myapplication.spaceshooter.shootergamestatus.ShooterGameStatusFacade;
 
 /**
  * The type Shooter game over logic.

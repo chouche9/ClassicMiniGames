@@ -9,7 +9,7 @@ import android.widget.ImageButton;
 
 import com.example.myapplication.R;
 import com.example.myapplication.domain.GameStatus;
-import com.example.myapplication.spaceshooter.ShooterGameStatus.ShooterGameStatusFacade;
+import com.example.myapplication.spaceshooter.shootergamestatus.ShooterGameStatusFacade;
 import com.example.myapplication.spaceshooter.shooterplanegame.ShooterGame;
 
 /**

@@ -4,16 +4,16 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
-import com.example.myapplication.spaceshooter.GameObject.ShooterBonus;
-import com.example.myapplication.spaceshooter.GameObject.ShooterPlaneBullet;
-import com.example.myapplication.spaceshooter.GameObject.ShooterEnemyBullet;
-import com.example.myapplication.spaceshooter.GameObject.ShooterEnemy;
-import com.example.myapplication.spaceshooter.GameObject.ShooterEnemyExplosion;
-import com.example.myapplication.spaceshooter.GameObject.ShooterHealthAid;
-import com.example.myapplication.spaceshooter.GameObject.ShooterPlane;
-import com.example.myapplication.spaceshooter.GameObject.ShooterPlaneExplosion;
-import com.example.myapplication.spaceshooter.GameObject.ShooterPointBuff;
-import com.example.myapplication.spaceshooter.ShooterGameStatus.ShooterGameStatusFacade;
+import com.example.myapplication.spaceshooter.gameobject.ShooterBonus;
+import com.example.myapplication.spaceshooter.gameobject.ShooterPlaneBullet;
+import com.example.myapplication.spaceshooter.gameobject.ShooterEnemyBullet;
+import com.example.myapplication.spaceshooter.gameobject.ShooterEnemy;
+import com.example.myapplication.spaceshooter.gameobject.ShooterEnemyExplosion;
+import com.example.myapplication.spaceshooter.gameobject.ShooterHealthAid;
+import com.example.myapplication.spaceshooter.gameobject.ShooterPlane;
+import com.example.myapplication.spaceshooter.gameobject.ShooterPlaneExplosion;
+import com.example.myapplication.spaceshooter.gameobject.ShooterPointBuff;
+import com.example.myapplication.spaceshooter.shootergamestatus.ShooterGameStatusFacade;
 
 import java.util.ArrayList;
 import java.util.List;

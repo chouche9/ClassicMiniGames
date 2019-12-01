@@ -18,8 +18,8 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.example.myapplication.R;
-import com.example.myapplication.spaceshooter.GameObject.ShooterPlane;
-import com.example.myapplication.spaceshooter.ShooterGameStatus.ShooterGameStatusFacade;
+import com.example.myapplication.spaceshooter.gameobject.ShooterPlane;
+import com.example.myapplication.spaceshooter.shootergamestatus.ShooterGameStatusFacade;
 import com.example.myapplication.spaceshooter.shootergameover.ShooterGameOver;
 
 

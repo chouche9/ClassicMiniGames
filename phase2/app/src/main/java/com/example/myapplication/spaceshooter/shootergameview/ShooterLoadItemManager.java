@@ -3,14 +3,14 @@ package com.example.myapplication.spaceshooter.shootergameview;
 import android.content.Context;
 import android.media.SoundPool;
 
-import com.example.myapplication.spaceshooter.GameObject.ShooterBonus;
-import com.example.myapplication.spaceshooter.GameObject.ShooterPlaneBullet;
-import com.example.myapplication.spaceshooter.GameObject.ShooterEnemyBullet;
-import com.example.myapplication.spaceshooter.GameObject.ShooterEnemy;
-import com.example.myapplication.spaceshooter.GameObject.ShooterHealthAid;
-import com.example.myapplication.spaceshooter.GameObject.ShooterPlane;
-import com.example.myapplication.spaceshooter.GameObject.ShooterPointBuff;
-import com.example.myapplication.spaceshooter.ShooterGameStatus.ShooterGameStatusFacade;
+import com.example.myapplication.spaceshooter.gameobject.ShooterBonus;
+import com.example.myapplication.spaceshooter.gameobject.ShooterPlaneBullet;
+import com.example.myapplication.spaceshooter.gameobject.ShooterEnemyBullet;
+import com.example.myapplication.spaceshooter.gameobject.ShooterEnemy;
+import com.example.myapplication.spaceshooter.gameobject.ShooterHealthAid;
+import com.example.myapplication.spaceshooter.gameobject.ShooterPlane;
+import com.example.myapplication.spaceshooter.gameobject.ShooterPointBuff;
+import com.example.myapplication.spaceshooter.shootergamestatus.ShooterGameStatusFacade;
 
 import java.util.ArrayList;
 import java.util.List;

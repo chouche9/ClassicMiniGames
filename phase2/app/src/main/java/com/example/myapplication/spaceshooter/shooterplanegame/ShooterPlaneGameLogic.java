@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 
 import com.example.myapplication.spaceshooter.ShooterGameManager;
-import com.example.myapplication.spaceshooter.ShooterGameStatus.ShooterGameStatusFacade;
+import com.example.myapplication.spaceshooter.shootergamestatus.ShooterGameStatusFacade;
 import com.example.myapplication.spaceshooter.shootergameview.ShooterGameView;
 
 /**

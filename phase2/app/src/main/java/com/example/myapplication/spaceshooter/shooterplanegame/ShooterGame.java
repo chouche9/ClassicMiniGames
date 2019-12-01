@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.bonuslevel.BonusLevelDialog;
 import com.example.myapplication.spaceshooter.ShooterBackGroundMusic;
-import com.example.myapplication.spaceshooter.ShooterGameStatus.ShooterGameStatusFacade;
+import com.example.myapplication.spaceshooter.shootergamestatus.ShooterGameStatusFacade;
 import com.example.myapplication.spaceshooter.shootergameview.ShooterGameView;
 
 /**

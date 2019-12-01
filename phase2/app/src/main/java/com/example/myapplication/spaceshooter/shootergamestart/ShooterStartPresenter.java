@@ -1,7 +1,6 @@
 package com.example.myapplication.spaceshooter.shootergamestart;
 
-import com.example.myapplication.domain.GameStatus;
-import com.example.myapplication.spaceshooter.ShooterGameStatus.ShooterGameStatusFacade;
+import com.example.myapplication.spaceshooter.shootergamestatus.ShooterGameStatusFacade;
 
 /**
  * The type Shooter start presenter that connect ShooterStart (activity class).
