@@ -4,10 +4,10 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.example.myapplication.databaseconnector.GameEnum;
-import com.example.myapplication.flappyfish.gameobjects.FlappyGameBonus;
-import com.example.myapplication.flappyfish.gameobjects.FlappyGameFish;
-import com.example.myapplication.flappyfish.gameobjects.FlappyGameShark;
-import com.example.myapplication.flappyfish.gameobjects.FlappyGameShrimp;
+import com.example.myapplication.flappyfish.flappygameobjects.FlappyGameBonus;
+import com.example.myapplication.flappyfish.flappygameobjects.FlappyGameFish;
+import com.example.myapplication.flappyfish.flappygameobjects.FlappyGameShark;
+import com.example.myapplication.flappyfish.flappygameobjects.FlappyGameShrimp;
 import com.example.myapplication.domain.GameStatus;
 
 /** The flappy fish game status. */

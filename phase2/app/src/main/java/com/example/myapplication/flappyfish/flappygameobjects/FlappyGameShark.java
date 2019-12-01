@@ -1,11 +1,11 @@
-package com.example.myapplication.flappyfish.gameobjects;
+package com.example.myapplication.flappyfish.flappygameobjects;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.example.myapplication.flappyfish.flappygamestatus.FlappyGameStatusFacade;
 
-public class FlappyGameShark extends FlappyGameObjects implements Parcelable {
+public class FlappyGameShark extends FlappyGameObject implements Parcelable {
 
   /** The default speed of the shark. */
   private static final int SHARK_SPEED_DEFAULT = 20;
@@ -97,8 +97,8 @@ public class FlappyGameShark extends FlappyGameObjects implements Parcelable {
    * @return Return true if shark collides with the fish object; Otherwise, return false.
    */
   private boolean collideCheck(FlappyGameStatusFacade gameStatus) {
-    FlappyGameObjects fish = gameStatus.getFish();
-    FlappyGameObjects shark = gameStatus.getShark();
+    FlappyGameObject fish = gameStatus.getFish();
+    FlappyGameObject shark = gameStatus.getShark();
     int fishX = fish.getX();
     int fishY = fish.getY();
     int sharkX = shark.getX();

@@ -3,11 +3,11 @@ package com.example.myapplication.flappyfish.flappygamestatus;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.example.myapplication.flappyfish.gameobjects.FlappyGameBonus;
-import com.example.myapplication.flappyfish.gameobjects.FlappyGameFish;
-import com.example.myapplication.flappyfish.gameobjects.FlappyGameObjects;
-import com.example.myapplication.flappyfish.gameobjects.FlappyGameShark;
-import com.example.myapplication.flappyfish.gameobjects.FlappyGameShrimp;
+import com.example.myapplication.flappyfish.flappygameobjects.FlappyGameBonus;
+import com.example.myapplication.flappyfish.flappygameobjects.FlappyGameFish;
+import com.example.myapplication.flappyfish.flappygameobjects.FlappyGameObject;
+import com.example.myapplication.flappyfish.flappygameobjects.FlappyGameShark;
+import com.example.myapplication.flappyfish.flappygameobjects.FlappyGameShrimp;
 
 /** The manager object responsible for tracking all game objects. */
 public class ObjectManager implements Parcelable {
@@ -33,10 +33,10 @@ public class ObjectManager implements Parcelable {
    * @param in the parcel that stores the object manager.
    */
   private ObjectManager(Parcel in) {
-    fish = in.readParcelable(FlappyGameObjects.class.getClassLoader());
-    shrimp = in.readParcelable(FlappyGameObjects.class.getClassLoader());
-    shark = in.readParcelable(FlappyGameObjects.class.getClassLoader());
-    bonus = in.readParcelable(FlappyGameObjects.class.getClassLoader());
+    fish = in.readParcelable(FlappyGameObject.class.getClassLoader());
+    shrimp = in.readParcelable(FlappyGameObject.class.getClassLoader());
+    shark = in.readParcelable(FlappyGameObject.class.getClassLoader());
+    bonus = in.readParcelable(FlappyGameObject.class.getClassLoader());
   }
 
   /** Set all the game objects tracked by this object manager to their default state. */

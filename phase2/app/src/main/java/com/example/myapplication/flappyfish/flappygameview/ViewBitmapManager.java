@@ -4,11 +4,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import com.example.myapplication.flappyfish.flappygamestatus.FlappyGameStatusFacade;
-import com.example.myapplication.flappyfish.gameobjects.FlappyGameBonus;
-import com.example.myapplication.flappyfish.gameobjects.FlappyGameFish;
-import com.example.myapplication.flappyfish.gameobjects.FlappyGameObjects;
-import com.example.myapplication.flappyfish.gameobjects.FlappyGameShark;
-import com.example.myapplication.flappyfish.gameobjects.FlappyGameShrimp;
+import com.example.myapplication.flappyfish.flappygameobjects.FlappyGameBonus;
+import com.example.myapplication.flappyfish.flappygameobjects.FlappyGameFish;
+import com.example.myapplication.flappyfish.flappygameobjects.FlappyGameObject;
+import com.example.myapplication.flappyfish.flappygameobjects.FlappyGameShark;
+import com.example.myapplication.flappyfish.flappygameobjects.FlappyGameShrimp;
 import com.example.myapplication.R;
 import android.content.res.Resources;
 import android.graphics.Canvas;
@@ -147,9 +147,9 @@ public class ViewBitmapManager {
     int canvasHeight = canvas.getHeight();
     int minY = fish.getHeight();
     int maxY = canvasHeight - minY * 4;
-    FlappyGameObjects fishObj = gameStatus.getFish();
-    FlappyGameObjects shrimpObj = gameStatus.getShrimp();
-    FlappyGameObjects sharkObj = gameStatus.getShark();
+    FlappyGameObject fishObj = gameStatus.getFish();
+    FlappyGameObject shrimpObj = gameStatus.getShrimp();
+    FlappyGameObject sharkObj = gameStatus.getShark();
 
     fishObj.move();
     fishObj.update(gameStatus, canvasWidth, minY, maxY);
@@ -178,7 +178,7 @@ public class ViewBitmapManager {
     int canvasHeight = canvas.getHeight();
     int minY = fish.getHeight();
     int maxY = canvasHeight - minY * 4;
-    FlappyGameObjects bonusObj = gameStatus.getBonus();
+    FlappyGameObject bonusObj = gameStatus.getBonus();
     bonusObj.move();
     boolean isActivated = bonusObj.update(gameStatus, canvasWidth, minY, maxY);
     canvas.drawBitmap(bonus, bonusObj.getX(), bonusObj.getY(), null);

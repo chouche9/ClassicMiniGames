@@ -1,4 +1,4 @@
-package com.example.myapplication.flappyfish.gameobjects;
+package com.example.myapplication.flappyfish.flappygameobjects;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -8,7 +8,7 @@ import com.example.myapplication.flappyfish.flappygamestatus.FlappyGameStatusFac
 import java.util.Random;
 
 /** A class representation of the bonus items inside the flappy fish game. */
-public class FlappyGameBonus extends FlappyGameObjects implements Parcelable {
+public class FlappyGameBonus extends FlappyGameObject implements Parcelable {
 
   /** The default speed of the bonus item for easy mode. */
   private static final int BONUS_SPEED_DEFAULT = 20;
@@ -96,8 +96,8 @@ public class FlappyGameBonus extends FlappyGameObjects implements Parcelable {
    *     false.
    */
   private boolean collideCheck(FlappyGameStatusFacade gameStatus) {
-    FlappyGameObjects fish = gameStatus.getFish();
-    FlappyGameObjects bonus = gameStatus.getBonus();
+    FlappyGameObject fish = gameStatus.getFish();
+    FlappyGameObject bonus = gameStatus.getBonus();
     int fishX = fish.getX();
     int fishY = fish.getY();
     int bonusX = bonus.getX();

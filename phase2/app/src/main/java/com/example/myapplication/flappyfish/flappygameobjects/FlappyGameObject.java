@@ -1,4 +1,4 @@
-package com.example.myapplication.flappyfish.gameobjects;
+package com.example.myapplication.flappyfish.flappygameobjects;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import com.example.myapplication.flappyfish.flappygamestatus.FlappyGameStatusFacade;
 
 /** A class representation of objects inside the flappy fish game. */
-public abstract class FlappyGameObjects implements Parcelable {
+public abstract class FlappyGameObject implements Parcelable {
 
   /** X coordinate of this game object. */
   private int x;
@@ -33,7 +33,7 @@ public abstract class FlappyGameObjects implements Parcelable {
    * @param y the y coordinate of the new game object.
    * @param vel the velocity of the new game object.
    */
-  FlappyGameObjects(int x, int y, int vel) {
+  FlappyGameObject(int x, int y, int vel) {
     this.x = x;
     this.y = y;
     this.velocity = vel;
@@ -44,7 +44,7 @@ public abstract class FlappyGameObjects implements Parcelable {
    *
    * @param in the parcel that stores the previously saved game object.
    */
-  FlappyGameObjects(Parcel in) {
+  FlappyGameObject(Parcel in) {
     x = in.readInt();
     y = in.readInt();
     velocity = in.readInt();

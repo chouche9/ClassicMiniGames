@@ -1,11 +1,11 @@
-package com.example.myapplication.flappyfish.gameobjects;
+package com.example.myapplication.flappyfish.flappygameobjects;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.example.myapplication.flappyfish.flappygamestatus.FlappyGameStatusFacade;
 
-public class FlappyGameFish extends FlappyGameObjects implements Parcelable {
+public class FlappyGameFish extends FlappyGameObject implements Parcelable {
 
   /** The default x coordinate of the fish. */
   private static final int FISH_X = 10;
