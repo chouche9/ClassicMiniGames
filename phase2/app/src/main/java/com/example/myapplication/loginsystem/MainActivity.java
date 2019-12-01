@@ -7,8 +7,8 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.myapplication.loginsystem.CreateAccount.CreateAccountActivity;
-import com.example.myapplication.loginsystem.Login.LoginActivity;
+import com.example.myapplication.loginsystem.createaccount.CreateAccountActivity;
+import com.example.myapplication.loginsystem.login.LoginActivity;
 import com.example.myapplication.R;
 
 /** Main page of this application. */

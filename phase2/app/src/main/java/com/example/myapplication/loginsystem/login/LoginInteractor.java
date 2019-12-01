@@ -1,4 +1,4 @@
-package com.example.myapplication.loginsystem.Login;
+package com.example.myapplication.loginsystem.login;
 
 import com.example.myapplication.domain.UserManager;
 
