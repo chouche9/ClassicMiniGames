@@ -13,11 +13,33 @@ import com.example.myapplication.spaceshooter.shooterplanegame.ShooterGame;
 import com.example.myapplication.spaceshooter.ShooterSetting;
 import com.example.myapplication.spaceshooter.shootergameover.ShooterGameOver;
 
+/**
+ * The type Shooter start.
+ */
 public class ShooterStart extends AppCompatActivity implements View.OnClickListener, ShooterStartView{
-    Button start, exit, resume;
+    /**
+     * The Start button.
+     */
+    Button start, /**
+     * The Exit button.
+     */
+    exit, /**
+     * The Resume button that start the last time played game.
+     */
+    resume;
+    /**
+     * The Shooter start presenter .
+     */
     ShooterStartPresenter shooterStartPresenter;
+    /**
+     * The User that is playing the game.
+     */
     String user;
-    int i = 0;
+
+    /**
+     * create ShooterStart activity
+     * @param savedInstanceState bundle of the resource in this activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +52,11 @@ public class ShooterStart extends AppCompatActivity implements View.OnClickListe
         resume.setOnClickListener(this);
         user = getIntent().getStringExtra("user");
     }
+
+    /**
+     * resume the gameStart activity
+     * make music start and check if resume button should appear.
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -39,6 +66,10 @@ public class ShooterStart extends AppCompatActivity implements View.OnClickListe
         shooterStartPresenter.checkResumeAppear();
     }
 
+    /**
+     * onclick method called when view button get clicked
+     * @param view the view that get clicked
+     */
     @Override
     public void onClick(View view) {
         switch (view.getId()){
@@ -55,37 +86,58 @@ public class ShooterStart extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    /**
+     * pause game and determine if the music should stop in presenter
+     */
     @Override
     protected void onPause() {
-        i++;
         super.onPause();
         shooterStartPresenter.pauseMusic();
     }
+
+    /**
+     * start the music
+     */
     public void startMusic(){
         startService(new Intent(getApplicationContext(), ShooterBackGroundMusic.class));
     }
+
+    /**
+     * pause the music
+     */
     public void stopMusic(){
         stopService(new Intent(getApplicationContext(), ShooterBackGroundMusic.class));
     }
 
-
+    /**
+     * make resumeButton appear
+     */
     @Override
     public void resumeAppear() {
         resume.setVisibility(View.VISIBLE);
     }
 
-
+    /**
+     * make resumeButton disappear
+     */
     @Override
     public void resumeGone() {
         resume.setVisibility(View.GONE);
     }
 
+    /**
+     * start gameOver intent
+     */
     @Override
     public void startFinishPage() {
         Intent startFinishPage = new Intent(this, ShooterGameOver.class);
         startFinishPage.putExtra("gameStatus", shooterStartPresenter.getGameStatus());
         startActivity(startFinishPage);
     }
+
+    /**
+     * start shooter game view intent
+     */
 
     @Override
     public void startGamePage() {
@@ -94,6 +146,9 @@ public class ShooterStart extends AppCompatActivity implements View.OnClickListe
         startActivity(startGameIntent);
     }
 
+    /**
+     * start shooter setting activity
+     */
     @Override
     public void startSettingPage() {
         Intent startSettingIntent = new Intent(this, ShooterSetting.class);

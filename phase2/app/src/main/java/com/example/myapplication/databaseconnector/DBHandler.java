@@ -5,9 +5,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.myapplication.domain.GameStatus;
-import com.example.myapplication.flappyfish.FlappyGameStatus.FlappyGameStatusFacade;
+import com.example.myapplication.flappyfish.flappygamestatus.FlappyGameStatusFacade;
 import com.example.myapplication.hangman.HangmanGameStatus;
-import com.example.myapplication.spaceshooter.ShooterGameStatus.ShooterGameStatusFacade;
+import com.example.myapplication.spaceshooter.shootergamestatus.ShooterGameStatusFacade;
 
 import java.util.HashMap;
 

@@ -74,8 +74,12 @@ class BonusLevelInteractor {
         targetNum = new Random().nextInt((max - min) + 1) + min;
     }
 
-
-    public void validateNumberInteractor(int guessedNumber, BonusLevelPresenter listener) {
+    /**
+     * Method to validate whether the number is correct or not
+     * @param guessedNumber: the guessed number
+     * @param listener: The bonus level presenter
+     */
+    void validateNumberInteractor(int guessedNumber, BonusLevelPresenter listener) {
         if (guessedNumber == targetNum) {
             listener.onGameEnd(true, BONUS_SCORE);
         } else if (guessedNumber > targetNum) {

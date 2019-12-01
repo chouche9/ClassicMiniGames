@@ -2,13 +2,12 @@ package com.example.myapplication.flappyfish;
 
 import android.app.Activity;
 
-import com.example.myapplication.flappyfish.FlappyGameStatus.FlappyGameStatusFacade;
+import com.example.myapplication.flappyfish.flappygamestatus.FlappyGameStatusFacade;
 import com.example.myapplication.databaseconnector.GameEnum;
 import com.example.myapplication.domain.GameManager;
-import com.example.myapplication.domain.GameStatus;
 import com.example.myapplication.databaseconnector.GameStatusDaoImpl;
-import com.example.myapplication.flappyfish.FlappyGameStatus.LevelManager;
-import com.example.myapplication.flappyfish.FlappyGameStatus.ObjectManager;
+import com.example.myapplication.flappyfish.flappygamestatus.LevelManager;
+import com.example.myapplication.flappyfish.flappygamestatus.ObjectManager;
 
 /** The game manager for this flappy fish game. */
 class FlappyGameManager extends GameManager {

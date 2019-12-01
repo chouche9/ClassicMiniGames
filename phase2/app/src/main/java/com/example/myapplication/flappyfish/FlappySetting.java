@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.myapplication.backgroundmusic.BackgroundMusic;
-import com.example.myapplication.flappyfish.FlappyGameStatus.FlappyGameStatusFacade;
+import com.example.myapplication.flappyfish.flappygamestatus.FlappyGameStatusFacade;
 import com.example.myapplication.R;
 
 /**

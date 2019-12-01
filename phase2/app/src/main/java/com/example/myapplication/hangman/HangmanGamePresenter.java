@@ -4,7 +4,7 @@ package com.example.myapplication.hangman;
 class HangmanGamePresenter implements HangmanGameInteractor.OnValidateCharListener {
 
   /** The view/activity of the hangman game. */
-  private HangmanGameActivity hangmanGameActivity;
+  private HangmanGameView hangmanGameView;
 
   /** The interactor of the hangman game. */
   private HangmanGameInteractor hangmanGameInteractor;
@@ -19,7 +19,7 @@ class HangmanGamePresenter implements HangmanGameInteractor.OnValidateCharListen
    * @param hangmanGameInteractor the interactor for the hangman game.
    */
   HangmanGamePresenter(HangmanGameActivity view, HangmanGameInteractor hangmanGameInteractor) {
-    this.hangmanGameActivity = view;
+    this.hangmanGameView = view;
     this.hangmanGameInteractor = hangmanGameInteractor;
     this.hangmanWordGenerator = new HangmanWordGenerator(view);
   }
@@ -82,19 +82,19 @@ class HangmanGamePresenter implements HangmanGameInteractor.OnValidateCharListen
 
   /** Resume the game by setting appropriate views on the activity. */
   void onResuming() {
-    hangmanGameActivity.showTxtStageNum(getHangmanGameStat().getStageNum());
-    hangmanGameActivity.showTxtMaskedWord(getHangmanGameStat().getDisplayedMaskedWord().toString());
-    hangmanGameActivity.showTxtScore(getHangmanGameStat().getCurrentScore());
-    hangmanGameActivity.showLettersGuessed(getHangmanGameStat().getLettersGuessed().toString());
-    hangmanGameActivity.setPictureIndex(getHangmanGameStat().getFalseGuess());
-    hangmanGameActivity.showImage();
+    hangmanGameView.showTxtStageNum(getHangmanGameStat().getStageNum());
+    hangmanGameView.showTxtMaskedWord(getHangmanGameStat().getDisplayedMaskedWord().toString());
+    hangmanGameView.showTxtScore(getHangmanGameStat().getCurrentScore());
+    hangmanGameView.showLettersGuessed(getHangmanGameStat().getLettersGuessed().toString());
+    hangmanGameView.setPictureIndex(getHangmanGameStat().getFalseGuess());
+    hangmanGameView.showImage();
   }
 
   /** Display an empty error on the display. */
   @Override
   public void onEmptyError() {
-    if (hangmanGameActivity != null) {
-      hangmanGameActivity.showEmptyError();
+    if (hangmanGameView != null) {
+      hangmanGameView.showEmptyError();
     }
   }
 
@@ -105,24 +105,24 @@ class HangmanGamePresenter implements HangmanGameInteractor.OnValidateCharListen
    */
   @Override
   public void onLetterUsedError(char letter) {
-    if (hangmanGameActivity != null) {
-      hangmanGameActivity.showLetterUsedError(letter);
-      hangmanGameActivity.clearEdtLetterGuess();
+    if (hangmanGameView != null) {
+      hangmanGameView.showLetterUsedError(letter);
+      hangmanGameView.clearEdtLetterGuess();
     }
   }
 
   /** Display all necessary views onto the display. */
   @Override
   public void onDisplayViews() {
-    if (hangmanGameActivity != null) {
-      hangmanGameActivity.showTxtStageNum(getHangmanGameStat().getStageNum());
-      hangmanGameActivity.setPictureIndex(getHangmanGameStat().getFalseGuess());
-      hangmanGameActivity.showTxtMaskedWord(
+    if (hangmanGameView != null) {
+      hangmanGameView.showTxtStageNum(getHangmanGameStat().getStageNum());
+      hangmanGameView.setPictureIndex(getHangmanGameStat().getFalseGuess());
+      hangmanGameView.showTxtMaskedWord(
           getHangmanGameStat().getDisplayedMaskedWord().toString());
-      hangmanGameActivity.showLettersGuessed(getHangmanGameStat().getLettersGuessed().toString());
-      hangmanGameActivity.showTxtScore(getHangmanGameStat().getCurrentScore());
-      hangmanGameActivity.showImage();
-      hangmanGameActivity.clearEdtLetterGuess();
+      hangmanGameView.showLettersGuessed(getHangmanGameStat().getLettersGuessed().toString());
+      hangmanGameView.showTxtScore(getHangmanGameStat().getCurrentScore());
+      hangmanGameView.showImage();
+      hangmanGameView.clearEdtLetterGuess();
     }
   }
 
@@ -133,16 +133,16 @@ class HangmanGamePresenter implements HangmanGameInteractor.OnValidateCharListen
    */
   @Override
   public void onGameEnd(HangmanGameStatus hm) {
-    if (hangmanGameActivity != null) {
-      hangmanGameActivity.gameEnded(hm);
+    if (hangmanGameView != null) {
+      hangmanGameView.gameEnded(hm);
     }
   }
 
   /** Display that the word guessed was incorrect. */
   @Override
   public void onGuessWordFailed() {
-    if (hangmanGameActivity != null) {
-      hangmanGameActivity.showGuessWordFailed();
+    if (hangmanGameView != null) {
+      hangmanGameView.showGuessWordFailed();
       onDisplayViews();
     }
   }
