@@ -117,7 +117,7 @@ public class ViewBitmapManager {
       int x = (int) (default_x + life[0].getWidth() * 1.5 * i);
       int y = 30;
 
-      if (i < gameStatus.getLife_count()) {
+      if (i < gameStatus.getLifeCount()) {
         canvas.drawBitmap(life[0], x, y, null);
       } else {
         canvas.drawBitmap(life[1], x, y, null);

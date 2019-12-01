@@ -13,8 +13,14 @@ import com.example.myapplication.domain.GameStatus;
 /** The flappy fish game status. */
 public class FlappyGameStatusFacade extends GameStatus implements Parcelable {
 
+  /**
+   * The object that is responsible for managing all the game objects displayed on the screen.
+   */
   private ObjectManager objectManager;
 
+  /**
+   * The object that is responsible for managing all the attributes of the game.
+   */
   private LevelManager levelManager;
 
   /**
@@ -124,13 +130,13 @@ public class FlappyGameStatusFacade extends GameStatus implements Parcelable {
    *
    * @return Return the life count.
    */
-  public int getLife_count() {
-    return levelManager.getLife_count();
+  public int getLifeCount() {
+    return levelManager.getLifeCount();
   }
 
   /** Reduce the life count. */
-  public void reduceLife_count() {
-    levelManager.reduceLife_count();
+  public void reduceLifeCount() {
+    levelManager.reduceLifeCount();
   }
 
   /**

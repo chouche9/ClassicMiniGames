@@ -33,7 +33,7 @@ public class FlappyResultActivity extends AppCompatActivity implements View.OnCl
     // The intent that took the previous activity to this result page.
     Intent resultIntent = getIntent();
     gameStatus = resultIntent.getParcelableExtra(FlappyGameViewFacade.EXTRA_MESSAGE);
-    boolean result = gameStatus.getLife_count() == 0;
+    boolean result = gameStatus.getLifeCount() == 0;
     setResultText(result);
     setPlayAgainBtn(result);
     setNextStageBtn(result);
@@ -125,7 +125,7 @@ public class FlappyResultActivity extends AppCompatActivity implements View.OnCl
         Intent backToMainIntent = new Intent(this, GameMain.class);
         backToMainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         backToMainIntent.putExtra("user", gameStatus.getName());
-        if (gameStatus.getLife_count() == 0) {
+        if (gameStatus.getLifeCount() == 0) {
           gameStatus.finishUpdate();
         }
         startActivity(backToMainIntent);

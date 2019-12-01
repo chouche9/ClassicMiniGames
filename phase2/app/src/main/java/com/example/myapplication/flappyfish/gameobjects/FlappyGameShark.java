@@ -67,9 +67,9 @@ public class FlappyGameShark extends FlappyGameObjects implements Parcelable{
      */
     public boolean update(FlappyGameStatusFacade gameStatus, int canvasWidth, int minY, int maxY) {
         if (collideCheck(gameStatus)) {
-            gameStatus.reduceLife_count();
+            gameStatus.reduceLifeCount();
             kill();
-            if (gameStatus.getLife_count() == 0) {
+            if (gameStatus.getLifeCount() == 0) {
                 return true;
             }
         }

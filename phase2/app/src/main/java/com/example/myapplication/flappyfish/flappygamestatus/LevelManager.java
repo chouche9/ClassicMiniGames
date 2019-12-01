@@ -14,7 +14,7 @@ public class LevelManager implements Parcelable {
     /**
      * The background tracked by this level manager.
      */
-    public boolean background;
+    private boolean background;
 
     /** Indicate whether the user has played the game. */
     private int played = 0;
@@ -26,7 +26,7 @@ public class LevelManager implements Parcelable {
     private int score;
 
     /** The number of lives the user has. */
-    private int life_count;
+    private int lifeCount;
 
     /**
      * Constructs a level manager instance.
@@ -39,7 +39,7 @@ public class LevelManager implements Parcelable {
      */
     private LevelManager (Parcel in) {
         score = in.readInt();
-        life_count = in.readInt();
+        lifeCount = in.readInt();
         played = in.readInt();
         stage = in.readInt();
         background = in.readByte() != 0;
@@ -100,15 +100,15 @@ public class LevelManager implements Parcelable {
     /**
      * Set the score tracked by this level manger to 0.
      */
-    private void setScore() {
-        this.score = 0;
+    void setScore(int score) {
+        this.score = score;
     }
 
     /**
      * Increase the score tracked by this level manager by DEFAULT_SCORE.
      */
     void updateScore() {
-        score += DEFAULT_SCORE;
+        setScore(getScore() + DEFAULT_SCORE);
     }
 
     /**
@@ -117,30 +117,29 @@ public class LevelManager implements Parcelable {
      * @param bonusScore the value that is added to the current score.
      */
     void addBonusScore(int bonusScore) {
-        this.score += bonusScore;
+        setScore(getScore() + bonusScore);
     }
 
     /**
      * Return the life tracked by this level manager.
      * @return the background tracked by this level manager.
      */
-    int getLife_count() {
-        return life_count;
+    int getLifeCount() {
+        return lifeCount;
     }
 
     /**
      * Set the life tracked by this level manger to 3.
      */
-    private void setLife_count() {
-        this.life_count = 3;
+    private void setLifeCount() {
+        this.lifeCount = 3;
     }
 
     /**
      * Reduce the life tracked by this level manager by 1.
      */
-    /** Reduce the life count. */
-    void reduceLife_count() {
-        life_count--;
+    void reduceLifeCount() {
+        lifeCount--;
     }
 
     /**
@@ -170,8 +169,8 @@ public class LevelManager implements Parcelable {
      */
     void startUpdate() {
         setPlayed(true);
-        setLife_count();
-        setScore();
+        setLifeCount();
+        setScore(0);
     }
 
     /**
@@ -179,8 +178,8 @@ public class LevelManager implements Parcelable {
      */
     void finishUpdate() {
         setPlayed(false);
-        setLife_count();
-        setScore();
+        setLifeCount();
+        setScore(0);
     }
 
 
@@ -203,7 +202,7 @@ public class LevelManager implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeInt(score);
-        parcel.writeInt(life_count);
+        parcel.writeInt(lifeCount);
         parcel.writeInt(played);
         parcel.writeInt(stage);
         parcel.writeByte((byte) (background ? 1 : 0));
