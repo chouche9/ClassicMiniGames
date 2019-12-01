@@ -31,14 +31,15 @@ public abstract class ShooterGameObject extends ShooterItem {
     /**
      * Instantiates a new Shooter game object.
      */
-    ShooterGameObject(){}
+    ShooterGameObject() {
+    }
 
     /**
      * Instantiates a new Shooter game object.
      *
      * @param in the in parcel
      */
-    ShooterGameObject(Parcel in){
+    ShooterGameObject(Parcel in) {
         super(in);
         velocity = in.readInt();
     }
@@ -64,9 +65,11 @@ public abstract class ShooterGameObject extends ShooterItem {
     /**
      * Clean bitmap.
      */
-    void cleanBitmap(){
+    void cleanBitmap() {
         object = null;
-    };
+    }
+
+    ;
 
     @Override
     void setWidthHeight() {

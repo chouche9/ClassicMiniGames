@@ -72,6 +72,7 @@ public class ShooterEnemyExplosion extends ShooterExplosion implements Parcelabl
 
     /**
      * set up the bitmap for enemy explosion
+     *
      * @param context the context
      */
 

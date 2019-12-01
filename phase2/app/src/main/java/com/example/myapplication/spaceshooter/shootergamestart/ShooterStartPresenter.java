@@ -15,7 +15,7 @@ public class ShooterStartPresenter {
      * @param shooterStartLogic the shooter start logic
      * @param shooterStartView  the shooter start view
      */
-    ShooterStartPresenter(ShooterStartLogic shooterStartLogic, ShooterStartView shooterStartView){
+    ShooterStartPresenter(ShooterStartLogic shooterStartLogic, ShooterStartView shooterStartView) {
         this.shooterStartLogic = shooterStartLogic;
         this.shooterStartView = shooterStartView;
     }
@@ -23,11 +23,10 @@ public class ShooterStartPresenter {
     /**
      * Check resume button appear.
      */
-    void checkResumeAppear(){
-        if(shooterStartLogic.ResumeBtnAppear()){
+    void checkResumeAppear() {
+        if (shooterStartLogic.ResumeBtnAppear()) {
             shooterStartView.resumeAppear();
-        }
-        else {
+        } else {
             shooterStartView.resumeGone();
         }
     }
@@ -35,12 +34,13 @@ public class ShooterStartPresenter {
     /**
      * Pause music.
      */
-    void pauseMusic(){
-        if (shooterStartLogic.getMusicFinish()){
+    void pauseMusic() {
+        if (shooterStartLogic.getMusicFinish()) {
             shooterStartView.stopMusic();
         }
     }
-    private void setMusicFinishFalse(){
+
+    private void setMusicFinishFalse() {
         shooterStartLogic.setMusicFinish();
     }
 
@@ -49,21 +49,21 @@ public class ShooterStartPresenter {
      *
      * @return the shooter game status facade
      */
-    ShooterGameStatusFacade getGameStatus(){
+    ShooterGameStatusFacade getGameStatus() {
         return shooterStartLogic.getShooterGameStatus();
     }
 
     /**
      * Start music.
      */
-    void startMusic(){
+    void startMusic() {
         shooterStartView.startMusic();
     }
 
     /**
      * Start new game.
      */
-    void startNewGame(){
+    void startNewGame() {
         shooterStartLogic.eraseGameStat();
         setMusicFinishFalse();
         shooterStartView.startSettingPage();
@@ -72,12 +72,11 @@ public class ShooterStartPresenter {
     /**
      * Resume game.
      */
-    void resumeGame(){
-        if (shooterStartLogic.checkAtLevel1Finish()){
+    void resumeGame() {
+        if (shooterStartLogic.checkAtLevel1Finish()) {
             setMusicFinishFalse();
             shooterStartView.startFinishPage();
-        }
-        else {
+        } else {
             setMusicFinishFalse();
             shooterStartView.startGamePage();
         }

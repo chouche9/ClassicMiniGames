@@ -71,7 +71,7 @@ public class ShooterGameLevelManager implements Parcelable {
     /**
      * Instantiates a new Shooter game level manager.
      */
-    public ShooterGameLevelManager(){
+    public ShooterGameLevelManager() {
         this.millsecondLeft = initaltime;
     }
 
@@ -111,9 +111,10 @@ public class ShooterGameLevelManager implements Parcelable {
     /**
      * Reset game level when starting new level.
      */
-    void resetLevel(){
-        if (plane != null){
-            plane.resetPosition();}
+    void resetLevel() {
+        if (plane != null) {
+            plane.resetPosition();
+        }
         millsecondLeft = initaltime;
         shooterBonuses = new ArrayList<>();
         planeBullets = new ArrayList<>();
@@ -128,7 +129,7 @@ public class ShooterGameLevelManager implements Parcelable {
     /**
      * Reset game when starting new game.
      */
-    void resetGame(){
+    void resetGame() {
         resetLevel();
         plane = null;
     }
@@ -139,7 +140,7 @@ public class ShooterGameLevelManager implements Parcelable {
      * @param planeNum the plane num
      * @param context  the context
      */
-    void setPlane(int planeNum, Context context){
+    void setPlane(int planeNum, Context context) {
         plane = new ShooterPlane(context, planeNum);
     }
 

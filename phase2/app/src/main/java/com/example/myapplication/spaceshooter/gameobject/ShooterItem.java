@@ -63,7 +63,7 @@ public abstract class ShooterItem implements Parcelable {
      * @param x the x coordinate of item
      * @param y the y coordinate of item
      */
-    ShooterItem(int x, int y){
+    ShooterItem(int x, int y) {
         this.x = x;
         this.y = y;
     }
@@ -71,7 +71,7 @@ public abstract class ShooterItem implements Parcelable {
     /**
      * Instantiates a new Shooter item.
      */
-    ShooterItem(){
+    ShooterItem() {
 
     }
 
@@ -131,7 +131,8 @@ public abstract class ShooterItem implements Parcelable {
 
     /**
      * write item into parcel
-     * @param dest the parcel
+     *
+     * @param dest  the parcel
      * @param flags the flag integer
      */
     @Override
@@ -143,7 +144,7 @@ public abstract class ShooterItem implements Parcelable {
     }
 
     /**
-     *  draw item on canvas
+     * draw item on canvas
      *
      * @param canvas the canvas
      */

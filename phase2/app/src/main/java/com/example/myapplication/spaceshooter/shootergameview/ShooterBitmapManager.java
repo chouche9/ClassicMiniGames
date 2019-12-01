@@ -71,7 +71,7 @@ public class ShooterBitmapManager {
      * @param context           the context
      * @param shooterGameStatus the shooter game status
      */
-    ShooterBitmapManager(Context context, ShooterGameStatusFacade shooterGameStatus){
+    ShooterBitmapManager(Context context, ShooterGameStatusFacade shooterGameStatus) {
         this.context = context;
         this.shooterGameStatus = shooterGameStatus;
         loadManager();
@@ -81,7 +81,7 @@ public class ShooterBitmapManager {
     /**
      * load class from shooterGameStatus
      */
-    private void loadManager(){
+    private void loadManager() {
         plane = shooterGameStatus.getShooterGameLevelManager().getPlane();
         shooterPlaneBullets = shooterGameStatus.getShooterGameLevelManager().getPlaneBullets();
         shooterEnemyBullets = shooterGameStatus.getShooterGameLevelManager().getEnemyBullets();
@@ -96,7 +96,7 @@ public class ShooterBitmapManager {
     /**
      * Load bitmap.
      */
-    void  loadBitmap(){
+    void loadBitmap() {
         plane.setUpBitmap(context);
         loadExplosion();
         loadListGameObject();
@@ -105,11 +105,11 @@ public class ShooterBitmapManager {
     /**
      * load both plane/enemy explosions
      */
-    private void loadExplosion(){
-        for (ShooterExplosion explosion: enemyExplosions){
+    private void loadExplosion() {
+        for (ShooterExplosion explosion : enemyExplosions) {
             explosion.setUpBitmap(context);
         }
-        for (ShooterExplosion explosion: planeExplosions){
+        for (ShooterExplosion explosion : planeExplosions) {
             explosion.setUpBitmap(context);
         }
     }
@@ -117,23 +117,23 @@ public class ShooterBitmapManager {
     /**
      * load all the game objects list's bitmap
      */
-    private void loadListGameObject(){
-        for (ShooterEnemy enemy1: shooterEnemies){
+    private void loadListGameObject() {
+        for (ShooterEnemy enemy1 : shooterEnemies) {
             enemy1.setUpBitmap(context);
         }
-        for (ShooterEnemyBullet bullet2: shooterEnemyBullets){
+        for (ShooterEnemyBullet bullet2 : shooterEnemyBullets) {
             bullet2.setUpBitmap(context);
         }
-        for (ShooterPlaneBullet bullet1: shooterPlaneBullets){
+        for (ShooterPlaneBullet bullet1 : shooterPlaneBullets) {
             bullet1.setUpBitmap(context);
         }
-        for (ShooterHealthAid shooterHealthAid: healthAids){
+        for (ShooterHealthAid shooterHealthAid : healthAids) {
             shooterHealthAid.setUpBitmap(context);
         }
-        for (ShooterPointBuff shooterPointBuff: pointBuffs){
+        for (ShooterPointBuff shooterPointBuff : pointBuffs) {
             shooterPointBuff.setUpBitmap(context);
         }
-        for (ShooterBonus shooterBonus: shooterBonuses){
+        for (ShooterBonus shooterBonus : shooterBonuses) {
             shooterBonus.setUpBitmap(context);
         }
     }

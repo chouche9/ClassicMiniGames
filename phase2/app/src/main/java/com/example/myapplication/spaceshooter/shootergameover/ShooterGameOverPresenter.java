@@ -26,7 +26,7 @@ public class ShooterGameOverPresenter {
      * @param shooterGameOverView  the shooter game over view
      */
     ShooterGameOverPresenter(ShooterGameOverLogic shooterGameOverLogic,
-                             ShooterGameOverView shooterGameOverView){
+                             ShooterGameOverView shooterGameOverView) {
         this.shooterGameOverLogic = shooterGameOverLogic;
         this.shooterGameOverView = shooterGameOverView;
     }
@@ -34,11 +34,10 @@ public class ShooterGameOverPresenter {
     /**
      * Check should next level appear.
      */
-    void checkNextLevelAppear(){
-        if (shooterGameOverLogic.checkNextLevelAppear()){
+    void checkNextLevelAppear() {
+        if (shooterGameOverLogic.checkNextLevelAppear()) {
             shooterGameOverView.nextLevelAppear();
-        }
-        else {
+        } else {
             shooterGameOverView.nextLevelGone();
         }
     }
@@ -46,8 +45,8 @@ public class ShooterGameOverPresenter {
     /**
      * Check should music start.
      */
-    void checkMusicStart(){
-        if (shooterGameOverLogic.getMusicFinish()){
+    void checkMusicStart() {
+        if (shooterGameOverLogic.getMusicFinish()) {
             shooterGameOverView.startMusic();
         }
         shooterGameOverLogic.setMusicFinish(true);
@@ -56,15 +55,15 @@ public class ShooterGameOverPresenter {
     /**
      * .transfer the message get from logic, pass in to shooterGameOver view.
      */
-    void setUpGameMessage(){
+    void setUpGameMessage() {
         shooterGameOverView.setGameText(shooterGameOverLogic.getText());
     }
 
     /**
      * Check should music stop.
      */
-    void checkMusicStop(){
-        if(shooterGameOverLogic.getMusicFinish()){
+    void checkMusicStop() {
+        if (shooterGameOverLogic.getMusicFinish()) {
             shooterGameOverView.stopMusic();
         }
     }
@@ -73,7 +72,7 @@ public class ShooterGameOverPresenter {
      * Handle next level case, change gameStatus in logic and start intent in ShooterGameOver
      * activity class  .
      */
-    void handleNextLevel(){
+    void handleNextLevel() {
         shooterGameOverLogic.levelUpGamestate();
         shooterGameOverView.startNewLevel();
         shooterGameOverLogic.setMusicFinish(false);
@@ -82,7 +81,7 @@ public class ShooterGameOverPresenter {
     /**
      * Handle back to main case.
      */
-    void handleBackToMain(){
+    void handleBackToMain() {
         shooterGameOverView.backToMenu();
         checkMusicStop();
     }

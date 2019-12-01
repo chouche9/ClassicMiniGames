@@ -15,7 +15,7 @@ import com.example.myapplication.spaceshooter.shooterplanegame.ShooterGame;
 /**
  * The type Shooter setting.
  */
-public class ShooterSetting extends AppCompatActivity implements View.OnClickListener{
+public class ShooterSetting extends AppCompatActivity implements View.OnClickListener {
     /**
      * The Plane 1.
      */
@@ -36,6 +36,7 @@ public class ShooterSetting extends AppCompatActivity implements View.OnClickLis
      * The View finish boolean.
      */
     boolean viewFinish;
+
     /**
      * Initializes this ShooterSetting activity.
      *
@@ -71,17 +72,19 @@ public class ShooterSetting extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onPause() {
         super.onPause();
-        if (viewFinish){
-        stopService(new Intent(getApplicationContext(), ShooterBackGroundMusic.class));}
+        if (viewFinish) {
+            stopService(new Intent(getApplicationContext(), ShooterBackGroundMusic.class));
+        }
     }
 
     /**
      * on click event when button get clicked
+     *
      * @param v the button view
      */
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.plane1:
                 shooterGameStatus.setPlane(1, getApplicationContext());
                 startNext();
@@ -100,15 +103,13 @@ public class ShooterSetting extends AppCompatActivity implements View.OnClickLis
     /**
      * Start the actual space shooting game.
      */
-    void startNext(){
+    void startNext() {
         Intent intent = new Intent(this, ShooterGame.class);
         intent.putExtra("gameStatus", shooterGameStatus);
         viewFinish = false;
         startActivity(intent);
         this.finish();
     }
-
-
 
 
 }

@@ -11,7 +11,7 @@ import com.example.myapplication.R;
 /**
  * The type Shooter plane.
  */
-public class ShooterPlane extends ShooterGameObject implements Parcelable  {
+public class ShooterPlane extends ShooterGameObject implements Parcelable {
     /**
      * the plane's life number
      */
@@ -27,20 +27,20 @@ public class ShooterPlane extends ShooterGameObject implements Parcelable  {
      * @param context    the context to get plane picture
      * @param planeStyle the plane style
      */
-    public ShooterPlane(Context context, int planeStyle){
+    public ShooterPlane(Context context, int planeStyle) {
         int dWidth = 1080;
         int dHeight = 2028;
         this.planeStyle = planeStyle;
-        if (planeStyle == 1){
-            setObject(BitmapFactory.decodeResource(context.getResources(), R.drawable.psplane1));}
-        else if (planeStyle == 2){
-            setObject(BitmapFactory.decodeResource(context.getResources(), R.drawable.psplane2));}
-        else if(planeStyle == 3){
+        if (planeStyle == 1) {
+            setObject(BitmapFactory.decodeResource(context.getResources(), R.drawable.psplane1));
+        } else if (planeStyle == 2) {
+            setObject(BitmapFactory.decodeResource(context.getResources(), R.drawable.psplane2));
+        } else if (planeStyle == 3) {
             setObject(BitmapFactory.decodeResource(context.getResources(), R.drawable.psplane3));
         }
         setObject(Bitmap.createScaledBitmap(
                 getObject(), 300, 200, false));
-        setX(dWidth/2 - 150);
+        setX(dWidth / 2 - 150);
         setY(dHeight - 300);
         setWidthHeight();
 
@@ -59,7 +59,8 @@ public class ShooterPlane extends ShooterGameObject implements Parcelable  {
 
     /**
      * write plane attribute to a parcel
-     * @param dest parcel to write
+     *
+     * @param dest  parcel to write
      * @param flags the flag integer
      */
     @Override
@@ -71,15 +72,16 @@ public class ShooterPlane extends ShooterGameObject implements Parcelable  {
 
     /**
      * set up bitmap for plane
+     *
      * @param context the context to get plane picture
      */
     @Override
     public void setUpBitmap(Context context) {
-        if (planeStyle == 1){
-            setObject(BitmapFactory.decodeResource(context.getResources(), R.drawable.psplane1));}
-        else if (planeStyle == 2){
-            setObject(BitmapFactory.decodeResource(context.getResources(), R.drawable.psplane2));}
-        else if(planeStyle == 3){
+        if (planeStyle == 1) {
+            setObject(BitmapFactory.decodeResource(context.getResources(), R.drawable.psplane1));
+        } else if (planeStyle == 2) {
+            setObject(BitmapFactory.decodeResource(context.getResources(), R.drawable.psplane2));
+        } else if (planeStyle == 3) {
             setObject(BitmapFactory.decodeResource(context.getResources(), R.drawable.psplane3));
         }
         setObject(Bitmap.createScaledBitmap(
@@ -114,16 +116,16 @@ public class ShooterPlane extends ShooterGameObject implements Parcelable  {
      * @param touchY the touch y
      * @return the boolean
      */
-    public boolean touchInRange(float touchX, float touchY){
-        return getX()<= touchX&& touchX<= getX()+ getWidth()
-                && getY() <= touchY && touchY <=getY() + getHeight();
+    public boolean touchInRange(float touchX, float touchY) {
+        return getX() <= touchX && touchX <= getX() + getWidth()
+                && getY() <= touchY && touchY <= getY() + getHeight();
     }
 
     /**
      * Reset position of plane
      */
-    public void resetPosition(){
-        setX(1080/2 - 150);
+    public void resetPosition() {
+        setX(1080 / 2 - 150);
         setY(2028 - 300);
     }
 

@@ -26,7 +26,7 @@ public class ShooterCrossLevelManager implements Parcelable {
     /**
      * Instantiates a new Shooter cross level manager.
      */
-    public ShooterCrossLevelManager(){
+    public ShooterCrossLevelManager() {
         point = 0;
         gameSuccess = true;
         level = 1;
@@ -63,14 +63,14 @@ public class ShooterCrossLevelManager implements Parcelable {
     /**
      * Reset level.
      */
-    void resetLevel(){
+    void resetLevel() {
         levelFinish = false;
     }
 
     /**
      * Reset game.
      */
-    void resetGame(){
+    void resetGame() {
         updateLevel(1);
         levelFinish = false;
         gameSuccess = true;
@@ -82,7 +82,7 @@ public class ShooterCrossLevelManager implements Parcelable {
      *
      * @param level the level
      */
-    public void updateLevel(int level){
+    public void updateLevel(int level) {
         this.level = level;
         ShooterEnemy.level = level;
     }
@@ -166,8 +166,9 @@ public class ShooterCrossLevelManager implements Parcelable {
 
     /**
      * write this class into a parcel
+     *
      * @param parcel the parcel get written to
-     * @param i the flag integer
+     * @param i      the flag integer
      */
     @Override
     public void writeToParcel(Parcel parcel, int i) {

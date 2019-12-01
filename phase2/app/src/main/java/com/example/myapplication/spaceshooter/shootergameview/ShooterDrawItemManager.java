@@ -90,7 +90,7 @@ class ShooterDrawItemManager {
      *
      * @param shooterGameStatus the shooter game status
      */
-    ShooterDrawItemManager(ShooterGameStatusFacade shooterGameStatus){
+    ShooterDrawItemManager(ShooterGameStatusFacade shooterGameStatus) {
 
         this.shooterGameStatus = shooterGameStatus;
         setUpManager();
@@ -101,9 +101,10 @@ class ShooterDrawItemManager {
      *
      * @param canvas the canvas
      */
-    void setCanvas(Canvas canvas){
+    void setCanvas(Canvas canvas) {
         this.canvas = canvas;
     }
+
     /**
      * load class from shooterGameStatus
      */
@@ -122,7 +123,7 @@ class ShooterDrawItemManager {
     /**
      * Draw all items on canvas
      */
-    void draw(){
+    void draw() {
         drawText();
         drawGameObject();
         drawExplosion();
@@ -131,7 +132,7 @@ class ShooterDrawItemManager {
     /**
      * set up all paints for the canvas
      */
-    private void setPaint(){
+    private void setPaint() {
         scorePaint = new Paint();
         scorePaint.setColor(Color.RED);
         scorePaint.setTextSize(Textsize);
@@ -149,43 +150,44 @@ class ShooterDrawItemManager {
     /**
      * draw the message text on canvas
      */
-    private void drawText(){
-        if (scorePaint == null){
-            setPaint();}
-        canvas.drawText("Life", ShooterGameView.dWidth -120, Textsize, healthPaint);
+    private void drawText() {
+        if (scorePaint == null) {
+            setPaint();
+        }
+        canvas.drawText("Life", ShooterGameView.dWidth - 120, Textsize, healthPaint);
         canvas.drawRect(ShooterGameView.dWidth - 110, 10, ShooterGameView.dWidth - 110 +
                 10 * plane.getLife(), Textsize, healthPaint);
         canvas.drawText("Pts: " + shooterGameStatus.getShooterCrossLevelManager().getPoint(),
                 20, Textsize, scorePaint);
         canvas.drawText("Level: " + shooterGameStatus.getShooterCrossLevelManager().getLevel()
-                , ShooterGameView.dWidth/2, Textsize, levelPaint);
+                , ShooterGameView.dWidth / 2, Textsize, levelPaint);
 
     }
 
     /**
      * draw all game objects
      */
-    private void drawGameObject(){
-        if (plane.getLife() <= 0){
+    private void drawGameObject() {
+        if (plane.getLife() <= 0) {
             shooterGameStatus.setGameSuccess(false);
         }
         plane.onDraw(canvas);
-        for(ShooterPlaneBullet bullet1: shooterPlaneBullets){
+        for (ShooterPlaneBullet bullet1 : shooterPlaneBullets) {
             bullet1.onDraw(canvas);
         }
-        for(ShooterEnemyBullet bullet2: shooterEnemyBullets){
+        for (ShooterEnemyBullet bullet2 : shooterEnemyBullets) {
             bullet2.onDraw(canvas);
         }
-        for (ShooterEnemy enemy1: shooterEnemies){
+        for (ShooterEnemy enemy1 : shooterEnemies) {
             enemy1.onDraw(canvas);
         }
-        for (ShooterPointBuff specialItem: pointBuffs){
+        for (ShooterPointBuff specialItem : pointBuffs) {
             specialItem.onDraw(canvas);
         }
-        for (ShooterHealthAid specialItem: healthAids){
+        for (ShooterHealthAid specialItem : healthAids) {
             specialItem.onDraw(canvas);
         }
-        for (ShooterBonus shooterBonus: shooterBonuses){
+        for (ShooterBonus shooterBonus : shooterBonuses) {
             shooterBonus.onDraw(canvas);
         }
     }
@@ -193,28 +195,28 @@ class ShooterDrawItemManager {
     /**
      * update and draw explosion effect
      */
-    private void drawExplosion(){
+    private void drawExplosion() {
         List<ShooterPlaneExplosion> remove1 = new ArrayList<>();
-        for (ShooterPlaneExplosion planeExplosion: planeExplosions){
-            if(planeExplosion.checkFrameValid()){
-                planeExplosion.onDraw(canvas);}
-            else {
+        for (ShooterPlaneExplosion planeExplosion : planeExplosions) {
+            if (planeExplosion.checkFrameValid()) {
+                planeExplosion.onDraw(canvas);
+            } else {
                 remove1.add(planeExplosion);
             }
         }
-        for(ShooterPlaneExplosion planeExplosion: remove1){
-            planeExplosions.remove( planeExplosion);
+        for (ShooterPlaneExplosion planeExplosion : remove1) {
+            planeExplosions.remove(planeExplosion);
         }
 
         List<ShooterEnemyExplosion> remove2 = new ArrayList<>();
-        for (ShooterEnemyExplosion enemyExplosion: enemyExplosions){
-            if(enemyExplosion.checkFrameValid()){
-                enemyExplosion.onDraw(canvas);}
-            else {
+        for (ShooterEnemyExplosion enemyExplosion : enemyExplosions) {
+            if (enemyExplosion.checkFrameValid()) {
+                enemyExplosion.onDraw(canvas);
+            } else {
                 remove2.add(enemyExplosion);
             }
         }
-        for(ShooterEnemyExplosion enemyExplosion: remove2){
+        for (ShooterEnemyExplosion enemyExplosion : remove2) {
             enemyExplosions.remove(enemyExplosion);
         }
     }

@@ -20,7 +20,7 @@ public class ShooterBonus extends ShooterGameObject {
      *
      * @param context the context
      */
-    public ShooterBonus(Context context){
+    public ShooterBonus(Context context) {
         Random random = new Random();
         setX(random.nextInt(ShooterGameView.dWidth - 150));
         setY(-60);
@@ -36,9 +36,10 @@ public class ShooterBonus extends ShooterGameObject {
      *
      * @param in the in
      */
-    private ShooterBonus(Parcel in){
+    private ShooterBonus(Parcel in) {
         super(in);
     }
+
     public void writeToParcel(Parcel dest, int flags) {
         super.writeToParcel(dest, flags);
     }
@@ -66,9 +67,9 @@ public class ShooterBonus extends ShooterGameObject {
 
     @Override
     public void setUpBitmap(Context context) {
-       setObject(BitmapFactory.decodeResource(context.getResources(), R.drawable.treasure_chest));
-       setObject(Bitmap.createScaledBitmap(
-               getObject(), 150, 150, false));
+        setObject(BitmapFactory.decodeResource(context.getResources(), R.drawable.treasure_chest));
+        setObject(Bitmap.createScaledBitmap(
+                getObject(), 150, 150, false));
     }
 
 

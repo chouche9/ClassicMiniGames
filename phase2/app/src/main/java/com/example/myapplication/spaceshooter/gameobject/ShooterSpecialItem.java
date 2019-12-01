@@ -11,12 +11,12 @@ import java.util.Random;
 /**
  * The type Shooter special item.
  */
-public abstract class ShooterSpecialItem extends ShooterGameObject implements Parcelable{
+public abstract class ShooterSpecialItem extends ShooterGameObject implements Parcelable {
 
     /**
      * Instantiates a new Shooter special item.
      */
-    ShooterSpecialItem(){
+    ShooterSpecialItem() {
         super();
         Random random = new Random();
         setX(random.nextInt(ShooterGameView.dWidth - 150));
@@ -29,7 +29,7 @@ public abstract class ShooterSpecialItem extends ShooterGameObject implements Pa
      *
      * @param in the in
      */
-    ShooterSpecialItem(Parcel in){
+    ShooterSpecialItem(Parcel in) {
         super(in);
     }
 

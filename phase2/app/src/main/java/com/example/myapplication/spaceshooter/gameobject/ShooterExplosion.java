@@ -34,7 +34,7 @@ public abstract class ShooterExplosion extends ShooterItem implements Parcelable
      *
      * @param in the in parcel
      */
-    ShooterExplosion(Parcel in){
+    ShooterExplosion(Parcel in) {
         super(in);
         explosionFrame = in.readInt();
     }
@@ -42,7 +42,7 @@ public abstract class ShooterExplosion extends ShooterItem implements Parcelable
     @Override
     public void onDraw(Canvas canvas) {
         canvas.drawBitmap(explosions[explosionFrame], getX(), getY(), null);
-        explosionFrame ++;
+        explosionFrame++;
     }
 
     /**
@@ -50,7 +50,7 @@ public abstract class ShooterExplosion extends ShooterItem implements Parcelable
      *
      * @return the boolean
      */
-    public boolean checkFrameValid(){
+    public boolean checkFrameValid() {
         return explosionFrame < explosions.length;
     }
 
@@ -71,8 +71,10 @@ public abstract class ShooterExplosion extends ShooterItem implements Parcelable
      * set width and height of explosion
      */
     @Override
-    void setWidthHeight(){
+    void setWidthHeight() {
         setWidth(explosions[0].getWidth());
         setHeight(explosions[1].getHeight());
-    };
+    }
+
+    ;
 }

@@ -122,7 +122,7 @@ public class ShooterGameView extends View {
      *
      * @param shooterGameStatus the shooter game status
      */
-    public void setShooterGameStatus(ShooterGameStatusFacade shooterGameStatus){
+    public void setShooterGameStatus(ShooterGameStatusFacade shooterGameStatus) {
         this.shooterGameStatus = shooterGameStatus;
         plane = shooterGameStatus.getShooterGameLevelManager().getPlane();
         setBackground();
@@ -139,7 +139,8 @@ public class ShooterGameView extends View {
             }
         };
     }
-    private void setUpSoundPool(){
+
+    private void setUpSoundPool() {
         sp = new SoundPool(3, AudioManager.STREAM_MUSIC, 0);
         enemyDown = sp.load(context, R.raw.enemy1_down, 1);
         bulletLoad = sp.load(context, R.raw.fire, 1);
@@ -149,7 +150,7 @@ public class ShooterGameView extends View {
     /**
      * Start timer of the game.
      */
-    public void startTimer(){
+    public void startTimer() {
         countDownTimer = new CountDownTimer(shooterGameStatus.getShooterGameLevelManager().getMillsecondLeft(), 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -161,7 +162,7 @@ public class ShooterGameView extends View {
             public void onFinish() {
                 shooterGameStatus.getShooterCrossLevelManager().setLevelFinish(true);
 
-                if (finish == 0){
+                if (finish == 0) {
                     onViewFinish();
                 }
             }
@@ -171,8 +172,8 @@ public class ShooterGameView extends View {
     /**
      * Set background of canvas base on game level.
      */
-    void setBackground(){
-        switch (shooterGameStatus.getShooterCrossLevelManager().getLevel()){
+    void setBackground() {
+        switch (shooterGameStatus.getShooterCrossLevelManager().getLevel()) {
             case 1:
                 background = BitmapFactory.decodeResource(getResources(), R.drawable.psbackground1);
                 break;
@@ -190,6 +191,7 @@ public class ShooterGameView extends View {
 
     /**
      * draw items on canvas
+     *
      * @param canvas canvas of ShooterGame
      */
     @Override
@@ -200,23 +202,24 @@ public class ShooterGameView extends View {
         shooterColisionManager.handleCollision();
         drawItemManager.setCanvas(canvas);
         drawItemManager.draw();
-        if(shooterGameStatus.getShooterCrossLevelManager().isGameSuccess() &&
+        if (shooterGameStatus.getShooterCrossLevelManager().isGameSuccess() &&
                 !shooterGameStatus.getShooterCrossLevelManager().isLevelFinish() &&
-                !activityFinish){
-            handler.postDelayed(runnable, UPDATE_MILLIS);}
-        else {
-            if(finish == 0 && !activityFinish){
+                !activityFinish) {
+            handler.postDelayed(runnable, UPDATE_MILLIS);
+        } else {
+            if (finish == 0 && !activityFinish) {
                 onViewFinish();
                 countDownTimer.cancel();
-            }
-            else {
+            } else {
                 countDownTimer.cancel();
             }
-        };
+        }
+        ;
     }
 
     /**
      * set up plane's location base on the touch location
+     *
      * @param event the touching motion
      * @return whether touch succeed
      */
@@ -226,26 +229,24 @@ public class ShooterGameView extends View {
         float touchX = event.getX();
         float touchY = event.getY();
         int action = event.getAction();
-        int planewidth = plane.getWidth()/2;
-        int planeHeight = plane.getHeight()/2;
+        int planewidth = plane.getWidth() / 2;
+        int planeHeight = plane.getHeight() / 2;
         if (action == MotionEvent.ACTION_MOVE) {
-            if (!plane.touchInRange(touchX, touchY)){
+            if (!plane.touchInRange(touchX, touchY)) {
                 return true;
             }
-            if (touchX < planewidth){
+            if (touchX < planewidth) {
                 touchX = planewidth;
-            }
-            else if (touchX > dWidth - planewidth){
+            } else if (touchX > dWidth - planewidth) {
                 touchX = dWidth - planewidth;
             }
-            if (touchY < 0){
+            if (touchY < 0) {
                 touchY = 0;
-            }
-            else if (touchY > dHeight -planeHeight){
+            } else if (touchY > dHeight - planeHeight) {
                 touchY = dHeight - planeHeight;
             }
-            plane.setX((int)touchX-planewidth);
-            plane.setY((int)touchY -planeHeight);
+            plane.setX((int) touchX - planewidth);
+            plane.setY((int) touchY - planeHeight);
         }
         return true;
     }
@@ -253,9 +254,9 @@ public class ShooterGameView extends View {
     /**
      * instruction when view finish.
      */
-    void onViewFinish(){
+    void onViewFinish() {
         Intent intent = new Intent(context, ShooterGameOver.class);
-        finish ++;
+        finish++;
         intent.putExtra("gameStatus", shooterGameStatus);
         context.startActivity(intent);
         ((Activity) context).finish();
@@ -266,7 +267,7 @@ public class ShooterGameView extends View {
      *
      * @param finish the finish
      */
-    public void setActivityFinish(boolean finish){
+    public void setActivityFinish(boolean finish) {
         this.activityFinish = finish;
     }
 
@@ -275,7 +276,7 @@ public class ShooterGameView extends View {
      *
      * @return the boolean
      */
-    public boolean getActivityFinish(){
+    public boolean getActivityFinish() {
         return activityFinish;
     }
 

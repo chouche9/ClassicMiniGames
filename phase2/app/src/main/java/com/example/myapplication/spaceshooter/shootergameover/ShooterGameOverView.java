@@ -26,6 +26,7 @@ interface ShooterGameOverView {
 
     /**
      * set gametext message
+     *
      * @param message message that want to display
      */
     void setGameText(String message);

@@ -46,7 +46,7 @@ public class ShooterGameStatusFacade extends GameStatus implements Parcelable {
      *
      * @param name the name
      */
-    public ShooterGameStatusFacade(String name){
+    public ShooterGameStatusFacade(String name) {
         super(name, GameEnum.SPACESHOOTER);
 
     }
@@ -65,7 +65,8 @@ public class ShooterGameStatusFacade extends GameStatus implements Parcelable {
 
     /**
      * write the object to parcel
-     * @param dest the parcel to write
+     *
+     * @param dest  the parcel to write
      * @param flags the flag integer
      */
     @Override
@@ -82,7 +83,7 @@ public class ShooterGameStatusFacade extends GameStatus implements Parcelable {
      *
      * @return the shooter plane
      */
-    public ShooterPlane getPlane(){
+    public ShooterPlane getPlane() {
         return shooterGameLevelManager.getPlane();
     }
 
@@ -91,14 +92,14 @@ public class ShooterGameStatusFacade extends GameStatus implements Parcelable {
      *
      * @param point the point
      */
-    public void addPoint(int point){
+    public void addPoint(int point) {
         shooterCrossLevelManager.setPoint(shooterCrossLevelManager.getPoint() + point);
     }
 
     /**
      * Reset game status.
      */
-    public void resetGameStatus(){
+    public void resetGameStatus() {
         shooterGameLevelManager.resetLevel();
         shooterCrossLevelManager.resetLevel();
     }
@@ -106,7 +107,7 @@ public class ShooterGameStatusFacade extends GameStatus implements Parcelable {
     /**
      * Erase game status.
      */
-    public void eraseGameStatus(){
+    public void eraseGameStatus() {
         shooterCrossLevelManager.resetGame();
         shooterGameLevelManager.resetGame();
     }
@@ -116,7 +117,7 @@ public class ShooterGameStatusFacade extends GameStatus implements Parcelable {
      *
      * @param success the success
      */
-    public void setGameSuccess(boolean success){
+    public void setGameSuccess(boolean success) {
         shooterCrossLevelManager.setGameSuccess(success);
     }
 
@@ -126,8 +127,8 @@ public class ShooterGameStatusFacade extends GameStatus implements Parcelable {
      * @param planeNum the plane num
      * @param context  the context
      */
-    public void setPlane(int planeNum, Context context){
-            shooterGameLevelManager.setPlane(planeNum, context);
+    public void setPlane(int planeNum, Context context) {
+        shooterGameLevelManager.setPlane(planeNum, context);
     }
 
     /**

@@ -36,6 +36,7 @@ public class ShooterGame extends AppCompatActivity implements BonusLevelDialog.B
 
     /**
      * create this activity
+     *
      * @param savedInstanceState a bundle of the resources in this activity.
      */
     @Override
@@ -76,18 +77,19 @@ public class ShooterGame extends AppCompatActivity implements BonusLevelDialog.B
     /**
      * Activate bonus game by pasing to presenter.
      */
-    public void activateBonusGame(){
+    public void activateBonusGame() {
         shooterGamePresenter.activateBonusGame();
     }
 
     /**
      * open guess number dialog
      */
-    public void openDialog(){
+    public void openDialog() {
         dialog = new BonusLevelDialog();
         dialog.setCancelable(false);
         dialog.show(getSupportFragmentManager(), "Bonus Level Dialog");
     }
+
     /**
      * Make bonus win toast.
      */
@@ -97,6 +99,7 @@ public class ShooterGame extends AppCompatActivity implements BonusLevelDialog.B
                 "You guessed the correct number!\nPlus 100 points!",
                 Toast.LENGTH_SHORT).show();
     }
+
     /**
      * Make bonus lose toast.
      */
@@ -107,7 +110,8 @@ public class ShooterGame extends AppCompatActivity implements BonusLevelDialog.B
 
     /**
      * handling the bonus game result in presenter
-     * @param isWon: boolean to show whether game isWon or not
+     *
+     * @param isWon:     boolean to show whether game isWon or not
      * @param bonusSore: the score of the game
      */
     @Override
@@ -123,6 +127,7 @@ public class ShooterGame extends AppCompatActivity implements BonusLevelDialog.B
     public void onCancel() {
         shooterGamePresenter.cancelBonus();
     }
+
     /**
      * Start music.
      */
@@ -130,6 +135,7 @@ public class ShooterGame extends AppCompatActivity implements BonusLevelDialog.B
     public void startMusic() {
         startService(new Intent(getApplicationContext(), ShooterBackGroundMusic.class));
     }
+
     /**
      * Stop music.
      */
@@ -137,6 +143,7 @@ public class ShooterGame extends AppCompatActivity implements BonusLevelDialog.B
     public void stopMusic() {
         stopService(new Intent(getApplicationContext(), ShooterBackGroundMusic.class));
     }
+
     /**
      * Dismiss dialog.
      */
