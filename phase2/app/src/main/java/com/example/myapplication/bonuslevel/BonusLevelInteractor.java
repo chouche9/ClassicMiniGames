@@ -79,7 +79,7 @@ class BonusLevelInteractor {
      * @param guessedNumber: the guessed number
      * @param listener: The bonus level presenter
      */
-    public void validateNumberInteractor(int guessedNumber, BonusLevelPresenter listener) {
+    void validateNumberInteractor(int guessedNumber, BonusLevelPresenter listener) {
         if (guessedNumber == targetNum) {
             listener.onGameEnd(true, BONUS_SCORE);
         } else if (guessedNumber > targetNum) {

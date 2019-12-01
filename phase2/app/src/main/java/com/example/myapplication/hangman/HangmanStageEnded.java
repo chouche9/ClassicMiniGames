@@ -32,14 +32,29 @@ public class HangmanStageEnded extends AppCompatActivity
   /** Button that the user clicks to go back to the home page of the app. */
   private Button backToHome;
 
+  /**
+   * Button that the user clicks to go to the next stage
+   */
   private Button nextStage;
 
+  /**
+   * Button that the user clicks to play the bonus level game
+   */
   private Button bonusLevel;
 
+  /**
+   * TextView to show the First Message
+   */
   private TextView txtFirstMessage;
 
+  /**
+   * TextView that shows the Value message
+   */
   private TextView txtValueMessage;
 
+  /**
+   * Dialog that saves the BonusLevelDialog instance
+   */
   private BonusLevelDialog dialog;
 
   /** Button that the user clicks to play background music. */
@@ -85,6 +100,9 @@ public class HangmanStageEnded extends AppCompatActivity
     btnStopMusic.setOnClickListener(this);
   }
 
+  /**
+   * Method when to show the message and any other View when the stage ended
+   */
   private void stageEndedResult() {
     String firstMessage;
     String valueMessage;
@@ -128,6 +146,10 @@ public class HangmanStageEnded extends AppCompatActivity
     txtValueMessage.setText(valueMessage);
   }
 
+  /**
+   * Method that implements the action needs to be done when the music button is on or off
+   * @param view
+   */
   @Override
   public void onClick(View view) {
     if (view == btnPlayMusic) {
@@ -139,6 +161,9 @@ public class HangmanStageEnded extends AppCompatActivity
     }
   }
 
+  /**
+   * Method to set the Bonus Level Button
+   */
   private void setBonusLevelButton() {
     bonusLevel.setOnClickListener(
             new View.OnClickListener() {
@@ -151,11 +176,19 @@ public class HangmanStageEnded extends AppCompatActivity
             });
   }
 
+  /**
+   * Method to open the dialog for bonus stage
+   */
   private void openDialog() {
     dialog = new BonusLevelDialog();
     dialog.show(getSupportFragmentManager(), "Bonus Level Dialog");
   }
 
+  /**
+   * Method to show the bonus level result
+   * @param isWon: boolean to show whether game isWon or not
+   * @param bonusScore The bonus score
+   */
   @Override
   public void bonusLevelResult(boolean isWon, int bonusScore) {
 
@@ -177,6 +210,9 @@ public class HangmanStageEnded extends AppCompatActivity
     bonusLevel.setVisibility(View.GONE);
   }
 
+  /**
+   * Method that cancels the bonus level button
+   */
   @Override
   public void onCancel() {
     bonusLevel.setVisibility(View.GONE);
@@ -197,6 +233,9 @@ public class HangmanStageEnded extends AppCompatActivity
             });
   }
 
+  /**
+   * Button that sets the next stage button when clicked
+   */
   private void setNextStageButton() {
     nextStage.setOnClickListener(
             new View.OnClickListener() {
