@@ -132,7 +132,7 @@ public class BonusLevelDialog extends AppCompatDialogFragment implements BonusLe
    */
   @Override
   public void updateTries(int numTries) {
-    String tries = "X " + String.valueOf(numTries) + "Tries";
+    String tries = "X " + numTries + "Tries";
     txtTries.setText(tries);
   }
 
