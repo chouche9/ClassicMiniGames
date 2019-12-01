@@ -12,7 +12,7 @@
         <activity android:name=".loginsystem.createaccount.CreateAccountActivity"></activity>
         <activity android:name=".spaceshooter.shootergameover.ShooterGameOver" />
         <activity android:name=".spaceshooter.shooterplanegame.ShooterGame" />
-        <activity android:name=".spaceshooter.ShooterSetting" />
+        <activity android:name=".spaceshooter.shootergamesetting.ShooterSetting" />
         <activity android:name=".spaceshooter.shootergamestart.ShooterStart" />
         <activity android:name=".hangman.HangmanSetting" />
         <activity android:name=".hangman.HangmanStageEnded" />

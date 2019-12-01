@@ -10,7 +10,7 @@ import android.widget.Button;
 import com.example.myapplication.R;
 import com.example.myapplication.spaceshooter.ShooterBackGroundMusic;
 import com.example.myapplication.spaceshooter.shooterplanegame.ShooterGame;
-import com.example.myapplication.spaceshooter.ShooterSetting;
+import com.example.myapplication.spaceshooter.shootergamesetting.ShooterSetting;
 import com.example.myapplication.spaceshooter.shootergameover.ShooterGameOver;
 
 /**
