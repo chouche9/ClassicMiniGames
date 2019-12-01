@@ -19,9 +19,7 @@ public class FlappyGameBonus extends FlappyGameObjects implements Parcelable {
   /** The default x coordinate of an object when it collides with the fish. */
   private static final int DEAD_POS = -100;
 
-  /**
-   * Construct a new bonus object at the default starting coordinates with default velocity.
-   */
+  /** Construct a new bonus object at the default starting coordinates with default velocity. */
   public FlappyGameBonus() {
     super(0, 0, BONUS_SPEED_DEFAULT);
   }
@@ -35,17 +33,13 @@ public class FlappyGameBonus extends FlappyGameObjects implements Parcelable {
     super(in);
   }
 
-  /**
-   * Set the velocity of this bonus game object to the default value.
-   */
+  /** Set the velocity of this bonus game object to the default value. */
   @Override
   public void setGameDefault() {
     setVelocity(BONUS_SPEED_DEFAULT);
   }
 
-  /**
-   * Increase the velocity of this bonus game object by the defined increment.
-   */
+  /** Increase the velocity of this bonus game object by the defined increment. */
   @Override
   public void increaseGameStage() {
     setVelocity(getVelocity() + BONUS_SPEED_INCREASE);
@@ -82,7 +76,7 @@ public class FlappyGameBonus extends FlappyGameObjects implements Parcelable {
    */
   void validCheck(int canvasWidth, int minY, int maxY) {
     Random random = new Random();
-    int randomNum = random.nextInt(300);
+    int randomNum = random.nextInt(600);
     if (getX() < 0 && randomNum == 150) {
       setX(canvasWidth + 10);
       setY((int) Math.floor(Math.random() * (maxY - minY)) + minY);
@@ -98,7 +92,8 @@ public class FlappyGameBonus extends FlappyGameObjects implements Parcelable {
    * Check whether the specified fish object collides with this bonus object.
    *
    * @param gameStatus the gameStatus object that tracks the two game objects.
-   * @return Return true if the bonus game object collides with the fish object; Otherwise, return false.
+   * @return Return true if the bonus game object collides with the fish object; Otherwise, return
+   *     false.
    */
   private boolean collideCheck(FlappyGameStatusFacade gameStatus) {
     FlappyGameObjects fish = gameStatus.getFish();

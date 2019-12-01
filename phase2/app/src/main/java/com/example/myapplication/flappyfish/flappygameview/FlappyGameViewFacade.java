@@ -13,7 +13,6 @@ import com.example.myapplication.flappyfish.flappygamestatus.FlappyGameStatusFac
 import com.example.myapplication.flappyfish.FlappyMainActivity;
 import com.example.myapplication.flappyfish.FlappyResultActivity;
 
-
 /** The Flappy fish game view. */
 public class FlappyGameViewFacade extends View {
 
@@ -48,6 +47,7 @@ public class FlappyGameViewFacade extends View {
 
   /**
    * Set the bitmapManager of this game view to bitmapManager.
+   *
    * @param bitmapManager the new bitmapManager of this game view.
    */
   public void setBitmapManager(ViewBitmapManager bitmapManager) {
@@ -56,15 +56,14 @@ public class FlappyGameViewFacade extends View {
 
   /**
    * Set the paintManager of this game view to bitmapManager.
+   *
    * @param paintManager the new bitmapManager of this game view.
    */
   public void setPaintManager(ViewPaintManager paintManager) {
     this.paintManager = paintManager;
   }
 
-  /**
-   * Set up this game view by initializing the attributes tracked by the two managers.
-   */
+  /** Set up this game view by initializing the attributes tracked by the two managers. */
   public void setUpView() {
     Resources resources = getResources();
     bitmapManager.setUpGame(resources);
@@ -105,9 +104,7 @@ public class FlappyGameViewFacade extends View {
     bitmapManager.drawLife();
   }
 
-  /**
-   * Start the result activity page.
-   */
+  /** Start the result activity page. */
   private void gameOver() {
     Intent intent = new Intent(context, FlappyResultActivity.class);
     intent.putExtra(EXTRA_MESSAGE, gameStatus);

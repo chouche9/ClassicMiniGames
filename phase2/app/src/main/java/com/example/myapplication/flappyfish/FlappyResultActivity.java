@@ -42,6 +42,7 @@ public class FlappyResultActivity extends AppCompatActivity implements View.OnCl
 
   /**
    * Set up the next stage button which when clicked, takes the player to the next stage.
+   *
    * @param result whether the player has finished the current stage or ran out of lives.
    */
   private void setNextStageBtn(boolean result) {

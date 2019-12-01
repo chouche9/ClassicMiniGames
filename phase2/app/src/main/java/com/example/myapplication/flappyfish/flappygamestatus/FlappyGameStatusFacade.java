@@ -13,14 +13,10 @@ import com.example.myapplication.domain.GameStatus;
 /** The flappy fish game status. */
 public class FlappyGameStatusFacade extends GameStatus implements Parcelable {
 
-  /**
-   * The object that is responsible for managing all the game objects displayed on the screen.
-   */
+  /** The object that is responsible for managing all the game objects displayed on the screen. */
   private ObjectManager objectManager;
 
-  /**
-   * The object that is responsible for managing all the attributes of the game.
-   */
+  /** The object that is responsible for managing all the attributes of the game. */
   private LevelManager levelManager;
 
   /**
@@ -46,6 +42,7 @@ public class FlappyGameStatusFacade extends GameStatus implements Parcelable {
 
   /**
    * Set the level manager of this game status to levelManager.
+   *
    * @param levelManager the new level manager of this game status object.
    */
   public void setLevelManager(LevelManager levelManager) {
@@ -54,6 +51,7 @@ public class FlappyGameStatusFacade extends GameStatus implements Parcelable {
 
   /**
    * Set the object manager of this game status to levelManager.
+   *
    * @param objectManager the new object manager of this game status object.
    */
   public void setObjectManager(ObjectManager objectManager) {
@@ -72,22 +70,19 @@ public class FlappyGameStatusFacade extends GameStatus implements Parcelable {
     levelManager.increaseStage();
   }
 
-  /**
-   * Set the background of this game status to the light theme.
-   */
+  /** Set the background of this game status to the light theme. */
   public void setBgLight() {
     levelManager.setBgLight();
   }
 
-  /**
-   * Set the background of this game status to the dark theme.
-   */
+  /** Set the background of this game status to the dark theme. */
   public void setBgDark() {
     levelManager.setBgDark();
   }
 
   /**
    * Return the background of this game status object.
+   *
    * @return the background of this game status object.
    */
   public boolean getBg() {
@@ -119,6 +114,7 @@ public class FlappyGameStatusFacade extends GameStatus implements Parcelable {
 
   /**
    * Increase the score of this game status by bonusScore.
+   *
    * @param bonusScore the score obtained by winning the bonus game.
    */
   public void addBonusScore(int bonusScore) {
@@ -162,6 +158,7 @@ public class FlappyGameStatusFacade extends GameStatus implements Parcelable {
 
   /**
    * Return the fish object tracked by this game status object.
+   *
    * @return the fish object tracker by this game status object.
    */
   public FlappyGameFish getFish() {
@@ -170,6 +167,7 @@ public class FlappyGameStatusFacade extends GameStatus implements Parcelable {
 
   /**
    * Return the shrimp object tracked by this game status object.
+   *
    * @return the shrimp object tracker by this game status object.
    */
   public FlappyGameShrimp getShrimp() {
@@ -178,6 +176,7 @@ public class FlappyGameStatusFacade extends GameStatus implements Parcelable {
 
   /**
    * Return the shark object tracked by this game status object.
+   *
    * @return the shark object tracker by this game status object.
    */
   public FlappyGameShark getShark() {
@@ -186,6 +185,7 @@ public class FlappyGameStatusFacade extends GameStatus implements Parcelable {
 
   /**
    * Return the bonus game object tracked by this game status object.
+   *
    * @return the bonus game object tracker by this game status object.
    */
   public FlappyGameBonus getBonus() {
@@ -218,15 +218,15 @@ public class FlappyGameStatusFacade extends GameStatus implements Parcelable {
 
   /** Create FlappyGameStatatus by the super Creator object. */
   public static final Creator<FlappyGameStatusFacade> CREATOR =
-          new Creator<FlappyGameStatusFacade>() {
-            @Override
-            public FlappyGameStatusFacade createFromParcel(Parcel in) {
-              return new FlappyGameStatusFacade(in);
-            }
+      new Creator<FlappyGameStatusFacade>() {
+        @Override
+        public FlappyGameStatusFacade createFromParcel(Parcel in) {
+          return new FlappyGameStatusFacade(in);
+        }
 
-            @Override
-            public FlappyGameStatusFacade[] newArray(int size) {
-              return new FlappyGameStatusFacade[size];
-            }
-          };
+        @Override
+        public FlappyGameStatusFacade[] newArray(int size) {
+          return new FlappyGameStatusFacade[size];
+        }
+      };
 }

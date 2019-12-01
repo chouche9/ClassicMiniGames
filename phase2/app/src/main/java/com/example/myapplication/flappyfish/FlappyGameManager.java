@@ -15,7 +15,8 @@ class FlappyGameManager extends GameManager {
   /** The singleton FlappyGameManager. */
   private static FlappyGameManager gameManager;
 
-  /** Constructs a FlappyGameManager.
+  /**
+   * Constructs a FlappyGameManager.
    *
    * @param activity the activity that called this FlappyGameManager.
    */
@@ -43,8 +44,9 @@ class FlappyGameManager extends GameManager {
    */
   protected FlappyGameStatusFacade getGameStatus(String username) {
     FlappyGameStatusFacade flappyGameStatusFacade =
-            (FlappyGameStatusFacade)
-                    GameStatusDaoImpl.getInstance(getActivity()).getGameStatus(username, GameEnum.FLAPPYFISH);
+        (FlappyGameStatusFacade)
+            GameStatusDaoImpl.getInstance(getActivity())
+                .getGameStatus(username, GameEnum.FLAPPYFISH);
     if (flappyGameStatusFacade == null) {
       flappyGameStatusFacade = new FlappyGameStatusFacade(username);
       flappyGameStatusFacade.setLevelManager(new LevelManager());
