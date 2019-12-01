@@ -1,4 +1,4 @@
-package com.example.myapplication.flappyfish;
+package com.example.myapplication.flappyfish.flappygameactivities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.myapplication.backgroundmusic.BackgroundMusic;
+import com.example.myapplication.flappyfish.flappygamedomain.FlappyGameManager;
+import com.example.myapplication.flappyfish.flappygamemusic.FlappyBackgroundMusic;
 import com.example.myapplication.flappyfish.flappygamestatus.FlappyGameStatusFacade;
 import com.example.myapplication.flappyfish.flappygameview.FlappyGameViewFacade;
 import com.example.myapplication.mainpage.GameMain;

@@ -1,4 +1,4 @@
-package com.example.myapplication.flappyfish;
+package com.example.myapplication.flappyfish.flappygameactivities;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.myapplication.backgroundmusic.BackgroundMusic;
+import com.example.myapplication.flappyfish.flappygamedomain.FlappyGameManager;
+import com.example.myapplication.flappyfish.flappygamemusic.FlappyBackgroundMusic;
 import com.example.myapplication.flappyfish.flappygamestatus.FlappyGameStatusFacade;
 import com.example.myapplication.R;
 
@@ -138,7 +140,7 @@ public class FlappyGameMenu extends AppCompatActivity implements View.OnClickLis
   public void onClick(View view) {
     switch (view.getId()) {
       case R.id.newGameBtn:
-        Intent startSettingIntent = new Intent(this, FlappySetting.class);
+        Intent startSettingIntent = new Intent(this, FlappySettingActivity.class);
         gameStatus.startUpdate();
         gameStatus.setGameDefault();
         startSettingIntent.putExtra("gameStatus", gameStatus);

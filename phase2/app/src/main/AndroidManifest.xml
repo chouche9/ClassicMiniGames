@@ -18,10 +18,10 @@
         <activity android:name=".hangman.HangmanStageEnded" />
         <activity android:name=".hangman.HangmanGameActivity" />
         <activity android:name=".hangman.HangmanMain" />
-        <activity android:name=".flappyfish.FlappyGameMenu" />
-        <activity android:name=".flappyfish.FlappyResultActivity" />
-        <activity android:name=".flappyfish.FlappySetting" />
-        <activity android:name=".flappyfish.FlappyMainActivity" />
+        <activity android:name=".flappyfish.flappygameactivities.FlappyGameMenu" />
+        <activity android:name=".flappyfish.flappygameactivities.FlappyResultActivity" />
+        <activity android:name=".flappyfish.flappygameactivities.FlappySettingActivity" />
+        <activity android:name=".flappyfish.flappygameactivities.FlappyMainActivity" />
 <!--        <activity android:name=".GuessNum.GuessSetting" />-->
 <!--        <activity android:name=".GuessNum.GuessMain" />-->
 <!--        <activity android:name=".GuessNum.GuessGame" />-->
@@ -36,7 +36,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".flappyfish.FlappyBackgroundMusic" />
+        <service android:name=".flappyfish.flappygamemusic.FlappyBackgroundMusic" />
         <service android:name=".hangman.HangmanBackgroundMusic" />
         <service android:name=".spaceshooter.ShooterBackGroundMusic" />
     </application>

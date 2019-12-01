@@ -1,4 +1,4 @@
-package com.example.myapplication.flappyfish;
+package com.example.myapplication.flappyfish.flappygameactivities;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import com.example.myapplication.backgroundmusic.BackgroundMusic;
 import com.example.myapplication.bonuslevel.BonusLevelDialog;
+import com.example.myapplication.flappyfish.flappygamedomain.FlappyGameManager;
+import com.example.myapplication.flappyfish.flappygamemusic.FlappyBackgroundMusic;
 import com.example.myapplication.flappyfish.flappygamestatus.FlappyGameStatusFacade;
 import com.example.myapplication.flappyfish.flappygameview.FlappyGameViewFacade;
 import com.example.myapplication.flappyfish.flappygameview.ViewBitmapManager;

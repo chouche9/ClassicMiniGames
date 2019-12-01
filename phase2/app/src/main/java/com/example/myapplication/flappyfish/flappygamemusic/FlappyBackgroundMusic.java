@@ -1,4 +1,4 @@
-package com.example.myapplication.flappyfish;
+package com.example.myapplication.flappyfish.flappygamemusic;
 
 import com.example.myapplication.R;
 import com.example.myapplication.backgroundmusic.BackgroundMusic;

@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.myapplication.flappyfish.FlappyGameMenu;
+import com.example.myapplication.flappyfish.flappygameactivities.FlappyGameMenu;
 import com.example.myapplication.hangman.HangmanMain;
 import com.example.myapplication.R;
 import com.example.myapplication.spaceshooter.shootergamestart.ShooterStart;

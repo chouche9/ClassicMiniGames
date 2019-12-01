@@ -1,4 +1,4 @@
-package com.example.myapplication.flappyfish;
+package com.example.myapplication.flappyfish.flappygamedomain;
 
 import android.app.Activity;
 
@@ -10,7 +10,7 @@ import com.example.myapplication.flappyfish.flappygamestatus.LevelManager;
 import com.example.myapplication.flappyfish.flappygamestatus.ObjectManager;
 
 /** The game manager for this flappy fish game. */
-class FlappyGameManager extends GameManager {
+public class FlappyGameManager extends GameManager {
 
   /** The singleton FlappyGameManager. */
   private static FlappyGameManager gameManager;
@@ -29,7 +29,7 @@ class FlappyGameManager extends GameManager {
    *
    * @return FlappyGameManager the instance of this FlappyGameManager.
    */
-  static FlappyGameManager getInstance(Activity activity) {
+  public static FlappyGameManager getInstance(Activity activity) {
     if (gameManager == null) {
       gameManager = new FlappyGameManager(activity);
     }
@@ -42,7 +42,7 @@ class FlappyGameManager extends GameManager {
    * @param username the username of the user playing this game.
    * @return FlappyGameStatusFacade the FlappyGameStatusFacade instance of this user.
    */
-  protected FlappyGameStatusFacade getGameStatus(String username) {
+  public FlappyGameStatusFacade getGameStatus(String username) {
     FlappyGameStatusFacade flappyGameStatusFacade =
         (FlappyGameStatusFacade)
             GameStatusDaoImpl.getInstance(getActivity())

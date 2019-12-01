@@ -10,8 +10,8 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.example.myapplication.flappyfish.flappygamestatus.FlappyGameStatusFacade;
-import com.example.myapplication.flappyfish.FlappyMainActivity;
-import com.example.myapplication.flappyfish.FlappyResultActivity;
+import com.example.myapplication.flappyfish.flappygameactivities.FlappyMainActivity;
+import com.example.myapplication.flappyfish.flappygameactivities.FlappyResultActivity;
 
 /** The Flappy fish game view. */
 public class FlappyGameViewFacade extends View {

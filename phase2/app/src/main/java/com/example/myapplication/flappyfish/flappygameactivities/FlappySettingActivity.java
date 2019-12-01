@@ -1,4 +1,4 @@
-package com.example.myapplication.flappyfish;
+package com.example.myapplication.flappyfish.flappygameactivities;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,13 +9,14 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.myapplication.backgroundmusic.BackgroundMusic;
+import com.example.myapplication.flappyfish.flappygamemusic.FlappyBackgroundMusic;
 import com.example.myapplication.flappyfish.flappygamestatus.FlappyGameStatusFacade;
 import com.example.myapplication.R;
 
 /**
  * The setting page of this flappy fish game in which the user gets to choose the background theme.
  */
-public class FlappySetting extends AppCompatActivity implements View.OnClickListener {
+public class FlappySettingActivity extends AppCompatActivity implements View.OnClickListener {
 
   /** The status of this game which belongs to the current user. */
   private FlappyGameStatusFacade gameStatus;
