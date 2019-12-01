@@ -5,9 +5,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.example.myapplication.spaceshooter.GameObject.ShooterBonus;
-import com.example.myapplication.spaceshooter.GameObject.ShooterBullet1;
-import com.example.myapplication.spaceshooter.GameObject.ShooterBullet2;
-import com.example.myapplication.spaceshooter.GameObject.ShooterEnemy1;
+import com.example.myapplication.spaceshooter.GameObject.ShooterPlaneBullet;
+import com.example.myapplication.spaceshooter.GameObject.ShooterEnemyBullet;
+import com.example.myapplication.spaceshooter.GameObject.ShooterEnemy;
 import com.example.myapplication.spaceshooter.GameObject.ShooterEnemyExplosion;
 import com.example.myapplication.spaceshooter.GameObject.ShooterHealthAid;
 import com.example.myapplication.spaceshooter.GameObject.ShooterPlane;
@@ -17,29 +17,73 @@ import com.example.myapplication.spaceshooter.GameObject.ShooterPointBuff;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Shooter game level manager.
+ */
 public class ShooterGameLevelManager implements Parcelable {
-    private List<ShooterEnemy1> enemy1s = new ArrayList<>();
-    private List<ShooterBullet1> bullet1s = new ArrayList<>();
-    private List<ShooterBullet2> bullet2s = new ArrayList<>();
+    /**
+     * list of shooter enemy
+     */
+    private List<ShooterEnemy> enemies = new ArrayList<>();
+    /**
+     * list of plane bullets
+     */
+    private List<ShooterPlaneBullet> planeBullets = new ArrayList<>();
+    /**
+     * list of enemy bullets
+     */
+    private List<ShooterEnemyBullet> enemyBullets = new ArrayList<>();
+    /**
+     * list ofs bonuse items
+     */
     private List<ShooterBonus> shooterBonuses = new ArrayList<>();
+    /**
+     * list of health aids
+     */
     private List<ShooterHealthAid> healthAids = new ArrayList<>();
+    /**
+     * list of point buff
+     */
     private List<ShooterPointBuff> pointBuffs = new ArrayList<>();
+    /**
+     * list of enemyExplosions
+     */
     private List<ShooterEnemyExplosion> enemyExplosions = new ArrayList<>();
+    /**
+     * list of planeExplosions
+     */
     private List<ShooterPlaneExplosion> planeExplosions = new ArrayList<>();
+    /**
+     * the plane object
+     */
     private ShooterPlane plane;
+    /**
+     * number of millSecond left in this game
+     */
     private int millsecondLeft;
 
+    /**
+     * The constant initaltime.
+     */
     public static int initaltime = 30000;
 
 
+    /**
+     * Instantiates a new Shooter game level manager.
+     */
     public ShooterGameLevelManager(){
         this.millsecondLeft = initaltime;
     }
 
-    protected ShooterGameLevelManager(Parcel in) {
-        enemy1s = in.createTypedArrayList(ShooterEnemy1.CREATOR);
-        bullet1s = in.createTypedArrayList(ShooterBullet1.CREATOR);
-        bullet2s = in.createTypedArrayList(ShooterBullet2.CREATOR);
+    /**
+     * Instantiates a new Shooter game level manager.
+     *
+     * @param in the in
+     */
+    private ShooterGameLevelManager(Parcel in) {
+        enemies = in.createTypedArrayList(ShooterEnemy.CREATOR);
+        planeBullets = in.createTypedArrayList(ShooterPlaneBullet.CREATOR);
+        enemyBullets = in.createTypedArrayList(ShooterEnemyBullet.CREATOR);
         shooterBonuses = in.createTypedArrayList(ShooterBonus.CREATOR);
         healthAids = in.createTypedArrayList(ShooterHealthAid.CREATOR);
         pointBuffs = in.createTypedArrayList(ShooterPointBuff.CREATOR);
@@ -49,6 +93,9 @@ public class ShooterGameLevelManager implements Parcelable {
         millsecondLeft = in.readInt();
     }
 
+    /**
+     * The constant CREATOR.
+     */
     public static final Creator<ShooterGameLevelManager> CREATOR = new Creator<ShooterGameLevelManager>() {
         @Override
         public ShooterGameLevelManager createFromParcel(Parcel in) {
@@ -61,69 +108,138 @@ public class ShooterGameLevelManager implements Parcelable {
         }
     };
 
+    /**
+     * Reset game level when starting new level.
+     */
     void resetLevel(){
         if (plane != null){
             plane.resetPosition();}
         millsecondLeft = initaltime;
         shooterBonuses = new ArrayList<>();
-        bullet1s = new ArrayList<>();
-        bullet2s = new ArrayList<>();
-        enemy1s = new ArrayList<>();
+        planeBullets = new ArrayList<>();
+        enemyBullets = new ArrayList<>();
+        enemies = new ArrayList<>();
         healthAids = new ArrayList<>();
         pointBuffs = new ArrayList<>();
         enemyExplosions = new ArrayList<>();
         planeExplosions = new ArrayList<>();
     }
+
+    /**
+     * Reset game when starting new game.
+     */
     void resetGame(){
         resetLevel();
         plane = null;
     }
-    public void setPlane(int planeNum, Context context){
+
+    /**
+     * creating new plane.
+     *
+     * @param planeNum the plane num
+     * @param context  the context
+     */
+    void setPlane(int planeNum, Context context){
         plane = new ShooterPlane(context, planeNum);
     }
 
-    public List<ShooterEnemy1> getEnemy1s() {
-        return enemy1s;
+    /**
+     * Gets enemies.
+     *
+     * @return the enemies
+     */
+    public List<ShooterEnemy> getEnemies() {
+        return enemies;
     }
 
-    public List<ShooterBullet1> getBullet1s() {
-        return bullet1s;
+    /**
+     * Gets plane bullets.
+     *
+     * @return the plane bullets list
+     */
+    public List<ShooterPlaneBullet> getPlaneBullets() {
+        return planeBullets;
     }
 
-    public List<ShooterBullet2> getBullet2s() {
-        return bullet2s;
+    /**
+     * Gets enemy bullets.
+     *
+     * @return the enemy bullets list
+     */
+    public List<ShooterEnemyBullet> getEnemyBullets() {
+        return enemyBullets;
     }
 
+    /**
+     * Gets shooter bonuses.
+     *
+     * @return the shooter bonuses
+     */
     public List<ShooterBonus> getShooterBonuses() {
         return shooterBonuses;
     }
 
+    /**
+     * Gets health aids.
+     *
+     * @return the health aids
+     */
     public List<ShooterHealthAid> getHealthAids() {
         return healthAids;
     }
 
+    /**
+     * Gets point buffs.
+     *
+     * @return the point buffs
+     */
     public List<ShooterPointBuff> getPointBuffs() {
         return pointBuffs;
     }
 
+    /**
+     * Gets enemy explosions.
+     *
+     * @return the enemy explosions
+     */
     public List<ShooterEnemyExplosion> getEnemyExplosions() {
         return enemyExplosions;
     }
 
+    /**
+     * Gets plane explosions.
+     *
+     * @return the plane explosions
+     */
     public List<ShooterPlaneExplosion> getPlaneExplosions() {
         return planeExplosions;
     }
 
+    /**
+     * Gets plane.
+     *
+     * @return the plane
+     */
     public ShooterPlane getPlane() {
         return plane;
     }
 
+    /**
+     * Gets millsecond left.
+     *
+     * @return the millsecond left
+     */
     public int getMillsecondLeft() {
         return millsecondLeft;
     }
 
-    public void setMillsecondLeft(int millsecondLeft) {
-        this.millsecondLeft = millsecondLeft;
+    /**
+     * Sets mill second left.
+     *
+     * @param millSecondLeft the mill second left
+     */
+    public void setMillisecondLeft(int millSecondLeft) {
+        this.millsecondLeft = millSecondLeft;
     }
 
     @Override
@@ -131,11 +247,12 @@ public class ShooterGameLevelManager implements Parcelable {
         return 0;
     }
 
+
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeTypedList(enemy1s);
-        parcel.writeTypedList(bullet1s);
-        parcel.writeTypedList(bullet2s);
+        parcel.writeTypedList(enemies);
+        parcel.writeTypedList(planeBullets);
+        parcel.writeTypedList(enemyBullets);
         parcel.writeTypedList(shooterBonuses);
         parcel.writeTypedList(healthAids);
         parcel.writeTypedList(pointBuffs);

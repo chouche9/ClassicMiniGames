@@ -11,9 +11,21 @@ import com.example.myapplication.spaceshooter.shootergameview.ShooterGameView;
 
 import java.util.Random;
 
-public class ShooterEnemy1 extends ShooterGameObject implements Parcelable {
+/**
+ * The type Shooter enemy.
+ */
+public class ShooterEnemy extends ShooterGameObject implements Parcelable {
+    /**
+     * The constant level.
+     */
     public static int level = 1;
-    public ShooterEnemy1(Context context){
+
+    /**
+     * Instantiates a new Shooter enemy 1 base on the level
+     *
+     * @param context the context
+     */
+    public ShooterEnemy(Context context){
 
         switch (level){
             case 1:
@@ -30,7 +42,12 @@ public class ShooterEnemy1 extends ShooterGameObject implements Parcelable {
         setVelocity(40);
     }
 
-    protected ShooterEnemy1(Parcel in) {
+    /**
+     * Instantiates a new Shooter enemy 1.
+     *
+     * @param in the parcel
+     */
+    private ShooterEnemy(Parcel in) {
         super(in);
     }
 
@@ -58,18 +75,24 @@ public class ShooterEnemy1 extends ShooterGameObject implements Parcelable {
         return 0;
     }
 
-    public static final Creator<ShooterEnemy1> CREATOR = new Creator<ShooterEnemy1>() {
+    /**
+     * The constant CREATOR.
+     */
+    public static final Creator<ShooterEnemy> CREATOR = new Creator<ShooterEnemy>() {
         @Override
-        public ShooterEnemy1 createFromParcel(Parcel in) {
-            return new ShooterEnemy1(in);
+        public ShooterEnemy createFromParcel(Parcel in) {
+            return new ShooterEnemy(in);
         }
 
         @Override
-        public ShooterEnemy1[] newArray(int size) {
-            return new ShooterEnemy1[size];
+        public ShooterEnemy[] newArray(int size) {
+            return new ShooterEnemy[size];
         }
     };
 
+    /**
+     * reset position for Enemy.
+     */
     private void resetPosition(){
         Random random = new Random();
         setX(random.nextInt(ShooterGameView.dWidth- 180));

@@ -10,8 +10,16 @@ import com.example.myapplication.spaceshooter.shootergameview.ShooterGameView;
 
 import java.util.Random;
 
+/**
+ * The type Shooter bonus.
+ */
 public class ShooterBonus extends ShooterGameObject {
 
+    /**
+     * Instantiates a new Shooter bonus.
+     *
+     * @param context the context
+     */
     public ShooterBonus(Context context){
         Random random = new Random();
         setX(random.nextInt(ShooterGameView.dWidth - 150));
@@ -23,7 +31,12 @@ public class ShooterBonus extends ShooterGameObject {
         setWidthHeight();
     }
 
-    ShooterBonus(Parcel in){
+    /**
+     * Instantiates a new Shooter bonus.
+     *
+     * @param in the in
+     */
+    private ShooterBonus(Parcel in){
         super(in);
     }
     public void writeToParcel(Parcel dest, int flags) {
@@ -36,6 +49,9 @@ public class ShooterBonus extends ShooterGameObject {
     }
 
 
+    /**
+     * The constant CREATOR.
+     */
     public static final Creator<ShooterBonus> CREATOR = new Creator<ShooterBonus>() {
         @Override
         public ShooterBonus createFromParcel(Parcel in) {

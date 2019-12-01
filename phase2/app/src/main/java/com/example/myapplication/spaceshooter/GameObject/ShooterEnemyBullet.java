@@ -9,8 +9,18 @@ import android.os.Parcelable;
 import com.example.myapplication.R;
 
 
-public class ShooterBullet2 extends ShooterGameObject implements Parcelable {
-    public ShooterBullet2(Context context, int pX, int pY){
+/**
+ * The type Shooter bullet 2.
+ */
+public class ShooterEnemyBullet extends ShooterGameObject implements Parcelable {
+    /**
+     * Instantiates a new Shooter bullet 2.
+     *
+     * @param context the context
+     * @param pX      the p x coordinate
+     * @param pY      the p y coordinate
+     */
+    public ShooterEnemyBullet(Context context, int pX, int pY){
         setObject(BitmapFactory.decodeResource(context.getResources(), R.drawable.psbullet2));
         setObject(Bitmap.createScaledBitmap(
                 getObject(), 50, 50, false));
@@ -20,19 +30,27 @@ public class ShooterBullet2 extends ShooterGameObject implements Parcelable {
         setVelocity(80);
     }
 
-    ShooterBullet2(Parcel in) {
+    /**
+     * Instantiates a new Shooter bullet 2.
+     *
+     * @param in the in
+     */
+    private ShooterEnemyBullet(Parcel in) {
         super(in);
     }
 
-    public static final Creator<ShooterBullet2> CREATOR = new Creator<ShooterBullet2>() {
+    /**
+     * The constant CREATOR.
+     */
+    public static final Creator<ShooterEnemyBullet> CREATOR = new Creator<ShooterEnemyBullet>() {
         @Override
-        public ShooterBullet2 createFromParcel(Parcel in) {
-            return new ShooterBullet2(in);
+        public ShooterEnemyBullet createFromParcel(Parcel in) {
+            return new ShooterEnemyBullet(in);
         }
 
         @Override
-        public ShooterBullet2[] newArray(int size) {
-            return new ShooterBullet2[size];
+        public ShooterEnemyBullet[] newArray(int size) {
+            return new ShooterEnemyBullet[size];
         }
     };
 

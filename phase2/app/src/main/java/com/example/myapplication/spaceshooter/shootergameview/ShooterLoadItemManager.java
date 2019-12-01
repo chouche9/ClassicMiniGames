@@ -4,9 +4,9 @@ import android.content.Context;
 import android.media.SoundPool;
 
 import com.example.myapplication.spaceshooter.GameObject.ShooterBonus;
-import com.example.myapplication.spaceshooter.GameObject.ShooterBullet1;
-import com.example.myapplication.spaceshooter.GameObject.ShooterBullet2;
-import com.example.myapplication.spaceshooter.GameObject.ShooterEnemy1;
+import com.example.myapplication.spaceshooter.GameObject.ShooterPlaneBullet;
+import com.example.myapplication.spaceshooter.GameObject.ShooterEnemyBullet;
+import com.example.myapplication.spaceshooter.GameObject.ShooterEnemy;
 import com.example.myapplication.spaceshooter.GameObject.ShooterHealthAid;
 import com.example.myapplication.spaceshooter.GameObject.ShooterPlane;
 import com.example.myapplication.spaceshooter.GameObject.ShooterPointBuff;
@@ -16,43 +16,103 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class ShooterLoadItemManager {
-    ShooterGameStatusFacade shooterGameStatus;
-    List<ShooterBullet1> bullet1s;
-    List<ShooterBonus> shooterBonuses;
-    public List<ShooterHealthAid> healthAids;
-    public List<ShooterPointBuff> pointBuffs;
-    List<ShooterBullet2> bullet2s;
-    int bullet1count = 0;
-    int bullet2count = 0;
-    int enemyCount = 0;
-    int bonusCount = 0;
-    List<ShooterEnemy1> enemy1s;
-    Context context;
-    int level;
-    ShooterPlane plane;
-    SoundPool sp;
+/**
+ * The type Shooter load item manager.
+ */
+class ShooterLoadItemManager {
+    /**
+     * The Shooter game status.
+     */
+    private ShooterGameStatusFacade shooterGameStatus;
+    /**
+     * The Shooter plane bullets.
+     */
+    private List<ShooterPlaneBullet> shooterPlaneBullets;
+    /**
+     * The Shooter bonuses.
+     */
+    private List<ShooterBonus> shooterBonuses;
+    /**
+     * The Health aids.
+     */
+    private List<ShooterHealthAid> healthAids;
+    /**
+     * The Point buffs.
+     */
+    private List<ShooterPointBuff> pointBuffs;
+    /**
+     * The Shooter enemy bullets.
+     */
+    private List<ShooterEnemyBullet> shooterEnemyBullets;
+    /**
+     * The Plane bullet count.
+     */
+    private int planeBulletCount = 0;
+    /**
+     * The Enemy bullet count.
+     */
+    private int enemyBulletCount = 0;
+    /**
+     * The Enemy count.
+     */
+    private int enemyCount = 0;
+    /**
+     * The Bonus count.
+     */
+    private int bonusCount = 0;
+    /**
+     * The Enemies.
+     */
+    private List<ShooterEnemy> enemies;
+    /**
+     * The Context.
+     */
+    private Context context;
+    /**
+     * The Level of game.
+     */
+    private int level;
+    /**
+     * The Plane.
+     */
+    private ShooterPlane plane;
+    /**
+     * The Sound pool of all sound effect.
+     */
+    private SoundPool sp;
 
+    /**
+     * Instantiates a new Shooter load item manager.
+     *
+     * @param shooterGameStatus the shooter game status
+     * @param context           the context
+     * @param sp                the sp
+     */
     ShooterLoadItemManager(ShooterGameStatusFacade shooterGameStatus, Context context, SoundPool sp) {
         this.shooterGameStatus = shooterGameStatus;
         this.context = context;
         setUpManager();
         this.sp = sp;
     }
-
+    /**
+     * load class from shooterGameStatus
+     */
     private void setUpManager() {
         level = shooterGameStatus.getShooterCrossLevelManager().getLevel();
         plane = shooterGameStatus.getShooterGameLevelManager().getPlane();
         shooterBonuses = shooterGameStatus.getShooterGameLevelManager().getShooterBonuses();
         healthAids = shooterGameStatus.getShooterGameLevelManager().getHealthAids();
         pointBuffs = shooterGameStatus.getShooterGameLevelManager().getPointBuffs();
-        bullet1s = shooterGameStatus.getShooterGameLevelManager().getBullet1s();
-        bullet2s = shooterGameStatus.getShooterGameLevelManager().getBullet2s();
-        enemy1s = shooterGameStatus.getShooterGameLevelManager().getEnemy1s();
+        shooterPlaneBullets = shooterGameStatus.getShooterGameLevelManager().getPlaneBullets();
+        shooterEnemyBullets = shooterGameStatus.getShooterGameLevelManager().getEnemyBullets();
+        enemies = shooterGameStatus.getShooterGameLevelManager().getEnemies();
     }
 
+    /**
+     * Load all items in a fixed interval
+     */
     void loadItem() {
-        updateSpeacialItems();
+        updateSpacialItems();
         updateEnemy();
         if (level == 2){
             updateEnemybullet();}
@@ -60,7 +120,10 @@ public class ShooterLoadItemManager {
         updateBonuses();
     }
 
-    private void updateSpeacialItems() {
+    /**
+     * create new Spacial Item and delete Special item if it's out of screen
+     */
+    private void updateSpacialItems() {
         List<ShooterHealthAid> remove1 = new ArrayList<>();
         List<ShooterPointBuff> remove2 = new ArrayList<>();
         Random random = new Random();
@@ -91,14 +154,17 @@ public class ShooterLoadItemManager {
             pointBuffs.remove(specialItem);
         }
     }
+    /**
+     * create new enemy and delete enemy if it's out of screen
+     */
     private void updateEnemy(){
-        List<ShooterEnemy1> remove = new ArrayList<>();
+        List<ShooterEnemy> remove = new ArrayList<>();
         enemyCount++;
         if(enemyCount == 10){
-            enemy1s.add(new ShooterEnemy1(context));
+            enemies.add(new ShooterEnemy(context));
             enemyCount = 0;
         }
-        for (ShooterEnemy1 enemy1: enemy1s){
+        for (ShooterEnemy enemy1: enemies){
             enemy1.setY(
                     enemy1.getY() +
                             enemy1.getVelocity());
@@ -107,53 +173,61 @@ public class ShooterLoadItemManager {
                 remove.add(enemy1);
             }
         }
-        for (ShooterEnemy1 enemy1: remove){
-            enemy1s.remove(enemy1);
+        for (ShooterEnemy enemy1: remove){
+            enemies.remove(enemy1);
         }
     }
+    /**
+     * create new enemy bullet  and delete enemy bullet if it's out of screen
+     */
     private void updateEnemybullet(){
-        List<ShooterBullet2> remove = new ArrayList<>();
-        bullet2count ++;
-        if(bullet2count == 8){
-            for(ShooterEnemy1 enemy1:enemy1s){
+        List<ShooterEnemyBullet> remove = new ArrayList<>();
+        enemyBulletCount++;
+        if(enemyBulletCount == 14){
+            for(ShooterEnemy enemy1: enemies){
                 if(enemy1.getY() > 0){
-                    bullet2s.add(new ShooterBullet2(context,
+                    shooterEnemyBullets.add(new ShooterEnemyBullet(context,
                             enemy1.getX()+ enemy1.getWidth()/2,
                             enemy1.getY() + enemy1.getHeight()));
                 }
             }
-            bullet2count = 0;
+            enemyBulletCount = 0;
         }
-        for (ShooterBullet2 bullet2: bullet2s){
+        for (ShooterEnemyBullet bullet2: shooterEnemyBullets){
             bullet2.setY(bullet2.getY() + bullet2.getVelocity());
             if (bullet2.getY() > ShooterGameView.dHeight){
                 remove.add(bullet2);
             }
         }
-        for (ShooterBullet2 bullet2: remove){
-            bullet2s.remove(bullet2);
+        for (ShooterEnemyBullet bullet2: remove){
+            shooterEnemyBullets.remove(bullet2);
         }
     }
-
+    /**
+     * create new plane bullet and delete plane bullet if it's out of screen
+     */
     private void updatePlanebullet(){
-        List<ShooterBullet1> remove = new ArrayList<>();
-        bullet1count++;
-        if(bullet1count == 5){
-            bullet1s.add(new ShooterBullet1(context, plane.getX() + plane.getWidth()/2, plane.getY()));
+        List<ShooterPlaneBullet> remove = new ArrayList<>();
+        planeBulletCount++;
+        if(planeBulletCount == 5){
+            shooterPlaneBullets.add(new ShooterPlaneBullet(context, plane.getX() + plane.getWidth()/2, plane.getY()));
             sp.play(ShooterGameView.bulletLoad, 1, 1, 0, 0, 1);
-            bullet1count = 0;
+            planeBulletCount = 0;
         }
-        for (ShooterBullet1 bullet1: bullet1s){
+        for (ShooterPlaneBullet bullet1: shooterPlaneBullets){
             bullet1.setY(bullet1.getY() - bullet1.getVelocity());
             if (bullet1.getY() < 0){
                 remove.add(bullet1);
             }
         }
-        for (ShooterBullet1 bullet1: remove){
-            bullet1s.remove(bullet1);
+        for (ShooterPlaneBullet bullet1: remove){
+            shooterPlaneBullets.remove(bullet1);
         }
 
     }
+    /**
+     * create new bonus and delete bonus if it's out of screen
+     */
     private void updateBonuses(){
         bonusCount++;
         List<ShooterBonus> remove = new ArrayList<>();

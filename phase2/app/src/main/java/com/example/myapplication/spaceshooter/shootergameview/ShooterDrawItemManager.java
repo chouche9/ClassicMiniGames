@@ -5,9 +5,9 @@ import android.graphics.Color;
 import android.graphics.Paint;
 
 import com.example.myapplication.spaceshooter.GameObject.ShooterBonus;
-import com.example.myapplication.spaceshooter.GameObject.ShooterBullet1;
-import com.example.myapplication.spaceshooter.GameObject.ShooterBullet2;
-import com.example.myapplication.spaceshooter.GameObject.ShooterEnemy1;
+import com.example.myapplication.spaceshooter.GameObject.ShooterPlaneBullet;
+import com.example.myapplication.spaceshooter.GameObject.ShooterEnemyBullet;
+import com.example.myapplication.spaceshooter.GameObject.ShooterEnemy;
 import com.example.myapplication.spaceshooter.GameObject.ShooterEnemyExplosion;
 import com.example.myapplication.spaceshooter.GameObject.ShooterHealthAid;
 import com.example.myapplication.spaceshooter.GameObject.ShooterPlane;
@@ -18,48 +18,119 @@ import com.example.myapplication.spaceshooter.ShooterGameStatus.ShooterGameStatu
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShooterDrawItemManager {
-    Canvas canvas;
-    final static int Textsize = 50;
+/**
+ * The type Shooter draw item manager.
+ */
+class ShooterDrawItemManager {
+    /**
+     * The Canvas.
+     */
+    private Canvas canvas;
+    /**
+     * The constant Textsize.
+     */
+    private final static int Textsize = 50;
 
-    ShooterGameStatusFacade shooterGameStatus;
-    List<ShooterBullet1> bullet1s;
-    List<ShooterBonus> shooterBonuses;
-    public List<ShooterHealthAid> healthAids;
-    public List<ShooterPointBuff> pointBuffs;
-    List<ShooterBullet2> bullet2s;
-    List<ShooterEnemyExplosion> enemyExplosions;
-    List<ShooterPlaneExplosion> planeExplosions;
-    List<ShooterEnemy1> enemy1s;
-    int level;
-    ShooterPlane plane;
-    Paint scorePaint, levelPaint, healthPaint;
+    /**
+     * The Shooter game status.
+     */
+    private ShooterGameStatusFacade shooterGameStatus;
+    /**
+     * The Shooter plane bullets.
+     */
+    private List<ShooterPlaneBullet> shooterPlaneBullets;
+    /**
+     * The Shooter bonuses.
+     */
+    private List<ShooterBonus> shooterBonuses;
+    /**
+     * The Health aids.
+     */
+    private List<ShooterHealthAid> healthAids;
+    /**
+     * The Point buffs.
+     */
+    private List<ShooterPointBuff> pointBuffs;
+    /**
+     * The Shooter enemy bullets.
+     */
+    private List<ShooterEnemyBullet> shooterEnemyBullets;
+    /**
+     * The Enemy explosions.
+     */
+    private List<ShooterEnemyExplosion> enemyExplosions;
+    /**
+     * The Plane explosions.
+     */
+    private List<ShooterPlaneExplosion> planeExplosions;
+    /**
+     * The Shooter enemies.
+     */
+    private List<ShooterEnemy> shooterEnemies;
+
+    /**
+     * The Plane.
+     */
+    private ShooterPlane plane;
+    /**
+     * The Score paint.
+     */
+    private Paint scorePaint,
+    /**
+     * The Level paint.
+     */
+    levelPaint,
+    /**
+     * The Health paint.
+     */
+    healthPaint;
+
+    /**
+     * Instantiates a new Shooter draw item manager.
+     *
+     * @param shooterGameStatus the shooter game status
+     */
     ShooterDrawItemManager(ShooterGameStatusFacade shooterGameStatus){
 
         this.shooterGameStatus = shooterGameStatus;
         setUpManager();
     }
+
+    /**
+     * Set canvas.
+     *
+     * @param canvas the canvas
+     */
     void setCanvas(Canvas canvas){
         this.canvas = canvas;
     }
+    /**
+     * load class from shooterGameStatus
+     */
     private void setUpManager() {
-        level = shooterGameStatus.getShooterCrossLevelManager().getLevel();
         plane = shooterGameStatus.getShooterGameLevelManager().getPlane();
-        bullet1s = shooterGameStatus.getShooterGameLevelManager().getBullet1s();
-        bullet2s = shooterGameStatus.getShooterGameLevelManager().getBullet2s();
+        shooterPlaneBullets = shooterGameStatus.getShooterGameLevelManager().getPlaneBullets();
+        shooterEnemyBullets = shooterGameStatus.getShooterGameLevelManager().getEnemyBullets();
         shooterBonuses = shooterGameStatus.getShooterGameLevelManager().getShooterBonuses();
         healthAids = shooterGameStatus.getShooterGameLevelManager().getHealthAids();
         pointBuffs = shooterGameStatus.getShooterGameLevelManager().getPointBuffs();
         enemyExplosions = shooterGameStatus.getShooterGameLevelManager().getEnemyExplosions();
         planeExplosions = shooterGameStatus.getShooterGameLevelManager().getPlaneExplosions();
-        enemy1s = shooterGameStatus.getShooterGameLevelManager().getEnemy1s();
+        shooterEnemies = shooterGameStatus.getShooterGameLevelManager().getEnemies();
     }
+
+    /**
+     * Draw all items on canvas
+     */
     void draw(){
         drawText();
         drawGameObject();
         drawExplosion();
     }
 
+    /**
+     * set up all paints for the canvas
+     */
     private void setPaint(){
         scorePaint = new Paint();
         scorePaint.setColor(Color.RED);
@@ -74,6 +145,10 @@ public class ShooterDrawItemManager {
         levelPaint.setTextSize(Textsize);
         levelPaint.setTextAlign(Paint.Align.CENTER);
     }
+
+    /**
+     * draw the message text on canvas
+     */
     private void drawText(){
         if (scorePaint == null){
             setPaint();}
@@ -86,18 +161,22 @@ public class ShooterDrawItemManager {
                 , ShooterGameView.dWidth/2, Textsize, levelPaint);
 
     }
+
+    /**
+     * draw all game objects
+     */
     private void drawGameObject(){
         if (plane.getLife() <= 0){
             shooterGameStatus.setGameSuccess(false);
         }
         plane.onDraw(canvas);
-        for(ShooterBullet1 bullet1: bullet1s){
+        for(ShooterPlaneBullet bullet1: shooterPlaneBullets){
             bullet1.onDraw(canvas);
         }
-        for(ShooterBullet2 bullet2: bullet2s){
+        for(ShooterEnemyBullet bullet2: shooterEnemyBullets){
             bullet2.onDraw(canvas);
         }
-        for (ShooterEnemy1 enemy1: enemy1s){
+        for (ShooterEnemy enemy1: shooterEnemies){
             enemy1.onDraw(canvas);
         }
         for (ShooterPointBuff specialItem: pointBuffs){
@@ -110,6 +189,10 @@ public class ShooterDrawItemManager {
             shooterBonus.onDraw(canvas);
         }
     }
+
+    /**
+     * update and draw explosion effect
+     */
     private void drawExplosion(){
         List<ShooterPlaneExplosion> remove1 = new ArrayList<>();
         for (ShooterPlaneExplosion planeExplosion: planeExplosions){

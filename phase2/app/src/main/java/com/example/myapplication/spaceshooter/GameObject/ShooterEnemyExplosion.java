@@ -8,8 +8,18 @@ import android.os.Parcelable;
 
 import com.example.myapplication.R;
 
+/**
+ * The type Shooter enemy explosion.
+ */
 public class ShooterEnemyExplosion extends ShooterExplosion implements Parcelable {
 
+    /**
+     * Instantiates a new Shooter enemy explosion.
+     *
+     * @param context    the context of ShooterGameView
+     * @param explosionX the explosion x coordinate
+     * @param explosionY the explosion y coordinate
+     */
     public ShooterEnemyExplosion(Context context, int explosionX, int explosionY) {
         super(explosionX, explosionY);
         explosions = new Bitmap[9];
@@ -25,10 +35,18 @@ public class ShooterEnemyExplosion extends ShooterExplosion implements Parcelabl
         setWidthHeight();
     }
 
-    protected ShooterEnemyExplosion(Parcel in) {
+    /**
+     * Instantiates a new Shooter enemy explosion.
+     *
+     * @param in the parcel
+     */
+    private ShooterEnemyExplosion(Parcel in) {
         super(in);
     }
 
+    /**
+     * The constant CREATOR.
+     */
     public static final Creator<ShooterEnemyExplosion> CREATOR = new Creator<ShooterEnemyExplosion>() {
         @Override
         public ShooterEnemyExplosion createFromParcel(Parcel in) {
@@ -51,6 +69,11 @@ public class ShooterEnemyExplosion extends ShooterExplosion implements Parcelabl
     public void writeToParcel(Parcel dest, int flags) {
         super.writeToParcel(dest, flags);
     }
+
+    /**
+     * set up the bitmap for enemy explosion
+     * @param context the context
+     */
 
     @Override
     public void setUpBitmap(Context context) {

@@ -23,34 +23,105 @@ import com.example.myapplication.spaceshooter.ShooterGameStatus.ShooterGameStatu
 import com.example.myapplication.spaceshooter.shootergameover.ShooterGameOver;
 
 
+/**
+ * The type Shooter game view.
+ */
 public class ShooterGameView extends View {
+    /**
+     * The Enemy down.
+     */
     static int enemyDown = 0;
+    /**
+     * The Bullet load.
+     */
     static int bulletLoad = 0;
+    /**
+     * The Shooter game status.
+     */
     ShooterGameStatusFacade shooterGameStatus;
+    /**
+     * The Background.
+     */
     Bitmap background;
+    /**
+     * The Shooter colision manager.
+     */
     ShooterColisionManager shooterColisionManager;
+    /**
+     * The Load item manager.
+     */
     ShooterLoadItemManager loadItemManager;
+    /**
+     * The Draw item manager.
+     */
     ShooterDrawItemManager drawItemManager;
+    /**
+     * The Bitmap manager.
+     */
     ShooterBitmapManager bitmapManager;
+    /**
+     * The Plane.
+     */
     ShooterPlane plane;
+    /**
+     * The Rect.
+     */
     Rect rect;
+    /**
+     * The Context.
+     */
     Context context;
+    /**
+     * The Count down timer.
+     */
     CountDownTimer countDownTimer;
+    /**
+     * The Handler.
+     */
     Handler handler;
+    /**
+     * The Runnable.
+     */
     Runnable runnable;
+    /**
+     * The Finish.
+     */
     int finish = 0;
+    /**
+     * The constant dWidth.
+     */
     public static int dWidth;
+    /**
+     * The D height.
+     */
     static int dHeight;
+    /**
+     * The Update millisecond.
+     */
     final long UPDATE_MILLIS = 60;
+    /**
+     * The sound pool storing the sound effect.
+     */
     SoundPool sp;
     private boolean activityFinish;
 
+    /**
+     * Instantiates a new Shooter game view.
+     *
+     * @param context the context
+     */
     public ShooterGameView(Context context) {
         super(context);
         this.context = context;
         handler = new Handler();
 
     }
+
+    /**
+     * Set shooter game status.
+     *
+     * @param shooterGameStatus the shooter game status
+     */
     public void setShooterGameStatus(ShooterGameStatusFacade shooterGameStatus){
         this.shooterGameStatus = shooterGameStatus;
         plane = shooterGameStatus.getShooterGameLevelManager().getPlane();
@@ -74,11 +145,15 @@ public class ShooterGameView extends View {
         bulletLoad = sp.load(context, R.raw.fire, 1);
 
     }
+
+    /**
+     * Start timer of the game.
+     */
     public void startTimer(){
         countDownTimer = new CountDownTimer(shooterGameStatus.getShooterGameLevelManager().getMillsecondLeft(), 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                shooterGameStatus.getShooterGameLevelManager().setMillsecondLeft(
+                shooterGameStatus.getShooterGameLevelManager().setMillisecondLeft(
                         (int) millisUntilFinished);
             }
 
@@ -93,6 +168,9 @@ public class ShooterGameView extends View {
         }.start();
     }
 
+    /**
+     * Set background of canvas base on game level.
+     */
     void setBackground(){
         switch (shooterGameStatus.getShooterCrossLevelManager().getLevel()){
             case 1:
@@ -110,12 +188,16 @@ public class ShooterGameView extends View {
         rect = new Rect(0, 0, dWidth, dHeight);
     }
 
+    /**
+     * draw items on canvas
+     * @param canvas canvas of ShooterGame
+     */
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawBitmap(background, null, rect, null);
         loadItemManager.loadItem();
-        shooterColisionManager.handleColision();
+        shooterColisionManager.handleCollision();
         drawItemManager.setCanvas(canvas);
         drawItemManager.draw();
         if(shooterGameStatus.getShooterCrossLevelManager().isGameSuccess() &&
@@ -133,6 +215,11 @@ public class ShooterGameView extends View {
         };
     }
 
+    /**
+     * set up plane's location base on the touch location
+     * @param event the touching motion
+     * @return whether touch succeed
+     */
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -163,6 +250,9 @@ public class ShooterGameView extends View {
         return true;
     }
 
+    /**
+     * instruction when view finish.
+     */
     void onViewFinish(){
         Intent intent = new Intent(context, ShooterGameOver.class);
         finish ++;
@@ -170,9 +260,21 @@ public class ShooterGameView extends View {
         context.startActivity(intent);
         ((Activity) context).finish();
     }
+
+    /**
+     * Set activity finish.
+     *
+     * @param finish the finish
+     */
     public void setActivityFinish(boolean finish){
         this.activityFinish = finish;
     }
+
+    /**
+     * Get activity finish boolean.
+     *
+     * @return the boolean
+     */
     public boolean getActivityFinish(){
         return activityFinish;
     }
