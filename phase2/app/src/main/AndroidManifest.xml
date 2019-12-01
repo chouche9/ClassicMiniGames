@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".loginsystem.CreateAccount.CreateAccountActivity"></activity>
+        <activity android:name=".loginsystem.createaccount.CreateAccountActivity"></activity>
         <activity android:name=".spaceshooter.shootergameover.ShooterGameOver" />
         <activity android:name=".spaceshooter.shooterplanegame.ShooterGame" />
         <activity android:name=".spaceshooter.ShooterSetting" />
@@ -26,7 +26,7 @@
 <!--        <activity android:name=".GuessNum.GuessMain" />-->
 <!--        <activity android:name=".GuessNum.GuessGame" />-->
 <!--        <activity android:name=".GuessNum.GuessCongratulation" />-->
-        <activity android:name=".loginsystem.Login.LoginActivity" />
+        <activity android:name=".loginsystem.login.LoginActivity" />
         <activity android:name=".mainpage.GameMain" />
         <activity android:name=".loginsystem.MainActivity">
             <intent-filter>

@@ -1,22 +1,17 @@
-package com.example.myapplication.loginsystem.Login;
+package com.example.myapplication.loginsystem.login;
 
-/**
- * Class Login Presenter
- */
-class LoginPresenter implements LoginInteractor.onLoginInteractorListener{
+/** Class Login Presenter */
+class LoginPresenter implements LoginInteractor.onLoginInteractorListener {
 
-    /**
-     * LoginActivity instance
-     */
+    /** LoginActivity instance */
     private LoginActivity loginActivity;
 
-    /**
-     * Login Interactor instance
-     */
+    /** Login Interactor instance */
     private LoginInteractor loginInteractor;
 
     /**
      * Constructor for LoginPresenter
+     *
      * @param loginActivity Login Activity instance
      */
     LoginPresenter(LoginActivity loginActivity) {
@@ -26,18 +21,17 @@ class LoginPresenter implements LoginInteractor.onLoginInteractorListener{
 
     /**
      * Method to verify the username with the password to be passed to he interactor
+     *
      * @param username input username
      * @param password input password
      */
     void verify(String username, String password) {
-        if (loginInteractor != null){
+        if (loginInteractor != null) {
             loginInteractor.verifyInteractor(username, password, loginActivity, this);
         }
     }
 
-    /**
-     * Method that activates upon login Activity
-     */
+    /** Method that activates upon login Activity */
     @Override
     public void onSuccess() {
         if (loginActivity != null) {
@@ -45,9 +39,7 @@ class LoginPresenter implements LoginInteractor.onLoginInteractorListener{
         }
     }
 
-    /**
-     * Method that activates upon login fail
-     */
+    /** Method that activates upon login fail */
     @Override
     public void onFail() {
         loginActivity.onFail();

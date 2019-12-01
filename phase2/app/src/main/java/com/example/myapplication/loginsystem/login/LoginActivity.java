@@ -1,4 +1,4 @@
-package com.example.myapplication.loginsystem.Login;
+package com.example.myapplication.loginsystem.login;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,28 +12,21 @@ import android.widget.Toast;
 
 import com.example.myapplication.mainpage.GameMain;
 import com.example.myapplication.R;
-import com.example.myapplication.domain.UserManager;
 
 /** A login activity. */
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, LoginView {
 
   /** The input field used to get the username. */
-  EditText edtUsername;
+  private EditText edtUsername;
 
   /** The input field used to get password. */
-  EditText edtPassword;
-
-  /** Button used to log in. */
-  Button btnLogin;
-
-  /** Button used to go back to the main page of the application. */
-  Button btnBackFront;
+  private EditText edtPassword;
 
   /** Username that was input into EditText account. */
-  String name;
+  private String name;
 
   /** The code used to match the correct activity launch. */
-  final int REQUEST_CODE = 5;
+  private final int REQUEST_CODE = 5;
 
   private LoginPresenter loginPresenter;
 
@@ -49,9 +42,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     edtUsername = findViewById(R.id.nameEntry);
     edtPassword = findViewById(R.id.passwordEntry);
-    btnLogin = findViewById(R.id.login);
+    Button btnLogin = findViewById(R.id.login);
     btnLogin.setOnClickListener(this);
-    btnBackFront = findViewById(R.id.backfront);
+    Button btnBackFront = findViewById(R.id.backfront);
     loginPresenter = new LoginPresenter(this);
 
     btnBackFront.setOnClickListener(this);
@@ -73,18 +66,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
   }
 
   /**
-   * Return whether if the login is verified.
-   *
-   * @return true if the login is verified.
-   */
-  private boolean verifyLogin() {
-    name = edtUsername.getText().toString().trim();
-    String passwordString = edtPassword.getText().toString().trim();
-    UserManager userManager = UserManager.getInstance(this);
-    return userManager.authenticate(name, passwordString);
-  }
-
-  /**
    * Events that happen when each of the buttons in this activity is clicked.
    *
    * @param view view responsible for event handling.
@@ -93,7 +74,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
   public void onClick(View view) {
     switch (view.getId()) {
       case R.id.login:
-
         boolean isUsernameEmpty = false;
         boolean isPasswordEmpty = false;
 
@@ -107,7 +87,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
           isPasswordEmpty = true;
         }
 
-        if (!isUsernameEmpty && !isPasswordEmpty){
+        if (!isUsernameEmpty && !isPasswordEmpty) {
           name = edtUsername.getText().toString().trim();
           String passwordString = edtPassword.getText().toString().trim();
           loginPresenter.verify(name, passwordString);
@@ -119,38 +99,29 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
   }
 
-  /**
-   * Method to show username error
-   */
+  /** Method to show username error */
   @Override
   public void onUsernameEmptyError() {
     edtUsername.setError("Please enter username!");
   }
 
-  /**
-   * Method to show password error
-   */
+  /** Method to show password error */
   @Override
   public void onPasswordEmptyError() {
     edtPassword.setError("Please enter password!");
   }
 
-  /**
-   * Method to show error when username does not match the password
-   */
+  /** Method to show error when username does not match the password */
   @Override
   public void onFail() {
     Toast.makeText(this, "Incorrect Username or Password", Toast.LENGTH_SHORT).show();
   }
 
-  /**
-   * Method that implements upon login success
-   */
+  /** Method that implements upon login success */
   @Override
   public void onSuccess() {
     Intent intent = new Intent(this, GameMain.class);
     intent.putExtra("user", name);
     startActivityForResult(intent, REQUEST_CODE);
   }
-
 }
