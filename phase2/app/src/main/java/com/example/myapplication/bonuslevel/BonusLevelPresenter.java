@@ -6,9 +6,9 @@ package com.example.myapplication.bonuslevel;
 class BonusLevelPresenter implements BonusLevelInteractor.OnValidateNumberListener{
 
     /**
-     * attribute that saves the instance of bonusleveldialog
+     * attribute that saves the instance of a bonusLevelView
      */
-    private BonusLevelDialog bonusLevelDialog;
+    private BonusLevelView bonusLevelView;
 
     /**
      * attribute that saves te instance of bonuslevelinteractor
@@ -17,10 +17,10 @@ class BonusLevelPresenter implements BonusLevelInteractor.OnValidateNumberListen
 
     /**
      * Constructor method for BonusLevelPresenter
-     * @param bonusLevelDialog: instance of BonusLevelDialog
+     * @param bonusLevelView: instance of BonusLevelDialog
      */
-    BonusLevelPresenter(BonusLevelDialog bonusLevelDialog) {
-        this.bonusLevelDialog = bonusLevelDialog;
+    BonusLevelPresenter(BonusLevelView bonusLevelView) {
+        this.bonusLevelView = bonusLevelView;
         this.bonusLevelInteractor = new BonusLevelInteractor();
     }
 
@@ -39,8 +39,8 @@ class BonusLevelPresenter implements BonusLevelInteractor.OnValidateNumberListen
      */
     @Override
     public void onNumberToHigh() {
-        bonusLevelDialog.showNumberToHighError();
-        bonusLevelDialog.updateTries(bonusLevelInteractor.getTriesLeft());
+        bonusLevelView.showNumberToHighError();
+        bonusLevelView.updateTries(bonusLevelInteractor.getTriesLeft());
     }
 
     /**
@@ -48,17 +48,18 @@ class BonusLevelPresenter implements BonusLevelInteractor.OnValidateNumberListen
      */
     @Override
     public void onNumberToLow() {
-        bonusLevelDialog.showNumberToLowError();
-        bonusLevelDialog.updateTries(bonusLevelInteractor.getTriesLeft());
+        bonusLevelView.showNumberToLowError();
+        bonusLevelView.updateTries(bonusLevelInteractor.getTriesLeft());
     }
 
     /**
      * Present something when the game ended
-     * @param isWon
-     * @param bonusScore
+     *
+     * @param isWon boolean indicating if the game was won or not
+     * @param bonusScore the bonus score earned during bonus game
      */
     @Override
     public void onGameEnd(boolean isWon, int bonusScore) {
-        bonusLevelDialog.GameEnd(isWon, bonusScore);
+        bonusLevelView.gameEnd(isWon, bonusScore);
     }
 }

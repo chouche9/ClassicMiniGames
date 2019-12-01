@@ -33,9 +33,10 @@ interface BonusLevelView {
 
     /**
      * Abstract Method to do something when game has ended
-     * @param isWon
-     * @param bonusScore
+     *
+     * @param isWon boolean indicating if the game was won or not
+     * @param bonusScore the bonus score earned during bonus game
      */
-    void GameEnd(boolean isWon, int bonusScore);
+    void gameEnd(boolean isWon, int bonusScore);
 
 }

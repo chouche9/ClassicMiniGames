@@ -54,8 +54,6 @@ public class BonusLevelDialog extends AppCompatDialogFragment implements BonusLe
    */
   private Button btnDialogGuessNumber;
 
-  //    private HangmanStageEnded hangmanStageEnded;
-
   /**
    * attribute that saves the bonus level dialog listener instance
    */
@@ -185,12 +183,13 @@ public class BonusLevelDialog extends AppCompatDialogFragment implements BonusLe
   }
 
   /**
-   * Implementation when the game ended.
-   * @param isWon
-   * @param bonusSore
+   * Abstract Method to do something when game has ended
+   *
+   * @param isWon boolean indicating if the game was won or not
+   * @param bonusScore the bonus score earned during bonus game
    */
   @Override
-  public void GameEnd(boolean isWon, int bonusSore) {
-    listener.bonusLevelResult(isWon, bonusSore);
+  public void gameEnd(boolean isWon, int bonusScore) {
+    listener.bonusLevelResult(isWon, bonusScore);
   }
 }
