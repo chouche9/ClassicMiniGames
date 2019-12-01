@@ -16,52 +16,37 @@ import android.widget.TextView;
 
 import com.example.myapplication.R;
 
-/**
- * Class BonusLevelDialog
- */
+/** Class BonusLevelDialog */
 public class BonusLevelDialog extends AppCompatDialogFragment implements BonusLevelView {
 
-  /**
-   * Interface BonusLevelDialogListener
-   */
+  /** Interface BonusLevelDialogListener */
   public interface BonusLevelDialogListener {
 
     /**
      * Abstract Method for doing something upon game ended to show the result of the bonus level
+     *
      * @param isWon: boolean to show whether game isWon or not
      * @param bonusSore: the score of the game
      */
     void bonusLevelResult(boolean isWon, int bonusSore);
 
-    /**
-     * Abstract Method for doing something upon cancelling the bonus game.
-     */
+    /** Abstract Method for doing something upon cancelling the bonus game. */
     void onCancel();
   }
 
-  /**
-   * EditText Guess number attribute
-   */
+  /** EditText Guess number attribute */
   private EditText edtGuessNumber;
 
-  /**
-   * TextView attribute that linked to the text field for number of tries
-   */
+  /** TextView attribute that linked to the text field for number of tries */
   private TextView txtTries;
 
-  /**
-   * Button that linked to the button to guess the number
-   */
+  /** Button that linked to the button to guess the number */
   private Button btnDialogGuessNumber;
 
-  /**
-   * attribute that saves the bonus level dialog listener instance
-   */
+  /** attribute that saves the bonus level dialog listener instance */
   private BonusLevelDialogListener listener;
 
-  /**
-   * attribute that saves the bonus level presenter instance
-   */
+  /** attribute that saves the bonus level presenter instance */
   private BonusLevelPresenter bonusLevelPresenter;
 
   /**
@@ -77,15 +62,15 @@ public class BonusLevelDialog extends AppCompatDialogFragment implements BonusLe
     View view = inflater.inflate(R.layout.activity_dialog_bonus_level, null);
 
     builder
-            .setView(view)
-            .setNegativeButton(
-                    "cancel",
-                    new DialogInterface.OnClickListener() {
-                      @Override
-                      public void onClick(DialogInterface dialog, int which) {
-                        listener.onCancel();
-                      }
-                    });
+        .setView(view)
+        .setNegativeButton(
+            "cancel",
+            new DialogInterface.OnClickListener() {
+              @Override
+              public void onClick(DialogInterface dialog, int which) {
+                listener.onCancel();
+              }
+            });
 
     edtGuessNumber = view.findViewById(R.id.edtGuessNumber);
     txtTries = view.findViewById(R.id.txtTries);
@@ -100,26 +85,26 @@ public class BonusLevelDialog extends AppCompatDialogFragment implements BonusLe
   /** Event that happens after the btnDialogGuessWord button is clicked. */
   private void setBtnDialogGuessNumber() {
     btnDialogGuessNumber.setOnClickListener(
-            new View.OnClickListener() {
-              @Override
-              public void onClick(View view) {
-                Editable input = edtGuessNumber.getText();
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+            Editable input = edtGuessNumber.getText();
 
-                if (input.length() > 0) {
+            if (input.length() > 0) {
 
-                  String value = input.toString();
-                  int guessedNumber = Integer.parseInt(value);
+              String value = input.toString();
+              int guessedNumber = Integer.parseInt(value);
 
-                  if (0 < guessedNumber && guessedNumber < 21) {
-                    bonusLevelPresenter.validateGuessNumber(guessedNumber);
-                  } else {
-                    showOutOfBoundsError();
-                  }
-                } else {
-                  showEmptyError();
-                }
+              if (0 < guessedNumber && guessedNumber < 21) {
+                bonusLevelPresenter.validateGuessNumber(guessedNumber);
+              } else {
+                showOutOfBoundsError();
               }
-            });
+            } else {
+              showEmptyError();
+            }
+          }
+        });
   }
 
   /**
@@ -142,6 +127,7 @@ public class BonusLevelDialog extends AppCompatDialogFragment implements BonusLe
 
   /**
    * Show the number of Tries in View
+   *
    * @param numTries: number of tries
    */
   @Override
@@ -150,33 +136,25 @@ public class BonusLevelDialog extends AppCompatDialogFragment implements BonusLe
     txtTries.setText(tries);
   }
 
-  /**
-   * Show an error when the input is empty
-   */
+  /** Show an error when the input is empty */
   @Override
   public void showEmptyError() {
     edtGuessNumber.setError("Please input a number!");
   }
 
-  /**
-   * Show an error when the number is out of bounds
-   */
+  /** Show an error when the number is out of bounds */
   @Override
   public void showOutOfBoundsError() {
     edtGuessNumber.setError("Your number is outside the limit. Please try again");
   }
 
-  /**
-   * Show an error when number is too high
-   */
+  /** Show an error when number is too high */
   @Override
   public void showNumberToHighError() {
     edtGuessNumber.setError("Your number is too High! Try Again!");
   }
 
-  /**
-   * Show an error when number is too low
-   */
+  /** Show an error when number is too low */
   @Override
   public void showNumberToLowError() {
     edtGuessNumber.setError("Your number is too Low! Try Again!");

@@ -90,14 +90,6 @@ class HangmanGamePresenter implements HangmanGameInteractor.OnValidateCharListen
     hangmanGameView.showImage();
   }
 
-  /** Display an empty error on the display. */
-  @Override
-  public void onEmptyError() {
-    if (hangmanGameView != null) {
-      hangmanGameView.showEmptyError();
-    }
-  }
-
   /**
    * Display a letter used error on the display.
    *
