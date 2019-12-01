@@ -87,7 +87,7 @@ public class HangmanGameActivity extends AppCompatActivity
     Intent intent = getIntent();
     HangmanGameStatus hangmanGameStat = intent.getParcelableExtra(HangmanMain.getGamestatusMsg());
     hangmanGamePresenter =
-        new HangmanGamePresenter(this, new HangmanGameInteractor(hangmanGameStat));
+        new HangmanGamePresenter(this, this, new HangmanGameInteractor(hangmanGameStat));
 
     assert hangmanGameStat != null;
     String gender = hangmanGameStat.getGender();

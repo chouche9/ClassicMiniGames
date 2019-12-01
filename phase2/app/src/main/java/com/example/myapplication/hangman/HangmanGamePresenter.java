@@ -3,7 +3,7 @@ package com.example.myapplication.hangman;
 /** The presenter of this hangman game. */
 class HangmanGamePresenter implements HangmanGameInteractor.OnValidateCharListener {
 
-  /** The view/activity of the hangman game. */
+  /** The view of the hangman game. */
   private HangmanGameView hangmanGameView;
 
   /** The interactor of the hangman game. */
@@ -18,10 +18,10 @@ class HangmanGamePresenter implements HangmanGameInteractor.OnValidateCharListen
    * @param view the activity that called this presenter.
    * @param hangmanGameInteractor the interactor for the hangman game.
    */
-  HangmanGamePresenter(HangmanGameActivity view, HangmanGameInteractor hangmanGameInteractor) {
+  HangmanGamePresenter(HangmanGameActivity activity, HangmanGameView view ,HangmanGameInteractor hangmanGameInteractor) {
     this.hangmanGameView = view;
     this.hangmanGameInteractor = hangmanGameInteractor;
-    this.hangmanWordGenerator = new HangmanWordGenerator(view);
+    this.hangmanWordGenerator = new HangmanWordGenerator(activity);
   }
 
   /**
