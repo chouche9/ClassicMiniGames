@@ -19,12 +19,12 @@ public class ShooterPlaneBullet extends ShooterGameObject implements Parcelable 
      * @param pX      the p x coordinate
      * @param pY      the p y coordinate
      */
-    public ShooterPlaneBullet(Context context, int pX, int pY){
+    public ShooterPlaneBullet(Context context, int pX, int pY) {
         setObject(BitmapFactory.decodeResource(context.getResources(), R.drawable.psbullet));
         setObject(Bitmap.createScaledBitmap(
                 getObject(), 50, 50, false));
         setWidthHeight();
-        setX(pX - getWidth()/2);
+        setX(pX - getWidth() / 2);
         setY(pY);
         setVelocity(80);
 

@@ -40,7 +40,7 @@ class ShooterPlaneGameLogic {
      * @param shooterGameView   the shooter game view
      */
     ShooterPlaneGameLogic(ShooterGameStatusFacade shooterGameStatus, Context context,
-                          ShooterGameView shooterGameView){
+                          ShooterGameView shooterGameView) {
         this.shooterGameStatus = shooterGameStatus;
         this.context = context;
         this.shooterGameView = shooterGameView;
@@ -51,19 +51,20 @@ class ShooterPlaneGameLogic {
     /**
      * Should music stop boolean.
      * indicate whether music should stop
+     *
      * @return the boolean
      */
-    boolean shouldMusicStop(){
+    boolean shouldMusicStop() {
         return !shooterGameStatus.getShooterCrossLevelManager().isLevelFinish() &&
                 shooterGameStatus.getShooterCrossLevelManager().isGameSuccess();
 
     }
 
     /**
-     *  save game status
+     * save game status
      */
-    private void saveGameState(){
-        ShooterGameManager shooterGameManager = ShooterGameManager.getInstance((Activity)context);
+    private void saveGameState() {
+        ShooterGameManager shooterGameManager = ShooterGameManager.getInstance((Activity) context);
         shooterGameManager.saveGame(shooterGameStatus);
     }
 
@@ -72,25 +73,26 @@ class ShooterPlaneGameLogic {
      *
      * @param bonus the bonus
      */
-    void addBonusPoint(int bonus){
+    void addBonusPoint(int bonus) {
         shooterGameStatus.addPoint(bonus);
     }
 
     /**
      * Handle on resume.
      */
-    void handleOnResume(){
+    void handleOnResume() {
         shooterGameView.setActivityFinish(false);
         shooterGameView.startTimer();
-        if(start<1){
-            shooterGameView.invalidate();}
+        if (start < 1) {
+            shooterGameView.invalidate();
+        }
         start--;
     }
 
     /**
      * Handle on pause.
      */
-    void handleOnPause(){
+    void handleOnPause() {
         shooterGameView.setActivityFinish(true);
         saveGameState();
     }
@@ -106,6 +108,7 @@ class ShooterPlaneGameLogic {
 
     /**
      * set if bnous is open
+     *
      * @param bonusOpen bonus open indicator
      */
     private void setBonusOpen(boolean bonusOpen) {
@@ -115,7 +118,7 @@ class ShooterPlaneGameLogic {
     /**
      * Handle activate bonus game.
      */
-    void handleActivateBonusGame(){
+    void handleActivateBonusGame() {
         setBonusOpen(true);
         shooterGameView.setActivityFinish(true);
     }
@@ -123,7 +126,7 @@ class ShooterPlaneGameLogic {
     /**
      * Handle cancel bonus.
      */
-    void handleCancelBonus(){
+    void handleCancelBonus() {
         setBonusOpen(false);
         shooterGameView.setActivityFinish(false);
         shooterGameView.startTimer();

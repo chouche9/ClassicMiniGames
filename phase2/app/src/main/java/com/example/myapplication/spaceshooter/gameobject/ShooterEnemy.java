@@ -25,9 +25,9 @@ public class ShooterEnemy extends ShooterGameObject implements Parcelable {
      *
      * @param context the context
      */
-    public ShooterEnemy(Context context){
+    public ShooterEnemy(Context context) {
 
-        switch (level){
+        switch (level) {
             case 1:
                 setObject(BitmapFactory.decodeResource(context.getResources(), R.drawable.psenemy1));
                 break;
@@ -58,7 +58,7 @@ public class ShooterEnemy extends ShooterGameObject implements Parcelable {
 
     @Override
     public void setUpBitmap(Context context) {
-        switch (level){
+        switch (level) {
             case 1:
                 setObject(BitmapFactory.decodeResource(context.getResources(), R.drawable.psenemy1));
                 break;
@@ -93,9 +93,9 @@ public class ShooterEnemy extends ShooterGameObject implements Parcelable {
     /**
      * reset position for Enemy.
      */
-    private void resetPosition(){
+    private void resetPosition() {
         Random random = new Random();
-        setX(random.nextInt(ShooterGameView.dWidth- 180));
+        setX(random.nextInt(ShooterGameView.dWidth - 180));
         setY(-100);
     }
 }

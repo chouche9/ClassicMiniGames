@@ -25,7 +25,7 @@ class ShooterGamePresenter {
      * @param shooterPlaneGameLogic the shooter plane game logic
      */
     ShooterGamePresenter(ShooterGameInterface shooterGameInterface,
-                         ShooterPlaneGameLogic shooterPlaneGameLogic){
+                         ShooterPlaneGameLogic shooterPlaneGameLogic) {
         this.shooterGameInterface = shooterGameInterface;
         this.shooterPlaneGameLogic = shooterPlaneGameLogic;
     }
@@ -33,7 +33,7 @@ class ShooterGamePresenter {
     /**
      * Handle on resume.
      */
-    void HandleOnResume(){
+    void HandleOnResume() {
         shooterPlaneGameLogic.handleOnResume();
         shooterGameInterface.startMusic();
     }
@@ -41,12 +41,12 @@ class ShooterGamePresenter {
     /**
      * Handle on pause.
      */
-    void HandleOnPause(){
+    void HandleOnPause() {
         shooterPlaneGameLogic.handleOnPause();
-        if(shooterPlaneGameLogic.shouldMusicStop()){
+        if (shooterPlaneGameLogic.shouldMusicStop()) {
             shooterGameInterface.stopMusic();
         }
-        if (shooterPlaneGameLogic.isBonusOpen()){
+        if (shooterPlaneGameLogic.isBonusOpen()) {
             shooterGameInterface.dismissDialog();
         }
     }
@@ -54,7 +54,7 @@ class ShooterGamePresenter {
     /**
      * Activate bonus game.
      */
-    void activateBonusGame(){
+    void activateBonusGame() {
         shooterPlaneGameLogic.handleActivateBonusGame();
         shooterGameInterface.openDialog();
     }
@@ -65,13 +65,12 @@ class ShooterGamePresenter {
      * @param isWon     the is won
      * @param bonusSore the bonus sore
      */
-    void handleBonusGameResult(boolean isWon, int bonusSore){
+    void handleBonusGameResult(boolean isWon, int bonusSore) {
         if (isWon) {
             shooterPlaneGameLogic.addBonusPoint(bonusSore);
             shooterGameInterface.makeBonusWinToast();
-    }
-        else {
-        shooterGameInterface.makeBonusLoseToast();
+        } else {
+            shooterGameInterface.makeBonusLoseToast();
         }
         shooterGameInterface.dismissDialog();
     }
@@ -79,7 +78,7 @@ class ShooterGamePresenter {
     /**
      * Cancel bonus.
      */
-    void cancelBonus(){
+    void cancelBonus() {
         shooterPlaneGameLogic.handleCancelBonus();
     }
 }

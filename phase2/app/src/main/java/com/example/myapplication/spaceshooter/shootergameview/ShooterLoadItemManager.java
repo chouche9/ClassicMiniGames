@@ -94,6 +94,7 @@ class ShooterLoadItemManager {
         setUpManager();
         this.sp = sp;
     }
+
     /**
      * load class from shooterGameStatus
      */
@@ -114,8 +115,9 @@ class ShooterLoadItemManager {
     void loadItem() {
         updateSpacialItems();
         updateEnemy();
-        if (level == 2){
-            updateEnemybullet();}
+        if (level == 2) {
+            updateEnemybullet();
+        }
         updatePlanebullet();
         updateBonuses();
     }
@@ -154,94 +156,98 @@ class ShooterLoadItemManager {
             pointBuffs.remove(specialItem);
         }
     }
+
     /**
      * create new enemy and delete enemy if it's out of screen
      */
-    private void updateEnemy(){
+    private void updateEnemy() {
         List<ShooterEnemy> remove = new ArrayList<>();
         enemyCount++;
-        if(enemyCount == 10){
+        if (enemyCount == 10) {
             enemies.add(new ShooterEnemy(context));
             enemyCount = 0;
         }
-        for (ShooterEnemy enemy1: enemies){
+        for (ShooterEnemy enemy1 : enemies) {
             enemy1.setY(
                     enemy1.getY() +
                             enemy1.getVelocity());
 
-            if (enemy1.getY() > ShooterGameView.dHeight){
+            if (enemy1.getY() > ShooterGameView.dHeight) {
                 remove.add(enemy1);
             }
         }
-        for (ShooterEnemy enemy1: remove){
+        for (ShooterEnemy enemy1 : remove) {
             enemies.remove(enemy1);
         }
     }
+
     /**
      * create new enemy bullet  and delete enemy bullet if it's out of screen
      */
-    private void updateEnemybullet(){
+    private void updateEnemybullet() {
         List<ShooterEnemyBullet> remove = new ArrayList<>();
         enemyBulletCount++;
-        if(enemyBulletCount == 14){
-            for(ShooterEnemy enemy1: enemies){
-                if(enemy1.getY() > 0){
+        if (enemyBulletCount == 14) {
+            for (ShooterEnemy enemy1 : enemies) {
+                if (enemy1.getY() > 0) {
                     shooterEnemyBullets.add(new ShooterEnemyBullet(context,
-                            enemy1.getX()+ enemy1.getWidth()/2,
+                            enemy1.getX() + enemy1.getWidth() / 2,
                             enemy1.getY() + enemy1.getHeight()));
                 }
             }
             enemyBulletCount = 0;
         }
-        for (ShooterEnemyBullet bullet2: shooterEnemyBullets){
+        for (ShooterEnemyBullet bullet2 : shooterEnemyBullets) {
             bullet2.setY(bullet2.getY() + bullet2.getVelocity());
-            if (bullet2.getY() > ShooterGameView.dHeight){
+            if (bullet2.getY() > ShooterGameView.dHeight) {
                 remove.add(bullet2);
             }
         }
-        for (ShooterEnemyBullet bullet2: remove){
+        for (ShooterEnemyBullet bullet2 : remove) {
             shooterEnemyBullets.remove(bullet2);
         }
     }
+
     /**
      * create new plane bullet and delete plane bullet if it's out of screen
      */
-    private void updatePlanebullet(){
+    private void updatePlanebullet() {
         List<ShooterPlaneBullet> remove = new ArrayList<>();
         planeBulletCount++;
-        if(planeBulletCount == 5){
-            shooterPlaneBullets.add(new ShooterPlaneBullet(context, plane.getX() + plane.getWidth()/2, plane.getY()));
+        if (planeBulletCount == 5) {
+            shooterPlaneBullets.add(new ShooterPlaneBullet(context, plane.getX() + plane.getWidth() / 2, plane.getY()));
             sp.play(ShooterGameView.bulletLoad, 1, 1, 0, 0, 1);
             planeBulletCount = 0;
         }
-        for (ShooterPlaneBullet bullet1: shooterPlaneBullets){
+        for (ShooterPlaneBullet bullet1 : shooterPlaneBullets) {
             bullet1.setY(bullet1.getY() - bullet1.getVelocity());
-            if (bullet1.getY() < 0){
+            if (bullet1.getY() < 0) {
                 remove.add(bullet1);
             }
         }
-        for (ShooterPlaneBullet bullet1: remove){
+        for (ShooterPlaneBullet bullet1 : remove) {
             shooterPlaneBullets.remove(bullet1);
         }
 
     }
+
     /**
      * create new bonus and delete bonus if it's out of screen
      */
-    private void updateBonuses(){
+    private void updateBonuses() {
         bonusCount++;
         List<ShooterBonus> remove = new ArrayList<>();
-        if (bonusCount == 100){
+        if (bonusCount == 100) {
             shooterBonuses.add(new ShooterBonus(context));
             bonusCount = 0;
         }
-        for (ShooterBonus shooterBonus: shooterBonuses){
+        for (ShooterBonus shooterBonus : shooterBonuses) {
             shooterBonus.setY(shooterBonus.getY() + shooterBonus.getVelocity());
-            if (shooterBonus.getY()> ShooterGameView.dHeight){
+            if (shooterBonus.getY() > ShooterGameView.dHeight) {
                 remove.add(shooterBonus);
             }
         }
-        for (ShooterBonus shooterBonus: remove){
+        for (ShooterBonus shooterBonus : remove) {
             shooterBonuses.remove(shooterBonus);
         }
     }

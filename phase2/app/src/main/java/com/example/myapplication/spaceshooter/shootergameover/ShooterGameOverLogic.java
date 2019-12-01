@@ -41,7 +41,7 @@ class ShooterGameOverLogic {
      *
      * @param shooterGameStatus the shooter game status
      */
-    ShooterGameOverLogic(ShooterGameStatusFacade shooterGameStatus){
+    ShooterGameOverLogic(ShooterGameStatusFacade shooterGameStatus) {
         this.shooterGameStatus = shooterGameStatus;
         shooterCrossLevelManager = shooterGameStatus.getShooterCrossLevelManager();
         level = shooterCrossLevelManager.getLevel();
@@ -56,8 +56,8 @@ class ShooterGameOverLogic {
      *
      * @return the boolean that indicate nextLevelButton appearance
      */
-    boolean checkNextLevelAppear(){
-        if (!gameSuccess){
+    boolean checkNextLevelAppear() {
+        if (!gameSuccess) {
             return false;
         }
         return level == 1 && levelfinish;
@@ -68,16 +68,14 @@ class ShooterGameOverLogic {
      *
      * @return the string that should display
      */
-    String getText(){
+    String getText() {
         String string;
-        if(gameSuccess && level == 1){
+        if (gameSuccess && level == 1) {
             string = "Congratulation, you finish level 1 with " + point + " points, Continue??";
-        }
-        else if(!gameSuccess){
+        } else if (!gameSuccess) {
             string = "Sorry, you did not finish the game, your score is " + point;
-        }
-        else {
-            string = "Congratulation, you finish game with " + point +" points!!!";
+        } else {
+            string = "Congratulation, you finish game with " + point + " points!!!";
         }
         return string;
     }
@@ -87,7 +85,7 @@ class ShooterGameOverLogic {
      *
      * @param finish the finish
      */
-    void setMusicFinish(boolean finish){
+    void setMusicFinish(boolean finish) {
         musicFinish = finish;
     }
 
@@ -96,14 +94,14 @@ class ShooterGameOverLogic {
      *
      * @return the boolean
      */
-    boolean getMusicFinish(){
+    boolean getMusicFinish() {
         return musicFinish;
     }
 
     /**
      * Level up gamestate.
      */
-    void levelUpGamestate(){
+    void levelUpGamestate() {
         shooterGameStatus.resetGameStatus();
         shooterCrossLevelManager.updateLevel(2);
     }
@@ -111,7 +109,7 @@ class ShooterGameOverLogic {
     /**
      * Erase game state.
      */
-    void eraseGameState(){
+    void eraseGameState() {
         shooterGameStatus.eraseGameStatus();
     }
 }

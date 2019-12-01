@@ -20,7 +20,7 @@ public class ShooterPlaneExplosion extends ShooterExplosion implements Parcelabl
      * @param explosionX the explosion x coordinate
      * @param explosionY the explosion y coordinate
      */
-    public ShooterPlaneExplosion(Context context, int explosionX, int explosionY){
+    public ShooterPlaneExplosion(Context context, int explosionX, int explosionY) {
         super(explosionX, explosionY);
         explosions = new Bitmap[5];
         explosions[0] = BitmapFactory.decodeResource(context.getResources(), R.drawable.psplaneexplosion1);
@@ -62,7 +62,7 @@ public class ShooterPlaneExplosion extends ShooterExplosion implements Parcelabl
      * @param frame the frame
      * @return the bitmap
      */
-    Bitmap getExplosion(int frame){
+    Bitmap getExplosion(int frame) {
         return explosions[frame];
     }
 
@@ -73,7 +73,8 @@ public class ShooterPlaneExplosion extends ShooterExplosion implements Parcelabl
 
     /**
      * write planeExplosion to Parcel
-     * @param dest the parcel need to write
+     *
+     * @param dest  the parcel need to write
      * @param flags the flag integer
      */
     @Override
@@ -82,7 +83,6 @@ public class ShooterPlaneExplosion extends ShooterExplosion implements Parcelabl
     }
 
     /**
-     *
      * @param context the context to get plane explosion picture
      */
     @Override

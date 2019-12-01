@@ -16,7 +16,7 @@ import com.example.myapplication.spaceshooter.shootergameover.ShooterGameOver;
 /**
  * The type Shooter start.
  */
-public class ShooterStart extends AppCompatActivity implements View.OnClickListener, ShooterStartView{
+public class ShooterStart extends AppCompatActivity implements View.OnClickListener, ShooterStartView {
     /**
      * The Start button.
      */
@@ -38,6 +38,7 @@ public class ShooterStart extends AppCompatActivity implements View.OnClickListe
 
     /**
      * create ShooterStart activity
+     *
      * @param savedInstanceState bundle of the resource in this activity
      */
     @Override
@@ -68,11 +69,12 @@ public class ShooterStart extends AppCompatActivity implements View.OnClickListe
 
     /**
      * onclick method called when view button get clicked
+     *
      * @param view the view that get clicked
      */
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.start:
                 shooterStartPresenter.startNewGame();
                 break;
@@ -98,14 +100,14 @@ public class ShooterStart extends AppCompatActivity implements View.OnClickListe
     /**
      * start the music
      */
-    public void startMusic(){
+    public void startMusic() {
         startService(new Intent(getApplicationContext(), ShooterBackGroundMusic.class));
     }
 
     /**
      * pause the music
      */
-    public void stopMusic(){
+    public void stopMusic() {
         stopService(new Intent(getApplicationContext(), ShooterBackGroundMusic.class));
     }
 

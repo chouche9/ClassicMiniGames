@@ -1,4 +1,5 @@
 package com.example.myapplication.spaceshooter.gameobject;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,9 +15,10 @@ public class ShooterPointBuff extends ShooterSpecialItem {
     /**
      * Instantiates a new Shooter point buff.
      * that increase the point of shooter game status
+     *
      * @param context the context to get puff picture
      */
-    public ShooterPointBuff(Context context){
+    public ShooterPointBuff(Context context) {
         super();
         setObject(BitmapFactory.decodeResource(context.getResources(), R.drawable.psgold));
         setObject(Bitmap.createScaledBitmap(
@@ -28,9 +30,10 @@ public class ShooterPointBuff extends ShooterSpecialItem {
      *
      * @param in the in
      */
-    private ShooterPointBuff(Parcel in){
+    private ShooterPointBuff(Parcel in) {
         super(in);
     }
+
     @Override
     public void getBuff(ShooterGameStatusFacade shooterGameStatus) {
         shooterGameStatus.addPoint(50);
@@ -57,6 +60,7 @@ public class ShooterPointBuff extends ShooterSpecialItem {
 
     /**
      * set up bitmap for shooter point buff
+     *
      * @param context the context
      */
     @Override

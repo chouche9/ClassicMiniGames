@@ -27,7 +27,7 @@ class ShooterStartLogic {
      * @param context the context
      * @param user    the user
      */
-    ShooterStartLogic(Context context, String user){
+    ShooterStartLogic(Context context, String user) {
         ShooterGameManager shooterGameManager = ShooterGameManager.getInstance((Activity) context);
         GameStatus gameStatus = shooterGameManager.getGameStatus(user);
         shooterGameStatus = shooterGameManager.getGameStatus(user);
@@ -39,33 +39,31 @@ class ShooterStartLogic {
      *
      * @return the boolean
      */
-    boolean ResumeBtnAppear(){
-        if (!shooterGameStatus.getShooterCrossLevelManager().isGameSuccess()){
+    boolean ResumeBtnAppear() {
+        if (!shooterGameStatus.getShooterCrossLevelManager().isGameSuccess()) {
             return false;
         }
         if (shooterGameStatus.getShooterGameLevelManager().getMillsecondLeft() ==
-                ShooterGameLevelManager.initaltime){
+                ShooterGameLevelManager.initaltime) {
             return false;
-        }
-        else if(shooterGameStatus.getShooterCrossLevelManager().getLevel() == 1 &&
-                shooterGameStatus.getShooterCrossLevelManager().isLevelFinish()){
+        } else if (shooterGameStatus.getShooterCrossLevelManager().getLevel() == 1 &&
+                shooterGameStatus.getShooterCrossLevelManager().isLevelFinish()) {
             return true;
-        }
-        else return shooterGameStatus.getShooterCrossLevelManager().getLevel() != 2 ||
-                    !shooterGameStatus.getShooterCrossLevelManager().isLevelFinish();
+        } else return shooterGameStatus.getShooterCrossLevelManager().getLevel() != 2 ||
+                !shooterGameStatus.getShooterCrossLevelManager().isLevelFinish();
     }
 
     /**
      * Erase game stat.
      */
-    void eraseGameStat(){
+    void eraseGameStat() {
         shooterGameStatus.eraseGameStatus();
     }
 
     /**
      * Set music finish.
      */
-    void setMusicFinish(){
+    void setMusicFinish() {
         this.musicFinish = false;
     }
 
@@ -74,7 +72,7 @@ class ShooterStartLogic {
      *
      * @return the boolean that is if it's at level 1 finish or not
      */
-    boolean checkAtLevel1Finish(){
+    boolean checkAtLevel1Finish() {
         return shooterGameStatus.getShooterCrossLevelManager().isLevelFinish();
     }
 
@@ -83,7 +81,7 @@ class ShooterStartLogic {
      *
      * @return the shooter game status facade
      */
-    ShooterGameStatusFacade getShooterGameStatus(){
+    ShooterGameStatusFacade getShooterGameStatus() {
         return shooterGameStatus;
     }
 
@@ -92,7 +90,7 @@ class ShooterStartLogic {
      *
      * @return the boolean
      */
-    boolean getMusicFinish(){
+    boolean getMusicFinish() {
         return musicFinish;
     }
 

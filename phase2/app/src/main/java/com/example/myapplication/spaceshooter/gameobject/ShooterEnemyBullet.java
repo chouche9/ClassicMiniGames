@@ -20,12 +20,12 @@ public class ShooterEnemyBullet extends ShooterGameObject implements Parcelable 
      * @param pX      the p x coordinate
      * @param pY      the p y coordinate
      */
-    public ShooterEnemyBullet(Context context, int pX, int pY){
+    public ShooterEnemyBullet(Context context, int pX, int pY) {
         setObject(BitmapFactory.decodeResource(context.getResources(), R.drawable.psbullet2));
         setObject(Bitmap.createScaledBitmap(
                 getObject(), 50, 50, false));
         setWidthHeight();
-        setX(pX - getWidth()/2);
+        setX(pX - getWidth() / 2);
         setY(pY);
         setVelocity(80);
     }
@@ -53,7 +53,6 @@ public class ShooterEnemyBullet extends ShooterGameObject implements Parcelable 
             return new ShooterEnemyBullet[size];
         }
     };
-
 
 
     @Override

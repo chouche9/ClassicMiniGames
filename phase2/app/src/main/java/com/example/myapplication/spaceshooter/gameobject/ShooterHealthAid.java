@@ -17,7 +17,7 @@ public class ShooterHealthAid extends ShooterSpecialItem {
      *
      * @param context the context to get bitmap
      */
-    public ShooterHealthAid(Context context){
+    public ShooterHealthAid(Context context) {
         super();
         setObject(BitmapFactory.decodeResource(context.getResources(), R.drawable.pshealth));
         setObject(Bitmap.createScaledBitmap(
@@ -29,7 +29,7 @@ public class ShooterHealthAid extends ShooterSpecialItem {
      *
      * @param in the parcel
      */
-    private ShooterHealthAid(Parcel in){
+    private ShooterHealthAid(Parcel in) {
         super(in);
     }
 
@@ -39,6 +39,7 @@ public class ShooterHealthAid extends ShooterSpecialItem {
         plane.setLife(plane.getLife() + 5);
         plane.setLife(Math.min(plane.getLife(), 10));
     }
+
     public void writeToParcel(Parcel out, int flags) {
         super.writeToParcel(out, flags);
     }
@@ -61,6 +62,7 @@ public class ShooterHealthAid extends ShooterSpecialItem {
 
     /**
      * set up bitmap for shooter health aid
+     *
      * @param context the context
      */
     @Override

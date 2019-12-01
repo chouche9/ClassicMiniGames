@@ -17,7 +17,7 @@ import com.example.myapplication.spaceshooter.shootergamestatus.ShooterGameStatu
 /**
  * The type Shooter game over.
  */
-public class ShooterGameOver extends AppCompatActivity implements View.OnClickListener, ShooterGameOverView{
+public class ShooterGameOver extends AppCompatActivity implements View.OnClickListener, ShooterGameOverView {
     /**
      * The Next button.
      */
@@ -45,6 +45,7 @@ public class ShooterGameOver extends AppCompatActivity implements View.OnClickLi
 
     /**
      * initialize the ShooterGameOver activity
+     *
      * @param savedInstanceState a bundle of the resources in this activity.
      */
     @Override
@@ -88,11 +89,12 @@ public class ShooterGameOver extends AppCompatActivity implements View.OnClickLi
 
     /**
      * click logic when different button get clicked
+     *
      * @param v the button view get clicked
      */
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.backMain:
                 shooterGameOverPresenter.checkMusicStop();
                 finish();
@@ -141,6 +143,7 @@ public class ShooterGameOver extends AppCompatActivity implements View.OnClickLi
 
     /**
      * set gametext message
+     *
      * @param message message that want to display
      */
     @Override
