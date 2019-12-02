@@ -197,7 +197,7 @@ public class HangmanStageEnded extends AppCompatActivity
 
     if (isWon) {
       hangmanGameStat.setAccumulatedScore(hangmanGameStat.getAccumulatedScore() + bonusScore);
-      firstMessage = "Congratulations, you guessed the correct number!";
+      firstMessage = "Congratulations, you guessed the correct number! \n +1 LIFE";
       valueMessage = "Your new total score: " + hangmanGameStat.getAccumulatedScore();
     } else {
       firstMessage = "Try Again Next Time!";
