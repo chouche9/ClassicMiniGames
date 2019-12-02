@@ -80,7 +80,7 @@ class ShooterLoadItemManager {
     updateSpacialItems();
     updateEnemy();
     if (level == 2) {
-      updateEnemybullet();
+      updateEnemyBullet();
     }
     updatePlanebullet();
     updateBonuses();
@@ -140,7 +140,7 @@ class ShooterLoadItemManager {
   }
 
   /** create new enemy bullet and delete enemy bullet if it's out of screen */
-  private void updateEnemybullet() {
+  private void updateEnemyBullet() {
     List<ShooterEnemyBullet> remove = new ArrayList<>();
     enemyBulletCount++;
     if (enemyBulletCount == 14) {

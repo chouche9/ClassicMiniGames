@@ -9,7 +9,7 @@ import android.widget.ImageButton;
 
 import com.example.myapplication.R;
 import com.example.myapplication.domain.GameStatus;
-import com.example.myapplication.spaceshooter.ShooterBackGroundMusic;
+import com.example.myapplication.spaceshooter.ShooterBackgroundMusic;
 import com.example.myapplication.spaceshooter.shootergamestatus.ShooterGameStatusFacade;
 import com.example.myapplication.spaceshooter.shooterplanegame.ShooterGame;
 
@@ -50,7 +50,7 @@ public class ShooterSetting extends AppCompatActivity implements View.OnClickLis
   @Override
   protected void onResume() {
     super.onResume();
-    startService(new Intent(getApplicationContext(), ShooterBackGroundMusic.class));
+    startService(new Intent(getApplicationContext(), ShooterBackgroundMusic.class));
   }
 
   /** decide if should stop music */
@@ -58,7 +58,7 @@ public class ShooterSetting extends AppCompatActivity implements View.OnClickLis
   protected void onPause() {
     super.onPause();
     if (viewFinish) {
-      stopService(new Intent(getApplicationContext(), ShooterBackGroundMusic.class));
+      stopService(new Intent(getApplicationContext(), ShooterBackgroundMusic.class));
     }
   }
 

@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.myapplication.R;
-import com.example.myapplication.spaceshooter.ShooterBackGroundMusic;
+import com.example.myapplication.spaceshooter.ShooterBackgroundMusic;
 import com.example.myapplication.spaceshooter.shooterplanegame.ShooterGame;
 import com.example.myapplication.spaceshooter.shootergamesetting.ShooterSetting;
 import com.example.myapplication.spaceshooter.shootergameover.ShooterGameOver;
@@ -84,12 +84,12 @@ public class ShooterStart extends AppCompatActivity
 
   /** start the music */
   public void startMusic() {
-    startService(new Intent(getApplicationContext(), ShooterBackGroundMusic.class));
+    startService(new Intent(getApplicationContext(), ShooterBackgroundMusic.class));
   }
 
   /** pause the music */
   public void stopMusic() {
-    stopService(new Intent(getApplicationContext(), ShooterBackGroundMusic.class));
+    stopService(new Intent(getApplicationContext(), ShooterBackgroundMusic.class));
   }
 
   /** make resumeButton appear */

@@ -9,7 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.bonuslevel.BonusLevelDialog;
-import com.example.myapplication.spaceshooter.ShooterBackGroundMusic;
+import com.example.myapplication.spaceshooter.ShooterBackgroundMusic;
 import com.example.myapplication.spaceshooter.shootergamestatus.ShooterGameStatusFacade;
 import com.example.myapplication.spaceshooter.shootergameview.ShooterGameView;
 
@@ -107,13 +107,13 @@ public class ShooterGame extends AppCompatActivity
   /** Start music. */
   @Override
   public void startMusic() {
-    startService(new Intent(getApplicationContext(), ShooterBackGroundMusic.class));
+    startService(new Intent(getApplicationContext(), ShooterBackgroundMusic.class));
   }
 
   /** Stop music. */
   @Override
   public void stopMusic() {
-    stopService(new Intent(getApplicationContext(), ShooterBackGroundMusic.class));
+    stopService(new Intent(getApplicationContext(), ShooterBackgroundMusic.class));
   }
 
   /** Dismiss dialog. */

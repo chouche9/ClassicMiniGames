@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.example.myapplication.mainpage.GameMain;
 import com.example.myapplication.R;
-import com.example.myapplication.spaceshooter.ShooterBackGroundMusic;
+import com.example.myapplication.spaceshooter.ShooterBackgroundMusic;
 import com.example.myapplication.spaceshooter.shooterplanegame.ShooterGame;
 import com.example.myapplication.spaceshooter.shootergamestatus.ShooterGameStatusFacade;
 
@@ -105,13 +105,13 @@ public class ShooterGameOver extends AppCompatActivity
   /** start background music */
   @Override
   public void startMusic() {
-    startService(new Intent(getApplicationContext(), ShooterBackGroundMusic.class));
+    startService(new Intent(getApplicationContext(), ShooterBackgroundMusic.class));
   }
 
   /** stop background music */
   @Override
   public void stopMusic() {
-    stopService(new Intent(getApplicationContext(), ShooterBackGroundMusic.class));
+    stopService(new Intent(getApplicationContext(), ShooterBackgroundMusic.class));
   }
 
   /**
