@@ -13,7 +13,7 @@
     <string name="try_times">You Finish game in:</string>
     <string name="back_to_main">Back To Main</string>
     <string name="start">START</string>
-
+    <string name="back_to_menu">Back To Menu</string>
     <string name="hangman_app_name">Infinite Hangman !!!</string>
     <string name="secret_word">Word to be guessed</string>
     <string name="guess_a_letter">Guess a letter</string>

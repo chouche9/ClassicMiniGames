@@ -36,40 +36,41 @@
 
     <Button
         android:id="@+id/btnNewGame"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="230dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/hangman_round_background"
         android:paddingLeft="25dp"
         android:paddingRight="25dp"
         android:text="New game"
         android:textColor="@color/hangman_white"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.36" />
+        app:layout_constraintTop_toBottomOf="@+id/btnPlayMusic" />
 
     <Button
         android:id="@+id/btnSettings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
+        android:layout_width="230dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/hangman_round_background"
         android:paddingLeft="25dp"
         android:paddingRight="25dp"
         android:text="Settings"
         android:textColor="@color/hangman_white"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnBackToHome"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnResumeGame" />
 
     <Button
         android:id="@+id/btnResumeGame"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_width="230dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/hangman_round_background"
         android:paddingLeft="25dp"
         android:paddingRight="25dp"
@@ -77,23 +78,25 @@
         android:textColor="@color/hangman_white"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnNewGame" />
 
     <Button
         android:id="@+id/btnBackToHome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="230dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/hangman_round_background"
         android:paddingLeft="25dp"
         android:paddingRight="25dp"
-        android:text="BACK TO MAIN"
+        android:text="@string/back_to_menu"
         android:textColor="@color/hangman_white"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnNewGame" />
+        app:layout_constraintTop_toBottomOf="@+id/btnSettings" />
 
     <View
         android:id="@+id/bottomDivider"
