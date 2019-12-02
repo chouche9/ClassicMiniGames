@@ -37,8 +37,8 @@ class HangmanGameManager extends GameManager {
    */
   protected HangmanGameStatus getGameStatus(String username) {
     HangmanGameStatus hangmanGameStat =
-            (HangmanGameStatus)
-                    GameStatusDaoImpl.getInstance(getActivity()).getGameStatus(username, GameEnum.HANGMAN);
+        (HangmanGameStatus)
+            GameStatusDaoImpl.getInstance(getActivity()).getGameStatus(username, GameEnum.HANGMAN);
 
     if (hangmanGameStat == null) {
       hangmanGameStat = new HangmanGameStatus(username);

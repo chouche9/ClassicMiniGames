@@ -57,10 +57,10 @@ public class GameStatusDaoImpl implements GameStatusDao {
     ContentValues values = new ContentValues();
     values.put(DBHandler.COLUMN_STATUS, json);
     database.update(
-            dbHandler.getTables().get(type),
-            values,
-            DBHandler.COLUMN_USERNAME + " = " + "'" + gameStatus.getName() + "'",
-            null);
+        dbHandler.getTables().get(type),
+        values,
+        DBHandler.COLUMN_USERNAME + " = " + "'" + gameStatus.getName() + "'",
+        null);
   }
 
   /**
@@ -74,16 +74,16 @@ public class GameStatusDaoImpl implements GameStatusDao {
   public GameStatus getGameStatus(String username, GameEnum type) {
     SQLiteDatabase database = dbHandler.getWritableDatabase();
     String query =
-            "SELECT "
-                    + DBHandler.COLUMN_STATUS
-                    + " FROM "
-                    + dbHandler.getTables().get(type)
-                    + " WHERE "
-                    + DBHandler.COLUMN_USERNAME
-                    + " = "
-                    + "'"
-                    + username
-                    + "'";
+        "SELECT "
+            + DBHandler.COLUMN_STATUS
+            + " FROM "
+            + dbHandler.getTables().get(type)
+            + " WHERE "
+            + DBHandler.COLUMN_USERNAME
+            + " = "
+            + "'"
+            + username
+            + "'";
 
     Cursor cursor = database.rawQuery(query, null);
     if (cursor.moveToFirst()) {

@@ -318,5 +318,4 @@ public class HangmanGameActivity extends AppCompatActivity
   public void showTxtStageNum(int stageNum) {
     txtStageNum.setText(String.valueOf(stageNum));
   }
-
 }

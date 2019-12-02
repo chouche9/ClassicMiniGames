@@ -1,38 +1,24 @@
 package com.example.myapplication.spaceshooter.shootergamestart;
 
 interface ShooterStartView {
-    /**
-     * start the music
-     */
-    void startMusic();
+  /** start the music */
+  void startMusic();
 
-    /**
-     * pause the music
-     */
-    void stopMusic();
+  /** pause the music */
+  void stopMusic();
 
-    /**
-     * make resumeButton appear
-     */
-    void resumeAppear();
+  /** make resumeButton appear */
+  void resumeAppear();
 
-    /**
-     * make resumeButton disappear
-     */
-    void resumeGone();
+  /** make resumeButton disappear */
+  void resumeGone();
 
-    /**
-     * start gameOver intent
-     */
-    void startFinishPage();
+  /** start gameOver intent */
+  void startFinishPage();
 
-    /**
-     * start shooter game view intent
-     */
-    void startGamePage();
+  /** start shooter game view intent */
+  void startGamePage();
 
-    /**
-     * start shooter setting activity
-     */
-    void startSettingPage();
+  /** start shooter setting activity */
+  void startSettingPage();
 }

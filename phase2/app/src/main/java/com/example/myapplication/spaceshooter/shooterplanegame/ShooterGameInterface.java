@@ -1,36 +1,22 @@
 package com.example.myapplication.spaceshooter.shooterplanegame;
 
-/**
- * The interface Shooter game interface.
- */
+/** The interface Shooter game interface. */
 public interface ShooterGameInterface {
-    /**
-     * Start music.
-     */
-    void startMusic();
+  /** Start music. */
+  void startMusic();
 
-    /**
-     * Stop music.
-     */
-    void stopMusic();
+  /** Stop music. */
+  void stopMusic();
 
-    /**
-     * Dismiss dialog.
-     */
-    void dismissDialog();
+  /** Dismiss dialog. */
+  void dismissDialog();
 
-    /**
-     * Open dialog.
-     */
-    void openDialog();
+  /** Open dialog. */
+  void openDialog();
 
-    /**
-     * Make bonus win toast.
-     */
-    void makeBonusWinToast();
+  /** Make bonus win toast. */
+  void makeBonusWinToast();
 
-    /**
-     * Make bonus lose toast.
-     */
-    void makeBonusLoseToast();
+  /** Make bonus lose toast. */
+  void makeBonusLoseToast();
 }

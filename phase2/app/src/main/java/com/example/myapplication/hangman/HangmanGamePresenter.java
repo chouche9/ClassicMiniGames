@@ -18,7 +18,10 @@ class HangmanGamePresenter implements HangmanGameInteractor.OnValidateCharListen
    * @param view the activity that called this presenter.
    * @param hangmanGameInteractor the interactor for the hangman game.
    */
-  HangmanGamePresenter(HangmanGameActivity activity, HangmanGameView view ,HangmanGameInteractor hangmanGameInteractor) {
+  HangmanGamePresenter(
+      HangmanGameActivity activity,
+      HangmanGameView view,
+      HangmanGameInteractor hangmanGameInteractor) {
     this.hangmanGameView = view;
     this.hangmanGameInteractor = hangmanGameInteractor;
     this.hangmanWordGenerator = new HangmanWordGenerator(activity);
@@ -109,8 +112,7 @@ class HangmanGamePresenter implements HangmanGameInteractor.OnValidateCharListen
     if (hangmanGameView != null) {
       hangmanGameView.showTxtStageNum(getHangmanGameStat().getStageNum());
       hangmanGameView.setPictureIndex(getHangmanGameStat().getFalseGuess());
-      hangmanGameView.showTxtMaskedWord(
-          getHangmanGameStat().getDisplayedMaskedWord().toString());
+      hangmanGameView.showTxtMaskedWord(getHangmanGameStat().getDisplayedMaskedWord().toString());
       hangmanGameView.showLettersGuessed(getHangmanGameStat().getLettersGuessed().toString());
       hangmanGameView.showTxtScore(getHangmanGameStat().getCurrentScore());
       hangmanGameView.showImage();

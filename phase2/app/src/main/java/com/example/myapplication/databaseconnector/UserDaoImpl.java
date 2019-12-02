@@ -75,16 +75,16 @@ public class UserDaoImpl implements UserDao {
   public User getUser(String username) {
     SQLiteDatabase database = dbHandler.getWritableDatabase();
     String query =
-            " SELECT "
-                    + DBHandler.COLUMN_USER_INSTANCE
-                    + " FROM "
-                    + DBHandler.TABLE_USER
-                    + " WHERE "
-                    + DBHandler.COLUMN_USERNAME
-                    + " = "
-                    + "'"
-                    + username
-                    + "'";
+        " SELECT "
+            + DBHandler.COLUMN_USER_INSTANCE
+            + " FROM "
+            + DBHandler.TABLE_USER
+            + " WHERE "
+            + DBHandler.COLUMN_USERNAME
+            + " = "
+            + "'"
+            + username
+            + "'";
 
     Cursor cursor = database.rawQuery(query, null);
     if (cursor.moveToFirst()) {
