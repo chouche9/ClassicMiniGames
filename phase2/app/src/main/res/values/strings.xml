@@ -24,9 +24,9 @@
     <string name="female">Female</string>
     <string name="choose_gender">Choose a gender:</string>
     <string name="play_again">Play Again</string>
-    <string name="main_menu">Main Menu</string>
+    <string name="main_menu">back to main</string>
     <string name="_120">120</string>
     <string name="none">None</string>
-    <string name="hangman_back_to_home">Back to home</string>
+    <string name="hangman_back_to_home">Back to menu</string>
     <string name="hangman_image">Hangman Image</string>
 </resources>
