@@ -110,7 +110,7 @@ public class HangmanStageEnded extends AppCompatActivity
       hangmanGameStat.setGender(originalGender);
       nextStage.setVisibility(View.GONE);
     } else {
-      firstMessage = "Congratulations, you guessed the correct word!";
+      firstMessage = "Congratulations, you guessed the correct word! \n +1 LIFE";
       valueMessage =
           "Score this stage: "
               + hangmanGameStat.getCurrentScore()
@@ -183,7 +183,7 @@ public class HangmanStageEnded extends AppCompatActivity
 
     if (isWon) {
       hangmanGameStat.setAccumulatedScore(hangmanGameStat.getAccumulatedScore() + bonusScore);
-      firstMessage = "Congratulations, you guessed the correct number! \n +1 LIFE";
+      firstMessage = "Congratulations, you guessed the correct number!";
       valueMessage = "Your new total score: " + hangmanGameStat.getAccumulatedScore();
     } else {
       firstMessage = "Try Again Next Time!";
