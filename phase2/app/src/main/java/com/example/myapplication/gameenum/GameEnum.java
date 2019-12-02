@@ -1,4 +1,4 @@
-package com.example.myapplication.databaseconnector;
+package com.example.myapplication.gameenum;
 
 /** An enum that contains all the game types. */
 public enum GameEnum {

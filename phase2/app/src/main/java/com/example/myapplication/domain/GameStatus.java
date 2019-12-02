@@ -3,7 +3,7 @@ package com.example.myapplication.domain;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.example.myapplication.databaseconnector.GameEnum;
+import com.example.myapplication.gameenum.GameEnum;
 
 /** GameStatus of a game. */
 public class GameStatus implements Parcelable {

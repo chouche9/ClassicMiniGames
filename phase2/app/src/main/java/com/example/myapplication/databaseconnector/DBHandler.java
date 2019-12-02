@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.myapplication.domain.GameStatus;
 import com.example.myapplication.flappyfish.flappygamestatus.FlappyGameStatusFacade;
+import com.example.myapplication.gameenum.GameEnum;
 import com.example.myapplication.hangman.HangmanGameStatus;
 import com.example.myapplication.spaceshooter.shootergamestatus.ShooterGameStatusFacade;
 

@@ -3,7 +3,7 @@ package com.example.myapplication.hangman;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.example.myapplication.databaseconnector.GameEnum;
+import com.example.myapplication.gameenum.GameEnum;
 import com.example.myapplication.domain.GameStatus;
 
 /** GameStatus for hangman game - stores the current game state. */

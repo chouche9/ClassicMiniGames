@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.myapplication.domain.GameStatus;
+import com.example.myapplication.gameenum.GameEnum;
 import com.google.gson.Gson;
 
 /** The implementation of the GameStatusDao. */

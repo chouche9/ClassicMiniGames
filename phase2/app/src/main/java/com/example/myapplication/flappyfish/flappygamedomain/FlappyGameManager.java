@@ -3,7 +3,7 @@ package com.example.myapplication.flappyfish.flappygamedomain;
 import android.app.Activity;
 
 import com.example.myapplication.flappyfish.flappygamestatus.FlappyGameStatusFacade;
-import com.example.myapplication.databaseconnector.GameEnum;
+import com.example.myapplication.gameenum.GameEnum;
 import com.example.myapplication.domain.GameManager;
 import com.example.myapplication.databaseconnector.GameStatusDaoImpl;
 import com.example.myapplication.flappyfish.flappygamestatus.LevelManager;

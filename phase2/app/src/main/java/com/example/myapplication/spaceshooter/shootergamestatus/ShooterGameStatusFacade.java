@@ -4,7 +4,7 @@ import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.example.myapplication.databaseconnector.GameEnum;
+import com.example.myapplication.gameenum.GameEnum;
 import com.example.myapplication.domain.GameStatus;
 import com.example.myapplication.spaceshooter.gameobject.ShooterPlane;
 

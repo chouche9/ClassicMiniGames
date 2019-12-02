@@ -2,7 +2,7 @@ package com.example.myapplication.hangman;
 
 import android.app.Activity;
 
-import com.example.myapplication.databaseconnector.GameEnum;
+import com.example.myapplication.gameenum.GameEnum;
 import com.example.myapplication.domain.GameManager;
 import com.example.myapplication.databaseconnector.GameStatusDaoImpl;
 

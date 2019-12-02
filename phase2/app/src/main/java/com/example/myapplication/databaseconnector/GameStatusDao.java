@@ -1,6 +1,7 @@
 package com.example.myapplication.databaseconnector;
 
 import com.example.myapplication.domain.GameStatus;
+import com.example.myapplication.gameenum.GameEnum;
 
 /** The DAO for handling game status. */
 interface GameStatusDao {
