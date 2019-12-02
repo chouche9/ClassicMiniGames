@@ -1,12 +1,12 @@
 package com.example.myapplication.flappyfish.flappygameactivities;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.backgroundmusic.BackgroundMusic;
 import com.example.myapplication.bonuslevel.BonusLevelDialog;
@@ -151,12 +151,12 @@ public class FlappyMainActivity extends AppCompatActivity
    * dismiss the bonus level dialog, and resume the game.
    *
    * @param isWon indicate whether the user has won the bonus level or not.
-   * @param bonusSore the score that the user has won from the bonus level.
+   * @param bonusScore the score that the user has won from the bonus level.
    */
   @Override
-  public void bonusLevelResult(boolean isWon, int bonusSore) {
+  public void bonusLevelResult(boolean isWon, int bonusScore) {
     if (isWon) {
-      gameStatus.addBonusScore(bonusSore);
+      gameStatus.addBonusScore(bonusScore);
       Toast.makeText(this, "You guessed the correct number!\nPlus 100 points!", Toast.LENGTH_SHORT)
           .show();
     } else {

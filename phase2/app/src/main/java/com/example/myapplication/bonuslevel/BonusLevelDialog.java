@@ -1,8 +1,5 @@
 package com.example.myapplication.bonuslevel;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatDialogFragment;
-
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -13,6 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.example.myapplication.R;
 
@@ -26,9 +26,9 @@ public class BonusLevelDialog extends AppCompatDialogFragment implements BonusLe
      * Abstract Method for doing something upon game ended to show the result of the bonus level
      *
      * @param isWon: boolean to show whether game isWon or not
-     * @param bonusSore: the score of the game
+     * @param bonusScore: the score of the game
      */
-    void bonusLevelResult(boolean isWon, int bonusSore);
+    void bonusLevelResult(boolean isWon, int bonusScore);
 
     /** Abstract Method for doing something upon cancelling the bonus game. */
     void onCancel();
