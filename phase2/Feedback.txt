@@ -1,0 +1,33 @@
+Dear group_0553
+
+This semester, we talked about MVP, the Model-View-Presenter architecture. It has many advantages, particularly when working with Android. As you can see from your project, your activity classes have methods that are specific to Android. If you encapsulate the rest of your code sufficiently, it is possible to port it to another platform simply by creating a new UI (for example, a website).
+
+Encapsulation can take on many forms. You can package your View classes together. You can ensure that your dependencies go one-way, towards the inner more abstract layers. You can incorporate SOLID principles as much as possible and design patterns where they make sense.
+Here is feedback that is specific to your project:
+
+You made good use of:
++ Interfaces and abstract classes to uphold the Liskov Substitution principle. For instance, the BonusLevel feature could be used in any game since the BonusLevel classes weren’t coupled to a single implementation
+  - This was also demonstrated by the ability to have background music across the games as well.
++ The Singleton design pattern to ensure that only one instance of the DAO existed (since it doesn’t make sense to have multiple)
++ Great Job with the Domain package which makes the application very extendable and well organized across the different games by centralizing the GameManager, GameStatus, User and UserManger. 
++ Javadoc: every single method and instance variable had sufficient and correct documentation
++ Made good use of MVP design pattern across all parts of the implementation
+
+The user sees:
++ A very well fleshed out interface. Feels smooth and well design. Demonstrated considerations for user’s experience. 
++ Features for toggling background music
++ Smooth animations. For instance, you clearly put substantial effort into animating explosions. 
++ Choices for background color (e.g. light or dark)
++ Good usage of game stats storage allowing the users to return to wherever they left of previously
++ Bonus levels for every game 
++ Good error-handling for user registration: appropriate error messages are shown when the username or password does not match requirements
+
+A good next step would be to…
++ Think a little bit more about how you might consolidate the different games, there are similar logics between the hangman and bonus game (aka guess the number)
++ An advanced step would be to retrieve the list of words from an online interface instead of storing a plain text file
+
+We hope that you enjoyed working on this project and found it a useful learning experience.
+
+Cheers,
+The CSC207 Instructional Team
+
