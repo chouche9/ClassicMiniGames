@@ -1,6 +1,3 @@
-# ClassicMiniGames
-
-Android application developed in CSC207 Software Design at the University of Toronto
 # Classic Mini Games
 
 Our Android application is developed in CSC207 Software Design at the University of Toronto.
