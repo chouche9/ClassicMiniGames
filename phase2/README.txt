@@ -1,6 +1,4 @@
-Our android application contains three classic mini games that operates independently, hangman, flappy fish and space shooter. The application does not require any special installation and will work once cloned. Look out for the bonus level hidden in each game and enjoy!
-
-# Project Title
+# Classic Mini Games
 
 Our android application contains three classic mini games that operates independently, hangman, flappy fish and space shooter. Multiple users are supported and each player's progress will be stored in their account. Look out for the bonus level hidden in each game and enjoy!
 
