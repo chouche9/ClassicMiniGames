@@ -14,5 +14,5 @@ Simply clone the project and navigate to the /phase2/app folder. Open the projec
 * **Frank Chou** - [chouche9](https://github.com/chouche9)
 * **Yingke Wang** - [chouche9](https://github.com/chouche9)
 * **Patrick Louis** - [patricklouisw](https://github.com/patricklouisw)
-* **Sherry Wang** - [chouche9](https://github.com/chouche9)
+* **Sherry Wang** - [sherryew99](https://github.com/sherryw99)
 * **Ariana Jung** - [chouche9](https://github.com/chouche9)
